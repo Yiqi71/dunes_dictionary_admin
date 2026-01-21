@@ -1,0 +1,44 @@
+/* ChillDIN - Local font for consistent loading */
+@font-face {
+  font-family: "ChillDIN";
+  src: url("../fonts/Chilldin/ChillDINGothic_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+/* ChillDINGothic - Local font for consistent loading */
+/* @font-face {
+  font-family: "ChillDINGothic";
+  src: url("../fonts/Chilldin/ChillDINGothic_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+} */
+
+/* Barlow Condensed - Local font for consistent loading */
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("../fonts/Barlow_Condensed/BarlowCondensed-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+/* Stint Ultra Condensed - Local font for consistent loading */
+@font-face {
+  font-family: "Stint Ultra Condensed";
+  src: url("../fonts/Stint_Ultra_Condensed/StintUltraCondensed-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+/* NotoSans - Local font for consistent loading */
+@font-face {
+  font-family: "NotoSans";
+  src: url("../fonts/Noto_Sans_Duployan/NotoSansDuployan-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}

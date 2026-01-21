@@ -1,0 +1,572 @@
+html,
+body {
+    touch-action: manipulation;
+    /* 禁止双击缩放 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    /* user-select: none; */
+}
+
+body {
+    overflow: hidden;
+    height: 100vh;
+    background: #1E1C16;
+    color: #414141;
+    font-family: "ChillDIN", "Barlow Condensed", "ChillDINGothic";
+    transition: opacity 0.8s, transform 0.8s;
+}
+
+img {
+    user-select: none;
+    /* 禁止文字/图片被选中 */
+    -webkit-user-drag: none;
+    /* 禁止图片被拖动（Chrome/Safari） */
+    -moz-user-select: none;
+    /* Firefox 禁止选中 */
+    -ms-user-select: none;
+    /* IE/Edge 旧版 */
+}
+
+/* 文本样式 */
+p,
+h3 {
+    font-family: "ChillDINGothic", "ChillDIN";
+}
+
+h1.Chinese {
+    color: #392f17;
+    text-align: center;
+    font-family: "ChillDIN";
+    font-size: 42px;
+    font-weight: 700;
+}
+
+h1.English {
+    color: #392f17;
+    text-align: center;
+    font-family: "Stint Ultra Condensed";
+    font-size: 42px;
+}
+
+
+
+
+
+.hidden {
+    transition: opacity 0.8s, transform 0.8s;
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+/* 主视图 */
+#universe-view {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    transform-origin: center center;
+    overflow: hidden;
+    cursor: grab;
+
+    transition: left 0.3s ease-in-out;
+
+    user-select: none;
+}
+
+#universe-view:active {
+    cursor: grabbing;
+}
+
+#universe-canvas,
+#connection-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#connection-lines {
+    pointer-events: none;
+
+    transition: left 0.3s ease-in-out;
+}
+
+#connection-lines line {
+    pointer-events: stroke;
+}
+
+
+
+/* 单词节点 */
+#word-nodes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+.word-node {
+    box-sizing: border-box;
+    /* overflow: hidden; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    /* 原来固定的宽度改成最小宽度 */
+    min-width: 46px;
+    width: auto;
+    height: 16px;
+
+    overflow: visible; /* 让文字可以撑开 */
+    border-radius: 5px;
+
+    pointer-events: auto;
+    position: absolute;
+    cursor: pointer;
+}
+
+.word-node * {
+    margin: 0;
+    padding: 0;
+}
+
+.word-node .terms {
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+}
+
+.word-node .detail-title {
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.term-main {
+    color: #544011;
+    font-family: "ChillDIN";
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    letter-spacing: -1.287px;
+}
+
+.term-ori {
+    color: #544011;
+    font-family: "Stint Ultra Condensed";
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* scale=1 → 纯色矩形 */
+body[data-scale="1"] .word-node {
+    min-width: 46px;
+    width: auto;
+    height: 16px;
+}
+
+body[data-scale="1"] .word-node .detail-title,
+body[data-scale="1"] .word-node .terms {
+    display: none;
+}
+
+/* scale=2 → 中文+英文 */
+body[data-scale="2"] .word-node {
+    padding: 1px 5px;
+    min-width: 93px;
+    width: auto;
+    height: 32px;
+    flex-shrink: 0;
+    opacity: 1;
+    border-radius: 4px;
+
+    text-align: left;
+    font-size: 12px;
+    line-height: 12px;
+    text-wrap: nowrap;
+
+    justify-content: center;
+    gap: 0;
+}
+
+body[data-scale="2"] .word-node .detail-title {
+    display: none;
+}
+
+body[data-scale="2"] .word-node .terms {
+    display: flex;
+}
+
+body[data-scale="2"] .word-node .terms .term-ori {
+    color: #544011;
+    font-family: "Barlow Condensed", "ChillDIN";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* scale=3~4 → 加编号 */
+body[data-scale="3"] .word-node,
+body[data-scale="4"] .word-node {
+    min-width: 180px;
+    width: auto;
+    height: 117px;
+    justify-content: space-between !important;
+    align-items: flex-start;
+}
+
+body[data-scale="3"] .word-node .detail-title,
+body[data-scale="4"] .word-node .detail-title {
+    display: flex;
+    margin: 8px;
+}
+
+body[data-scale="3"] .word-node .terms,
+body[data-scale="4"] .word-node .terms {
+    margin: 8px;
+}
+
+body[data-scale="3"] .word-node .terms .term-main,
+body[data-scale="4"] .word-node .terms .term-main {
+    color: #392F17;
+    font-family: "ChillDIN";
+    font-size: 23.493px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -1.287px;
+}
+
+body[data-scale="3"] .word-node .terms .term-ori,
+body[data-scale="4"] .word-node .terms .term-ori {
+    color: #392F17;
+    font-family: "Stint Ultra Condensed";
+    font-size: 33.428px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* scale=5 → 字体更大，布局微调 */
+body[data-scale="5"] .word-node {
+    min-width: 328px;
+    width: auto;
+    height: 213px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between !important;
+}
+
+body[data-scale="5"] .word-node .terms {
+    margin: 20px;
+}
+
+body[data-scale="5"] .word-node .terms .term-main {
+    color: #392F17;
+    font-family: "ChillDIN";
+    font-size: 42.911px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -1.287px;
+}
+
+body[data-scale="5"] .word-node .terms .term-ori {
+    color: #392F17;
+    font-family: "Stint Ultra Condensed";
+    font-size: 61.06px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+body[data-scale="5"] .detail-title {
+    margin: 24px;
+    font-size: 17.3px;
+}
+
+
+.word-node::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-repeat: repeat;
+    background-size: 120px 120px;
+    /* 改这个 = 噪点“颗粒大小/缩放” */
+    opacity: .70;
+    /* 改这个 = 强度（像 Figma 的 Amount） */
+    mix-blend-mode: multiply;
+    /* 常用混合模式：multiply/overlay/soft-light */
+    background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>\
+  <filter id='n'>\
+    <feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/>\
+    <feColorMatrix type='saturate' values='0'/>\
+  </filter>\
+  <rect width='100%' height='100%' filter='url(%23n)'/>\
+</svg>");
+}
+
+.detail {
+    position: absolute;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    z-index: 100;
+}
+
+.detail * {
+    margin: 15px 12px;
+}
+
+.detail-title {
+    font-family: "ChillDIN";
+    font-weight: 700;
+    margin: 10px 40px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 0;
+    gap: 6px;
+    position: relative;
+}
+
+.detail-title::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #544011;
+    display: inline-block;
+}
+
+
+
+/* 噪点覆盖层 */
+.detail::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* 不挡交互 */
+    background-repeat: repeat;
+    background-size: 120px 120px;
+    /* 改这个 = 噪点“颗粒大小/缩放” */
+    opacity: .70;
+    /* 改这个 = 强度（像 Figma 的 Amount） */
+    mix-blend-mode: multiply;
+    /* 常用混合模式：multiply/overlay/soft-light */
+    background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>\
+  <filter id='n'>\
+    <feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/>\
+    <feColorMatrix type='saturate' values='0'/>\
+  </filter>\
+  <rect width='100%' height='100%' filter='url(%23n)'/>\
+</svg>");
+}
+
+
+#term {
+    width: 328px;
+    height: 213px;
+    top: 50vh;
+    left: 50vw;
+    background-color: #FAD67B;
+
+    opacity: 0;
+    display: none;
+}
+
+#term .terms {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: flex-start;
+}
+
+#term h1 {
+    margin: 0;
+    font-family: "ChillDINGothic";
+    font-weight: 600;
+    font-size: 42px;
+    letter-spacing: -3%;
+}
+
+#term .term-main {
+    margin: 0;
+    padding: 0;
+    color: #392F17;
+    font-family: "ChillDINGothic";
+    font-size: 42.911px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -1.287px;
+    text-wrap: nowrap;
+}
+
+#term .term-ori {
+    margin: 0;
+    padding: 0;
+    color: #392F17;
+    font-family: "Stint Ultra Condensed";
+    font-size: 61.06px;
+    font-style: normal;
+    font-weight: 400;
+    text-wrap: nowrap;
+}
+
+
+#image {
+    min-width: 120px;
+    min-height: 150px;
+    background-color: #E8D8B4;
+}
+
+#image img {
+    max-width: 16vw;
+    max-height: 16vw;
+    object-fit: contain;
+    border-radius: 4px;
+    opacity: 0.7;
+    mix-blend-mode: darken;
+    padding: 0 12px 15px 12px;
+}
+
+
+#proposer {
+    width: 260px;
+    min-height: 160px;
+    background-color: #E6D9D0;
+}
+
+#proposer img {
+    max-width: 20vw;
+    max-height: 20vw;
+    object-fit: contain;
+    border-radius: 4px;
+    /* margin: 10px; */
+    opacity: 0.7;
+    mix-blend-mode: darken;
+    padding: 0 12px 15px 12px;
+}
+
+#proposer p {
+    padding: 0 12px;
+    font-family: ChillDINGothic;
+    font-size: 17.3px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+#comment {
+    width: 400px;
+    min-height: 240px;
+    background-color: #B4B596;
+}
+
+#comment h3 {
+    color: #392F17;
+    font-family: "ChillDIN";
+    font-size: 28.834px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36.898px;
+    /* 127.969% */
+    letter-spacing: -0.865px;
+}
+
+#comment p {
+    color: #392F17;
+    text-align: right;
+    font-family: "ChillDINGothic";
+    font-size: 17.3px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #625136;
+    opacity: 0;
+    transition: opacity 0.8s;
+    pointer-events: none;
+}
+
+
+
+
+/* 联动主浮窗整体平移 */
+#floating-panel.shifted {
+    transform: translateY(60px) !important;
+}
+
+
+
+@keyframes breathing {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+        opacity: 0.85;
+    }
+
+    50% {
+        transform: translate(0, -8px);
+        opacity: 1;
+    }
+}
+
+#sand-layer {
+    position: absolute; /* 保证覆盖在 universe-view 内 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 不阻挡下方交互 */
+    opacity: 0.25; /* 透明度50% */
+    mix-blend-mode: multiply; /* 可以改成 darken / multiply / lighten / screen 等效果 */
+    z-index: 10; /* 确保比 canvas 下方内容高，但比 panel/menu 低 */
+    transform-origin: 0 0;
+}
+
+
+#center-dot {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    pointer-events: none;
+    /* 可选：让它不挡住鼠标点击 */
+}

@@ -1,0 +1,792 @@
+/* ChillDINGothic */
+@import url("https://fontsapi.zeoseven.com/642/main/result.css");
+/* Barlow Condensed */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* Stint Ultra Condensed  */
+@import url('https://fonts.googleapis.com/css?family=Stint+Ultra+Condensed');
+
+/* 浮窗样式 */
+#floating-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 37vw;
+    border-radius: 8px 0 0 8px;
+    background: transparent; /* 改为透明，因为子panel有自己的背景 */
+
+    display: flex;
+    flex-direction: row;
+    /* 让slide在右侧 */
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    transform: translateX(100%);
+    /* overflow: hidden; */
+    /* 防止溢出 */
+    /* fixed元素可以作为absolute子元素的定位上下文 */
+}
+
+#floating-panel.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+}
+
+#floating-panel:not(.hidden) {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Panel容器样式 - 双层叠放 */
+.panel-entry,
+.panel-comment {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out;
+    background: #36322A;
+    border-radius: 8px 0 0 8px;
+}
+
+/* 笔记面板特殊样式 */
+.panel-comment {
+    background: #EEE9DB;
+}
+
+.panel-entry.active,
+.panel-comment.active {
+    z-index: 2;
+    transform: translateX(0);
+}
+
+.panel-entry:not(.active),
+.panel-comment:not(.active) {
+    transform: translateX(-68px);
+    cursor: pointer;
+}
+
+/* 主内容区域 - 包含top和bottom，可整体滚动 */
+.panel-main {
+    flex: 1;
+    height: 100vh;
+    overflow-y: scroll;
+    /* padding-right: 12px; */
+
+    /* 隐藏原生滚动条 */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
+.panel-main::-webkit-scrollbar {
+    display: none;
+    /* Chrome / Safari */
+}
+
+/* 上半部分 */
+.panel-top {
+    min-height: 200px;
+    /* 改为min-height，让它可以根据内容调整 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #FAF4E5;
+    padding: 16px;
+    padding-bottom: 70px;
+}
+
+/* 笔记面板的顶部边框颜色 */
+/* .panel-comment .panel-top {
+    border-bottom: 1px solid #43403B;
+} */
+
+.panel-top p {
+    margin: 0;
+    padding: 0;
+
+    /* ID距离顶端96px，减去padding 16px = 80px */
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+
+
+.panel-top div {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    /* 中英文之间的间距 */
+}
+
+.panel-top img {
+    width: 541px;
+    height: 339px;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 50px;
+    /* img到div之间50px */
+}
+
+/* 字 */
+.panel-top p {
+    color: #FAF4E5;
+    text-align: center;
+    font-family: "ChillDINGothic";
+    font-size: 20.735px;
+    font-style: normal;
+    font-weight: 600;
+}
+:lang(en) .panel-top p {
+    color: #FAF4E5;
+    text-align: center;
+    font-family: "ChillDINGothic";
+    font-size: 20.735px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* 笔记面板的文字颜色 */
+.panel-comment .panel-top p {
+    color: #43403B;
+}
+:lang(en) .panel-comment .panel-top p {
+    color: #43403B;
+}
+
+.panel-top .term-main {
+    margin: 0;
+    padding: 0;
+    color: #FAF4E5;
+    font-family: "ChillDINGothic";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    text-align: center;
+    line-height: 45.553px;
+}
+:lang(en) .panel-top .term-main {
+    margin: 0;
+    padding: 0;
+    color: #FAF4E5;
+    font-family: "ChillDINGothic";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    text-align: center;
+    line-height: 45.553px;
+}
+
+/* 笔记面板的term-main颜色 */
+.panel-comment .panel-top .term-main {
+    color: #43403B;
+}
+:lang(en) .panel-comment .panel-top .term-main {
+    color: #43403B;
+}
+
+.panel-top .term-ori {
+    margin: 0;
+    padding: 0;
+    color: #FAF4E5;
+    font-family: "Stint Ultra Condensed";
+    font-size: 66px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    line-height: 50px;
+}
+
+/* 笔记面板的term-ori颜色 */
+.panel-comment .panel-top .term-ori {
+    color: #43403B;
+}
+
+/* 下半部分：其他标签内容 */
+.panel-bottom {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.panel-bottom section {
+    padding: 32px 64px 0 32px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+/* 笔记panel的section默认折叠 */
+.panel-comment .panel-bottom section {
+    max-height: 260px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.10);
+}
+
+/* 展开状态 */
+.panel-comment .panel-bottom section.note-expanded {
+    max-height: none;
+}
+
+/* 排除contributors和editors section，它们不需要折叠 */
+.panel-comment .panel-bottom section#section-contributors,
+.panel-comment .panel-bottom section#section-editors {
+    max-height: none;
+    cursor: default;
+}
+
+.panel-bottom section * {
+    padding: 0 0 20px 0;
+    margin: 0;
+}
+
+#section-brief {
+    padding-top: 180px;
+}
+
+#section-brief h2 {
+    padding: 0 0 76px 0;
+}
+
+.panel-bottom .left-title {
+    width: 80px;
+    flex-shrink: 0;
+}
+
+#section-example {
+    padding-top: 55px;
+}
+
+#section-example img {
+    padding: 24px 0 36px 0;
+    width: 406px !important;
+    height: 270px !important;
+    object-fit: cover !important;
+}
+
+#section-proposers {
+    padding-top: 118px;
+}
+
+.panel-bottom .proposer-block {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.panel-bottom .proposer-block img {
+    padding: 0;
+
+    width: 81px !important;
+    height: 112px !important;
+    object-fit: cover !important;
+
+    /* mix-blend-mode: screen; */
+    filter: brightness(1.5) contrast(0.5) sepia(1.8) hue-rotate(0deg) saturate(2.2);
+}
+
+.panel-bottom .proposer-block p {
+    padding: 4px 0;
+    margin: 0;
+}
+
+#section-related-works {
+    /* padding-top:80px; */
+    padding-bottom: 40px;
+}
+
+#section-contributors {
+    padding-top: 80px;
+}
+
+#section-editors {
+    padding-top: 160px;
+}
+
+#section-proposers,
+#section-contributors {
+    border-top: #FAF4E5 solid 1px;
+}
+
+/* 笔记面板的边框颜色 */
+.panel-comment #section-proposers,
+.panel-comment #section-contributors {
+    border-top: #43403B solid 1px;
+}
+
+
+/* 字 */
+.panel-bottom p {
+    color: #FAF4E5;
+    font-family: "ChillDINGothic", "ChillDIN";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 1px;
+}
+:lang(en) .panel-bottom p {
+    color: #FAF4E5;
+    font-family: "Barlow Condensed","ChillDINGothic";
+    font-size: 21px;
+font-style: normal;
+font-weight: 300;
+line-height: 26px; /* 123.81% */
+letter-spacing: 0.42px;
+}
+
+/* 笔记面板的底部文字颜色 */
+.panel-comment .panel-bottom p {
+    color: #43403B;
+}
+:lang(en) .panel-comment .panel-bottom p {
+    color: #43403B;
+}
+
+.panel-bottom h2 {
+    color: #FAF4E5;
+    font-family: "ChillDINGothic";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 40px;
+    letter-spacing: 2px;
+}
+:lang(en) .panel-bottom h2 {
+    color: #FAF4E5;
+    font-family: "Barlow Condensed";
+font-size: 36px;
+font-style: normal;
+font-weight: 500;
+line-height: 40px;
+}
+
+/* 笔记面板的h2颜色 */
+.panel-comment .panel-bottom h2 {
+    color: #43403B;
+}
+:lang(en) .panel-comment .panel-bottom h2 {
+    color: #43403B;
+}
+
+.panel-bottom h3 {
+    color: #FAF4E5;
+    text-align: justify;
+    font-family: "ChillDINGothic";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 34px;
+    /* 125% */
+    letter-spacing: 0.4px;
+}
+
+/* 笔记面板的h3颜色 */
+.panel-comment .panel-bottom h3 {
+    color: #43403B;
+}
+
+.panel-bottom .left-title {
+    color: #FAF4E5;
+    font-family: "ChillDINGothic", "ChillDIN";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* 笔记面板的left-title颜色 */
+.panel-comment .panel-bottom .left-title {
+    color: #43403B;
+}
+
+.panel-bottom .diagram-caption {
+    color: #FAF4E5;
+    text-align: justify;
+    font-family: "ChillDINGothic", "ChillDIN";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 325;
+    line-height: 20px;
+    /* 125% */
+    letter-spacing: 0.8px;
+}
+
+/* 笔记面板的diagram-caption颜色 */
+.panel-comment .panel-bottom .diagram-caption {
+    color: #43403B;
+}
+
+.panel-bottom .proposer-name {
+    color: #FAF4E5;
+    font-family: "ChillDINGothic","ChillDIN";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    /* line-height: 20px; */
+    letter-spacing: 1.2px;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+/* 笔记面板的proposer-name颜色 */
+.panel-comment .panel-bottom .proposer-name {
+    color: #43403B;
+}
+
+.panel-bottom .proposer-year p {
+    color: #FAF4E5;
+    font-family: "ChillDINGothic", "ChillDIN";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 325;
+    line-height: 20px;
+    letter-spacing: 1px;
+}
+
+/* 笔记面板的proposer-year p颜色 */
+.panel-comment .panel-bottom .proposer-year p {
+    color: #43403B;
+}
+
+.panel-bottom #editors-container p {
+    color: #FAF4E5;
+    font-family: "ChillDINGothic", "ChillDIN";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    /* 114.286% */
+    letter-spacing: 0.7px;
+
+    margin: 0;
+    padding: 0;
+}
+
+/* 笔记面板的editors-container p颜色 */
+.panel-comment .panel-bottom #editors-container p {
+    color: #43403B;
+}
+
+#section-editors {
+    opacity: 0.7;
+}
+
+
+
+/* 展开按钮样式 */
+#expand-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background: #36322A;
+    border: 1px solid #FAF4E5;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    color: #FAF4E5;
+}
+
+#expand-btn:hover {
+    background: #E2DCC9;
+    transform: scale(1.05);
+}
+
+#expand-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* 展开状态的样式 */
+#floating-panel.expanded {
+    width: 70vw;
+}
+
+/* 展开状态下底部section的padding调整 */
+#floating-panel.expanded .panel-bottom .left-title {
+    width: 160px;
+}
+
+#floating-panel.expanded .panel-bottom section {
+    padding: 32px 140px 0 64px;
+}
+#floating-panel.expanded .panel-bottom #section-brief {
+    padding-top: 180px;
+}
+#floating-panel.expanded .panel-bottom #section-example {
+    padding-top: 55px;
+}
+#floating-panel.expanded .panel-bottom #section-proposers {
+    padding-top: 118px;
+}
+#floating-panel.expanded .panel-bottom #section-related-works {
+    /* padding-top:80px; */
+    padding-bottom: 40px;
+}
+
+#floating-panel.expanded .panel-bottom #section-contributors {
+    padding-top: 80px;
+}
+
+#floating-panel.expanded .panel-bottom #section-editors {
+    padding-top: 160px;
+}
+
+/* 展开状态下的图片调整 */
+#floating-panel.expanded .panel-top img {
+    width: 60vw; /* 比默认的541px更大 */
+    height: 36vh; /* 比默认的339px更大 */
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 50px;
+}
+#floating-panel.expanded #section-example img {
+    width: 33vw !important; /* 比默认的406px更大 */
+    height: 33vh !important; /* 比默认的270px更大 */
+    object-fit: cover !important;
+}
+
+/* 展开状态下字体 */
+#floating-panel.expanded .panel-bottom p {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 450;
+    line-height: 28px;
+    letter-spacing: 1.2px;
+}
+
+#floating-panel.expanded .panel-bottom .left-title {
+    color: #FAF4E5;
+    font-family: "ChillDINGothic", "ChillDIN";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+#floating-panel.expanded .panel-bottom h2 {
+    font-size: 45px; 
+    font-weight: 600;
+    letter-spacing: 2.25px;
+}
+
+#floating-panel.expanded .panel-bottom h3 {
+    font-family: "ChillDIN";
+    font-size: 28px; 
+    line-height: 35px; 
+    font-weight: 400;
+    letter-spacing: 1.4px;
+}
+#floating-panel.expanded .panel-bottom .diagram-caption {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+#floating-panel.expanded .panel-bottom .proposer-name {
+    font-size: 28px;
+    letter-spacing: 1.4px;
+}
+#floating-panel.expanded .panel-bottom .proposer-year p {
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 1.2px;
+}
+
+/* 展开状态下笔记面板的颜色 */
+#floating-panel.expanded .panel-comment .panel-bottom p {
+    color: #43403B;
+}
+#floating-panel.expanded .panel-comment .panel-bottom .left-title {
+    color: #43403B;
+}
+#floating-panel.expanded .panel-comment .panel-bottom h2 {
+    color: #43403B;
+}
+#floating-panel.expanded .panel-comment .panel-bottom h3 {
+    color: #43403B;
+}
+#floating-panel.expanded .panel-comment .panel-bottom .diagram-caption {
+    color: #43403B;
+}
+#floating-panel.expanded .panel-comment .panel-bottom .proposer-name {
+    color: #43403B;
+}
+#floating-panel.expanded .panel-comment .panel-bottom .proposer-year p {
+    color: #43403B;
+}
+
+
+/* 确保按钮在展开状态下仍然可见 */
+#floating-panel.expanded #expand-btn {
+    left: 20px; /* 保持在左上角 */
+}
+
+/* 隐藏状态保持不变 */
+#floating-panel.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+}
+
+#floating-panel:not(.hidden) {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
+/* tabs 样式 */
+.panel-tabs {
+    position: absolute;
+    bottom: 40px;
+    left: -38px;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    z-index: 10; /* 确保tab按钮在panel内容之上 */
+}
+
+.panel-tabs button {
+    width: 39px;
+    height: 110px;
+    border: none;
+    border-radius: 6px 0 0 6px;
+    background: #36322A;
+    box-shadow: -2px 2px 2px rgba(79, 70, 45, 0.25);
+    cursor: pointer;
+    padding: 25px 14px;
+
+    color: #FAF4E5;
+    font-family: "ChillDIN";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px;
+    /* 144.444% */
+
+    /* 用 SVG path 裁剪 */
+    -webkit-clip-path: path("M4 25.6222C4 18.6955 8.20257 12.4615 14.6236 9.86337L39 0V106L15.1311 97.22C8.44371 94.7601 4 88.3907 4 81.2652V25.6222Z");
+    clip-path: path("M4 25.6222C4 18.6955 8.20257 12.4615 14.6236 9.86337L39 0V106L15.1311 97.22C8.44371 94.7601 4 88.3907 4 81.2652V25.6222Z");
+
+    
+    transition: background 0.2s;
+}
+
+.panel-tabs button.active {
+    background:#36322A ;
+}
+
+/* 笔记面板的tab按钮样式 */
+.panel-comment .panel-tabs button {
+    background: #EEE9DB;
+    color: #43403B;
+}
+
+.panel-comment .panel-tabs button.active {
+    background: #EEE9DB;
+}
+
+/* 自定义滚动条容器 */
+.panel-slide {
+    width: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    /* 防止被压缩 */
+}
+
+/* 未激活panel的滚动条隐藏 */
+.panel-entry:not(.active) .panel-slide,
+.panel-comment:not(.active) .panel-slide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 笔记panel完全隐藏滚动条 */
+.panel-comment .panel-slide {
+    display: none;
+}
+.panel-slide .scroll-track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-50%);
+    width: 1px;
+    background: #FAF4E5;
+    border-radius: 1px;
+}
+.panel-slide .scroll-thumb {
+    position: absolute;
+    top: 0;
+    /* 初始位置设在上边距处 */
+    left: 0%;
+    transform: translate(-50%, 0);
+    width: 14px;
+    height: 14px;
+    background: #FCF8EF;
+    border-radius: 50%;
+    border: solid 1px #474132;
+    cursor: grab;
+}
+
+/* 笔记面板的滚动条颜色 */
+.panel-comment .panel-slide .scroll-track {
+    background: #43403B;
+}
+.panel-comment .panel-slide .scroll-thumb {
+    background: #43403B;
+    border: solid 1px #43403B;
+}
+.panel-slide .scroll-thumb:active {
+    cursor: grabbing;
+}
+.scroll-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #F0B549;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.scroll-marker:hover {
+    background-color: #333;
+}
+.scroll-tooltip {
+    position: absolute;
+    left: -110px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    display: none;
+}
+.scroll-marker:hover .scroll-tooltip {
+    display: block;
+}

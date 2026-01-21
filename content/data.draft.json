@@ -1,0 +1,173 @@
+{
+  "words": [
+
+    {
+      "id": 18,
+
+      "term": {
+        "zh": "主体见性",
+        "en": "Intersubjectivity"
+      },
+      "termOri": "Intersubjectivity",
+      "concept_image": "images/18.jpg",
+      "sm_title": {
+        "zh": "我的存在和你的存在，创造了一个无形的场域",
+        "en": "My existence and your existence create an invisible field"
+      },
+
+      "proposers": [{
+        "name": {
+          "zh": "乔治·E.阿特伍德",
+          "en": "George E. Atwood"
+        },
+        "year": "1944—",
+        "role": {
+          "zh": "美国的临床心理学家",
+          "en": "American clinical psychologist"
+        },
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9pyB9-J0oUdlbf7f7XRiMtFmvCu0tyCF5f3wXx9XQf0-iWEGmJgvyVC54KJXqT9kGXa-S"
+      }, {
+        "name": "罗伯特·D.史托罗楼（Robert D. Stolorow）",
+        "year": "1942—",
+        "role": "美国的精神分析家、哲学家",
+        "image": "https://0.academia-photos.com/179779/468400/589707/s200_robert.d._stolorow.jpg"
+      }],
+      "source": {
+        "zh": "Structures of Subjectivity: Explorations in Psychoanalytic Phenomenology (1984)，The Analytic Press（中文未出版）",
+        "en": "Structures of Subjectivity: Explorations in Psychoanalytic Phenomenology (1984)"
+      },
+      "source_image": "https://books.google.com/books/content?id=xsgKAAAACAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE70Bgw66AOPCkv-W8c3IKIBbCr4yXIDMAh0t94xD6TcIbftdMsIeVuKHlyNC1WLuXbkzDCTNISLf_hpDUrTg25oiTj1ru-6Y2g6HCsjuyfWR04wxlqv2M8augpjtaj8hycUGwGO-",
+      "related_works": [{
+        "zh": "Worlds of Experience: Interweaving Clinical and Philosophical Dimensions in Psychoanalysis (2002)，中文版《体验的世界：精神分析主体间性理论及其应用》，人民邮电出版社 (2023)",
+        "en": "Worlds of Experience: Interweaving Clinical and Philosophical Dimensions in Psychoanalysis"
+      }],
+      "domain": {
+        "zh": "社会学 / 人类学",
+        "en": "Sociology / Anthropology"
+      },
+      "proposing_country": "CN",
+      "proposing_time": "2024年",
+      "contributor": {
+        "zh": "本期词条的贡献者是Shelley，她是一名心理咨询师，毕业于北京大学心理学系，也是沙丘词典共创会第一期的成员。",
+        "en": "Structures of Subjectivity: Explorations in Psychoanalytic Phenomenology (1984)"
+      },
+      "contribute_date": "2024-04-18",
+      "editors": [{
+        "zh": "沙丘研究所（Gemini 2.5 Pro辅助润色）",
+        "en": ""
+      }, {
+        "zh": "封面图由Midjourney V7 生成",
+        "en": ""
+      }, {
+        "zh": "© 沙丘研究所 2025. 本作品（包括词条和后记部分）采用知识共享署名-非商业性使用 4.0 国际许可协议进行许可。",
+        "en": ""
+      }],
+      "edit_date": "2024-04-18",
+
+      "brief_definition": {
+        "zh": "<h2>在交往中生成的体验性现实。</h2>",
+        "en": "<h2>An experiential reality generated in interaction.</h2>"
+      },
+      "extended_definition": {
+        "zh": [
+          "<h3>想象一间心理咨询室……</h3>",
+          "<h3>这个概念挑战了传统心理学中“孤立心灵”的假设……</h3>"
+        ],
+        "en": [
+          "<h3>Imagine a therapy room…</h3>",
+          "<h3>This concept challenges the traditional assumption of an 'isolated mind'…</h3>"
+        ]
+      },
+      "example_sentence": {
+        "zh": "<h3>在家庭治疗中，治疗师关注的不仅仅是每个成员各自的问题……</h3>",
+        "en": "<h3>In family therapy, the therapist focuses not only on each member’s problems…</h3>"
+      },
+      "diagrams": [{
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Marina_Abramovi%C4%87%2C_The_Artist_is_Present%2C_2010.jpg/1280px-Marina_Abramovi%C4%87%2C_The_Artist_is_Present%2C_2010.jpg",
+        "caption": {
+          "zh": "照片来自玛丽娜·阿布拉莫维奇…",
+          "en": "Photo from Marina Abramović’s 2010 performance 'The Artist is Present' at MoMA…"
+        }
+      }],
+
+
+      "related_terms": [{
+        "id": 2,
+        "relation": "概念相关"
+      }, {
+        "id": 182,
+        "relation": "概念相关"
+      }],
+
+
+      "commentAbs": {
+        "content": {
+          "zh": "<h3>咨询师和来访者共同在互动中“生成”了那个特定的治疗体验和现实。</h3>",
+          "en": "<h3>The counselor and the client co-create the specific therapeutic experience and reality.</h3>"
+        },
+        "author": {
+            "zh": "Shelley",
+            "en": "Shelley"
+          }
+      },
+
+      "comments": [{
+          "content": {
+            "zh": "<h3>主体间性这个概念虽然是由西方哲学家提出，但其实我们每一个东方人都更熟悉其中的智慧。<h3>",
+            "en": "<h3>Although intersubjectivity was first introduced by Western philosophers, it is an idea deeply familiar in Eastern traditions.<h3>"
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "Shelley",
+            "en": "Shelley"
+          },
+          "background": {
+            "zh": "心理学",
+            "en": "Psychology"
+          },
+          "date": "08/19/2025"
+        },
+        {
+          "content": {
+            "zh": "<h3>主体间性这个概念虽然是由西方哲学家提出，但其实我们每一个东方人都更熟悉其中的智慧。<h3>",
+            "en": "<h3>Although intersubjectivity was first introduced by Western philosophers, it is an idea deeply familiar in Eastern traditions.<h3>"
+          },
+          "role": {
+            "zh": "共创者",
+            "en": "Co-creator"
+          },
+          "author": {
+            "zh": "孟汀",
+            "en": "Ting Meng"
+          },
+          "background": {
+            "zh": "人类学",
+            "en": "Anthropology"
+          },
+          "date": "08/19/2025"
+        }, {
+          "content": {
+            "zh": "<h3>主体间性这个概念虽然是由西方哲学家提出，但其实我们每一个东方人都更熟悉其中的智慧。<h3>",
+            "en": "<h3>Before the term 'Intersubjectivity' was adopted in the field of psychology, it was fundamentally a philosophical concept. Perhaps everyone, during a listless childhood afternoon, has pondered those unprompted questions: 'I am certain that I am conscious, but how can I confirm that others are too? If I die, how can I be sure the world will continue to exist?'<br>Philosophers like Husserl, Merleau-Ponty, and others have responded to this very question. But arguably the most renowned response is Heidegger's Mitsein—'Being-with' or 'Co-existence.' It can be understood this way: the starting point of the 'Problem of the Other Minds'—'How can I prove that others are conscious?'—is itself flawed. Mitsein (Being-with) is not a state we achieve; rather, it is the fundamental structure of our existence as Dasein (Being-there). It is not a conclusion that needs to be proven, but the very precondition for any act of proving.<br>When discussing this topic with the AI tool, Gemini, it offered this response: 'In a dream, you have touch, emotions, and logic; the people and things around you are also vivid, but all of it is merely the product of your own consciousness. When you awaken, then, how can you be one hundred percent certain that the 'reality' you are currently experiencing is not a longer, more elaborate dream?'<br>A fascinating, speculative seduction arises in the process of Gemini generating these words. Western dialectics and Eastern thought mingle. More importantly, isn't conversing with an Artificial Intelligence precisely a re-examination of 'Intersubjectivity' itself? When a program trained on massive data corpora can generate text that produces such intense cognitive resonance, is this exchange merely 'human-computer interaction' or an 'intersubjective' engagement?<br>This topic can, I believe, be brought back to the domain of psychological counseling. Many friends around me have mentioned trying AI tools as their psychological therapist, and have reported feeling 'helped' by the experience. When people feel emotionally stifled, talking to a pillow, a pet, or a journal can bring some relief. But can a person really pull themselves out of a quagmire by their own hair?<br>Here, is the 'AI-person' serving as a psychological therapist merely a prosthetic extension of one's own arm, or is it a truly effective 'external force?' If the living, breathing 'presence' in a conversation remains irreplaceable, then when the AI acquires a body so realistic it can simulate human micro-expressions and gestures, are we merely staring into a refined mirror, seeing the reflection of our own emotions, or are we truly co-existing with an Other external to the self?<h3>"
+          },
+          "role": {
+            "zh": "共创者",
+            "en": "Co-creator"
+          },
+          "author": {
+            "zh": "陈飞樾",
+            "en": "Feiyue Chen"
+          },
+          "background": {
+            "zh": "沙丘研究所",
+            "en": "Dune Workshop"
+          },
+          "date": "08/19/2025"
+        }
+      ]
+    }
+  ]
+}

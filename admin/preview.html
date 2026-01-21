@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沙丘词典</title>
+    <!-- 
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="assets/css/resetCSS.css">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/floatingPanel.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+
+    <script type="module" src="assets/js/uni-canvas.js" defer></script>
+    <script type="module" src="assets/js/wordFocus.js" defer></script>
+    <script type="module" src="assets/js/relationManager.js" defer></script>
+    <script type="module" src="assets/js/state.js" defer></script>
+    <script type="module" src="assets/js/countryBoundingBoxes.js" defer></script>
+    <script type="module" src="assets/js/main.preview.js"></script>
+
+    
+    <script type="module" src="assets/js/particles.js" defer></script>
+
+    <!-- <script type="module" src="sandtest.js" defer></script> -->
+</head>
+
+<body>
+    <!-- <div id="center-dot"></div> -->
+
+    <div id="floating-panel" class="hidden">
+        <!-- Entry Panel -->
+        <div class="panel-entry active">
+            <div class="panel-main">
+                <div class="panel-top"></div>
+                <div class="panel-bottom"></div>
+            </div>
+            <div class="panel-slide">
+                <div class="scroll-track"></div>
+                <div class="scroll-thumb"></div>
+            </div>
+            <div class="panel-tabs">
+                <button data-tab="entry" class="active">词条</button>
+                <button data-tab="comment" style="opacity:0; pointer-events:none;">笔记</button>
+            </div>
+        </div>
+
+        <!-- Comment Panel -->
+        <div class="panel-comment">
+            <div class="panel-main">
+                <div class="panel-top"></div>
+                <div class="panel-bottom"></div>
+            </div>
+            <div class="panel-slide">
+                <div class="scroll-track"></div>
+                <div class="scroll-thumb"></div>
+            </div>
+            <div class="panel-tabs">
+                <button data-tab="entry" style="opacity:0; pointer-events:none;">词条</button>
+                <button data-tab="comment" class="active">笔记</button>
+            </div>
+        </div>
+    </div>
+
+    <menu id="side-menu">
+        <div id="upper-menu">
+            <div id="dunes-icon">
+                <h2 class="Chinese">沙丘 词典</h2>
+                <h2 class="English">Dunes Dictionary</h2>
+            </div>
+            <div id="buttons">
+                <div class="small-icon">
+                    <img id="language-icon" alt="language" src="assets/images/language.svg">
+                </div>
+                <div class="small-icon">
+                    <img id="shuffle-icon" alt="shuffle" src="assets/images/shuffle.svg">
+                </div>
+                <div class="small-icon">
+                    <img id="search-icon" alt="search" src="assets/images/search.svg">
+                </div>
+                <div id="about-button">
+                    <p>About</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="lower-menu">
+            <img id="min" alt="" src="assets/images/min.svg">
+            <div id="scaleContainer">
+                <div id="scale">
+                    <div class="scale-line"></div>
+                    <div class="scale-ticks"></div>
+                    <div id="indicator" class="scale-indicator"></div>
+                </div>
+                <div class="scale-numbers"></div>
+            </div>
+            <img id="max" alt="" src="assets/images/max.svg">
+        </div>
+
+        <div id="year-menu">
+            <div id="yearContainer">
+                <!-- Background segments -->
+                <div class="year-segments">
+                    <div class="year-segment"></div>
+                    <div class="year-segment"></div>
+                    <div class="year-segment"></div>
+                    <div class="year-segment"></div>
+                    <div class="year-segment"></div>
+                    <div class="year-segment"></div>
+                </div>
+
+                <!-- Vertical tick marks -->
+                <div class="year-ticks"></div>
+
+                <!-- Year indicator -->
+                <div id="yearIndicator" class="year-indicator"></div>
+
+                <!-- Year labels -->
+                <div class="year-numbers"></div>
+            </div>
+        </div>
+    </menu>
+
+    <!-- 主视图 -->
+    <div id="universe-view" class="view">
+        <canvas id="universe-canvas"><canvas id="sand-layer"></canvas></canvas>
+        
+        <svg id="connection-lines"></svg>
+        <!-- details -->
+        <div id="word-details" class="hidden">
+            <div class="detail" id="image">
+                <div class="detail-title"></div>
+                <img alt="">
+            </div>
+            <div class="detail" id="proposer">
+                <div class="detail-title"></div>
+                <p>proposer's name</p>
+                <img alt="proposer's img">
+            </div>
+            <div class="detail" id="comment">
+                <div class="detail-title"></div>
+                <div id="comment-content">
+
+                </div>
+            </div>
+            <!-- <div class="detail" id="term">
+                <div class="detail-title"></div>
+                <div class="terms">
+                    <div class="term-main Chinese"></div>
+                    <div class="term-ori English"></div>
+                </div>
+            </div> -->
+        </div>
+        <div id="word-nodes-container"></div>
+    </div>
+
+    <div id="overlay" class="hidden"></div>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="search-modal hidden">
+        <div class="search-modal-content">
+            <input type="text" id="search-input" placeholder="Search terms..." autocomplete="off">
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+
+    <div id="tooltipDiv"></div>
+</body>
+
+</html>
