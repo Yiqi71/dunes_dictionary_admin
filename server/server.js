@@ -4,6 +4,9 @@ const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
 
+const cors = require("cors");
+app.use(cors());
+
 const rootDir = path.join(__dirname, "..");
 const publicDir = path.join(rootDir, "public");
 const adminDir = path.join(rootDir, "admin");
