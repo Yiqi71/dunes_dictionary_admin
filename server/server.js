@@ -292,16 +292,16 @@ app.get("/api/terms", async (req, res) => {
   res.json({ ok: true, terms: rows });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server listening on http://0.0.0.0:${PORT}`);
-});
 
 
 
 
 app.use("/api/content", require("./routes/content"));
 app.use("/content", express.static(path.join(process.cwd(), "public", "content")));
-
-
 app.use("/draft", express.static(path.join(process.cwd(), "content", "draft")));
+
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server listening on http://0.0.0.0:${PORT}`);
+});
