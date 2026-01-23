@@ -71,8 +71,9 @@ export function readEvents() {
 }
 
 export function startWordView(wordId) {
-  currentWordView = { wordId, startTs: Date.now() };
-  logEvent("word_view_start", { wordId });
+  const lang = getDocLang();
+  currentWordView = { wordId, startTs: Date.now(), lang };
+  logEvent("word_view_start", { wordId, lang });
 }
 
 export function endWordView(reason = "unknown") {
@@ -81,7 +82,8 @@ export function endWordView(reason = "unknown") {
   logEvent("word_view_end", {
     wordId: currentWordView.wordId,
     durationMs,
-    reason
+    reason,
+    lang: currentWordView.lang || getDocLang()
   });
   currentWordView = null;
 }
