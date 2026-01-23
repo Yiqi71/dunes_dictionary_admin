@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dunes Dictionary Dashboard (Live)</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-slate-50">
+  <div class="min-h-screen p-6">
+    <div class="max-w-7xl mx-auto space-y-6">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-bold text-slate-900">Dunes Dictionary Dashboard</h1>
+          <p class="text-slate-500 text-sm">数据来源：本地后端（实时从事件聚合）</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <span id="statusDot" class="inline-block w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+          <span id="statusText" class="text-sm text-slate-500">未连接</span>
+          <button id="refreshBtn" class="px-3 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 text-sm hover:bg-slate-50">
+            刷新
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+          <div class="flex items-center justify-between">
+            <p class="text-slate-400 text-xs uppercase tracking-wider font-semibold">访问量 (24h)</p>
+            <i data-lucide="activity" class="w-5 h-5 text-slate-400"></i>
+          </div>
+          <h3 id="statVisits" class="text-2xl font-bold text-slate-800 mt-2">-</h3>
+          <p class="text-xs text-slate-500 mt-1">word_view_start 次数</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+          <div class="flex items-center justify-between">
+            <p class="text-slate-400 text-xs uppercase tracking-wider font-semibold">平均停留 (24h)</p>
+            <i data-lucide="clock" class="w-5 h-5 text-slate-400"></i>
+          </div>
+          <h3 id="statAvgStay" class="text-2xl font-bold text-slate-800 mt-2">-</h3>
+          <p class="text-xs text-slate-500 mt-1">基于 word_view_end.durationMs</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+          <div class="flex items-center justify-between">
+            <p class="text-slate-400 text-xs uppercase tracking-wider font-semibold">活跃词条数 (24h)</p>
+            <i data-lucide="globe" class="w-5 h-5 text-slate-400"></i>
+          </div>
+          <h3 id="statActiveTerms" class="text-2xl font-bold text-slate-800 mt-2">-</h3>
+          <p class="text-xs text-slate-500 mt-1">wordId 去重</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+          <div class="flex items-center justify-between">
+            <p class="text-slate-400 text-xs uppercase tracking-wider font-semibold">会话数 (24h)</p>
+            <i data-lucide="mouse-pointer" class="w-5 h-5 text-slate-400"></i>
+          </div>
+          <h3 id="statSessions" class="text-2xl font-bold text-slate-800 mt-2">-</h3>
+          <p class="text-xs text-slate-500 mt-1">sessionId 去重</p>
+        </div>
+      </div>
+
+      <!-- Middle: Trend + Feature -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <!-- Trend -->
+        <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-lg font-bold text-slate-900">访问趋势（近 7 天）</h2>
+              <p class="text-sm text-slate-500">按天聚合 word_view_start</p>
+            </div>
+            <div class="text-sm text-slate-500">
+              <span id="trendRangeText">7d</span>
+            </div>
+          </div>
+          <div class="h-64 w-full">
+            <canvas id="trendChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Feature -->
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+          <h2 class="text-lg font-bold text-slate-900 mb-1">交互功能分布（24h）</h2>
+          <p class="text-sm text-slate-500 mb-4">按事件名占比（目前会统计 shuffle_click 与 word_node_click）</p>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-slate-600">Shuffle</span>
+                <span id="pctShuffle" class="font-semibold text-slate-700">-</span>
+              </div>
+              <div class="h-2 rounded-full bg-slate-100 overflow-hidden mt-2">
+                <div id="barShuffle" class="h-2 bg-indigo-500" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-slate-600">Word Click</span>
+                <span id="pctWordClick" class="font-semibold text-slate-700">-</span>
+              </div>
+              <div class="h-2 rounded-full bg-slate-100 overflow-hidden mt-2">
+                <div id="barWordClick" class="h-2 bg-emerald-500" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-slate-600">Search (需要你埋点 search_click)</span>
+                <span id="pctSearch" class="font-semibold text-slate-700">-</span>
+              </div>
+              <div class="h-2 rounded-full bg-slate-100 overflow-hidden mt-2">
+                <div id="barSearch" class="h-2 bg-slate-400" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-slate-600">Export (需要你埋点 export_click)</span>
+                <span id="pctExport" class="font-semibold text-slate-700">-</span>
+              </div>
+              <div class="h-2 rounded-full bg-slate-100 overflow-hidden mt-2">
+                <div id="barExport" class="h-2 bg-slate-400" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 text-xs text-slate-500">
+            如果你现在没有 search/export 的事件，百分比会是 0。
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="bg-white rounded-2xl border border-slate-100 shadow-sm">
+        <div class="p-5 flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">词条排行（近 7 天）</h2>
+            <p class="text-sm text-slate-500">按 wordId 聚合：浏览次数 + 阅读时长（Sum）</p>
+          </div>
+          <div class="flex gap-2">
+            <button id="range7d" class="px-3 py-2 rounded-lg bg-slate-900 text-white text-sm">7d</button>
+            <button id="range24h" class="px-3 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 text-sm">24h</button>
+            <button id="range30d" class="px-3 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 text-sm">30d</button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="bg-slate-50/50 text-slate-400 text-xs uppercase tracking-wider font-semibold">
+                <th class="px-6 py-4">词条名称</th>
+                <th class="px-6 py-4">分类</th>
+                <th class="px-6 py-4">浏览次数</th>
+                <th class="px-6 py-4">阅读时长 (Sum)</th>
+                <th class="px-6 py-4 text-right">操作</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100" id="term-table-body">
+              <!-- JS fills -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="termModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden">
+      <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+        <h2 id="modalTitle" class="text-xl font-bold text-slate-900">词条详情</h2>
+        <button onclick="closeModal()" class="p-2 rounded-lg hover:bg-white border border-transparent hover:border-slate-200 text-slate-500 hover:text-slate-900">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-5">
+        <div class="grid grid-cols-3 gap-4">
+          <div>
+            <p class="text-slate-400 text-xs mb-1 uppercase tracking-wider font-semibold">浏览次数</p>
+            <p id="modalVisits" class="text-2xl font-bold text-slate-800">-</p>
+          </div>
+          <div>
+            <p class="text-slate-400 text-xs mb-1 uppercase tracking-wider font-semibold">阅读时长 (Sum)</p>
+            <p id="modalDuration" class="text-2xl font-bold text-slate-800">-</p>
+          </div>
+          <div>
+            <p class="text-slate-400 text-xs mb-1 uppercase tracking-wider font-semibold">活跃天数</p>
+            <p id="modalActiveDays" class="text-2xl font-bold text-slate-800">-</p>
+          </div>
+        </div>
+
+        <div class="h-64 w-full">
+          <canvas id="detailChart"></canvas>
+        </div>
+
+        <p class="text-center text-slate-400 text-sm mt-2 italic font-light">近五日活跃趋势（按天聚合 word_view_start）</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+      lucide.createIcons();
+    }
+
+    // ====== Config ======
+    // 优先用 /api/dashboard /api/terms；如果你没加这些接口，会 fallback 到 /events
+    const POLL_MS = 10000;
+    const EVENTS_LIMIT = 5000;
+
+    // ====== State ======
+    let trendChart = null;
+    let detailChart = null;
+    let currentRange = "7d";
+    let lastEventsCache = [];
+
+    // ====== Helpers ======
+    const $ = (id) => document.getElementById(id);
+
+    function setStatus(ok, msg) {
+      $("statusDot").className = "inline-block w-2.5 h-2.5 rounded-full " + (ok ? "bg-emerald-500" : "bg-rose-500");
+      $("statusText").innerText = msg;
+    }
+
+    function fmtMs(ms) {
+      if (!ms || ms < 0) return "0s";
+      const s = Math.round(ms / 1000);
+      const m = Math.floor(s / 60);
+      const r = s % 60;
+      return m > 0 ? `${m}m ${r}s` : `${r}s`;
+    }
+
+    function startOfDay(ts) {
+      const d = new Date(ts);
+      d.setHours(0,0,0,0);
+      return d.getTime();
+    }
+
+    function inLast(ts, ms) {
+      return (Date.now() - ts) <= ms;
+    }
+
+    function rangeToMs(range) {
+      if (range === "24h") return 24 * 3600_000;
+      if (range === "30d") return 30 * 24 * 3600_000;
+      return 7 * 24 * 3600_000; // default 7d
+    }
+
+    function buildTermAgg(events) {
+      const m = new Map(); // wordId -> {visits, durationMs, days:Set}
+      for (const e of events) {
+        const d = e && e.data ? e.data : {};
+        if (e.name === "word_view_start" && d.wordId !== undefined) {
+          const id = Number(d.wordId);
+          if (!Number.isFinite(id)) continue;
+          if (!m.has(id)) m.set(id, { wordId: id, visits: 0, durationMs: 0, days: new Set() });
+          const t = m.get(id);
+          t.visits += 1;
+          t.days.add(startOfDay(e.ts));
+        }
+        if (e.name === "word_view_end" && d.wordId !== undefined) {
+          const id = Number(d.wordId);
+          if (!Number.isFinite(id)) continue;
+          if (!m.has(id)) m.set(id, { wordId: id, visits: 0, durationMs: 0, days: new Set() });
+          const t = m.get(id);
+          if (typeof d.durationMs === "number") t.durationMs += d.durationMs;
+          t.days.add(startOfDay(e.ts));
+        }
+      }
+
+      return Array.from(m.values()).map(t => ({
+        id: t.wordId,
+        term: `词条 #${t.wordId}`,
+        category: "Unknown",
+        visits: t.visits,
+        durationMs: t.durationMs,
+        durationText: fmtMs(t.durationMs),
+        activeDays: t.days.size
+      })).sort((a,b)=>b.visits-a.visits);
+    }
+
+    function buildTrend7d(events) {
+      const now = Date.now();
+      const days = [];
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(now - i * 24 * 3600_000);
+        d.setHours(0,0,0,0);
+        days.push(d.getTime());
+      }
+      const counts = new Map(days.map(d => [d, 0]));
+      for (const e of events) {
+        if (e.name !== "word_view_start") continue;
+        const d = startOfDay(e.ts);
+        if (counts.has(d)) counts.set(d, counts.get(d) + 1);
+      }
+      const labels = days.map(d => {
+        const dt = new Date(d);
+        return `${dt.getMonth()+1}/${dt.getDate()}`;
+      });
+      const data = days.map(d => counts.get(d) || 0);
+      return { labels, data };
+    }
+
+    function buildTermTrend5d(events, wordId) {
+      const now = Date.now();
+      const days = [];
+      for (let i = 4; i >= 0; i--) {
+        const d = new Date(now - i * 24 * 3600_000);
+        d.setHours(0,0,0,0);
+        days.push(d.getTime());
+      }
+      const counts = new Map(days.map(d => [d, 0]));
+      for (const e of events) {
+        if (e.name !== "word_view_start") continue;
+        const d = e.data || {};
+        if (d.wordId !== wordId) continue;
+        const day = startOfDay(e.ts);
+        if (counts.has(day)) counts.set(day, counts.get(day) + 1);
+      }
+      const labels = days.map(d => {
+        const dt = new Date(d);
+        return `${dt.getMonth()+1}/${dt.getDate()}`;
+      });
+      const data = days.map(d => counts.get(d) || 0);
+      return { labels, data };
+    }
+
+    function setPct(idText, idBar, pct) {
+      $(idText).innerText = `${pct}%`;
+      $(idBar).style.width = `${pct}%`;
+      $(idBar).className = $(idBar).className; // noop, keep style
+    }
+
+    // ====== Fetchers ======
+    async function tryFetchJson(url) {
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error(`${url} ${r.status}`);
+      return await r.json();
+    }
+
+    // 优先走 /api/dashboard & /api/terms；没有就 fallback 走 /events 并在前端聚合
+    async function loadFromApi() {
+      const dash = await tryFetchJson("/api/dashboard");
+      const terms = await tryFetchJson(`/api/terms?range=${currentRange}`);
+      return { mode: "api", dash, terms };
+    }
+
+    async function loadFromEventsFallback() {
+      const payload = await tryFetchJson(`/events?limit=${EVENTS_LIMIT}`);
+      const events = payload.events || [];
+      lastEventsCache = events;
+
+      const rangeMs = rangeToMs("24h");
+      const recent24h = events.filter(e => inLast(e.ts, rangeMs));
+
+      const visits24h = recent24h.filter(e => e.name === "word_view_start").length;
+
+      const sessions = new Set(recent24h.map(e => e.sessionId).filter(Boolean)).size;
+
+      const viewEnds = recent24h.filter(e => e.name === "word_view_end" && e.data && typeof e.data.durationMs === "number");
+      const avgMs = viewEnds.length ? Math.round(viewEnds.reduce((s,e)=>s+e.data.durationMs,0)/viewEnds.length) : 0;
+
+      const termAgg24h = buildTermAgg(recent24h);
+      const activeTerms = termAgg24h.length;
+
+      const trend7d = buildTrend7d(events);
+
+      // feature
+      const total = recent24h.length || 1;
+      const shuffle = recent24h.filter(e => e.name === "shuffle_click").length;
+      const wordClick = recent24h.filter(e => e.name === "word_node_click").length;
+      const search = recent24h.filter(e => e.name === "search_click").length;
+      const exportC = recent24h.filter(e => e.name === "export_click").length;
+      const pct = (n)=>Math.round((n/total)*100);
+
+      const dash = {
+        ok: true,
+        stats: {
+          visits24h,
+          avgStay: fmtMs(avgMs),
+          activeTerms,
+          sessions
+        },
+        trend7d: { labels: trend7d.labels, cn: trend7d.data, en: trend7d.data },
+        feature: { shufflePct: pct(shuffle), wordClickPct: pct(wordClick), searchPct: pct(search), downloadPct: pct(exportC) }
+      };
+
+      const rangeMsTerms = rangeToMs(currentRange);
+      const recentRange = events.filter(e => inLast(e.ts, rangeMsTerms));
+      const terms = { ok: true, terms: buildTermAgg(recentRange).slice(0, 50) };
+
+      return { mode: "events", dash, terms, events };
+    }
+
+    // ====== Render ======
+    function renderStats(dash) {
+      $("statVisits").innerText = (dash.stats.visits24h ?? 0).toLocaleString();
+      $("statAvgStay").innerText = dash.stats.avgStay ?? "-";
+      $("statActiveTerms").innerText = (dash.stats.activeTerms ?? 0).toLocaleString();
+      $("statSessions").innerText = (dash.stats.sessions ?? 0).toLocaleString();
+    }
+
+    function renderTrend(dash) {
+      if (typeof Chart === "undefined") return;
+      const ctx = $("trendChart").getContext("2d");
+      if (trendChart) trendChart.destroy();
+
+      const labels = dash.trend7d.labels || [];
+      const cn = dash.trend7d.cn || [];
+      const en = dash.trend7d.en || [];
+
+      trendChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "访问量",
+              data: cn,
+              borderWidth: 3,
+              tension: 0.4,
+              fill: false,
+              pointBorderWidth: 2
+            },
+            {
+              label: "EN (暂同一数据)",
+              data: en,
+              borderWidth: 3,
+              borderDash: [5, 5],
+              tension: 0.4,
+              fill: false,
+              pointBorderWidth: 2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: "bottom" } },
+          scales: {
+            y: { grid: { display: false }, border: { display: false } },
+            x: { grid: { display: false }, border: { display: false } }
+          }
+        }
+      });
+    }
+
+    function renderFeature(dash) {
+      const f = dash.feature || { shufflePct: 0, wordClickPct: 0, searchPct: 0, downloadPct: 0 };
+      setPct("pctShuffle", "barShuffle", f.shufflePct ?? 0);
+      setPct("pctWordClick", "barWordClick", f.wordClickPct ?? 0);
+      setPct("pctSearch", "barSearch", f.searchPct ?? 0);
+      setPct("pctExport", "barExport", f.downloadPct ?? 0);
+    }
+
+    function renderTable(termsPayload) {
+      const terms = termsPayload.terms || [];
+      const tb = $("term-table-body");
+      tb.innerHTML = "";
+
+      terms.forEach(item => {
+        const row = document.createElement("tr");
+        row.className = "hover:bg-slate-50/80 transition-colors group";
+        row.innerHTML = `
+          <td class="px-6 py-4 font-bold text-slate-700">${item.term}</td>
+          <td class="px-6 py-4">
+            <span class="px-2 py-1 bg-slate-100 text-slate-500 text-xs rounded-md font-medium">${item.category || "Unknown"}</span>
+          </td>
+          <td class="px-6 py-4 text-slate-600 font-medium">${(item.visits ?? 0).toLocaleString()}</td>
+          <td class="px-6 py-4 text-slate-600 font-medium">${item.durationText ?? "0s"}</td>
+          <td class="px-6 py-4 text-right">
+            <button onclick="openModal(${item.id})"
+              class="p-2 hover:bg-white rounded-lg border border-transparent hover:border-slate-200 text-slate-400 hover:text-indigo-600 transition-all">
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </td>
+        `;
+        tb.appendChild(row);
+      });
+
+      window.__terms = terms;
+      if (window.lucide && typeof window.lucide.createIcons === "function") {
+        lucide.createIcons();
+      }
+    }
+
+    // ====== Modal ======
+    function openModal(id) {
+      const terms = window.__terms || [];
+      const item = terms.find(t => t.id === id);
+      if (!item) return;
+
+      $("modalTitle").innerText = `词条详情: ${item.term}`;
+      $("modalVisits").innerText = (item.visits ?? 0).toLocaleString();
+      $("modalDuration").innerText = item.durationText ?? "0s";
+      $("modalActiveDays").innerText = (item.activeDays ?? 0).toLocaleString();
+
+      $("termModal").classList.remove("hidden");
+
+      // trend 5d：如果有 events cache，就用它算；否则给空图
+      const ctx = $("detailChart").getContext("2d");
+      if (detailChart) detailChart.destroy();
+
+      const events = lastEventsCache || [];
+      const t = buildTermTrend5d(events, id);
+
+      detailChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: t.labels,
+          datasets: [{
+            data: t.data,
+            borderWidth: 3,
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { display: false },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+    }
+
+    function closeModal() {
+      $("termModal").classList.add("hidden");
+    }
+
+    window.openModal = openModal;
+    window.closeModal = closeModal;
+
+    window.onclick = function(event) {
+      const modal = $("termModal");
+      if (event.target === modal) closeModal();
+    };
+
+    // ====== Controls ======
+    function setRange(range) {
+      currentRange = range;
+      $("trendRangeText").innerText = range;
+
+      // button styles
+      const btns = [
+        ["7d", "range7d"],
+        ["24h", "range24h"],
+        ["30d", "range30d"]
+      ];
+      for (const [r, id] of btns) {
+        const b = $(id);
+        if (r === range) {
+          b.className = "px-3 py-2 rounded-lg bg-slate-900 text-white text-sm";
+        } else {
+          b.className = "px-3 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 text-sm";
+        }
+      }
+    }
+
+    $("range7d").addEventListener("click", () => { setRange("7d"); refreshAll(); });
+    $("range24h").addEventListener("click", () => { setRange("24h"); refreshAll(); });
+    $("range30d").addEventListener("click", () => { setRange("30d"); refreshAll(); });
+
+    $("refreshBtn").addEventListener("click", () => refreshAll());
+
+    // ====== Main ======
+    async function refreshAll() {
+      try {
+        // 先尝试 API 模式（你如果已经加了 /api/dashboard /api/terms，会走这条）
+        const { dash, terms, mode, events } = await (async () => {
+          try {
+            const api = await loadFromApi();
+            return api;
+          } catch (_) {
+            return await loadFromEventsFallback();
+          }
+        })();
+
+        // 如果是 API 模式且 server 没有提供 /events，我们也把 cache 留空；modal 的趋势会空
+        if (mode === "events" && events) lastEventsCache = events;
+
+        renderStats(dash);
+        renderTrend(dash);
+        renderFeature(dash);
+        renderTable(terms);
+
+        setStatus(true, "已连接");
+      } catch (err) {
+        console.error(err);
+        setStatus(false, "连接失败（检查后端是否在跑）");
+      }
+    }
+
+    // init
+    setRange("7d");
+    refreshAll();
+    setInterval(refreshAll, POLL_MS);
+  </script>
+</body>
+</html>
