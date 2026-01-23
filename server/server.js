@@ -90,6 +90,14 @@ function fmtMs(ms) {
   return `${m}m ${r}s`;
 }
 
+function getEventLangKey(e) {
+  const d = (e && e.data) || {};
+  const raw = String(d.lang || d.language || d.locale || d.uiLang || d.to || "").toLowerCase();
+  if (raw.startsWith("en")) return "en";
+  if (raw.startsWith("zh") || raw.includes("cn")) return "cn";
+  return null;
+}
+
 function buildTermAgg(events) {
   const terms = new Map();
   for (const e of events) {
@@ -122,27 +130,39 @@ function buildTermAgg(events) {
   }));
 }
 
-function buildTrend7d(events) {
+function buildTrendNdByLang(events, daysCount) {
   const now = Date.now();
   const days = [];
-  for (let i = 6; i >= 0; i--) {
+  for (let i = daysCount - 1; i >= 0; i--) {
     const d = new Date(now - i * 24 * 3600_000);
     d.setHours(0, 0, 0, 0);
     days.push(d.getTime());
   }
-  const counts = new Map(days.map(d => [d, 0]));
+  const cnCounts = new Map(days.map(d => [d, 0]));
+  const enCounts = new Map(days.map(d => [d, 0]));
+  let missingLang = 0;
   for (const e of events) {
     if (e.name !== "word_view_start") continue;
     const d = startOfDay(e.ts);
-    if (counts.has(d)) counts.set(d, counts.get(d) + 1);
+    if (!cnCounts.has(d)) continue;
+    const lang = getEventLangKey(e);
+    if (lang === "en") {
+      enCounts.set(d, enCounts.get(d) + 1);
+    } else if (lang === "cn") {
+      cnCounts.set(d, cnCounts.get(d) + 1);
+    } else {
+      missingLang += 1;
+      cnCounts.set(d, cnCounts.get(d) + 1);
+    }
   }
   const labels = days.map(d => {
     const dt = new Date(d);
     return `${dt.getMonth() + 1}/${dt.getDate()}`;
   });
-  const data = days.map(d => counts.get(d) || 0);
+  const cn = days.map(d => cnCounts.get(d) || 0);
+  const en = days.map(d => enCounts.get(d) || 0);
 
-  return { labels, cn: data, en: data };
+  return { labels, cn, en, missingLang };
 }
 
 function buildFeature(events) {
@@ -240,13 +260,13 @@ app.get("/health", (req, res) => res.send("ok"));
 app.get("/api/dashboard", async (req, res) => {
   const rangeMs = 24 * 3600_000;
   const since24h = Date.now() - rangeMs;
-  const since7d = Date.now() - 7 * 24 * 3600_000;
+  const since30d = Date.now() - 30 * 24 * 3600_000;
 
   let recent = [];
   let trendEvents = [];
   try {
     const recentRows = await dbAll("SELECT * FROM events WHERE ts >= ? ORDER BY ts ASC", [since24h]);
-    const trendRows = await dbAll("SELECT * FROM events WHERE ts >= ? ORDER BY ts ASC", [since7d]);
+    const trendRows = await dbAll("SELECT * FROM events WHERE ts >= ? ORDER BY ts ASC", [since30d]);
     recent = recentRows.map(rowToEvent);
     trendEvents = trendRows.map(rowToEvent);
   } catch (err) {
@@ -270,7 +290,8 @@ app.get("/api/dashboard", async (req, res) => {
       activeTerms,
       sessions
     },
-    trend7d: buildTrend7d(trendEvents),
+    trend7d: buildTrendNdByLang(trendEvents, 7),
+    trend30d: buildTrendNdByLang(trendEvents, 30),
     feature: buildFeature(recent)
   });
 });
