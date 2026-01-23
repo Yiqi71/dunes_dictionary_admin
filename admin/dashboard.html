@@ -159,20 +159,20 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-stone-100">
           <div class="flex flex-col justify-center px-4">
             <div class="text-stone-500 text-xs uppercase mb-1">英文切换点击 EN Switch Clicks</div>
-            <div class="text-3xl font-bold text-stone-900">-</div>
+            <div id="langEnClicks" class="text-3xl font-bold text-stone-900">-</div>
             <div class="text-xs text-stone-400 mt-1">按钮交互总量 Total interactions</div>
           </div>
           <div class="flex flex-col justify-center px-4">
             <div class="text-stone-500 text-xs uppercase mb-1">渗透率 Penetration Rate</div>
-            <div class="text-3xl font-bold text-amber-600">-</div>
+            <div id="langPenetration" class="text-3xl font-bold text-amber-600">-</div>
             <div class="text-xs text-stone-400 mt-1">点击占比 Clicks / Total</div>
           </div>
           <div class="flex flex-col justify-center px-4">
             <div class="text-stone-500 text-xs uppercase mb-1">有效时长比 (英 vs 中)</div>
             <div class="text-3xl font-bold text-stone-900">-</div>
             <div class="w-full h-1.5 bg-stone-100 rounded-full mt-3 overflow-hidden flex">
-              <div class="bg-stone-300 h-full w-[50%]"></div>
-              <div class="bg-stone-200 h-full w-[50%]"></div>
+              <div id="langBarEn" class="bg-stone-300 h-full w-[50%]"></div>
+              <div id="langBarZh" class="bg-stone-200 h-full w-[50%]"></div>
             </div>
             <div class="flex justify-between text-[10px] text-stone-400 mt-1">
               <span>英文 EN</span>
@@ -534,6 +534,45 @@
       })).sort((a, b) => b.visits - a.visits);
     }
 
+    function buildLangMetrics(events) {
+      if (!Array.isArray(events) || !events.length) return null;
+      const recent24h = events.filter(e => inLast(e.ts, rangeToMs("24h")));
+      const langEvents = recent24h.filter(e => e.name === "lang_toggle");
+      const enEvents = langEvents.filter(e => (e.data?.to || "").startsWith("en"));
+      const zhEvents = langEvents.filter(e => (e.data?.to || "").startsWith("zh"));
+      const totalUsers = new Set(recent24h.map(e => e.sessionId).filter(Boolean)).size;
+      const enUsers = new Set(enEvents.map(e => e.sessionId).filter(Boolean)).size;
+      return {
+        enClicks: enEvents.length,
+        zhClicks: zhEvents.length,
+        enUsers,
+        totalUsers
+      };
+    }
+
+    function renderLang(metrics) {
+      if (!metrics) {
+        $("langEnClicks").innerText = "-";
+        $("langPenetration").innerText = "-";
+        $("langBarEn").style.width = "50%";
+        $("langBarZh").style.width = "50%";
+        return;
+      }
+      const enClicks = metrics.enClicks ?? 0;
+      const zhClicks = metrics.zhClicks ?? 0;
+      const totalUsers = metrics.totalUsers ?? 0;
+      const enUsers = metrics.enUsers ?? 0;
+      const penetration = totalUsers ? Math.round((enUsers / totalUsers) * 100) : 0;
+      const totalClicks = enClicks + zhClicks;
+      const enPct = totalClicks ? Math.round((enClicks / totalClicks) * 100) : 50;
+      const zhPct = 100 - enPct;
+
+      $("langEnClicks").innerText = enClicks.toLocaleString();
+      $("langPenetration").innerText = `${penetration}%`;
+      $("langBarEn").style.width = `${enPct}%`;
+      $("langBarZh").style.width = `${zhPct}%`;
+    }
+
     function buildTrendNd(events, daysCount) {
       const now = Date.now();
       const days = [];
@@ -594,8 +633,8 @@
       const defs = [
         { key: "search", names: ["search_click"] },
         { key: "timeline", names: ["year_filter_change", "timeline_click"] },
-        { key: "link", names: ["word_node_click", "link_click"] },
-        { key: "map", names: ["map_click", "menu_home_click"] },
+        { key: "link", names: ["link_click"] },
+        { key: "map", names: ["word_node_click", "menu_home_click"] },
         { key: "shuffle", names: ["shuffle_click"] },
         { key: "about", names: ["about_click"] }
       ];
@@ -625,6 +664,13 @@
         map.set(id, (map.get(id) || 0) + 1);
       });
       return map;
+    }
+
+    function buildFeatureFromEvents(events) {
+      if (!Array.isArray(events) || !events.length) return null;
+      const recent24h = events.filter(e => inLast(e.ts, rangeToMs("24h")));
+      const sessions = new Set(recent24h.map(e => e.sessionId).filter(Boolean)).size;
+      return buildInteractionMetrics(recent24h, sessions);
     }
 
     async function tryFetchJson(url) {
@@ -971,7 +1017,6 @@
 
         renderStats(dash);
         renderTrend(dash);
-        renderFeature(dash);
         let eventsForYesterday = lastEventsCache;
         if (!eventsForYesterday.length) {
           try {
@@ -982,6 +1027,10 @@
           }
         }
         if (eventsForYesterday.length) lastEventsCache = eventsForYesterday;
+        const featureFromEvents = buildFeatureFromEvents(eventsForYesterday);
+        renderFeature(featureFromEvents ? { feature: featureFromEvents } : dash);
+        const langMetrics = buildLangMetrics(eventsForYesterday);
+        renderLang(langMetrics);
         const yesterdayMap = buildYesterdayVisitsMap(eventsForYesterday);
         renderTable(terms, yesterdayMap);
 
