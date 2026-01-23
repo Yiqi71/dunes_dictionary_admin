@@ -2,6 +2,17 @@ const STORAGE_KEY = "dd_events";
 const MAX_EVENTS = 500;
 let currentWordView = null;
 
+function getDocLang() {
+  try {
+    const lang = (document?.documentElement?.lang || "").toLowerCase();
+    if (lang.startsWith("en")) return "en";
+    if (lang.startsWith("zh") || lang.includes("cn")) return "zh";
+  } catch (_) {
+    // ignore
+  }
+  return "zh";
+}
+
 function getSessionId() {
   const key = "dd_session_id";
   let id = sessionStorage.getItem(key);
@@ -15,13 +26,15 @@ function getSessionId() {
 export function logEvent(name, data = {}) {
   try {
     const events = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    const payload = { ...(data || {}) };
+    if (!payload.lang) payload.lang = getDocLang();
 
     const event = {
       id: `e_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       name,
       ts: Date.now(),
       sessionId: getSessionId(),
-      data
+      data: payload
     };
 
     // 1) 仍然写本地（防断网丢）

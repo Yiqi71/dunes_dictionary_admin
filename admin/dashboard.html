@@ -200,7 +200,7 @@
             <button id="tab7d" class="px-3 py-1 text-xs font-medium rounded bg-white shadow text-stone-900 transition-all">过去7天</button>
             <button id="tab30d" class="px-3 py-1 text-xs font-medium rounded text-stone-500 hover:text-stone-700 transition-all">过去30天</button>
           </div>
-          <span id="trendNote" class="text-xs text-stone-400">语言维度未实现，仅展示总访问</span>
+          <span id="trendNote" class="text-xs text-stone-400">黑色: 中文版本 / 橙色: 英文版本</span>
         </div>
       </div>
 
@@ -542,11 +542,26 @@
       const zhEvents = langEvents.filter(e => (e.data?.to || "").startsWith("zh"));
       const totalUsers = new Set(recent24h.map(e => e.sessionId).filter(Boolean)).size;
       const enUsers = new Set(enEvents.map(e => e.sessionId).filter(Boolean)).size;
+
+      let enDurationMs = 0;
+      let zhDurationMs = 0;
+      const viewEnds = recent24h.filter(e => e.name === "word_view_end" && e.data && typeof e.data.durationMs === "number");
+      viewEnds.forEach(e => {
+        const lang = getEventLangKey(e);
+        if (lang === "en") {
+          enDurationMs += e.data.durationMs;
+        } else {
+          zhDurationMs += e.data.durationMs;
+        }
+      });
+
       return {
         enClicks: enEvents.length,
         zhClicks: zhEvents.length,
         enUsers,
-        totalUsers
+        totalUsers,
+        enDurationMs,
+        zhDurationMs
       };
     }
 
@@ -563,14 +578,22 @@
       const totalUsers = metrics.totalUsers ?? 0;
       const enUsers = metrics.enUsers ?? 0;
       const penetration = totalUsers ? Math.round((enUsers / totalUsers) * 100) : 0;
-      const totalClicks = enClicks + zhClicks;
-      const enPct = totalClicks ? Math.round((enClicks / totalClicks) * 100) : 50;
+      const totalDuration = (metrics.enDurationMs ?? 0) + (metrics.zhDurationMs ?? 0);
+      const enPct = totalDuration ? Math.round((metrics.enDurationMs / totalDuration) * 100) : 50;
       const zhPct = 100 - enPct;
 
       $("langEnClicks").innerText = enClicks.toLocaleString();
       $("langPenetration").innerText = `${penetration}%`;
       $("langBarEn").style.width = `${enPct}%`;
       $("langBarZh").style.width = `${zhPct}%`;
+    }
+
+    function getEventLangKey(e) {
+      const d = e?.data || {};
+      const raw = String(d.lang || d.language || d.locale || d.uiLang || d.to || "").toLowerCase();
+      if (raw.startsWith("en")) return "en";
+      if (raw.startsWith("zh") || raw.includes("cn")) return "cn";
+      return null;
     }
 
     function buildTrendNd(events, daysCount) {
@@ -593,6 +616,40 @@
       });
       const data = days.map(d => counts.get(d) || 0);
       return { labels, data };
+    }
+
+    function buildTrendNdByLang(events, daysCount) {
+      const now = Date.now();
+      const days = [];
+      for (let i = daysCount - 1; i >= 0; i--) {
+        const d = new Date(now - i * 24 * 3600_000);
+        d.setHours(0, 0, 0, 0);
+        days.push(d.getTime());
+      }
+      const cnCounts = new Map(days.map(d => [d, 0]));
+      const enCounts = new Map(days.map(d => [d, 0]));
+      let missingLang = 0;
+      for (const e of events) {
+        if (e.name !== "word_view_start") continue;
+        const day = startOfDay(e.ts);
+        if (!cnCounts.has(day)) continue;
+        const lang = getEventLangKey(e);
+        if (lang === "en") {
+          enCounts.set(day, enCounts.get(day) + 1);
+        } else if (lang === "cn") {
+          cnCounts.set(day, cnCounts.get(day) + 1);
+        } else {
+          missingLang += 1;
+          cnCounts.set(day, cnCounts.get(day) + 1);
+        }
+      }
+      const labels = days.map(d => {
+        const dt = new Date(d);
+        return `${dt.getMonth() + 1}/${dt.getDate()}`;
+      });
+      const cn = days.map(d => cnCounts.get(d) || 0);
+      const en = days.map(d => enCounts.get(d) || 0);
+      return { labels, cn, en, missingLang };
     }
 
     function buildTermTrend5d(events, wordId) {
@@ -703,8 +760,8 @@
       const termAgg24h = buildTermAgg(recent24h);
       const activeTerms = termAgg24h.length;
 
-      const trend7d = buildTrendNd(events, 7);
-      const trend30d = buildTrendNd(events, 30);
+      const trend7d = buildTrendNdByLang(events, 7);
+      const trend30d = buildTrendNdByLang(events, 30);
 
       const feature = buildInteractionMetrics(recent24h, sessions);
 
@@ -716,8 +773,8 @@
           activeTerms,
           sessions
         },
-        trend7d: { labels: trend7d.labels, data: trend7d.data },
-        trend30d: { labels: trend30d.labels, data: trend30d.data },
+        trend7d: { labels: trend7d.labels, cn: trend7d.cn, en: trend7d.en, missingLang: trend7d.missingLang },
+        trend30d: { labels: trend30d.labels, cn: trend30d.cn, en: trend30d.en, missingLang: trend30d.missingLang },
         feature
       };
 
@@ -738,14 +795,20 @@
       const key = range === "30d" ? "trend30d" : "trend7d";
       const t = dash[key];
       if (t && Array.isArray(t.labels)) {
-        const data = Array.isArray(t.data) ? t.data : (Array.isArray(t.cn) ? t.cn : []);
-        return { labels: t.labels, data, note: "语言维度未实现，仅展示总访问" };
+        if (Array.isArray(t.cn) && Array.isArray(t.en)) {
+          const note = t.missingLang ? `部分事件缺少语言字段，已默认归为中文 (${t.missingLang})` : "";
+          return { labels: t.labels, cn: t.cn, en: t.en, note };
+        }
+        if (Array.isArray(t.data)) {
+          return { labels: t.labels, cn: t.data, en: t.data.map(() => 0), note: "语言维度未提供，英文线为 0" };
+        }
       }
       if (lastEventsCache.length) {
-        const trend = buildTrendNd(lastEventsCache, range === "30d" ? 30 : 7);
-        return { labels: trend.labels, data: trend.data, note: "语言维度未实现，仅展示总访问" };
+        const trend = buildTrendNdByLang(lastEventsCache, range === "30d" ? 30 : 7);
+        const note = trend.missingLang ? `部分事件缺少语言字段，已默认归为中文 (${trend.missingLang})` : "";
+        return { labels: trend.labels, cn: trend.cn, en: trend.en, note };
       }
-      return { labels: [], data: [], note: "趋势数据未实现（缺少数据源）" };
+      return { labels: [], cn: [], en: [], note: "趋势数据未实现（缺少数据源）" };
     }
 
     function renderTrend(dash) {
@@ -755,7 +818,8 @@
 
       const trend = normalizeTrendData(dash, currentTrendRange);
       $("trendRangeText").innerText = currentTrendRange;
-      $("trendNote").innerText = trend.note || "";
+      const baseNote = "黑色: 中文版本 / 橙色: 英文版本";
+      $("trendNote").innerText = trend.note ? `${baseNote} · ${trend.note}` : baseNote;
 
       trendChart = new Chart(ctx, {
         type: "line",
@@ -763,10 +827,20 @@
           labels: trend.labels,
           datasets: [
             {
-              label: "访问次数",
-              data: trend.data,
-              borderColor: "#44403c",
-              backgroundColor: "#44403c",
+              label: "中文版本",
+              data: trend.cn,
+              borderColor: "#1c1917",
+              backgroundColor: "#1c1917",
+              borderWidth: 2,
+              tension: 0.4,
+              pointRadius: 3,
+              pointHoverRadius: 6
+            },
+            {
+              label: "英文版本",
+              data: trend.en,
+              borderColor: "#f97316",
+              backgroundColor: "#f97316",
               borderWidth: 2,
               tension: 0.4,
               pointRadius: 3,
