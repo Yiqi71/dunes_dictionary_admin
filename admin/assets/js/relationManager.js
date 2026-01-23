@@ -1,6 +1,7 @@
 // relationsManager.js - 专门处理单词关系连线
 import { state } from "./state.js";
 import { updateWordFocus, zoomToWord } from "./wordFocus.js";
+import { logEvent } from "/analytics.js";
 
 function getCenterPosition(element) {
     const rect = element.getBoundingClientRect();
@@ -239,6 +240,11 @@ function addLineInteractions(hitbox, visualLine, word1, word2, relation, targetI
         hideTooltip();
         zoomToWord(targetId, state.currentScale);
         updateWordFocus();
+        logEvent("link_click", {
+            fromWordId: state.focusedNodeId,
+            toWordId: targetId,
+            relation
+        });
     });
 }
 

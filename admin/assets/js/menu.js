@@ -173,6 +173,7 @@ const yearNumbers = document.querySelector('.year-numbers');
 let isYearDragging = false;
 let yearContainerRect;
 let currentYearIndex = yearPeriods.length - 1; // Start at 'now' (show all words)
+let lastLoggedYearIndex = currentYearIndex;
 
 // Initialize year filter ticks and numbers
 function initializeYearFilter() {
@@ -196,6 +197,7 @@ function initializeYearFilter() {
 
     // Position indicator at the rightmost position initially (show all)
     moveYearIndicator(yearPeriods.length - 1);
+    lastLoggedYearIndex = currentYearIndex;
 }
 
 // Move year indicator to specific index
@@ -281,8 +283,11 @@ function endYearDrag(e) {
     
     // Snap to nearest step
     snapYearToStep();
-    const label = yearPeriods[currentYearIndex]?.label || "";
-    logEvent("year_filter_change", { yearIndex: currentYearIndex, yearLabel: label });
+    if (currentYearIndex !== lastLoggedYearIndex) {
+        const label = yearPeriods[currentYearIndex]?.label || "";
+        logEvent("year_filter_change", { yearIndex: currentYearIndex, yearLabel: label });
+        lastLoggedYearIndex = currentYearIndex;
+    }
 }
 
 function onYearDrag(e) {
@@ -323,6 +328,7 @@ window.addEventListener('DOMContentLoaded', () => {
 // Export function for external use
 export function resetYearFilter() {
     moveYearIndicator(yearPeriods.length - 1);
+    lastLoggedYearIndex = currentYearIndex;
 }
 
 
