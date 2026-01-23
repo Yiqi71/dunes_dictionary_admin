@@ -146,19 +146,26 @@ function buildTrend7d(events) {
 }
 
 function buildFeature(events) {
-  const total = events.length || 1;
-  const shuffle = events.filter(e => e.name === "shuffle_click").length;
-  const search = events.filter(e => e.name === "search_click").length;
-  const download = events.filter(e => e.name === "export_click").length;
-  const wordClick = events.filter(e => e.name === "word_node_click").length;
-
-  const pct = (n) => Math.round((n / total) * 100);
+  const totalUsers = new Set(events.map(e => e.sessionId).filter(Boolean)).size;
+  const denom = totalUsers || 0;
+  const buildStat = (names) => {
+    const matched = events.filter(e => names.includes(e.name));
+    const count = matched.length;
+    const users = new Set(matched.map(e => e.sessionId).filter(Boolean)).size;
+    const pct = denom ? Math.round((users / denom) * 100) : 0;
+    return { count, users, pct };
+  };
 
   return {
-    shufflePct: pct(shuffle),
-    searchPct: pct(search),
-    downloadPct: pct(download),
-    wordClickPct: pct(wordClick)
+    totalUsers,
+    interactions: {
+      search: buildStat(["search_click"]),
+      timeline: buildStat(["year_filter_change", "timeline_click"]),
+      link: buildStat(["word_node_click", "link_click"]),
+      map: buildStat(["map_click", "menu_home_click"]),
+      shuffle: buildStat(["shuffle_click"]),
+      about: buildStat(["about_click"])
+    }
   };
 }
 
