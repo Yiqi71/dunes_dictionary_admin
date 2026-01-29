@@ -32,19 +32,113 @@
 }
 
 #side-menu {
+    --menu-min-width-default: 366px;
+    --menu-gap-default: 12px;
+    --menu-align-default: center;
+    --menu-min-width: var(--menu-min-width-default);
+    --menu-gap: var(--menu-gap-default);
+    --menu-align: var(--menu-align-default);
     position: fixed;
     left: 3vw;
     bottom: 2.8vh;
     transform: none;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: var(--menu-align);
     z-index: 11000;
-    gap: 12px;
-    min-width: 366px;
-
+    gap: var(--menu-gap);
+    min-width: var(--menu-min-width);
     user-select: none;
+    position: fixed;
 }
+
+#side-menu::before {
+    content: "";
+    position: absolute;
+    top: -36px;
+    right: -36px;
+    bottom: -36px;
+    left: -36px;
+    pointer-events: none;
+}
+
+#side-menu.menu-compact {
+    --menu-min-width: auto;
+    --menu-gap: 0;
+    --menu-align: flex-start;
+    width: auto;
+    /* align-items: flex-start; */
+}
+
+/* #side-menu #buttons {
+    transition: opacity 0.45s ease, transform 0.45s ease;
+} */
+
+#side-menu .menu-part {
+    transition: opacity 0.3s ease, transform 0.3s ease, height 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#side-menu.menu-compact .menu-part {
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    transform: translateY(8px);
+}
+
+#side-menu.menu-compact:hover {
+    --menu-min-width: var(--menu-min-width-default);
+    --menu-gap: var(--menu-gap-default);
+    --menu-align: var(--menu-align-default);
+    width: auto;
+}
+
+#side-menu.menu-compact:hover #buttons {
+    opacity: 1;
+    pointer-events: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    transform: none;
+}
+
+#side-menu.menu-compact:hover #lower-menu {
+    opacity: 1;
+    pointer-events: auto;
+    height: 37px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    transform: none;
+}
+
+#side-menu.menu-compact:hover #year-menu {
+    opacity: 1;
+    pointer-events: none;
+    height: 37px;
+    margin: 8px 0 0;
+    padding: 0;
+    overflow: visible;
+    transform: none;
+}
+
+#side-menu.menu-compact .menu-part.menu-part--keep {
+    opacity: 1;
+    pointer-events: auto;
+    height: auto;
+    margin: initial;
+    padding: initial;
+    overflow: visible;
+    transform: none;
+}
+
+
+
 
 #language-icon{
     width: 22px;
@@ -323,4 +417,10 @@
 
 #yearIndicator {
     cursor: grab;
+}
+
+/* Match small buttons hover cursor */
+#upper-menu #about-button,
+#upper-menu #about-button * {
+    cursor: pointer;
 }

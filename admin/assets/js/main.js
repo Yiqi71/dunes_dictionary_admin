@@ -396,7 +396,7 @@ function renderWordUniverse(wordsData) {
                         zoomToWord(node.id, state.scaleThreshold);
                         updateWordFocus();
                         renderPanelSections();
-                        logEvent("word_node_click", { wordId: node.id });
+                        logEvent("word-node-click", { wordId: node.id });
                     }
                 }
             });
@@ -432,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/content/data.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error('网络响应不正确');
+                throw new Error('网络响应不正常');
             }
             return response.json();
         })
@@ -444,6 +444,9 @@ document.addEventListener('DOMContentLoaded', () => {
             renderWordUniverse(data.words);
             zoomToWord(state.focusedNodeId,state.scaleThreshold);
             updateWordFocus();
+            if (state.focusedNodeId !== null && state.focusedNodeId !== undefined) {
+                startWordView(state.focusedNodeId);
+            }
         })
         .catch(error => {
             logEvent("data_loaded", { status: "error" });

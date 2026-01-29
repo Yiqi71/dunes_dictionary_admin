@@ -1,10 +1,4 @@
-/* ChillDINGothic */
-@import url("https://fontsapi.zeoseven.com/642/main/result.css");
-/* Barlow Condensed */
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-/* Stint Ultra Condensed  */
-@import url('https://fonts.googleapis.com/css?family=Stint+Ultra+Condensed');
-
+/* Font imports are handled locally in assets/css/fonts.css */
 /* 浮窗样式 */
 #floating-panel {
     position: fixed;
@@ -19,7 +13,7 @@
     flex-direction: row;
     /* 让slide在右侧 */
     z-index: 1000;
-    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    transition: transform 0.45s ease-in-out, width 0.3s ease-in-out;
     transform: translateX(100%);
     /* overflow: hidden; */
     /* 防止溢出 */
@@ -49,8 +43,8 @@
     display: flex;
     flex-direction: row;
     z-index: 1;
-    transition: transform 0.3s ease-in-out, z-index 0.3s ease-in-out;
-    background: #36322A;
+    transition: transform 0.45s ease-in-out, z-index 0.3s ease-in-out;
+    background: #43403B;
     border-radius: 8px 0 0 8px;
 }
 
@@ -69,6 +63,11 @@
 .panel-comment:not(.active) {
     transform: translateX(-68px);
     cursor: pointer;
+}
+
+.panel-entry:not(.active):hover,
+.panel-comment:not(.active):hover {
+    transform: translateX(-88px);
 }
 
 /* 主内容区域 - 包含top和bottom，可整体滚动 */
@@ -142,7 +141,7 @@
 .panel-top p {
     color: #FAF4E5;
     text-align: center;
-    font-family: "ChillDINGothic";
+    font-family: "Barlow Condensed";
     font-size: 20.735px;
     font-style: normal;
     font-weight: 600;
@@ -150,10 +149,11 @@
 :lang(en) .panel-top p {
     color: #FAF4E5;
     text-align: center;
-    font-family: "ChillDINGothic";
+    font-family: "Barlow Condensed";
     font-size: 20.735px;
     font-style: normal;
     font-weight: 600;
+    line-height: 40px;
 }
 
 /* 笔记面板的文字颜色 */
@@ -173,7 +173,7 @@
     font-style: normal;
     font-weight: 600;
     text-align: center;
-    line-height: 45.553px;
+    line-height: 80px;
 }
 :lang(en) .panel-top .term-main {
     margin: 0;
@@ -184,15 +184,27 @@
     font-style: normal;
     font-weight: 600;
     text-align: center;
-    line-height: 45.553px;
+    line-height: 80px;
 }
 
 /* 笔记面板的term-main颜色 */
 .panel-comment .panel-top .term-main {
     color: #43403B;
+    text-align: center;
+    font-family: "ChillDINGothic";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 60px;
 }
 :lang(en) .panel-comment .panel-top .term-main {
     color: #43403B;
+    text-align: center;
+    font-family: "ChillDINGothic";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 60px;
 }
 
 .panel-top .term-ori {
@@ -206,10 +218,27 @@
     text-align: center;
     line-height: 50px;
 }
+:lang(en) .panel-top .term-ori {
+    margin: 0;
+    padding: 0;
+    color: #FAF4E5;
+    font-family: "Stint Ultra Condensed";
+    font-size: 66px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    line-height: 25.928px;
+}
 
 /* 笔记面板的term-ori颜色 */
 .panel-comment .panel-top .term-ori {
     color: #43403B;
+    text-align: center;
+    font-family: "Stint Ultra Condensed";
+    font-size: 66px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25.928px;
 }
 
 /* 下半部分：其他标签内容 */
@@ -230,8 +259,13 @@
 .panel-comment .panel-bottom section {
     max-height: 260px;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease, transform 0.45s ease;
     cursor: pointer;
+    position: relative;
+    transform: translateY(0);
+}
+/* 仅前三个comment section显示上边阴影 */
+.panel-comment .panel-bottom section:not(#section-contributors):not(#section-editors):nth-of-type(-n+3) {
     box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.10);
 }
 
@@ -240,11 +274,38 @@
     max-height: none;
 }
 
+/* 折叠状态 hover 时向上位移，露出更多内容（不影响其他元素布局） */
+.panel-comment .panel-bottom section:not(.note-expanded):not(#section-contributors):not(#section-editors):hover {
+    transform: translateY(-20px);
+}
+
 /* 排除contributors和editors section，它们不需要折叠 */
 .panel-comment .panel-bottom section#section-contributors,
 .panel-comment .panel-bottom section#section-editors {
     max-height: none;
     cursor: default;
+}
+.panel-comment .panel-bottom .note-body,
+.panel-comment .panel-bottom .note-body * {
+    color: #43403B;
+    text-align: justify;
+    font-family: "ChillDINGothic";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+html:lang(en) .panel-comment .panel-bottom .note-body,
+html:lang(en) .panel-comment .panel-bottom .note-body * {
+    color: #43403B;
+    text-align: justify;
+    font-family: "Barlow Condensed";
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 26px;
+    letter-spacing: 0.42px;
 }
 
 .panel-bottom section * {
@@ -392,6 +453,28 @@ line-height: 40px;
     /* 125% */
     letter-spacing: 0.4px;
 }
+/* Entry panel: brief definition subheadings (zh) */
+.panel-entry #section-brief h3 {
+    color: #FAF4E5;
+    font-family: "ChillDINGothic";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px;
+}
+
+/* Entry panel body text (Chinese) */
+.panel-entry .panel-bottom div p {
+    color: #FAF4E5;
+    font-family: "ChillDINGothic Condensed", "ChillDINGothic", "ChillDIN";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+
+
 
 /* 笔记面板的h3颜色 */
 .panel-comment .panel-bottom h3 {
@@ -400,15 +483,23 @@ line-height: 40px;
 
 .panel-bottom .left-title {
     color: #FAF4E5;
-    font-family: "ChillDINGothic", "ChillDIN";
+    font-family: "ChillDINGothic Condensed", "ChillDINGothic", "ChillDIN";
     font-size: 20px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 /* 笔记面板的left-title颜色 */
 .panel-comment .panel-bottom .left-title {
     color: #43403B;
+}
+:lang(en) .panel-comment .panel-bottom .left-title {
+    color: #43403B;
+    font-family: "Barlow Condensed";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
 }
 
 .panel-bottom .diagram-caption {
@@ -481,6 +572,19 @@ line-height: 40px;
 /* 笔记面板的editors-container p颜色 */
 .panel-comment .panel-bottom #editors-container p {
     color: #43403B;
+    font-family: "ChillDINGothic";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px;
+}
+:lang(en) .panel-comment .panel-bottom #editors-container p {
+    color: #43403B;
+    font-family: "Barlow Condensed";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
 }
 
 #section-editors {
@@ -664,7 +768,8 @@ line-height: 40px;
     display: flex;
     flex-direction: column;
     gap: 45px;
-    z-index: 10; /* 确保tab按钮在panel内容之上 */
+    z-index: 10;
+    pointer-events: none; /* 确保tab按钮在panel内容之上 */
 }
 
 .panel-tabs button {
@@ -672,7 +777,7 @@ line-height: 40px;
     height: 110px;
     border: none;
     border-radius: 6px 0 0 6px;
-    background: #36322A;
+    background: #43403B;
     box-shadow: -2px 2px 2px rgba(79, 70, 45, 0.25);
     cursor: pointer;
     padding: 25px 14px;
@@ -691,10 +796,22 @@ line-height: 40px;
 
     
     transition: background 0.2s;
+    pointer-events: auto;
+}
+:lang(en) .panel-tabs button {
+    color: #43403B;
+    font-family: "Barlow Condensed";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+}
+:lang(en) .panel-entry .panel-tabs button[data-tab="entry"] {
+    color: #FAF4E5;
 }
 
 .panel-tabs button.active {
-    background:#36322A ;
+    background:#43403B ;
 }
 
 /* 笔记面板的tab按钮样式 */
@@ -778,13 +895,22 @@ line-height: 40px;
 }
 .scroll-tooltip {
     position: absolute;
-    left: -110px;
+    right: 100%;
+    margin-right: 8px;
+    top: 50%;
     background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 12px;
-    white-space: nowrap;
+    text-align: left;
+    white-space: normal;
+    min-width: 72px;
+    max-width: 140px;
+    line-height: 1.2;
+    word-break: break-word;
+    line-break: normal;
+    transform: translateY(calc(-50% + var(--tooltip-shift, 0px)));
     display: none;
 }
 .scroll-marker:hover .scroll-tooltip {

@@ -13,6 +13,8 @@ import {
     updateRelations
 } from "./relationManager.js"
 
+
+import { logEvent, startWordView, endWordView } from "/analytics.js";
 // 浮窗相关变量
 let isPanelVisible = false;
 let isExpanded = false;
@@ -42,6 +44,10 @@ function filterProposer(name) {
         link.addEventListener('click', (e) => {
             e.stopPropagation();
             const targetNodeId = link.id.replace('related-', '');
+            const fromWordId = state.focusedNodeId;
+            endWordView("switch");
+            startWordView(targetNodeId);
+            logEvent("link_click", { fromWordId, toWordId: targetNodeId });
             zoomToWord(targetNodeId, state.currentScale);
             updateWordFocus();
 
@@ -325,6 +331,11 @@ const sectionTitles = {
     editors: { zh: "编辑", en: "Editors" }
 };
 
+const noteAuthor = {
+    role: { zh: "编辑", en: "Editor" },
+    name: { zh: "陈飞樾", en: "Chen Feiyue" }
+};
+
 export function renderPanelSections() {
     let currentWord = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!currentWord) return;
@@ -350,6 +361,7 @@ export function renderPanelSections() {
     const bottomDiv = entryPanel.querySelector('.panel-bottom');
     bottomDiv.innerHTML = `
         <section id="section-brief"> </section>
+        <section id="section-extended"> </section>
         <section id="section-example"> </section>
         <section id="section-proposers"> </section>
         <section id="section-source"> </section>
@@ -359,6 +371,7 @@ export function renderPanelSections() {
     `;
 
     const briefSec = document.getElementById("section-brief");
+    const extendedSec = document.getElementById("section-extended");
     const exampleSec = document.getElementById("section-example");
     const proposerSec = document.getElementById("section-proposers");
     const sourceSec = document.getElementById("section-source");
@@ -366,17 +379,22 @@ export function renderPanelSections() {
     const contributorsSec = document.getElementById("section-contributors");
     const editorsSec = document.getElementById("section-editors");
 
-    briefSec.innerHTML = `<p class="left-title">${sectionTitles.brief[lang]}</p>
+        briefSec.innerHTML = `<p class="left-title">${sectionTitles.brief[lang]}</p>
                        <div>
-                           ${currentWord.brief_definition?.[lang] || '暂无简要释义'}
-                           ${
-                            Array.isArray(currentWord.extended_definition?.[lang])
-                                ? currentWord.extended_definition?.[lang].join('')
-                                : currentWord.extended_definition?.[lang] 
-                                ? currentWord.extended_definition?.[lang]
-                                : '<h3>暂无扩展释义</h3>'
-                            }
+                           ${currentWord.brief_definition?.[lang] || "暂无简要释义"}
                       </div>`;
+
+    const extendedTitle = lang === "zh" ? "详细释义" : "Extended Definition";
+    extendedSec.innerHTML = `<p class="left-title">${extendedTitle}</p>
+                        <div>
+                            ${
+                                Array.isArray(currentWord.extended_definition?.[lang])
+                                    ? currentWord.extended_definition?.[lang].join("")
+                                    : currentWord.extended_definition?.[lang]
+                                    ? currentWord.extended_definition?.[lang]
+                                    : "暂无详细释义"
+                            }
+                        </div>`;
 
     // FIXED: Don't wrap in h3 since JSON already contains HTML tags  
     exampleSec.innerHTML = `<p class="left-title">${sectionTitles.example[lang]}</p>
@@ -461,8 +479,8 @@ function renderCommentSection() {
     contentScroll.innerHTML = `
         ${currentWord.comments?.map(c => 
             `<section>
-                <p class="left-title">${c.role?.[lang]}<br>${c.author?.[lang]}<br>${c.background?.[lang]}</p>
-                <div><br><br><br><br>${c.content?.[lang]}</div>
+                <p class="left-title">${noteAuthor.role[lang]}<br>${noteAuthor.name[lang]}</p>
+                <div class="note-body"><br><br><br><br>${c.content?.[lang]}</div>
             </section>`
         ).join('') || '暂无评论'}
 
@@ -774,12 +792,40 @@ document.addEventListener('mouseup', () => {
 });
 
 
+
+function adjustMarkerTooltip(marker) {
+    const tooltip = marker.querySelector('.scroll-tooltip');
+    if (!tooltip) return;
+
+    tooltip.style.setProperty('--tooltip-shift', '0px');
+    tooltip.style.display = 'block';
+
+    requestAnimationFrame(() => {
+        const rect = tooltip.getBoundingClientRect();
+        const padding = 6;
+        let shift = 0;
+
+        if (rect.bottom > window.innerHeight - padding) {
+            shift -= rect.bottom - (window.innerHeight - padding);
+        }
+        if (rect.top < padding) {
+            shift += padding - rect.top;
+        }
+
+        if (shift != 0) {
+            tooltip.style.setProperty('--tooltip-shift', `${shift}px`);
+        }
+    });
+}
+
 function renderScrollMarkers(panelType = 'entry') {
     const panel = panelType === 'entry' 
         ? document.querySelector('.panel-entry')
         : document.querySelector('.panel-comment');
     
     if (!panel) return;
+
+    const lang = state.currentLang || "zh";
     
     const panelMain = panel.querySelector('.panel-main');
     const scrollTrack = panel.querySelector('.scroll-track');
@@ -791,36 +837,36 @@ function renderScrollMarkers(panelType = 'entry') {
 
     const sections = [{
             id: "panel-top",
-            label: "顶部",
+            label: { zh: "顶部", en: "Top" },
             isTop: true
         },
         {
             id: "section-brief",
-            label: "释义"
+            label: sectionTitles.brief
         },
         {
             id: "section-example",
-            label: "例句"
+            label: sectionTitles.example
         },
         {
             id: "section-proposers",
-            label: "提出人"
+            label: sectionTitles.proposers
         },
         {
             id: "section-source",
-            label: "来源"
+            label: sectionTitles.source
         },
         {
             id: "section-related-works",
-            label: "相关著作"
+            label: sectionTitles.relatedWorks
         },
         {
             id: "section-contributors",
-            label: "contributors"
+            label: sectionTitles.contributors
         },
         {
             id: "section-editors",
-            label: "编辑"
+            label: sectionTitles.editors
         }
     ];
 
@@ -864,8 +910,17 @@ function renderScrollMarkers(panelType = 'entry') {
 
         const tooltip = document.createElement("div");
         tooltip.className = "scroll-tooltip";
-        tooltip.textContent = sec.label;
+        tooltip.textContent = sec.label?.[lang] || sec.label;
         marker.appendChild(tooltip);
+
+        marker.addEventListener("mouseenter", () => {
+            adjustMarkerTooltip(marker);
+        });
+
+        marker.addEventListener("mouseleave", () => {
+            tooltip.style.removeProperty('--tooltip-shift');
+            tooltip.style.display = "";
+        });
 
         marker.addEventListener("click", () => {
             const currentPanelMain = panel.querySelector('.panel-main');
@@ -887,6 +942,8 @@ function renderCommentMarkers(panelType = 'comment') {
         : document.querySelector('.panel-entry');
     
     if (!panel) return;
+
+    const lang = state.currentLang || "zh";
     
     const panelMain = panel.querySelector('.panel-main');
     const scrollTrack = panel.querySelector('.scroll-track');
@@ -927,8 +984,19 @@ function renderCommentMarkers(panelType = 'comment') {
 
         const tooltip = document.createElement("div");
         tooltip.className = "scroll-tooltip";
-        tooltip.textContent = c.author || `评论${idx+1}`;
+        const authorLabel = noteAuthor.name[lang];
+        const fallbackLabel = lang === "en" ? `Note ${idx + 1}` : `评论${idx + 1}`;
+        tooltip.textContent = authorLabel || fallbackLabel;
         marker.appendChild(tooltip);
+
+        marker.addEventListener("mouseenter", () => {
+            adjustMarkerTooltip(marker);
+        });
+
+        marker.addEventListener("mouseleave", () => {
+            tooltip.style.removeProperty('--tooltip-shift');
+            tooltip.style.display = "";
+        });
 
         marker.addEventListener("click", () => {
             const currentPanelMain = panel.querySelector('.panel-main');

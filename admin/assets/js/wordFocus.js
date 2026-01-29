@@ -7,6 +7,17 @@ import { moveIndicator } from "./menu.js";
 
 
 let focusedWord = null;
+const MENU_COMPACT_CLASS = "menu-compact";
+const noteAuthor = {
+    role: { zh: "编辑", en: "Editor" },
+    name: { zh: "陈飞樾", en: "Chen Feiyue" }
+};
+
+function setMenuCompact(enabled) {
+    const sideMenu = document.getElementById("side-menu");
+    if (!sideMenu) return;
+    sideMenu.classList.toggle(MENU_COMPACT_CLASS, Boolean(enabled));
+}
 
 // 定义每个section的基础位置和变化范围
 const detailPositions = {
@@ -155,6 +166,7 @@ export function updateWordFocus() {
         resetPositions();
         const detailDiv = document.getElementById("word-details");
         detailDiv.classList.add("hidden");
+        setMenuCompact(false);
         
         // 停止呼吸动画
         stopBreathingAnimation();
@@ -197,6 +209,7 @@ export function updateWordFocus() {
             closestWord.classList.add('focused');
             focusedWord = closestWord;
             state.focusedNodeId = closestWord.id;
+            setMenuCompact(true);
 
             updateRelations();
             hideNearbyNodes(closestWord);
@@ -220,6 +233,8 @@ export function updateWordFocus() {
                 });
             }
         }
+    } else {
+        setMenuCompact(false);
     }
 }
 
@@ -300,7 +315,7 @@ export function updateWordDetails() {
     }
     if (word.commentAbs) {
         const comment = word.commentAbs;
-        commentContent.innerHTML = `${comment.content?.[lang]} <p>—— ${comment.author?.[lang]}</p>`;
+        commentContent.innerHTML = `${comment.content?.[lang]} <p>${noteAuthor.role[lang]}</p><p>${noteAuthor.name[lang]}</p>`;
     } else {
         commentContent.innerHTML = `<h3>暂无笔记</h3> <p></p>`;
     }

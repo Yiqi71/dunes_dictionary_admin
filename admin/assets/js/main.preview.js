@@ -396,7 +396,7 @@ function renderWordUniverse(wordsData) {
                         zoomToWord(node.id, state.scaleThreshold);
                         updateWordFocus();
                         renderPanelSections();
-                        logEvent("word_node_click", { wordId: node.id });
+                        logEvent("word-node-click", { wordId: node.id });
                     }
                 }
             });
@@ -429,25 +429,13 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStartTs = Date.now();
     logEvent("session_start", {});
     logEvent("page_loaded", { lang: document.documentElement.lang || "zh" });
-    const draftUrls = ["/draft/data.json", "/content/draft/data.json"];
-    const fetchDraft = async () => {
-        let lastError = null;
-        for (const url of draftUrls) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    lastError = new Error(`网络响应不正确: ${url}`);
-                    continue;
-                }
-                return response.json();
-            } catch (err) {
-                lastError = err;
+    fetch('/content/draft/data.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('网络响应不正常');
             }
-        }
-        throw lastError || new Error("网络响应不正确");
-    };
-
-    fetchDraft()
+            return response.json();
+        })
         .then(data => {
             window.about = data.about;
             window.allWords = data.words;
@@ -456,6 +444,9 @@ document.addEventListener('DOMContentLoaded', () => {
             renderWordUniverse(data.words);
             zoomToWord(state.focusedNodeId,state.scaleThreshold);
             updateWordFocus();
+            if (state.focusedNodeId !== null && state.focusedNodeId !== undefined) {
+                startWordView(state.focusedNodeId);
+            }
         })
         .catch(error => {
             logEvent("data_loaded", { status: "error" });

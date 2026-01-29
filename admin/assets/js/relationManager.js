@@ -3,6 +3,30 @@ import { state } from "./state.js";
 import { updateWordFocus, zoomToWord } from "./wordFocus.js";
 import { logEvent } from "/analytics.js";
 
+const connectionLines = document.getElementById("connection-lines");
+const universeCanvas = document.getElementById("universe-canvas");
+
+if (connectionLines && universeCanvas) {
+    connectionLines.addEventListener("wheel", (e) => {
+        const forwarded = new WheelEvent("wheel", {
+            deltaX: e.deltaX,
+            deltaY: e.deltaY,
+            deltaZ: e.deltaZ,
+            deltaMode: e.deltaMode,
+            clientX: e.clientX,
+            clientY: e.clientY,
+            ctrlKey: e.ctrlKey,
+            shiftKey: e.shiftKey,
+            altKey: e.altKey,
+            metaKey: e.metaKey,
+            bubbles: true,
+            cancelable: true
+        });
+        universeCanvas.dispatchEvent(forwarded);
+        e.preventDefault();
+    }, { passive: false });
+}
+
 function getCenterPosition(element) {
     const rect = element.getBoundingClientRect();
     return {
