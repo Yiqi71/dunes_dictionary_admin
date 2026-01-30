@@ -289,7 +289,7 @@
 .panel-comment .panel-bottom .note-body * {
     color: #43403B;
     text-align: justify;
-    font-family: "ChillDINGothic";
+    font-family: "ChillDINGothic Condensed";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -391,7 +391,7 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
 /* 字 */
 .panel-bottom p {
     color: #FAF4E5;
-    font-family: "ChillDINGothic", "ChillDIN";
+    font-family: "ChillDINGothic Condensed";
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -456,11 +456,13 @@ line-height: 40px;
 /* Entry panel: brief definition subheadings (zh) */
 .panel-entry #section-brief h3 {
     color: #FAF4E5;
-    font-family: "ChillDINGothic";
-    font-size: 20px;
+    font-family: "ChillDINGothic Condensed";
+    font-size: 36px;
     font-style: normal;
     font-weight: 600;
-    line-height: 25px;
+    line-height: 42px;
+    letter-spacing: 2px;
+    
 }
 
 /* Entry panel body text (Chinese) */
@@ -557,7 +559,7 @@ line-height: 40px;
 
 .panel-bottom #editors-container p {
     color: #FAF4E5;
-    font-family: "ChillDINGothic", "ChillDIN";
+    font-family: "ChillDINGothic Condensed";
     font-size: 14px;
     font-style: normal;
     font-weight: 500;

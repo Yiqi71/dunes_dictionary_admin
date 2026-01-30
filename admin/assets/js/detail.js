@@ -394,7 +394,7 @@ export function renderPanelSections() {
     const briefText = currentWord.brief_definition?.[lang] || "\u6682\u65e0\u7b80\u8981\u91ca\u4e49";
     briefSec.innerHTML = `<p class="left-title">${sectionTitles.brief[lang]}</p>
                        <div>
-                           <p>${briefText}</p>
+                           <h3>${briefText}</h3>
                       </div>`;
 
     const extendedTitle = lang === "zh" ? "详细释义" : "Extended Definition";
@@ -1086,7 +1086,8 @@ proposerDiv.addEventListener("click", (e) => {
 imageDiv.addEventListener("click", (e) => {
     e.stopPropagation();
     showFloatingPanel();
-    scrollToTop();
+    switchTab("entry");
+    updateTabContent("source");
 });
 
 // 添加下层panel边缘点击事件

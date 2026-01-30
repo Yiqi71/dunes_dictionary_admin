@@ -133,6 +133,14 @@ function getWordColor(wordYear) {
     return yearPeriodColors[periodIndex];
 }
 
+function parseContributeDate(contributeDate) {
+    if (!contributeDate || contributeDate.includes("TODO")) return 99991231;
+    const parts = String(contributeDate).split("/").map((value) => parseInt(value, 10));
+    if (parts.length !== 3 || parts.some((value) => Number.isNaN(value))) return 99991231;
+    const [year, month, day] = parts;
+    return year * 10000 + month * 100 + day;
+}
+
 // nodes
 let wordsOnGrid = {};
 let usedPositions = new Set(); // 记录已使用的位置
@@ -475,6 +483,8 @@ function renderWordUniverse(wordsData) {
             const year = parseInt(word.proposing_time);
             const nodeColor = getWordColor(year);
             node.style.backgroundColor = nodeColor;
+            node.style.zIndex = String(parseContributeDate(word.contribute_date));
+            node.style.zIndex = String(parseContributeDate(word.contribute_date));
 
             node.dataset.lon = word.longitude;
             node.dataset.lat = word.latitude;

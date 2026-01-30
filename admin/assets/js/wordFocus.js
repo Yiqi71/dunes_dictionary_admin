@@ -280,17 +280,19 @@ export function updateWordDetails() {
     // const termDiv = document.getElementById("term");
     // termDiv.style.backgroundColor = node.style.backgroundColor;
 
-    // image section
+    // related works + source image section
     const imageTitle = document.querySelector('#image .detail-title');
     const imageEl = document.querySelector('#image img');
-    if(normalizeLang(state.currentLang)=="en"){
-        imageTitle.textContent = 'Concept Image';
-    }else if(normalizeLang(state.currentLang)=="zh"){
-        imageTitle.textContent = '概念图片';
+    const relatedWorksEl = document.querySelector('#image .related-works');
+    if (normalizeLang(state.currentLang) == "en") {
+        imageTitle.textContent = 'Related Works';
+    } else if (normalizeLang(state.currentLang) == "zh") {
+        imageTitle.textContent = '相关著作';
     }
-    if (word.diagrams && word.diagrams.length > 0) {
-        imageEl.src = resolveImagePath(word.concept_image);
-        imageEl.alt = word.term?.[lang];
+
+    if (word.source_image) {
+        imageEl.src = resolveImagePath(word.source_image);
+        imageEl.alt = word.term?.[lang] || '';
         imageEl.style.display = 'block';
     } else {
         imageEl.src = '';
@@ -327,7 +329,10 @@ export function updateWordDetails() {
     }
     if (word.commentAbs) {
         const comment = word.commentAbs;
-        commentContent.innerHTML = `${comment.content?.[lang]} <p>${noteAuthor.role[lang]}</p><p>${noteAuthor.name[lang]}</p>`;
+        const content = comment.content?.[lang] || "";
+        const author = comment.author?.[lang] || "";
+        const authorBlock = author ? ` <p>${author}</p>` : "";
+        commentContent.innerHTML = `<div class="comment-abs-content">${content}</div>${authorBlock}`;
     } else {
         commentContent.innerHTML = `<h3>暂无笔记</h3> <p></p>`;
     }
