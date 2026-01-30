@@ -5,7 +5,15 @@ const sqlite3 = require("sqlite3").verbose();
 const app = express();
 
 const cors = require("cors");
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://dunes-dictionary-admin.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+  ],
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"]
+}));
 
 const rootDir = path.join(__dirname, "..");
 const publicDir = path.join(rootDir, "public");

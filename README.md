@@ -32,3 +32,6 @@ sudo systemctl reload nginx
 
 
 sudo certbot --nginx -d api.dunes-dictionary.com
+
+
+sudo ufw allow 443
