@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
@@ -97,6 +97,7 @@
       gap: 10px;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
     .upload-status {
       font-size: 13px;
@@ -128,21 +129,38 @@
         <a href="admin/preview.html">Preview</a>
       </div>
       <div class="upload">
-        <h2>CSV Upload</h2>
-        <div id="csv-drop" class="dropzone">拖拽 CSV 到这里或点击选择</div>
-        <input id="csv-input" type="file" accept=".csv" hidden>
+        <h2>Excel Upload</h2>
+        <div id="excel-drop" class="dropzone">拖拽 Excel 到这里或点击选择</div>
+        <input id="excel-input" type="file" accept=".xlsx,.xls" hidden>
         <div class="upload-row">
-          <span id="csv-status" class="upload-status">未选择文件</span>
-          <button id="csv-upload-btn" disabled>Upload</button>
+          <span id="excel-status" class="upload-status">未选择文件</span>
+          <button id="excel-parse-btn" disabled>解析</button>
+          <button id="publish-btn" disabled>Publish</button>
         </div>
       </div>
     </div>
   </div>
   <script>
-    const dropzone = document.getElementById("csv-drop");
-    const fileInput = document.getElementById("csv-input");
-    const statusEl = document.getElementById("csv-status");
-    const uploadBtn = document.getElementById("csv-upload-btn");
+    const dropzone = document.getElementById("excel-drop");
+    const fileInput = document.getElementById("excel-input");
+    const statusEl = document.getElementById("excel-status");
+    const parseBtn = document.getElementById("excel-parse-btn");
+    const publishBtn = document.getElementById("publish-btn");
+    console.log("[excel] script loaded");
+    console.log("[excel] elements", {
+      dropzone: !!dropzone,
+      fileInput: !!fileInput,
+      statusEl: !!statusEl,
+      parseBtn: !!parseBtn,
+      publishBtn: !!publishBtn
+    });
+    if (!dropzone || !fileInput || !statusEl || !parseBtn || !publishBtn) {
+      console.error("[excel] missing elements, script aborted");
+    }
+
+    const API_BASE = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+      ? "http://localhost:3000"
+      : "https://api.dunes-dictionary.com";
 
     let currentFile = null;
 
@@ -154,18 +172,22 @@
     function setFile(file) {
       if (!file) {
         currentFile = null;
-        uploadBtn.disabled = true;
+        parseBtn.disabled = true;
+        publishBtn.disabled = true;
         setStatus("未选择文件");
         return;
       }
-      if (!file.name.toLowerCase().endsWith(".csv")) {
+      const lowerName = file.name.toLowerCase();
+      const isExcel = lowerName.endsWith(".xlsx") || lowerName.endsWith(".xls");
+      if (!isExcel) {
         currentFile = null;
-        uploadBtn.disabled = true;
-        setStatus("请上传 CSV 文件");
+        parseBtn.disabled = true;
+        publishBtn.disabled = true;
+        setStatus("请上传 Excel 文件");
         return;
       }
       currentFile = file;
-      uploadBtn.disabled = false;
+      parseBtn.disabled = false;
       setStatus(`已选择: ${file.name}`);
     }
 
@@ -184,25 +206,37 @@
       setFile(file);
     });
 
-    uploadBtn.addEventListener("click", async () => {
+    parseBtn.addEventListener("click", async () => {
       if (!currentFile) return;
-      uploadBtn.disabled = true;
-      setStatus("上传中...");
+      console.log("[excel] parse click", currentFile.name);
+      parseBtn.disabled = true;
+      setStatus("解析中...");
       const formData = new FormData();
       formData.append("file", currentFile);
 
       try {
-        const res = await fetch("/api/content/import-csv", {
+        const res = await fetch(`${API_BASE}/api/content/import-excel`, {
           method: "POST",
           body: formData
         });
-        const data = await res.json();
-        if (!data.ok) throw new Error(data.error || "Upload failed");
-        setStatus(`已上传: ${data.words_count} 条`, true);
+        console.log("[excel] response status", res.status);
+        const contentType = res.headers.get("content-type") || "";
+        let data = null;
+        if (contentType.includes("application/json")) {
+          data = await res.json();
+        } else {
+          const text = await res.text();
+          data = text ? { ok: true, message: text } : { ok: res.ok };
+        }
+        if (!data.ok) throw new Error(data.error || data.message || "Upload failed");
+        console.log("[excel] parse success", data);
+        setStatus("可preview", true);
+        publishBtn.disabled = false;
       } catch (err) {
-        setStatus(`上传失败: ${err.message}`);
+        console.error("[excel] parse failed", err);
+        setStatus(`解析失败: ${err.message}`);
       } finally {
-        uploadBtn.disabled = !currentFile;
+        parseBtn.disabled = !currentFile;
       }
     });
   </script>

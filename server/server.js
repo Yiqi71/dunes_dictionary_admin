@@ -15,6 +15,7 @@ const contentDir = path.join(rootDir, "content");
 
 app.use(express.json({ limit: "200kb" }));
 app.use(express.static(publicDir));
+app.use(express.static(rootDir));
 app.use("/public", express.static(publicDir));
 app.use("/admin", express.static(adminDir));
 app.use("/tracking", express.static(trackingDir));
