@@ -2,6 +2,7 @@
 import { state } from "./state.js";
 import { draw, updateWordNodeTransforms, updateScaleForNodes, handleZoomWheel } from "./uni-canvas.js";
 import { country_bounding_boxes } from "./countryBoundingBoxes.js";
+import { resolveCountryCode } from "./countryMapping.js";
 import { renderPanelSections } from "./detail.js";
 import {updateRelations} from "./relationManager.js";
 import {
@@ -184,6 +185,20 @@ function generateGridPoints(min = 4, max = 96) {
     return points;
 }
 
+function getFallbackPositions(count) {
+    const positions = [];
+    const allPoints = generateGridPoints();
+    for (let i = 0; i < allPoints.length && positions.length < count; i++) {
+        const point = allPoints[i];
+        const key = `${Math.round(point.left)},${Math.round(point.top)}`;
+        if (!usedPositions.has(key)) {
+            positions.push(point);
+            usedPositions.add(key);
+        }
+    }
+    return positions;
+}
+
 function getCountryGridPoints(countryCode) {
     const [minLon, minLat, maxLon, maxLat] = getCountryBoundary(countryCode);
 
@@ -319,14 +334,26 @@ function renderWordUniverse(wordsData) {
 
     // 按国家分�?
     const wordsByCountry = {};
+    const unknownWords = [];
+    const unknownLabels = new Set();
     wordsData.forEach(word => {
-        if (!wordsByCountry[word.proposing_country]) {
-            wordsByCountry[word.proposing_country] = [];
+        const countryCode = resolveCountryCode(word.proposing_country);
+        if (countryCode && country_bounding_boxes[countryCode]) {
+            if (!wordsByCountry[countryCode]) {
+                wordsByCountry[countryCode] = [];
+            }
+            wordsByCountry[countryCode].push(word);
+        } else {
+            const label = (word.proposing_country || countryCode || "\u672a\u77e5\u56fd\u5bb6").trim();
+            unknownLabels.add(label);
+            unknownWords.push({ word, label });
         }
-        wordsByCountry[word.proposing_country].push(word);
     });
 
-    // 使用优化的位置分配算�?
+    for (const label of unknownLabels) {
+        console.warn(`${label}\u65e0\u6cd5\u5339\u914d\u4e16\u754c\u5730\u56fe`);
+    }
+
     const countryPositions = allocatePositionsForCountries(wordsByCountry);
 
     // 渲染每个国家的节�?
@@ -414,6 +441,77 @@ function renderWordUniverse(wordsData) {
         }
     }
 
+    if (unknownWords.length) {
+        const fallbackPositions = getFallbackPositions(unknownWords.length);
+        for (let i = 0; i < unknownWords.length; i++) {
+            const item = unknownWords[i];
+            if (i >= fallbackPositions.length) {
+                console.warn(`\u56fd\u5bb6 ${item.label} \u7684\u5355\u8bcd\u6570\u91cf\u8d85\u8fc7\u53ef\u5206\u914d\u4f4d\u7f6e\uff0c\u8df3\u8fc7\u5355\u8bcd ${item.word.term}`);
+                continue;
+            }
+
+            const pos = fallbackPositions[i];
+            const leftPercent = pos.left;
+            const topPercent = pos.top;
+
+            const word = item.word;
+            word.longitude = leftPercent * 3.6 - 180;
+            word.latitude = 90 - topPercent * 1.8;
+
+            const node = document.createElement('div');
+            node.className = 'word-node';
+            node.dataset.nodeFormat = "word";
+            node.innerHTML = `
+            <div class="detail-title">${String(word.id).padStart(4, '0')}</div>
+            <div class="terms">
+                <div class="term-main">${word.term?.[lang] || '\u672a\u77e5\u5355\u8bcd'}</div>
+                <div class="term-ori">${word.termOri || ''}</div>
+            </div>
+            `;
+            node.style.left = `${leftPercent}%`;
+            node.style.top = `${topPercent}%`;
+            node.style.transform = `translate(-50%, -50%)`;
+
+            const year = parseInt(word.proposing_time);
+            const nodeColor = getWordColor(year);
+            node.style.backgroundColor = nodeColor;
+
+            node.dataset.lon = word.longitude;
+            node.dataset.lat = word.latitude;
+            node.dataset.x = leftPercent / 100;
+            node.dataset.y = topPercent / 100;
+            node.id = word.id;
+
+            const key = `${Math.round(leftPercent)},${Math.round(topPercent)}`;
+            wordsOnGrid[key] = node.id;
+
+            node.addEventListener('wheel', (e) => {
+                e.stopPropagation();
+                handleZoomWheel(e);
+            }, { passive: false });
+            
+            node.addEventListener('mousedown', (e) => {
+                e.stopPropagation();
+            });
+
+            node.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!isDragging) {
+                    if (node.classList.contains('focused')) {} else {
+                        endWordView("switch");
+                        startWordView(node.id);
+                        zoomToWord(node.id, state.scaleThreshold);
+                        updateWordFocus();
+                        renderPanelSections();
+                        logEvent("word-node-click", { wordId: node.id });
+                    }
+                }
+            });
+
+            wordNodesContainer.appendChild(node);
+            updateWordNodeTransforms();
+        }
+    }
     // drag
     let isDragging = false;
 

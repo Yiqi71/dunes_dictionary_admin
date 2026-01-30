@@ -1071,6 +1071,8 @@ commentDiv.addEventListener("click", (e) => {
     e.stopPropagation();
     showFloatingPanel();
     renderCommentSection();
+    switchTab("comment");
+    scrollToTop("comment");
 });
 
 // 点击「相关著作 / 提出者」
