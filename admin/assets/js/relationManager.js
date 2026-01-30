@@ -25,6 +25,36 @@ if (connectionLines && universeCanvas) {
         universeCanvas.dispatchEvent(forwarded);
         e.preventDefault();
     }, { passive: false });
+
+    const forwardMouseEvent = (type, e) => {
+        const forwarded = new MouseEvent(type, {
+            clientX: e.clientX,
+            clientY: e.clientY,
+            screenX: e.screenX,
+            screenY: e.screenY,
+            button: e.button,
+            buttons: e.buttons,
+            ctrlKey: e.ctrlKey,
+            shiftKey: e.shiftKey,
+            altKey: e.altKey,
+            metaKey: e.metaKey,
+            bubbles: true,
+            cancelable: true
+        });
+        universeCanvas.dispatchEvent(forwarded);
+    };
+
+    connectionLines.addEventListener("mousedown", (e) => {
+        forwardMouseEvent("mousedown", e);
+    });
+
+    connectionLines.addEventListener("mousemove", (e) => {
+        forwardMouseEvent("mousemove", e);
+    });
+
+    connectionLines.addEventListener("mouseup", (e) => {
+        forwardMouseEvent("mouseup", e);
+    });
 }
 
 function getCenterPosition(element) {
