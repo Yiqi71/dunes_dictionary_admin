@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-01-30T04:06:18.665Z",
+    "generated_at": "2026-01-30T12:26:43.256Z",
     "source": "产品管理 (1).xlsx"
   },
   "words": [
@@ -20,7 +20,8 @@
         {
           "name": {
             "zh": "安东尼·唐斯",
-            "en": "Anthony Downs"
+            "en": "Anthony Downs",
+            "ori": "Anthony Downs"
           },
           "year": "1930—2021",
           "role": {
@@ -182,7 +183,8 @@
         {
           "name": {
             "zh": "詹姆斯·J·吉布森",
-            "en": "James J. Gibson"
+            "en": "James J. Gibson",
+            "ori": "James J. Gibson"
           },
           "year": "1904—1979",
           "role": {
@@ -352,7 +354,8 @@
         {
           "name": {
             "zh": "乔治·E. 阿特伍德",
-            "en": "George E. Atwood"
+            "en": "George E. Atwood",
+            "ori": "George E. Atwood"
           },
           "year": "1944—",
           "role": {
@@ -518,7 +521,8 @@
         {
           "name": {
             "zh": "马克·奥热",
-            "en": "Marc Augé"
+            "en": "Marc Augé",
+            "ori": "Marc Augé"
           },
           "year": "1935-2023",
           "role": {
@@ -642,7 +646,8 @@
         {
           "name": {
             "zh": "列奥纳多·罗雷丹",
-            "en": "Leonardo Loredan"
+            "en": "Leonardo Loredan",
+            "ori": "Leonardo Loredan"
           },
           "year": "1436-1521",
           "role": {
@@ -754,7 +759,8 @@
         {
           "name": {
             "zh": "米歇尔·福柯",
-            "en": "Michel Foucault"
+            "en": "Michel Foucault",
+            "ori": "Michel Foucault"
           },
           "year": "1926-1984",
           "role": {
@@ -895,7 +901,8 @@
         {
           "name": {
             "zh": "米歇尔·福柯",
-            "en": "Michel Foucault"
+            "en": "Michel Foucault",
+            "ori": "Michel Foucault"
           },
           "year": "1926-1984",
           "role": {
@@ -993,7 +1000,8 @@
         {
           "name": {
             "zh": "米歇尔·福柯",
-            "en": "Michel Foucault"
+            "en": "Michel Foucault",
+            "ori": "Michel Foucault"
           },
           "year": "1926-1984",
           "role": {
@@ -1090,7 +1098,8 @@
         {
           "name": {
             "zh": "诺伯特·维纳",
-            "en": "Norbert Wiener"
+            "en": "Norbert Wiener",
+            "ori": "Norbert Wiener"
           },
           "year": "1894-1964",
           "role": {
@@ -1192,7 +1201,8 @@
         {
           "name": {
             "zh": "格奥尔格·齐美尔",
-            "en": "Georg Simmel"
+            "en": "Georg Simmel",
+            "ori": "Georg Simmel"
           },
           "year": "1858-1918",
           "role": {
@@ -1294,7 +1304,8 @@
         {
           "name": {
             "zh": "瓦尔特·本雅明",
-            "en": "Walter Benjamin"
+            "en": "Walter Benjamin",
+            "ori": "Walter Benjamin"
           },
           "year": "1892-1940",
           "role": {
@@ -1388,7 +1399,8 @@
         {
           "name": {
             "zh": "安德烈·纪德",
-            "en": "André Gide"
+            "en": "André Gide",
+            "ori": "André Gide"
           },
           "year": "1869-1951",
           "role": {
@@ -1525,7 +1537,8 @@
         {
           "name": {
             "zh": "雅克·德里达",
-            "en": "Jacques Derrida"
+            "en": "Jacques Derrida",
+            "ori": "Jacques Derrida"
           },
           "year": "1930-2004",
           "role": {
@@ -1618,7 +1631,8 @@
         {
           "name": {
             "zh": "斯蒂芬·贝斯特\n莎朗·马库斯",
-            "en": "Stephen Best\nSharon Marcus"
+            "en": "Stephen Best\nSharon Marcus",
+            "ori": "Stephen Best\nSharon Marcus"
           },
           "year": "1965—\n1966—",
           "role": {
@@ -1711,7 +1725,8 @@
         {
           "name": {
             "zh": "大卫·格雷伯",
-            "en": "David Graeber"
+            "en": "David Graeber",
+            "ori": "David Graeber"
           },
           "year": "1961-2020",
           "role": {
@@ -1804,7 +1819,8 @@
         {
           "name": {
             "zh": "张庆燮",
-            "en": "장경섭"
+            "en": "장경섭",
+            "ori": "장경섭"
           },
           "year": "1962-",
           "role": {
@@ -1897,7 +1913,8 @@
         {
           "name": {
             "zh": "阿诺德.范.根纳普",
-            "en": "Arnold van Gennep"
+            "en": "Arnold van Gennep",
+            "ori": "Arnold van Gennep"
           },
           "year": "1873-1957",
           "role": {
@@ -2014,7 +2031,8 @@
         {
           "name": {
             "zh": "阿尔弗雷德·阿德勒",
-            "en": "Alfred Adler"
+            "en": "Alfred Adler",
+            "ori": "Alfred Adler"
           },
           "year": "1870—1937",
           "role": {
@@ -2111,7 +2129,8 @@
         {
           "name": {
             "zh": "吉加·维尔托夫",
-            "en": "Dziga Vertov"
+            "en": "Dziga Vertov",
+            "ori": "Dziga Vertov"
           },
           "year": "1896—1954",
           "role": {
@@ -2228,7 +2247,8 @@
         {
           "name": {
             "zh": "TODO：提出者",
-            "en": "TODO: proposer"
+            "en": "TODO: proposer",
+            "ori": "TODO: proposerOri"
           },
           "year": "TODO: year",
           "role": {
@@ -2305,7 +2325,8 @@
         {
           "name": {
             "zh": "乔吉奥·阿甘本",
-            "en": "Giorgio Agamben"
+            "en": "Giorgio Agamben",
+            "ori": "Giorgio Agamben"
           },
           "year": "1942—",
           "role": {
@@ -2441,7 +2462,8 @@
         {
           "name": {
             "zh": "鲁道夫·克劳修斯",
-            "en": "Rudolf Clausius"
+            "en": "Rudolf Clausius",
+            "ori": "Rudolf Clausius"
           },
           "year": "1822—1888",
           "role": {
@@ -2560,7 +2582,8 @@
         {
           "name": {
             "zh": "TODO：提出者",
-            "en": "TODO: proposer"
+            "en": "TODO: proposer",
+            "ori": "TODO: proposerOri"
           },
           "year": "TODO: year",
           "role": {
@@ -2637,7 +2660,8 @@
         {
           "name": {
             "zh": "蒂娜·布朗",
-            "en": "Tina Brown"
+            "en": "Tina Brown",
+            "ori": "Tina Brown"
           },
           "year": "1953—至今",
           "role": {
@@ -2737,7 +2761,8 @@
         {
           "name": {
             "zh": "雅克·德里达",
-            "en": "Jacques Derrida"
+            "en": "Jacques Derrida",
+            "ori": "Jacques Derrida"
           },
           "year": "1930-2004",
           "role": {
@@ -2825,7 +2850,8 @@
         {
           "name": {
             "zh": "约瑟夫·T·希普利",
-            "en": "Joseph T. Shipley"
+            "en": "Joseph T. Shipley",
+            "ori": "Joseph T. Shipley"
           },
           "year": "1893—1988",
           "role": {
@@ -2980,7 +3006,8 @@
         {
           "name": {
             "zh": "赵元任",
-            "en": "Yuen Ren Chao"
+            "en": "Yuen Ren Chao",
+            "ori": "Yuen Ren Chao"
           },
           "year": "1892—1982",
           "role": {
@@ -3080,7 +3107,8 @@
         {
           "name": {
             "zh": "卡尔·史瓦西",
-            "en": "Karl Schwarzschild"
+            "en": "Karl Schwarzschild",
+            "ori": "Karl Schwarzschild"
           },
           "year": "1873–1916",
           "role": {
@@ -3195,7 +3223,8 @@
         {
           "name": {
             "zh": "西格蒙德·弗洛伊德",
-            "en": "Sigmund Freud"
+            "en": "Sigmund Freud",
+            "ori": "Sigmund Freud"
           },
           "year": "1856–1939",
           "role": {
@@ -3292,7 +3321,8 @@
         {
           "name": {
             "zh": "齐格蒙特·鲍曼",
-            "en": "Zygmunt Bauman"
+            "en": "Zygmunt Bauman",
+            "ori": "Zygmunt Bauman"
           },
           "year": "1925—2017",
           "role": {
@@ -3426,7 +3456,8 @@
         {
           "name": {
             "zh": "项飙",
-            "en": "Xiang Biao"
+            "en": "Xiang Biao",
+            "ori": "项飙"
           },
           "year": "1972—至今",
           "role": {
@@ -3565,7 +3596,8 @@
         {
           "name": {
             "zh": "丽塔·阿斯特",
-            "en": "Rita Astuti"
+            "en": "Rita Astuti",
+            "ori": "Rita Astuti"
           },
           "year": "1960—",
           "role": {
@@ -3660,7 +3692,8 @@
         {
           "name": {
             "zh": "威廉·琼斯 爵士",
-            "en": "Sir William Jones"
+            "en": "Sir William Jones",
+            "ori": "Sir William Jones"
           },
           "year": "1746—1794",
           "role": {
@@ -3759,7 +3792,8 @@
         {
           "name": {
             "zh": "奥古斯特·布拉谢",
-            "en": "Auguste Brachet"
+            "en": "Auguste Brachet",
+            "ori": "Auguste Brachet"
           },
           "year": "1844—1898",
           "role": {
@@ -3856,7 +3890,8 @@
         {
           "name": {
             "zh": "王力",
-            "en": "Wang Li"
+            "en": "Wang Li",
+            "ori": "王力"
           },
           "year": "1900–1986",
           "role": {
@@ -4009,7 +4044,8 @@
         {
           "name": {
             "zh": "王力",
-            "en": "Wang Li"
+            "en": "Wang Li",
+            "ori": "王力"
           },
           "year": "1900–1986",
           "role": {
@@ -4166,7 +4202,8 @@
         {
           "name": {
             "zh": "居伊·德波",
-            "en": "Guy Debord"
+            "en": "Guy Debord",
+            "ori": "Guy Debord"
           },
           "year": "1931—1994",
           "role": {
@@ -4261,7 +4298,8 @@
         {
           "name": {
             "zh": "E. 萨默森·卡尔",
-            "en": "E. Summerson Carr"
+            "en": "E. Summerson Carr",
+            "ori": "E. Summerson Carr"
           },
           "year": "TODO: year",
           "role": {
@@ -4358,7 +4396,8 @@
         {
           "name": {
             "zh": "安妮·阿莉森",
-            "en": "Anne Allison"
+            "en": "Anne Allison",
+            "ori": "Anne Allison"
           },
           "year": "1950—",
           "role": {
@@ -4453,7 +4492,8 @@
         {
           "name": {
             "zh": "夏尔·波德莱尔",
-            "en": "Charles Baudelaire"
+            "en": "Charles Baudelaire",
+            "ori": "Charles Baudelaire"
           },
           "year": "1821—1867",
           "role": {
@@ -4548,7 +4588,8 @@
         {
           "name": {
             "zh": "朱利安·库克利希",
-            "en": "Julian Kücklich"
+            "en": "Julian Kücklich",
+            "ori": "Julian Kücklich"
           },
           "year": "1973—至今",
           "role": {
@@ -4645,7 +4686,8 @@
         {
           "name": {
             "zh": "TODO：提出者",
-            "en": "TODO: proposer"
+            "en": "TODO: proposer",
+            "ori": "TODO: proposerOri"
           },
           "year": "TODO: year",
           "role": {
@@ -4722,7 +4764,8 @@
         {
           "name": {
             "zh": "汪民安",
-            "en": "汪民安"
+            "en": "汪民安",
+            "ori": "汪民安"
           },
           "year": "1969—至今",
           "role": {
@@ -4816,7 +4859,8 @@
         {
           "name": {
             "zh": "詹巴蒂斯塔·诺利",
-            "en": "Giambattista Nolli"
+            "en": "Giambattista Nolli",
+            "ori": "Giambattista Nolli"
           },
           "year": "1701—1756",
           "role": {
@@ -4910,7 +4954,8 @@
         {
           "name": {
             "zh": "马克·奥热",
-            "en": "Marc Augé"
+            "en": "Marc Augé",
+            "ori": "Marc Augé"
           },
           "year": "1935-2023",
           "role": {

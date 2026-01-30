@@ -331,10 +331,6 @@ const sectionTitles = {
     editors: { zh: "编辑", en: "Editors" }
 };
 
-const noteAuthor = {
-    role: { zh: "编辑", en: "Editor" },
-    name: { zh: "陈飞樾", en: "Chen Feiyue" }
-};
 
 export function normalizeLang(code) {
     const v = (code || "").toLowerCase();
@@ -407,10 +403,13 @@ export function renderPanelSections() {
                             ${extendedParts.map(p => `<p>${p}</p>`).join("")}
                         </div>`;
 
-    // FIXED: Don't wrap in h3 since JSON already contains HTML tags  
+    const exampleValue = currentWord.example_sentence?.[lang];
+    const exampleHtml = Array.isArray(exampleValue)
+        ? exampleValue.map(p => `<p>${p}</p>`).join("")
+        : `<p>${exampleValue || '暂无例句'}</p>`;
     exampleSec.innerHTML = `<p class="left-title">${sectionTitles.example[lang]}</p>
-                        <div>
-                            ${currentWord.example_sentence?.[lang] || '暂无例句'}
+                        <div class="example-text">
+                            ${exampleHtml}
                             <div class="diagram-container"></div>
                         </div>`;
 
@@ -495,13 +494,22 @@ function renderCommentSection() {
 
     // FIXED: Don't wrap in additional tags since JSON already contains HTML
     const contentScroll = commentPanel.querySelector('.panel-bottom');
+    const comments = Array.isArray(currentWord.comments) ? currentWord.comments : [];
+    const emptyCommentsLabel = lang === "en" ? "No comments" : "????";
     contentScroll.innerHTML = `
-        ${currentWord.comments?.map(c => 
-            `<section>
-                <p class="left-title">${noteAuthor.role[lang]}<br>${noteAuthor.name[lang]}</p>
-                <div class="note-body"><br><br><br><br>${c.content?.[lang]}</div>
-            </section>`
-        ).join('') || '暂无评论'}
+        ${comments.length ? comments.map((c, idx) => {
+            const roleLabel = c?.role?.[lang] || "";
+            const nameLabel = c?.author?.[lang] || "";
+            const fallbackLabel = lang === "en" ? `Note ${idx + 1}` : `??${idx + 1}`;
+            const titleLabel = (roleLabel || nameLabel)
+                ? `${roleLabel}${roleLabel && nameLabel ? "<br>" : ""}${nameLabel}`
+                : fallbackLabel;
+            const content = c?.content?.[lang] || "";
+            return `<section>
+                <p class="left-title">${titleLabel}</p>
+                <div class="note-body"><br><br><br><br>${content}</div>
+            </section>`;
+        }).join('') : emptyCommentsLabel}
 
         <section id="section-contributors"> </section>
         <section id="section-editors"> </section>        
@@ -1011,7 +1019,7 @@ function renderCommentMarkers(panelType = 'comment') {
 
         const tooltip = document.createElement("div");
         tooltip.className = "scroll-tooltip";
-        const authorLabel = noteAuthor.name[lang];
+        const authorLabel = c?.author?.[lang];
         const fallbackLabel = lang === "en" ? `Note ${idx + 1}` : `评论${idx + 1}`;
         tooltip.textContent = authorLabel || fallbackLabel;
         marker.appendChild(tooltip);

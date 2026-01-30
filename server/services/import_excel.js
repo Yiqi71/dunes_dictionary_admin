@@ -116,7 +116,7 @@ function toWordTemplate() {
     sm_title: { zh: placeholderZH("社媒标题"), en: placeholderEN("social title") },
 
     proposers: [{
-      name: { zh: placeholderZH("提出者"), en: placeholderEN("proposer") },
+      name: { zh: placeholderZH("提出者"), en: placeholderEN("proposer"), ori: placeholderEN("proposerOri") },
       year: "TODO: year",
       role: { zh: placeholderZH("身份"), en: placeholderEN("role") },
       image: "TODO: proposer_image"
@@ -349,9 +349,12 @@ async function importExcelToDraft(xlsxPath) {
 
     // proposer
     const proposerZh = cell(zhRow, COLS.PROPOSER_ZH);
-    const proposerEn = (enRow ? cell(enRow, COLS.PROPOSER_EN) : "") || cell(zhRow, COLS.PROPOSER_EN);
+    const proposerEnFromZhCol = enRow ? cell(enRow, COLS.PROPOSER_ZH) : "";
+    const proposerOri = cell(zhRow, COLS.PROPOSER_EN) || (enRow ? cell(enRow, COLS.PROPOSER_EN) : "");
+    const proposerEn = proposerEnFromZhCol || proposerOri;
     w.proposers[0].name.zh = proposerZh || placeholderZH("\u63d0\u51fa\u8005");
     w.proposers[0].name.en = proposerEn || placeholderEN("proposer");
+    w.proposers[0].name.ori = proposerOri || placeholderEN("proposerOri");
 
     w.proposers[0].year = cell(zhRow, COLS.PROPOSER_YEAR) || (enRow ? cell(enRow, COLS.PROPOSER_YEAR) : "") || "TODO: year";
     w.proposers[0].role.zh = cell(zhRow, COLS.PROPOSER_ROLE) || placeholderZH("\u8eab\u4efd");

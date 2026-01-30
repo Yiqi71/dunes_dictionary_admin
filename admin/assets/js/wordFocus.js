@@ -301,7 +301,8 @@ export function updateWordDetails() {
 
     // proposer section
     const proposerTitle = document.querySelector('#proposer .detail-title');
-    const proposerP = document.querySelector('#proposer p');
+    const proposerPrimary = document.querySelector('#proposer .proposer-primary');
+    const proposerOri = document.querySelector('#proposer .proposer-ori');
     const proposerImg = document.querySelector('#proposer img');
     if(normalizeLang(state.currentLang)=="en"){
         proposerTitle.textContent = 'Proposer';
@@ -309,12 +310,17 @@ export function updateWordDetails() {
         proposerTitle.textContent = '提出人';
     }
     if (word.proposers && word.proposers.length>0) {
-        proposerP.textContent = word.proposers[0].name?.[lang];
-        proposerImg.src = resolveImagePath(word.proposers[0].image);
-        proposerImg.alt = word.proposers[0].name?.[lang] || '';
+        const proposer = word.proposers[0];
+        const localizedName = proposer.name?.[lang] || '';
+        const sourceName = proposer.name?.ori || '';
+        proposerPrimary.textContent = localizedName || sourceName;
+        proposerOri.textContent = sourceName;
+        proposerImg.src = resolveImagePath(proposer.image);
+        proposerImg.alt = localizedName || sourceName || '';
         proposerImg.style.display = 'block';
     } else {
-        proposerP.textContent = '未知';
+        proposerPrimary.textContent = '未知';
+        proposerOri.textContent = '';
         proposerImg.style.display = 'none';
     }
 
