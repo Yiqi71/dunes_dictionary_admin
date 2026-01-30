@@ -22,6 +22,26 @@ import { logEvent, startWordView, endWordView } from "/analytics.js";
 // �?menu.js 文件顶部�?import 部分添加
 import { showAboutPanel } from "./detail.js";
 
+function normalizeLang(code) {
+    const v = (code || "").toLowerCase();
+    return v.startsWith("en") ? "en" : "zh";
+}
+
+function joinParts(value) {
+    if (Array.isArray(value)) return value.join(" ");
+    return value || "";
+}
+
+function getLangText(value, lang) {
+    if (!value) return "";
+    if (typeof value === "string") return value;
+    if (Array.isArray(value)) return value.join(" ");
+    if (typeof value === "object") {
+        return joinParts(value[lang] || value.zh || value.en || "");
+    }
+    return "";
+}
+
 
 const numSteps = 5;
 const ticksContainer = document.querySelector('.scale-ticks');
@@ -410,17 +430,19 @@ function hideSearchModal() {
 
 function searchWords(query) {
     if (!window.allWords) return [];
-    
+
     const lowerQuery = query.toLowerCase().trim();
     if (!lowerQuery) return window.allWords;
-    
+
+    const lang = normalizeLang(document.documentElement.lang || "zh");
+
     return window.allWords.filter(word => {
-        const term = (word.term || '').toLowerCase();
-        const originalLanguage = (word.original_language || '').toLowerCase();
-        const briefDefinition = (word.brief_definition || '').toLowerCase();
-        const extendedDefinition = (word.extended_definition || '').toLowerCase();
-        const proposer = (word.proposer || '').toLowerCase();
-        
+        const term = getLangText(word.term, lang).toLowerCase();
+        const originalLanguage = getLangText(word.termOri, lang).toLowerCase();
+        const briefDefinition = getLangText(word.brief_definition, lang).toLowerCase();
+        const extendedDefinition = getLangText(word.extended_definition, lang).toLowerCase();
+        const proposer = getLangText(word.proposers && word.proposers[0] ? word.proposers[0].name : "", lang).toLowerCase();
+
         return term.includes(lowerQuery) ||
                originalLanguage.includes(lowerQuery) ||
                briefDefinition.includes(lowerQuery) ||
@@ -431,6 +453,7 @@ function searchWords(query) {
 
 function displaySearchResults(words) {
     const resultsContainer = document.getElementById('search-results');
+    const lang = normalizeLang(document.documentElement.lang || "zh");
     if (!resultsContainer) return;
     
     if (words.length === 0) {
@@ -441,9 +464,9 @@ function displaySearchResults(words) {
     resultsContainer.innerHTML = words.map(word => `
         <div class="search-result-item" data-word-id="${word.id}">
             <div>
-                <div class="search-result-term">${word.term || 'Unknown Term'}</div>
-                ${word.original_language ? `<div class="search-result-original">${word.original_language}</div>` : ''}
-                ${word.brief_definition ? `<div class="search-result-definition">${word.brief_definition.substring(0, 100)}${word.brief_definition.length > 100 ? '...' : ''}</div>` : ''}
+                <div class="search-result-term">${getLangText(word.term, lang) || 'Unknown Term'}</div>
+                ${getLangText(word.termOri, lang) ? `<div class="search-result-original">${getLangText(word.termOri, lang)}</div>` : ''}
+                ${getLangText(word.brief_definition, lang) ? `<div class="search-result-definition">${getLangText(word.brief_definition, lang).substring(0, 100)}${getLangText(word.brief_definition, lang).length > 100 ? '...' : ''}</div>` : ''}
             </div>
         </div>
     `).join('');

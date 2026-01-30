@@ -156,6 +156,18 @@ export function zoomToWord(id, newScale) {
 }
 
 // 修改现有的 updateWordFocus 函数
+function normalizeLang(code) {
+    const v = (code || "").toLowerCase();
+    return v.startsWith("en") ? "en" : "zh";
+}
+
+function resolveImagePath(src) {
+    if (!src) return "";
+    if (src.startsWith("http") || src.startsWith("data:") || src.startsWith("/")) return src;
+    if (src.startsWith("images/")) return `/content/draft/${src}`;
+    return src;
+}
+
 export function updateWordFocus() {
     // 清除之前聚焦的单词
     if (focusedWord) {
@@ -243,7 +255,7 @@ export function updateWordDetails() {
     const word = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!word) return;
 
-    const lang = state.currentLang || "zh";
+    const lang = normalizeLang(state.currentLang || "zh");
 
     // 显示details
     const detailDiv = document.getElementById("word-details");
@@ -271,13 +283,13 @@ export function updateWordDetails() {
     // image section
     const imageTitle = document.querySelector('#image .detail-title');
     const imageEl = document.querySelector('#image img');
-    if(state.currentLang=="en"){
+    if(normalizeLang(state.currentLang)=="en"){
         imageTitle.textContent = 'Concept Image';
-    }else if(state.currentLang=="zh"){
+    }else if(normalizeLang(state.currentLang)=="zh"){
         imageTitle.textContent = '概念图片';
     }
     if (word.diagrams && word.diagrams.length > 0) {
-        imageEl.src = word.concept_image;
+        imageEl.src = resolveImagePath(word.concept_image);
         imageEl.alt = word.term?.[lang];
         imageEl.style.display = 'block';
     } else {
@@ -289,14 +301,14 @@ export function updateWordDetails() {
     const proposerTitle = document.querySelector('#proposer .detail-title');
     const proposerP = document.querySelector('#proposer p');
     const proposerImg = document.querySelector('#proposer img');
-    if(state.currentLang=="en"){
+    if(normalizeLang(state.currentLang)=="en"){
         proposerTitle.textContent = 'Proposer';
-    }else if(state.currentLang=="zh"){
+    }else if(normalizeLang(state.currentLang)=="zh"){
         proposerTitle.textContent = '提出人';
     }
     if (word.proposers && word.proposers.length>0) {
         proposerP.textContent = word.proposers[0].name?.[lang];
-        proposerImg.src = word.proposers[0].image;
+        proposerImg.src = resolveImagePath(word.proposers[0].image);
         proposerImg.alt = word.proposers[0].name?.[lang] || '';
         proposerImg.style.display = 'block';
     } else {
@@ -308,9 +320,9 @@ export function updateWordDetails() {
     const commentTitle = document.querySelector('#comment .detail-title');
     const commentContent = document.querySelector('#comment #comment-content');
 
-    if(state.currentLang=="en"){
+    if(normalizeLang(state.currentLang)=="en"){
         commentTitle.textContent = 'Notes';
-    }else if(state.currentLang=="zh"){
+    }else if(normalizeLang(state.currentLang)=="zh"){
         commentTitle.textContent = '笔记';
     }
     if (word.commentAbs) {

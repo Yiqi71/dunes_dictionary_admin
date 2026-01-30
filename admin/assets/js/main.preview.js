@@ -15,6 +15,12 @@ import { yearPeriods } from "./menu.js";
 
 let sessionStartTs = null;
 
+function normalizeLang(code) {
+    const v = (code || "").toLowerCase();
+    return v.startsWith("en") ? "en" : "zh";
+}
+
+
 function endSession(reason = "unknown") {
     if (sessionStartTs === null) return;
     const durationMs = Date.now() - sessionStartTs;
@@ -26,11 +32,12 @@ const langBtn = document.getElementById("language-icon");
 // 点击按钮切换语言
 langBtn.addEventListener("click", () => {
     const html = document.documentElement; 
-    const prevLang = html.lang;
-    html.lang = html.lang.startsWith('en') ? 'zh' : 'en';
-    state.currentLang = html.lang;
-    langBtn.textContent = html.lang;
-    logEvent("lang_toggle", { from: prevLang, to: html.lang });
+    const prevLang = normalizeLang(html.lang || state.currentLang);
+    const nextLang = prevLang === "en" ? "zh" : "en";
+    html.lang = nextLang;
+    state.currentLang = nextLang;
+    langBtn.textContent = nextLang;
+    logEvent("lang_toggle", { from: prevLang, to: nextLang });
     // if (state.currentLang === "zh") {
     //     state.currentLang = "en";
     //     langBtn.textContent = "English";
@@ -44,7 +51,7 @@ langBtn.addEventListener("click", () => {
         const wordId = node.id;
         const word = window.allWords.find(w => w.id == wordId);
         if (!word) return;
-        const lang = state.currentLang;
+        const lang = normalizeLang(state.currentLang);
 
         const termMain = node.querySelector('.term-main');
         if(termMain) termMain.textContent = word.term?.[lang] || '未知单词';
@@ -64,14 +71,14 @@ langBtn.addEventListener("click", () => {
 
         // 切换文字
         if (button.innerHTML.includes("词条") || button.innerHTML.includes("ENTRY")) {
-            button.querySelector('span').textContent = state.currentLang === "en" ? "ENTRY" : "词条";
+            button.querySelector('span').textContent = normalizeLang(state.currentLang) === "en" ? "ENTRY" : "词条";
         }
         if (button.innerHTML.includes("笔记") || button.innerHTML.includes("NOTES")) {
-            button.querySelector('span').textContent = state.currentLang === "en" ? "NOTES" : "笔记";
+            button.querySelector('span').textContent = normalizeLang(state.currentLang) === "en" ? "NOTES" : "笔记";
         }
 
         // 设置旋转和偏�?
-        if (state.currentLang === "en") {
+        if (normalizeLang(state.currentLang) === "en") {
             span.style.display = "inline-block"; // 必须�?inline-block 才能旋转
             span.style.transform = "translateX(-10px) rotate(-90deg)";
         } else {
@@ -304,7 +311,7 @@ function allocatePositionsForCountries(wordsByCountry) {
 
 // 优化后的渲染函数
 function renderWordUniverse(wordsData) {
-    const lang = state.currentLang || "zh";
+    const lang = normalizeLang(state.currentLang || "zh");
     console.log(lang);
     const wordNodesContainer = document.getElementById('word-nodes-container');
     wordNodesContainer.innerHTML = '';
@@ -428,7 +435,11 @@ function renderWordUniverse(wordsData) {
 document.addEventListener('DOMContentLoaded', () => {
     sessionStartTs = Date.now();
     logEvent("session_start", {});
-    logEvent("page_loaded", { lang: document.documentElement.lang || "zh" });
+    const initialLang = normalizeLang(document.documentElement.lang || "zh");
+    document.documentElement.lang = initialLang;
+    state.currentLang = initialLang;
+    langBtn.textContent = initialLang;
+    logEvent("page_loaded", { lang: initialLang });
     fetch('/content/draft/data.json')
         .then(response => {
             if (!response.ok) {

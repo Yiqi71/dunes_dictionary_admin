@@ -336,11 +336,23 @@ const noteAuthor = {
     name: { zh: "陈飞樾", en: "Chen Feiyue" }
 };
 
+export function normalizeLang(code) {
+    const v = (code || "").toLowerCase();
+    return v.startsWith("en") ? "en" : "zh";
+}
+
+function resolveImagePath(src) {
+    if (!src) return "";
+    if (src.startsWith("http") || src.startsWith("data:") || src.startsWith("/")) return src;
+    if (src.startsWith("images/")) return `/content/draft/${src}`;
+    return src;
+}
+
 export function renderPanelSections() {
     let currentWord = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!currentWord) return;
 
-    const lang = state.currentLang || "zh";
+    const lang = normalizeLang(state.currentLang || "zh");
 
     scrollToTop('entry');
 
@@ -351,7 +363,7 @@ export function renderPanelSections() {
     const title = entryPanel.querySelector('.panel-top');
     title.innerHTML = `
     <p> ${String(currentWord.id).padStart(4, '0')} </p>
-    <img src = "${currentWord.concept_image}" alt = "diagrams[0]"></img> 
+    <img src = "${resolveImagePath(currentWord.concept_image)}" alt = "concept image"></img> 
     <div>
     <div class = "term-main"> ${currentWord.term?.[lang] || '未知单词'} </div>
     <div class = "term-ori"> ${currentWord.termOri || '无'} </div></div>
@@ -379,21 +391,20 @@ export function renderPanelSections() {
     const contributorsSec = document.getElementById("section-contributors");
     const editorsSec = document.getElementById("section-editors");
 
-        briefSec.innerHTML = `<p class="left-title">${sectionTitles.brief[lang]}</p>
+    const briefText = currentWord.brief_definition?.[lang] || "\u6682\u65e0\u7b80\u8981\u91ca\u4e49";
+    briefSec.innerHTML = `<p class="left-title">${sectionTitles.brief[lang]}</p>
                        <div>
-                           ${currentWord.brief_definition?.[lang] || "暂无简要释义"}
+                           <p>${briefText}</p>
                       </div>`;
 
     const extendedTitle = lang === "zh" ? "详细释义" : "Extended Definition";
+    const extendedValue = currentWord.extended_definition?.[lang];
+    const extendedParts = Array.isArray(extendedValue)
+        ? extendedValue
+        : (extendedValue ? [extendedValue] : ["\u6682\u65e0\u8be6\u7ec6\u91ca\u4e49"]);
     extendedSec.innerHTML = `<p class="left-title">${extendedTitle}</p>
                         <div>
-                            ${
-                                Array.isArray(currentWord.extended_definition?.[lang])
-                                    ? currentWord.extended_definition?.[lang].join("")
-                                    : currentWord.extended_definition?.[lang]
-                                    ? currentWord.extended_definition?.[lang]
-                                    : "暂无详细释义"
-                            }
+                            ${extendedParts.map(p => `<p>${p}</p>`).join("")}
                         </div>`;
 
     // FIXED: Don't wrap in h3 since JSON already contains HTML tags  
@@ -408,7 +419,7 @@ export function renderPanelSections() {
         currentWord.diagrams.forEach(diagram => {
             const block = document.createElement("div");
             block.innerHTML = `
-      <img src="${diagram.src}" alt="diagram image">
+      <img src="${resolveImagePath(diagram.src)}" alt="diagram image">
       <p class="diagram-caption">${diagram.caption?.[lang]}</p>
     `;
             diagramContainer.appendChild(block);
@@ -423,7 +434,7 @@ export function renderPanelSections() {
         const proposerBlock = document.createElement("div");
         proposerBlock.classList = "proposer-block";
         proposerBlock.innerHTML = `
-        <img alt="proposer's img" src=${proposer.image}></img>
+        <img alt="proposer's img" src=${resolveImagePath(proposer.image)}></img>
         <div>
             <p class="proposer-name">${proposer.name?.[lang]}</p>
             <p class="proposer-year">${proposer.year}</p>
@@ -445,7 +456,15 @@ export function renderPanelSections() {
                         ${currentWord.related_works.map(work => `<p>${work?.[lang]}</p>`).join('')}
                         </div>`;
 
-    contributorsSec.innerHTML = `<p>${currentWord.contributor?.[lang]}</p>`;
+    const contributors = Array.isArray(currentWord.contributors) ? currentWord.contributors : [];
+    const contributorText = contributors.length
+        ? `本期词条的贡献者是${contributors.map(c => {
+            const name = c?.name?.[lang] || "";
+            const role = c?.role?.[lang] || "";
+            return name ? `${name}${role ? `，${role}` : ""}` : "";
+        }).filter(Boolean).join("；")}。`
+        : "暂无贡献者信息";
+    contributorsSec.innerHTML = `<p>${contributorText}</p>`;
 
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>
                         <div id="editors-container">
@@ -458,7 +477,7 @@ function renderCommentSection() {
     let currentWord = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!currentWord) return;
 
-    const lang = state.currentLang || "zh";
+    const lang = normalizeLang(state.currentLang || "zh");
 
     scrollToTop('comment');
 
@@ -491,7 +510,15 @@ function renderCommentSection() {
     const contributorsSec = document.getElementById("section-contributors");
     const editorsSec = document.getElementById("section-editors");
 
-    contributorsSec.innerHTML = `<p>${currentWord.contributor?.[lang]}</p>`;
+    const contributorsInComment = Array.isArray(currentWord.contributors) ? currentWord.contributors : [];
+    const contributorTextInComment = contributorsInComment.length
+        ? `本期词条的贡献者是${contributorsInComment.map(c => {
+            const name = c?.name?.[lang] || "";
+            const role = c?.role?.[lang] || "";
+            return name ? `${name}${role ? `，${role}` : ""}` : "";
+        }).filter(Boolean).join("；")}。`
+        : "暂无贡献者信息";
+    contributorsSec.innerHTML = `<p>${contributorTextInComment}</p>`;
 
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>
                         <div id="editors-container">
@@ -825,7 +852,7 @@ function renderScrollMarkers(panelType = 'entry') {
     
     if (!panel) return;
 
-    const lang = state.currentLang || "zh";
+    const lang = normalizeLang(state.currentLang || "zh");
     
     const panelMain = panel.querySelector('.panel-main');
     const scrollTrack = panel.querySelector('.scroll-track');
@@ -943,7 +970,7 @@ function renderCommentMarkers(panelType = 'comment') {
     
     if (!panel) return;
 
-    const lang = state.currentLang || "zh";
+    const lang = normalizeLang(state.currentLang || "zh");
     
     const panelMain = panel.querySelector('.panel-main');
     const scrollTrack = panel.querySelector('.scroll-track');
