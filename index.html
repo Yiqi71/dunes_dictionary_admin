@@ -206,6 +206,15 @@
       setFile(file);
     });
 
+    async function readResponse(res) {
+      const contentType = res.headers.get("content-type") || "";
+      if (contentType.includes("application/json")) {
+        return await res.json();
+      }
+      const text = await res.text();
+      return text ? { ok: res.ok, message: text } : { ok: res.ok };
+    }
+
     parseBtn.addEventListener("click", async () => {
       if (!currentFile) return;
       console.log("[excel] parse click", currentFile.name);
@@ -220,15 +229,8 @@
           body: formData
         });
         console.log("[excel] response status", res.status);
-        const contentType = res.headers.get("content-type") || "";
-        let data = null;
-        if (contentType.includes("application/json")) {
-          data = await res.json();
-        } else {
-          const text = await res.text();
-          data = text ? { ok: true, message: text } : { ok: res.ok };
-        }
-        if (!data.ok) throw new Error(data.error || data.message || "Upload failed");
+        const data = await readResponse(res);
+        if (!res.ok || !data.ok) throw new Error(data.error || data.message || "Upload failed");
         console.log("[excel] parse success", data);
         setStatus("可preview", true);
         publishBtn.disabled = false;
@@ -237,6 +239,21 @@
         setStatus(`解析失败: ${err.message}`);
       } finally {
         parseBtn.disabled = !currentFile;
+      }
+    });
+
+    publishBtn.addEventListener("click", async () => {
+      publishBtn.disabled = true;
+      setStatus("发布中...");
+      try {
+        const res = await fetch(`${API_BASE}/api/content/publish`, { method: "POST" });
+        const data = await readResponse(res);
+        if (!res.ok || !data.ok) throw new Error(data.error || data.message || "Publish failed");
+        setStatus("发布完成", true);
+      } catch (err) {
+        console.error("[excel] publish failed", err);
+        setStatus(`发布失败: ${err.message}`);
+        publishBtn.disabled = false;
       }
     });
   </script>
