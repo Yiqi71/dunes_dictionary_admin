@@ -6,6 +6,16 @@ import { logEvent } from "/analytics.js";
 const connectionLines = document.getElementById("connection-lines");
 const universeCanvas = document.getElementById("universe-canvas");
 
+function getLangText(value, lang) {
+    if (!value) return "";
+    if (typeof value === "string") return value;
+    if (Array.isArray(value)) return value.join(" ");
+    if (typeof value === "object") {
+        return value[lang] || value.zh || value.en || "";
+    }
+    return "";
+}
+
 if (connectionLines && universeCanvas) {
     connectionLines.addEventListener("wheel", (e) => {
         const forwarded = new WheelEvent("wheel", {
@@ -240,7 +250,8 @@ function addLineInteractions(hitbox, visualLine, word1, word2, relation, targetI
         visualLine.style.filter = 'drop-shadow(0 0 4px rgba(255, 225, 53, 0.6))'; // 发光效果
         
         // 显示tooltip
-        tooltipDiv.textContent = `${relation}： ${word2.term}`;
+        const wordLabel = getLangText(word2?.term, state.currentLang) || String(targetId || "");
+        tooltipDiv.textContent = `${relation}： ${wordLabel}`;
         tooltipDiv.style.position = 'fixed';
         tooltipDiv.style.background = 'rgba(0, 0, 0, 0.85)';
         tooltipDiv.style.color = '#FFE135';

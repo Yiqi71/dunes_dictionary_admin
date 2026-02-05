@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-01-31T02:41:39.283Z",
-    "source": "637f9ba9cbcb82f458623f2ae3c12bef"
+    "generated_at": "2026-02-05T22:06:49.765Z",
+    "source": "9aa54082ccf4e5f3c2d17010bbd4da31"
   },
   "words": [
     {
@@ -32,14 +32,14 @@
         }
       ],
       "source": {
-        "zh": "An Economic Theory of Democracy (1957)，中文版《民主的经济理论》",
-        "en": "An Economic Theory of Democracy (1957)"
+        "zh": "安东尼·唐斯，《民主的经济理论 (#An Economic Theory of Democracy#)》，纽约：哈珀与罗出版社 (Harper & Row), 1957。中国大陆已出版，商务印书馆。",
+        "en": "Downs, Anthony. #An Economic Theory of Democracy#. New York: Harper & Row, 1957."
       },
       "source_image": "images/理性无知_source_cover.png",
       "related_works": [
         {
-          "zh": "曼瑟尔·奥尔森（Mancur Olson），The Logic of Collective Action (1965)，中文常译《集体行动的逻辑》\n The Oxford Handbook of Public Choice (2019)，中文未核实",
-          "en": "Mancur Olson, The Logic of Collective Action (1965)\n The Oxford Handbook of Public Choice (2019)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -93,7 +93,7 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": "倦怠态度",
+          "id": 10,
           "relation": "概念相关"
         }
       ],
@@ -195,14 +195,14 @@
         }
       ],
       "source": {
-        "zh": "《作为知觉系统的感官》（The Senses Considered as Perceptual Systems），1966年，Houghton Mifflin。（中文未出版）",
-        "en": "The Senses Considered as Perceptual Systems (1966), Houghton Mifflin."
+        "zh": "詹姆斯·吉布森，《作为知觉系统的感官 (#The Senses Considered as Perceptual Systems#)》，波士顿：霍顿·米夫林出版公司 (Houghton Mifflin), 1966。尚无中文翻译。",
+        "en": "Gibson, James J. #The Senses Considered as Perceptual Systems#. Boston: Houghton Mifflin, 1966."
       },
       "source_image": "images/可供性_source_cover.png",
       "related_works": [
         {
-          "zh": "《生态视觉论》（The Ecological Approach to Visual Perception），1979年，中信出版社。《设计心理学1：日常的设计》（The Design of Everyday Things），1988年，中信出版社。",
-          "en": "The Ecological Approach to Visual Perception (1979), The Design of Everyday Things (1988)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -264,7 +264,7 @@
       ],
       "related_terms": [
         {
-          "id": "反训词",
+          "id": 26,
           "relation": "概念相关"
         }
       ],
@@ -300,8 +300,8 @@
         },
         {
           "content": {
-            "zh": "中国建筑实践的现实环境，让我们不得不谈论「可供性」这样的概念",
-            "en": "The Reality of Chinese Architectural Practice Compels a Discourse on \"Affordance\""
+            "zh": "沙丘研究所按\n\nAffordance这个词，沙丘研究所借由建筑师水雁飞的访谈首先接触到。当然，也像我们在上篇中所描述的，我们对它进行了更为广泛延展的考查，而不仅仅聚焦在建筑学领域。在笔记中，我们对它进行了心理学、哲学乃至文学上的溯源与关联。\n不过，毫无疑问，要论一个词条不仅是对现象做出解释，而更对行动产生指引，我们则有必要重新将affordance放回建筑实践的领域——不管叫它“可供性”还是“阿佛顿斯”。\n孟子是建筑事务所ARC Z的主持建筑师。在收到我们的笔记邀请之后，也和我们有过不少私下的交流。除下文提到的部分，我们认为这些也是有趣的问题：\n其一，Affordance是否带有反训词的特征？在设计心理学的领域，也就是affordance这个词被造出来的语境中，它似乎带有很强的明晰性。也就是，它指的是容易被感知到的互动方式和用途。比如门把手“可供”人手的下压——这个动作是清晰、直截、没有含混的。\n但有趣的是，在建筑学的领域，它似乎走向了明晰性的反面。是否可以说，建筑学中affordance一词，所指的恰恰是更为灵活、变动、模糊的空间功能？比如孟子在下文中提到的瑞典事务所E2A，其作品伯大尼执事楼（Bethanien Deaconry Building），以其结构的中性和开放，容纳了酒店、宁养中心、日托、医疗设施等多种用途。\n当然，这在今天的中国也不鲜见了——一个临街的平层空间，白天可作自习室兼咖啡厅，晚上可作参观兼酒吧，甚至变成沉浸式戏剧的舞台……一个场所“可供”做很多事情，即使这些事情看起来是互相“解离”的。\n我们也可以说，这只是定语发生了变化：从“单一、明确的”可供性到“可变、丰富的”可供性。但也无法否认，当被移用到建筑学领域，其背后隐含的议程，也就是人们提及这个词所自动倡议的东西，已经和最早被用来描述物体的affordance发生了不小的变化。\n另外，我们还聊到了中国与欧洲建筑的某种奇妙的“殊途同归”。也就是说，虽然演变的过程不同，背后的驱动力不同，但当下的中国建筑和欧洲建筑，颇为模糊的可供性都成为了大趋势。我们直觉性的感受是，欧洲建筑的“功能广延化”“可供性模糊化”——或者随便怎么称呼——多多少少是建筑话语脉络的产物。就像下文孟子所survey的，从屈米、Cedric Price到当代的事务所，思维变化或者范式迁移是可被追踪和考查的。\n但中国的情况可能有所不同。我们不得不考虑，很多时候建筑的用途丰富、可变、模糊，可能是因为任务书就并不明确。如果说建筑的第一性原理是为人提供居住与交往的场所，那么中国社会已建造的——“存量”——在很多地方已经大大满足了这些需求。很多时候真的就如水雁飞所说：“很多建筑已经没有内在性的需求，剩下的仅仅是被建造的欲望。”\n业主（尤其是地方政府）想要做些事，出成绩，建筑师也谋求得到这样的机会。但造什么呢？很多时候，业主只是朦朦胧胧地希望一个能彰显品味、吸引眼球的“东西”，但这个“东西”未来到底用来做什么，如何持续运营，往往是模糊不清的。一个最泛滥也最值得人警惕的用语是“网红打卡点”。（——想象这样的对话：这个空间是做什么的？“供人打卡的”。）那么它不需要是一个空间，而只需要是一个布景或者一张立面。\n但当它必须是一个空间，这其中容纳什么呢？在这样一种近乎于“程序性真空”（programmatic vacuum）的状况下，优秀的、有责任感的建筑师，似乎不得不做的，就是将设计重心从满足一个不存在的“program”，转向去创造一个充满潜力的“affordance”框架。他们必须努力去发明其多样的可供性，寄希望于一个好的空间框架，能够像一个孵化器一样，在未来吸引和催生出未知的、有生命力的内容。\n\n----\n\n共创者笔记：\n孟子 - ARC Z主持建筑师\n\n在建筑的话语论述中，“affordance”（可供性）一词背后蕴含的观念潜能，自二十世纪后半叶以来便被多位建筑师从不同角度探讨。当用“affordance”作为概念棱镜去观察建筑时，它折射出建筑与功能关系暧昧的光谱。这种暧昧与不确定性恰是“affordance”的概念力量：它使建筑与功能的关系得以在明确与模糊之间游移，同时为建筑师及使用者的创造性行动留出可能性。在这样的视角下，以往诸多重要的建筑探索，都可以被理解为对“affordance”的某种先声或变奏。\n\n其中较为人知的便是伯纳德·屈米（Bernard Tschumi），他在《建筑与断裂》中将空间与事件的多重关系作为其理论探索的关键。他主张从空间与事件的分离或并置出发来构思建筑，在设计中有意制造“不连贯”，让预设功能与实际使用产生张力，甚至是生产完全消除预设功能的建筑。\n\n这一理念在拉维列特公园（Parc de la Villette）的26个红色亭子中得到具体实施。然而，如同解构主义风潮盛行的年代的许多建筑师，屈米的理论探索最终的投射物，很大程度上仍聚焦于建筑的形式创造。使用者的存在仿佛变成一个笨拙的借口，为其独特的形态探索提供辩护。吊诡的是，这种刻意制造的形式与功能的暧昧断裂，本意是为激发建筑的公共潜力。但在公园建成后的很长一段时间里，由于亭子本身对形式创造的过度追求及运营维护的缺乏，公众面对这些独特的红色亭子，在使用上显得无所适从。屈米的红色亭子或许就此掉入了形式主义的陷阱，最终滑向了“affordance”的反面——一种建筑与功能的贫瘠二分。\n\n在屈米之前，亦有诸如塞德里克·普莱斯（Cedric Price）在六十年代提出的“欢乐宫”（Fun Palace），它设想了一种灵活多变的、充满机器乐观主义精神的空间，通过中性的基础框架以及瞬息万变的功能模块来消解空间与功能的强联系。又如阿尔多·凡·艾克（Aldo van Eyck）战后提出的“中间领域”（In-between），主张在城市中布置不过多预设功能的构筑物，以期供人自发使用并产生社会联结。两者都可以被看作是“可供性”理念不谋而合的早期尝试。\n\n如果说屈米、普莱斯、凡·艾克分别从事件、机器、社群的角度打开了建筑与功能之间的裂缝，那么“affordance”这一概念，则把这条裂缝重新聚焦于建筑与使用者的复杂关系上。它并不仅仅是一种形式的模糊或功能的未定状态，而是一种人与环境之间动态生成的关系。建筑所“提供”的不是某些固定的功能，而是一组光谱式的可能性——从最显而易见的用途，到那些在使用中才被逐渐发现的偶然尝试。它驱使建筑师更加审慎和敏锐地看待日常使用者的存在。\n\n在过去二十年间，世界各地众多建筑师及事务所的作品中，都不约而同地看到了与“affordance”相关的实践或探索。这或许可以被看作建筑作为一个实践性学科的又一次范式转变（Paradigm Shift），标志着建筑师群体从世纪之交对学科自治（Autonomy）和形式可能性的狂热追求，逐渐回到了将社会、经济、人文和具体个人作为创作基础的时代。\n\n这种转向在近些年的欧洲建筑师群体中尤为明显。瑞士的E2A建筑事务所主张将多种活动通过高度凝练的结构兼容并蓄于建筑之中，为未来的不确定性提供最大程度的“韧性”（Resilience）。他们的建筑常以显眼的框架结构及清晰的水平垂直构架示人，这种对结构的极简表达，源于在复杂条件下寻求理性秩序的尝试——将当代建筑实践面临的多重矛盾，通过结构和形式上精确却中性的组织加以调和。\n\n与E2A立场相似的还有法国的Studio Muoto，他们强调建筑功能的开放性与不确定性，认为好的建筑应“允许意外发生，其用途在不断使用中重新定义，并鼓励人们去使用它”。以他们知名的巴黎萨克莱大学公共中心（Public Condenser）为例，Muoto预留了大面积的半室外中庭、楼梯平台和自行车通道，这些无固定用途的空间，随着学生的聚集和活动被自发地使用。裸露的混凝土框架在中性的结构逻辑下伸出，与通透的玻璃气候边界一同承载并展示着建筑内部鲜活的活动。\n\n如果我们去探究这一转向背后的原因，可以发现它与近些年来的各种危机息息相关。首先是2008年的金融危机，它对建筑业的影响不亚于上世纪70年代的石油危机。石油危机导致的能源价格飙升促使人们更强烈地意识到建筑节能的重要性，从而催生了更科学的幕墙和建筑保温技术，也深刻地改变了建筑创作的条件与可能性。同样，2008年金融危机也迫使建筑师面对更紧缩的经济状况和更严苛的任务书及用地条件，这直接导致了形式主义话语在建筑讨论中的没落。\n\n另一方面，愈演愈烈的气候危机也推动了建筑师对可持续性的深度探索。这意味着在后现代主义之后盛行的消费主义式建筑观念逐渐被替代，取而代之的是人们渴望建筑回归经久耐用的价值观。而要实现这一点，建筑师在构思时就必须要考虑到空间的各种使用可能性，甚至是未来功能的剧烈转变。这促使许多建筑师将建筑视为一种“基础设施”——一种不做过多定制、更注重空间可塑性的建筑物。这种观念转变削弱了后现代与解构主义时期所建立的形式语言与功能关联或断联的二分关系，而正是这种二分关系，曾为那一时期的建筑师提供了源源不断的创作灵感。\n\n当我们把视线转回美学或风格层面时，便能理解为何在过去二十年间，世界各地不断涌现出那些可以被视为具有强烈“可供性”的建筑，并逐渐汇聚成一种集体性的风格表达。我们可以为它套上不同的名称：它可以被称作“新现实主义”，也可以被称作“批判的实用主义”，抑或是“基础设施主义”。这些名词背后所指向的共同现象，是建筑师们对所处社会现实的批判性回应，并将这种回应重新确立为建筑创作的主要驱动力。\n\n然而，值得警惕的是，在当下的中国建筑实践中，我们已经看到大量项目对这种批判性力量所产生的新趋势进行肤浅的风格化模仿，其中甚至不乏完成度颇高的精致作品。如果说在二十一世纪初数字主义（Digitalism）盛行的年代，这类风格化模仿或许还能在理论与美学层面带来一些启发与进展。但在目前的语境中，它却显得缺乏建设性。在我国当下的现实中，传统建筑学的自治性框架早已式微；这类肤浅的风格化模仿无疑会让中国建筑实践的未来难以为继。从这个角度来看，建筑师水雁飞与理论家冯仕达将“affordance”引入建筑的话语体系中，这具有重要的观念价值。它不仅回应了国内建筑实践所面临的普遍现实，并且这种回应可以回流到建筑作为一个综合学科的整体话语当中。",
+            "en": "Editor’s Note by Dunes Workshop\n\nThe term \"Affordance\" first entered the discourse of Dunes Workshop through an interview with architect Shui Yanfei. As described in our previous entry, we have since conducted an expansive investigation of the term, extending its reach beyond the strict confines of architectural theory. Our research notes trace its genealogical roots and conceptual intersections across psychology, philosophy, and even literature.\nHowever, it is undeniable that if a term is to function not merely as an explanation of a phenomenon but as a definitive guide for action, we must re-situate \"affordance\"—whether one prefers the translation kě-gòng-xìng or the transliteration A-fo-dun-si—back within the field of architectural practice.\nMeng Zi, the principal architect of ARC Z, engaged in extensive dialogue with us after receiving our invitation to contribute. Beyond the points elaborated in the following text, we believe the following inquiries are particularly salient:\n1. Affordance as an Enantiosemy?\nIn the domain of design psychology—the original cradle of the term—\"affordance\" implies a high degree of semiotic clarity. It refers to interaction modalities and utilities that are immediately perceivable: a door handle, for instance, \"affords\" the downward pressure of a hand. The action is legible, direct, and unambiguous.\nIntriguingly, within the architectural realm, the term appears to gravitate toward the antithesis of this clarity. One might argue that \"affordance\" in architecture refers precisely to flexible, fluid, and indeterminate spatial programs. A prime example, cited by Meng Zi, is the Bethanien Deaconry Building by the Swiss firm E2A. Through its structural neutrality and open typology, the building accommodates a diverse spectrum of uses, ranging from a hotel and hospice to daycare and medical facilities.\nThis condition is increasingly prevalent in contemporary China: a street-level unit may function as a study lounge and café by day, transform into a restaurant and bar by night, or even serve as a stage for immersive theater. A single locus \"affords\" a multitude of activities, even when these functions are seemingly \"dissociated\" from one another.\nWe might conclude that only the qualifiers have shifted: from a \"singular and explicit\" affordance to a \"variable and pluralistic\" one. Yet, it is undeniable that once transposed into architectural discourse, the underlying agenda—the implicit advocacy invoked by the term—has evolved significantly from its original psychological definition.\n2. Convergence of Chinese and European Trajectories\nOur discussions also touched upon a curious \"convergence through disparate paths\" between Chinese and European architecture. While their evolutionary processes and driving forces differ, a trend toward programmatic ambiguity has emerged as a dominant paradigm in both regions.\nOur intuition suggests that in Europe, the \"extension of function\" or the \"blurring of affordance\"—regardless of the specific nomenclature—is largely a product of internal architectural discourse. As Meng Zi surveys in the subsequent text, this paradigm shift can be traced through a lineage of thought extending from Bernard Tschumi and Cedric Price to contemporary practices.\nThe situation in China, however, operates under a different logic. We must consider that the rich, variable, and ambiguous utility of buildings is often a byproduct of programmatic indeterminacy. If the \"first principle\" of architecture is to provide a locus for human habitation and social exchange, then the existing \"stock\" of China’s built environment has already, in many areas, substantially met these needs. Often, the reality aligns with Shui Yanfei’s observation: \"Many buildings no longer possess an intrinsic demand; what remains is merely the desire for the act of construction itself.\"\nClients (particularly local governments) seek to initiate projects as markers of achievement, and architects, in turn, seek the opportunity to realize them. But what exactly is being built? Often, the client possesses only a nebulous desire for an \"object\" that manifests taste or captures public attention, while the future utility and operational sustainability of this \"object\" remain opaque. The most ubiquitous—and perhaps most problematic—term in this context is the \"Internet-famous 'check-in' spot\" (wǎng-hóng dǎ-kǎ diǎn). In such cases, the space is not required to be an architectural volume; it need only be a scenographic backdrop or a photogenic facade.\nIn a state of what might be termed a \"programmatic vacuum,\" the responsibility of the conscientious architect shifts. They must pivot from satisfying a non-existent \"program\" toward creating a robust framework of affordance. They are tasked with \"inventing\" diverse affordances, in the hope that a superior spatial framework will act as an incubator—attracting and catalyzing unknown, vital content in the future.\n\n----\n\nContributor’s Notes\nMeng Zi – Principal Architect, ARC Z\n\nIn architectural discourse, the conceptual potential latent within the term \"affordance\" has been explored from diverse perspectives by numerous architects since the latter half of the twentieth century. When one employs \"affordance\" as a conceptual prism through which to observe architecture, it refracts an ambiguous spectrum governing the relationship between architecture and function. This very ambiguity and indeterminacy constitute the conceptual power of \"affordance\": it allows the nexus of form and utility to oscillate between the explicit and the blurred, thereby carving out a space for creative agency by both the architect and the user. From this vantage point, many seminal architectural inquiries can be reinterpreted as precursors or variations of \"affordance.\"\nAmong the most prominent of these is Bernard Tschumi, who, in Architecture and Disjunction, positioned the multivalent relationship between space and event as the crux of his theoretical inquiry. Tschumi advocated for conceiving architecture through the disjunction or juxtaposition of space and event, deliberately engineering \"incoherence\" within his designs. This strategy forces a tension between pre-programmed function and actual usage, at times even producing architecture that entirely negates preconceived utility.\nThis philosophy found concrete realization in the twenty-six red \"Folies\" at Parc de la Villette. However, like many architects of the Deconstructivist era, the ultimate projection of Tschumi’s theoretical exploration remained largely focused on formal creation. The presence of the user often appeared as a clumsy pretext used to justify his singular morphological experiments.\nParadoxically, this deliberate \"disjunction\" between form and function was intended to catalyze the building's public potential. Yet, for a significant period following the park’s completion—due to an over-emphasis on formalist pursuit and a subsequent lack of operational maintenance—the public appeared bewildered as to how to actually \"use\" these unique red structures. Tschumi’s Folies perhaps fell into a formalist trap, ultimately sliding toward the antithesis of \"affordance\": a sterile dichotomy between architecture and utility.\nPreceding Tschumi, other seminal explorations existed, such as Cedric Price’s \"Fun Palace\" proposed in the 1960s. Price envisioned a highly versatile space imbued with techno-optimism, utilizing a neutral structural framework and transient functional modules to dissolve the rigid deterministic link between space and function.\nSimilarly, the post-war concept of the \"In-between\" advocated by Aldo van Eyck proposed the installation of structures within the city that eschewed excessive pre-programming. His intent was to provide sites for spontaneous appropriation and the subsequent generation of social bonds. Both of these precedents can be interpreted as early, convergent attempts to realize the ethos of \"affordance\" before the term itself gained architectural currency.\nIf Tschumi, Price, and Van Eyck opened the fissure between architecture and function through the respective lenses of event, machine, and community, the concept of \"affordance\" re-centers this fissure onto the intricate relationship between the architecture and the user. It is not merely a state of formal ambiguity or functional indeterminacy, but rather a dynamically emergent relationship between the individual and the environment. What architecture \"affords\" is not a set of fixed functions, but a spectral range of possibilities—extending from the most self-evident utilities to those serendipitous appropriations discovered only through actual use. It compels architects to regard the presence of the everyday user with greater prudence and sensitivity.\nOver the past two decades, the works of numerous architects and firms worldwide have converged on practices and explorations tethered to \"affordance.\" This can perhaps be viewed as another paradigm shift within architecture as a practical discipline. It marks a gradual departure from the turn-of-the-century obsession with disciplinary autonomy and formal experimentation, returning instead to an era where the social, economic, humanistic, and the specific individual serve as the foundational bedrock of creation.\nThis shift is particularly salient among contemporary European architects. The Swiss firm E2A advocates for an architectural synthesis where a multitude of activities are accommodated within highly condensed structures, providing maximum resilience against future uncertainties. Their work is often characterized by prominent frame structures and clear horizontal-vertical tectonic systems. This minimalist structural expression stems from an attempt to find rational order amidst complex conditions—reconciling the manifold contradictions of contemporary practice through a precise yet neutral organization of structure and form.\nStudio Muoto, a French practice sharing a similar stance to E2A, emphasizes the openness and indeterminacy of architectural function. They posit that superior architecture should \"allow for the unexpected, where utility is continuously redefined through ongoing use, thereby encouraging active engagement.\" A prime example is their renowned Public Condenser at Paris-Saclay University. In this project, Muoto incorporated expansive semi-outdoor atria, stair landings, and bicycle ramps—spaces devoid of fixed programming that are spontaneously appropriated as students gather and interact. The exposed concrete framework, extending from a neutral structural logic, works in tandem with the transparent glass thermal envelope to accommodate and showcase the vibrant activities unfolding within.\nIf we explore the catalysts behind this paradigm shift, we find them inextricably linked to the various crises of recent years. First, the 2008 financial crisis impacted the architectural industry as profoundly as the oil crisis of the 1970s. During the latter, soaring energy prices intensified awareness regarding building performance, fostering more scientific curtain walls and insulation technologies, which in turn reshaped the conditions and possibilities of architectural creation. Similarly, the 2008 financial crisis compelled architects to confront more austere economic climates, stricter briefs, and more constrained site conditions—directly leading to the decline of formalist discourse in architectural debate.\nOn the other hand, the escalating climate crisis has driven architects toward a deeper exploration of sustainability. This signifies a gradual replacement of the consumerist architectural ethos prevalent after Postmodernism with a renewed longing for durability and permanence. To achieve this, architects must conceive spaces that account for a diverse range of potential utilities, and even radical functional transformations in the future. This has prompted many to view architecture as \"infrastructure\"—a type of building that avoids over-customization and prioritizes spatial plasticity. This conceptual shift undermines the binary relationship established during the Postmodern and Deconstructivist eras—where formal language was either explicitly linked to or deliberately decoupled from function—a dichotomy that once provided a steady stream of creative inspiration for architects of that period.\nWhen we shift our focus back to the aesthetic or stylistic level, we can understand why buildings characterized by a strong sense of \"affordance\" have emerged worldwide over the past two decades, gradually coalescing into a collective stylistic expression. We may apply various labels to this phenomenon: it could be termed \"New Realism,\" \"Critical Pragmatism,\" or \"Infrastructuralism.\" What these terms collectively signify is a critical response by architects to their contemporary social reality, re-establishing this response as the primary driver of architectural creation.\nHowever, it is necessary to remain vigilant: within contemporary Chinese architectural practice, we have already observed a proliferation of projects that engage in a superficial, stylized imitation of the trends emerging from this critical force—even among works with a high degree of formal sophistication and execution. While such stylistic mimicry might have contributed certain theoretical or aesthetic insights during the era of Digitalism at the turn of the century, it appears markedly unconstructive in our present context. Within the current reality of our nation, the autonomous framework of traditional architecture has long been in decline; such superficial imitation undoubtedly renders the future of Chinese architectural practice unsustainable.\nFrom this perspective, the introduction of \"affordance\" into the architectural lexicon by architect Shui Yanfei and theorist Stan Fung holds significant conceptual value. It does not merely respond to the pervasive realities currently facing domestic architectural practice; rather, this response has the potential to flow back into—and enrich—the holistic discourse of architecture as a comprehensive, multidisciplinary field."
           },
           "role": {
             "zh": "贡献者",
@@ -366,14 +366,14 @@
         }
       ],
       "source": {
-        "zh": "The Intersubjective Context of Psychoanalytic Treatment（1978，《精神分析治疗的主体间性背景》），发表于《国际精神分析杂志》（International Journal of Psycho-Analysis）",
-        "en": "The Intersubjective Context of Psychoanalytic Treatment” (1978), published in the International Journal of Psycho-Analysis"
+        "zh": "乔治·阿特伍德、罗伯特·斯托洛罗，《精神分析治疗的主体间性背景 (#The Intersubjective Context of Psychoanalytic Treatment#)》，载《国际精神分析杂志 (#International Journal of Psycho-Analysis#)》，1978。尚无中文翻译。",
+        "en": "Atwood, George E., and Robert D. Stolorow. \"The Intersubjective Context of Psychoanalytic Treatment.\" #International Journal of Psycho-Analysis# 59 (1978): 313–324."
       },
       "source_image": "images/主体间性_source_cover.png",
       "related_works": [
         {
-          "zh": "Structures of Subjectivity: Explorations in Psychoanalytic Phenomenology (1984)，The Analytic Press（中文未出版）\nWorlds of Experience: Interweaving Clinical and Philosophical Dimensions in Psychoanalysis (2002)，中文版《体验的世界：精神分析主体间性理论及其应用》，人民邮电出版社（2023）",
-          "en": "Structures of Subjectivity: Explorations in Psychoanalytic Phenomenology (1984)，The Analytic Press.\nWorlds of Experience: Interweaving Clinical and Philosophical Dimensions in Psychoanalysis (2002)."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -431,7 +431,7 @@
       ],
       "related_terms": [
         {
-          "id": "课题分离",
+          "id": 18,
           "relation": "概念相关"
         }
       ],
@@ -533,14 +533,14 @@
         }
       ],
       "source": {
-        "zh": "《非地方：超现代人类学引论》（Non-Lieux: Introduction à une anthropologie de la surmodernité） 1992年 商务印书馆（2021年中文版）；台湾版名为《非地方：超現代人類學導論》，群学出版社。",
-        "en": "Non-Places: An Introduction to Supermodernity (Non-Lieux: Introduction à une anthropologie de la surmodernité）Translated by John Howe. London: Verso, 1995."
+        "zh": "马克·奥热，《非地方：超现代人类学引论 (#Non-Lieux: Introduction à une anthropologie de la surmodernité#)》，巴黎：论点出版社 (Le Seuil), 1992。中国大陆已出版，商务印书馆；港台有译本，群學出版社。",
+        "en": "Augé, Marc. #Non-Places: An Introduction to Supermodernity#. Translated by John Howe. London: Verso, 1995."
       },
       "source_image": "images/非场所_source_cover.png",
       "related_works": [
         {
-          "zh": "《地铁上的民族学家》（Un ethnologue dans le métro），广西师范大学出版社。\n 《空间生产》（The Production of Space），亨利·列斐伏尔（Henri Lefebvre），商务印书馆。",
-          "en": "The Metro-Ethnologist (French: Un ethnologue dans le métro), Marc Augé, originally published in 1986.\n\nThe Production of Space (French: La production de l'espace), Henri Lefebvre, originally published in 1974."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -594,7 +594,15 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": "倦怠态度异托邦悬浮",
+          "id": 10,
+          "relation": "概念相关"
+        },
+        {
+          "id": 7,
+          "relation": "概念相关"
+        },
+        {
+          "id": 31,
           "relation": "概念相关"
         }
       ],
@@ -637,7 +645,7 @@
         "en": "Ghetto"
       },
       "termOri": "Ghetto",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/隔都_aigc.png",
       "sm_title": {
         "zh": "TODO：社媒标题",
         "en": "TODO: social title"
@@ -652,27 +660,27 @@
           "year": "1436-1521",
           "role": {
             "zh": "总督",
-            "en": "Doge"
+            "en": "Doge of Venice"
           },
           "image": "images/隔都_proposer.png"
         }
       ],
       "source": {
-        "zh": "1555年7月14日由教皇保罗四世颁布的教宗诏书Cum nimis absurdum",
-        "en": "Cum nimis absurdum （a papal bull issued by Pope Paul IV dated 14 July 1555）"
+        "zh": "教皇保罗四世，《由于极度荒谬 (#Cum nimis absurdum#)》，罗马：教皇诏书，1555。尚无中文翻译。",
+        "en": "Pope Paul IV. #Cum nimis absurdum#. Papal Bull. July 14, 1555."
       },
       "source_image": "images/隔都_source_cover.png",
       "related_works": [
         {
-          "zh": "《肉体与石头：西方文明中的身体与城市》理查德·桑内特，1994年（上海译文出版社）第7章《触摸的恐惧：文艺复兴时期威尼斯的犹太区》\nGhetto: The Invention of a Place, the History of an Idea, Mitchell Duneier, 2016。（中文未出版）\nThe Ghetto，Louis Wirth，1928。（中文未出版）",
-          "en": "Flesh and Stone: The Body and the City in Western Civilization, Richard Sennett, 1994. Chapter 7: \"Fear of Touching: The Jewish Ghetto in Renaissance Venice.\"\n\nGhetto: The Invention of a Place, the History of an Idea, Mitchell Duneier, 2016.\nThe Ghetto，Louis Wirth，1928."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
         "zh": "建筑与城市 Architecture & Urbanism 人类学 Anthropology 历史学 History",
         "en": "建筑与城市 Architecture & Urbanism 人类学 Anthropology 历史学 History"
       },
-      "proposing_country": "梵蒂冈、罗马",
+      "proposing_country": "意大利",
       "proposing_time": "1516",
       "contributors": [
         {
@@ -727,7 +735,7 @@
       ],
       "related_terms": [
         {
-          "id": "异托邦",
+          "id": 7,
           "relation": "概念相关"
         }
       ],
@@ -771,14 +779,14 @@
         }
       ],
       "source": {
-        "zh": "《规训与惩罚》（Surveiller et punir），米歇尔·福柯，1975。（生活·读书·新知三联书店）",
-        "en": "Discipline and Punish: The Birth of the Prison（Surveiller et punir）,1975"
+        "zh": "米歇尔·福柯，《规训与惩罚 (#Surveiller et punir#)》，巴黎：伽利玛出版社 (Gallimard), 1975。中国大陆已出版，生活·读书·新知三联书店。",
+        "en": "Foucault, Michel. #Discipline and Punish: The Birth of the Prison#. Translated by Alan Sheridan. New York: Pantheon Books, 1977."
       },
       "source_image": "images/机构_source_cover.png",
       "related_works": [
         {
-          "zh": "《精神病院：论精神病患和其他被关押者的社会处境》（Asylums: Essays on the Social Situation of Mental Patients and Other Inmates），1961年出版。（商务印书馆）\n《论再生产》（Sur la reproduction），原稿写于1970年，1995年法文版面世。（西北大学出版社）\n《疯癫与文明》（Folie et Déraison: Histoire de la folie à l'âge classique），1961年出版。（生活·读书·新知三联书店）",
-          "en": "Asylums: Essays on the Social Situation of Mental Patients and Other Inmates, 1961.\nOn the Reproduction of Capitalism (Sur la reproduction), written in 1970, published posthumously.\nMadness and Civilization (Folie et Déraison: Histoire de la folie à l'âge classique), 1961."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -830,7 +838,7 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": "控制论",
+          "id": 9,
           "relation": "概念相关"
         }
       ],
@@ -913,14 +921,14 @@
         }
       ],
       "source": {
-        "zh": "《另类空间》（Des espaces autres），1984年发表于《建筑、运动、连续性》杂志（中文收录于《福柯文选》，北京大学出版社或其他选集；台版/港版多译作《异质空间》或《其它空间》）",
-        "en": "\"Des espaces autres\" (Of Other Spaces), published in the journal Architecture, Mouvement, Continuité in 1984."
+        "zh": "米歇尔·福柯，《另类空间 (#Des espaces autres#)》，载《建筑、运动、连续性 (#Architecture, Mouvement, Continuité#)》，1984。已有中文翻译。",
+        "en": "Foucault, Michel. \"Des espaces autres\" [Of Other Spaces]. #Architecture, Mouvement, Continuité#, no. 5 (October 1984): 46–49."
       },
       "source_image": "images/异托邦_source_cover.png",
       "related_works": [
         {
-          "zh": "《词与物》（Les Mots et les choses），1966年（上海三联书店） （注：福柯在此书中首次简短提及该词，但在1967年的讲座中才作为空间概念详细定义）",
-          "en": "Les Mots et les choses (The Order of Things), 1966. (Note: Foucault briefly mentioned the term in this book, but detailed it as a spatial concept in the 1967 lecture.)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -951,14 +959,22 @@
       "edit_date": "2019/10/06",
       "brief_definition": {
         "zh": "真实存在却运行着另类规则的社会空间",
-        "en": "A physically real social space that operates under alternative rules"
+        "en": "A real space that operates under alternative rules"
       },
       "extended_definition": {
         "zh": [
-          "TODO：详细释义"
+          "在剧院的有限的舞台空间上，通过布景的变换，我们可以瞬间从繁华的都市到荒凉的孤岛。在物理层面上的同一个位置，并置了数个互不相容的场所，这种不同于传统空间逻辑的场所就是福柯所提出的“异托邦”的代表。",
+          "精神病院、公墓、妓院、剧场，这些不尽相同的空间对于福柯来说都可以被理解为“另托邦”，因为它们都有某种高度不同于其他城市空间的特殊的、异质的、或另类的社会关系。",
+          "“Heterotopia”一词由“异质的（hetero-）”与“地方（topos）”构成。不同于“乌托邦”那种纯粹空想、不存在的场所，异托邦是真实存在的，且在每种文化中都能找到：如原始文明中为产妇或老人设立的特定场域、当代社会收容行为异常者的精神病院等。",
+          "这些空间本质上是对主流秩序的镜像、颠覆或转化。它可以体现为空间的异质化，如剧场舞台对空间的转换和重组；也可以是时间的异质化，如博物馆对时间的压缩，或是集市与嘉年华带来的暂时性狂欢。此外，这种异质性也反映在功能上：监狱通过物理隔离制造出封闭系统，妓院则通过秩序的抽离制造出幻想。甚至如早期的殖民地，它们直接在异域创造出了另一个完全真实的社会副本。",
+          "虽然在后现代理论家（如大卫·哈维）的延伸讨论中，异托邦常在对主流文化的抵抗这一主题下被探讨，但追根溯源，它可以泛指任何具有上述异质特征的真实空间。"
         ],
         "en": [
-          "TODO: extended"
+          "Within the confined stage of a theater, a simple change of scenery can instantly transport us from a bustling metropolis to a desolate island. By juxtaposing several incompatible sites within a single physical location, the theater operates through a logic that defies our traditional understanding of space. This is the quintessential example of what Michel Foucault called a \"heterotopia.\"",
+          "For Foucault, seemingly unrelated spaces—such as psychiatric hospitals, cemeteries, brothels, and theaters—share a common thread: they are \"other spaces.\" They harbor social relations that are highly specific, heterogeneous, or deviant, setting them fundamentally apart from the rest of the urban landscape.",
+          "The term \"heterotopia\" is rooted in the Greek hetero- (other/different) and topos (place). Unlike \"utopias,\" which are idealized, non-existent \"no-places,\" heterotopias are real, tangible sites that exist in every culture. These range from \"crisis heterotopias\" in traditional societies—sacred or forbidden spots reserved for those in life transitions, like the elderly or women in childbirth—to \"heterotopias of deviation\" in the modern world, such as psychiatric facilities.",
+          "At their core, these spaces act as a mirror to, a subversion of, or a transformation of the predominating order and rules. This \"otherness\" can be spatial, as seen in the way a stage \"teleports\" between locations; or temporal, as seen in museums that compress and freeze time, or in the ephemerality of a carnival. This quality also relates to the function of a space: prisons create isolated, closed-off systems, while brothels create a space of pure fantasy by detaching from ordinary social rules. Another example is colonies, which functioned as replicas of society built on foreign soil.",
+          "While postmodern thinkers like David Harvey have often framed heterotopias as sites of resistance for marginalized groups against the status quo, the concept’s original scope is broader: it refers to any real-world space that possesses these distinct, heterogeneous characteristics."
         ]
       },
       "example_sentence": {
@@ -968,7 +984,11 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": "全景敞视隔都非场所",
+          "id": 5,
+          "relation": "概念相关"
+        },
+        {
+          "id": 4,
           "relation": "概念相关"
         }
       ],
@@ -991,7 +1011,7 @@
         "en": "Panopticon"
       },
       "termOri": "Panopticon",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/全景敞视_aigc.png",
       "sm_title": {
         "zh": "TODO：社媒标题",
         "en": "TODO: social title"
@@ -1012,14 +1032,14 @@
         }
       ],
       "source": {
-        "zh": "《规训与惩罚》（Surveiller et punir），米歇尔·福柯，1975。（生活·读书·新知三联书店）",
-        "en": "Discipline and Punish: The Birth of the Prison（Surveiller et punir）,1975"
+        "zh": "米歇尔·福柯，《规训与惩罚 (#Surveiller et punir#)》，巴黎：伽利玛出版社 (Gallimard), 1975。中国大陆已出版，生活·读书·新知三联书店。",
+        "en": "Foucault, Michel. #Discipline and Punish: The Birth of the Prison#. Translated by Alan Sheridan. New York: Pantheon Books, 1977."
       },
       "source_image": "images/全景敞视_source_cover.png",
       "related_works": [
         {
-          "zh": "《控制社会后记》（Post-scriptum sur les sociétés de contrôle），吉尔·德勒兹，1990。（收录于《哲学与权力的谈判》）\n《监视资本主义时代》（The Age of Surveillance Capitalism），肖莎娜·祖博夫，2019。《监视资本主义时代》时报文化出版",
-          "en": "\"Postscript on the Societies of Control\" (Post-scriptum sur les sociétés de contrôle), Gilles Deleuze, 1990. Included in Negotiations (Pourparlers), Columbia University Press. \nThe Age of Surveillance Capitalism, Shoshana Zuboff, 2019. PublicAffairs."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -1069,7 +1089,12 @@
         "en": "With the proliferation of ubiquitous surveillance cameras and big data algorithms, the modern city is evolving into a vast digital Panopticon. Even when at home, we remain constantly gripped by the anxiety of being watched."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 9,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -1088,7 +1113,7 @@
         "zh": "控制论",
         "en": "Cybernetics"
       },
-      "termOri": "κυβερνητικός kybernētikós",
+      "termOri": "κυβερνητικός",
       "concept_image": "images/控制论_aigc.png",
       "sm_title": {
         "zh": "沙丘词典丨「控制论」这个概念，其实每一个自媒体人都身临其境",
@@ -1110,14 +1135,14 @@
         }
       ],
       "source": {
-        "zh": "《控制论：或关于在动物和机器中控制和通讯的科学》（Cybernetics: Or Control and Communication in the Animal and the Machine），1948年。中文版由北京大学出版社或商务印书馆出版。",
-        "en": "Cybernetics: Or Control and Communication in the Animal and the Machine (1948), MIT Press."
+        "zh": "诺伯特·维纳，《控制论：或关于在动物和机器中控制和通讯的科学 (#Cybernetics: Or Control and Communication in the Animal and the Machine#)》，剑桥：麻省理工学院出版社 (MIT Press), 1948。中国大陆已出版，北京大学出版社。",
+        "en": "Wiener, Norbert. #Cybernetics: Or Control and Communication in the Animal and the Machine#. Cambridge, MA: MIT Press, 1948."
       },
       "source_image": "images/控制论_source_cover.png",
       "related_works": [
         {
-          "zh": "《人有人的用处：控制论与社会》（The Human Use of Human Beings: Cybernetics and Society），诺伯特·维纳（Norbert Wiener），1950年。中文版由商务印书馆出版。",
-          "en": "The Human Use of Human Beings: Cybernetics and Society (1950), MIT Press."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -1169,7 +1194,15 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": "赛博格熵",
+          "id": 20,
+          "relation": "概念相关"
+        },
+        {
+          "id": 22,
+          "relation": "概念相关"
+        },
+        {
+          "id": 8,
           "relation": "概念相关"
         }
       ],
@@ -1213,14 +1246,14 @@
         }
       ],
       "source": {
-        "zh": "《大都市与精神生活》（Die Großstädte und das Geistesleben）1903",
-        "en": "The Metropolis and Mental Life, 1903（Die Großstädte und das Geistesleben）"
+        "zh": "乔治·齐美尔，《大都市与精神生活 (#Die Großstädte und das Geistesleben#)》，德累斯顿：彼得曼出版社 (Petermann), 1903。已有中文翻译。",
+        "en": "Simmel, Georg. \"The Metropolis and Mental Life.\" In #The Sociology of Georg Simmel#, edited by Kurt H. Wolff. Glencoe, IL: Free Press, 1950."
       },
       "source_image": "images/倦怠态度_source_cover.png",
       "related_works": [
         {
-          "zh": "《货币哲学》，陈戎女 / 耿开君 / 文聘元 译，出版社：华夏出版社，2002年\n《发达资本主义时代的抒情诗人》，[德] 瓦尔特·本雅明 著，张旭东 / 魏文生 译，出版社：生活·读书·新知三联书店，1989年",
-          "en": "The Philosophy of Money, translated by Tom Bottomore and David Frisby, Publisher: Routledge (London), 1978\nCharles Baudelaire: A Lyric Poet in the Era of High Capitalism, Walter Benjamin, translated by Harry Zohn, Publisher: NLB/Verso (London), 1973"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -1272,7 +1305,15 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": "理性无知",
+          "id": 1,
+          "relation": "概念相关"
+        },
+        {
+          "id": 45,
+          "relation": "概念相关"
+        },
+        {
+          "id": 4,
           "relation": "概念相关"
         }
       ],
@@ -1295,7 +1336,7 @@
         "en": "Aura"
       },
       "termOri": "Aura",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/灵韵_aigc.png",
       "sm_title": {
         "zh": "TODO：社媒标题",
         "en": "TODO: social title"
@@ -1316,14 +1357,14 @@
         }
       ],
       "source": {
-        "zh": "《机械复制时代的艺术作品》（Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit） 1935/1936年 中文版常收录于《启迪：本雅明文选》，生活·读书·新知三联书店；或《机械复制时代的艺术作品》，中国城市出版社。",
-        "en": "The Work of Art in the Age of Mechanical Reproduction, 1935-36（Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit）"
+        "zh": "瓦尔特·本雅明，《机械复制时代的艺术作品 (#Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit#)》，1935。中国大陆已出版，生活·读书·新知三联书店。",
+        "en": "Benjamin, Walter. \"The Work of Art in the Age of Mechanical Reproduction.\" 1935."
       },
       "source_image": "images/灵韵_source_cover.png",
       "related_works": [
         {
-          "zh": "《讲故事的人》（The Storyteller），收录于《启迪：本雅明文选》，生活·读书·新知三联书店。 \n《拱廊计划》（The Arcades Project），汉译名《拱廊街计划》，商务印书馆。",
-          "en": "The Storyteller (Der Erzähler), Walter Benjamin, 1936. Included in Illuminations (edited by Hannah Arendt), Schocken Books.\nThe Arcades Project (Das Passagen-Werk), Walter Benjamin, 1927–1940. Harvard University Press."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -1370,7 +1411,12 @@
         "en": "If industrial production and mechanical reproduction deprived works of art of their former uniqueness, does the generative creation of artificial intelligence further accelerate the withering of the \"Aura\"?"
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 19,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -1411,14 +1457,14 @@
         }
       ],
       "source": {
-        "zh": "《纪德日记》（Andre Gide Journals）1885 - 1939 李玉民译，上海译文出版社",
-        "en": "The Journals of André Gide: 1889-1913, trans. Justin O'Brien."
+        "zh": "安德烈·纪德，《纪德日记 (#The Journals of André Gide#)》，巴黎：伽利玛出版社 (Gallimard), 1889–1939。中国大陆已出版，上海译文出版社。",
+        "en": "Gide, André. #The Journals of André Gide: 1889–1913#. Translated by Justin O'Brien. New York: Alfred A. Knopf, 1947."
       },
       "source_image": "images/叙事内镜_source_cover.png",
       "related_works": [
         {
-          "zh": "《伪币制造者》（Les Faux-monnayeurs），安德烈·纪德，1925。上海译文出版社（盛澄华译）\n《哈姆雷特》（Hamlet），威廉·莎士比亚，1603。人民文学出版社（朱生豪译）\n《威廉·迈斯特的学习时代》（Wilhelm Meisters Lehrjahre），约翰·沃尔夫冈·冯·歌德，1795。上海译文出版社\n《厄舍府的倒塌》（The Fall of the House of Usher），爱伦·坡，1839。人民文学出版社（收录于《爱伦·坡短篇小说集》）",
-          "en": "The Counterfeiters (Les Faux-monnayeurs), André Gide, 1925. Vintage Books (translated by Dorothy Bussy).\nHamlet (Act III, Scene 2), William Shakespeare, c. 1600.\nWilhelm Meisters Lehrjahre, Johann Wolfgang von Goethe, 1795-96.\nThe Fall of the House of Usher, Edgar Allan Poe, 1839."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -1528,7 +1574,7 @@
         "en": "Archive Fever"
       },
       "termOri": "Mal d'archive",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/档案热_aigc.png",
       "sm_title": {
         "zh": "人们热衷于记录和存档，然后再毁坏和丢失",
         "en": "TODO: social title"
@@ -1549,21 +1595,21 @@
         }
       ],
       "source": {
-        "zh": "《档案热：一种弗洛伊德式的印象》（Mal d'archive: une impression freudienne），1995年出版。中文版由中国人民大学出版社于2019年出版，译者：胡继华。",
-        "en": "Archive Fever: A Freudian Impression (Mal d'archive: une impression freudienne), published in 1995. Chinese edition published by Renmin University of China Press in 2019, translated by Hu Jihua."
+        "zh": "雅克·德里达，《档案热：一种弗洛伊德式的印象 (#Mal d'archive: une impression freudienne#)》，巴黎：伽利略出版社 (Éditions Galilée), 1995。中国大陆已出版，中国人民大学出版社。",
+        "en": "Derrida, Jacques. #Archive Fever: A Freudian Impression#. Translated by Eric Prenowitz. Chicago: University of Chicago Press, 1996."
       },
       "source_image": "images/档案热_source_cover.png",
       "related_works": [
         {
-          "zh": "卡罗琳·斯底德曼（Carolyn Steedman）：《尘埃》（Dust），2001年出版。（中文未出版） 雅克·德里达：《论文字学》（De la grammatologie），1967年出版。中文版由上海译文出版社于1999年出版，译者：汪堂家。",
-          "en": "Carolyn Steedman: Dust, published in 2001. (Not published in Chinese) Jacques Derrida: Of Grammatology (De la grammatologie), published in 1967. Chinese edition published by Shanghai Translation Publishing House in 1999, translated by Wang Tangjia."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
         "zh": "哲学\tPhilosophy 社会学 Sociology 历史学 History 文学 Literature",
         "en": "哲学\tPhilosophy 社会学 Sociology 历史学 History 文学 Literature"
       },
-      "proposing_country": "法国",
+      "proposing_country": "英国",
       "proposing_time": "1995",
       "contributors": [
         {
@@ -1586,23 +1632,58 @@
       ],
       "edit_date": "2024/06/10",
       "brief_definition": {
-        "zh": "矛盾性的双重冲动",
-        "en": "Contradictory dual impulse"
+        "zh": "一种对记忆进行记录与保存的强烈欲望，以及与之共生的、潜在于归档行为中的对记忆的破坏与摧毁",
+        "en": "A compulsive desire to record and preserve memory, with the inherent, latent destruction of that memory"
       },
       "extended_definition": {
         "zh": [
-          "想象一位历史学家，在昏暗的档案馆深处，指尖拂过布满灰尘的旧卷宗。他深吸一口气，却忍不住剧烈咳嗽起来——这不仅仅是灰尘引起的生理反应，更是几个世纪以来无数生命、故事与秘密沉淀后散发的无形压力。他渴望从这些泛黄的纸张中挖掘出被遗忘的真相，将它们从湮灭的边缘拯救出来；但同时，面对堆积如山、难以穷尽的档案，一种深深的无力感甚至破坏欲也在悄然滋生：或许让某些秘密永远沉睡，让某些沉重的历史彻底消失，才是解脱？ 这种对档案既渴望保存又渴望摧毁的复杂情感，被哲学家雅克·德里达称为“档案热”（Mal d'archive）。他认为，人类对档案的追求根植于一种根本性的矛盾冲动。一方面，我们受到“生的本能”（Eros）的驱动，渴望保存、记录、重复，建立秩序和连续性，如同建立一座记忆的堡垒。另一方面，一种“死亡欲望”（Thanatos）也在起作用，它指向遗忘、毁灭、回归混沌的冲动，试图摆脱历史的沉重负担。档案本身作为物质载体，注定会腐朽、遗失或被选择性遗忘，这种内在的有限性和终将消逝的命运，反而更加剧了人们保存它的狂热。德里达形容这是一种“强迫性的、重复的、怀旧的对档案的欲望”，一种对绝对起源的乡愁。 值得注意的是，历史学家卡罗琳·斯底德曼提出了一个更具体的解读维度。她不完全认同德里达将“档案热”完全视为隐喻。她指出，在历史上，“档案热”也曾是一种真实的职业病。例如，著名史学家儒勒·米什莱就因长年累月在布满尘埃的档案馆工作，吸入大量由动物躯体（如羊皮纸）分解产生的尘埃和病菌而患病。这些尘埃被斯底德曼描述为“动物躯体经历艰辛与磨难、成长与衰亡后残存的原子残骸”。它们虽然被历史学家处理和转化，却从未真正消失，成为档案物质性存在的一种隐喻和真实危害。因此，“档案热”既是精神上的矛盾冲动，也可能源于档案物质实体本身带来的、对身体和精神的侵蚀。"
+          "1994年，在伦敦弗洛伊德博物馆——这位心理学大师生前的最后居所——雅克·德里达发表了关于“档案”的主题演讲。对德里达而言，这一场所深刻地影响了对“档案”的探讨：弗洛伊德的精神分析记录、档案，以及这一居所向“博物馆”的身份转型，都为讨论增添了多重维度。他敏锐地察觉到，“档案”与“精神分析”之间存在着复杂的联系，这种联系反映在私人与公共程序、制度、学术乃至法律的档案化过程之中。",
+          "在包括弗洛伊德在内的人类身上，德里达诊断出一种关于档案的“热病”（Archive Fever）。这是一种“强迫性的、重复且怀旧的欲望，表现为一种抑制不住的、试图回归源头的渴望；一种指向最古老、最绝对的发端场所的乡愁。”在当下，我们那些存满了聊天记录与生活碎片、容量庞大的云端硬盘，亦可被视为这种“热病”的表征。",
+          "德里达将这种“热病”与弗洛伊德提出的“死亡冲动”联系起来。正是由于对遗忘的恐惧，我们才建立档案，试图以此追寻那“绝对的起点”。然而，档案并非记忆本身，而仅是记忆的辅助器材，一种“义肢”（prosthetic）。它将原本“自然”且“内在”的记忆，寄存在可被阅读、复制的外部媒介（如纸张或硬盘）之上。因此，档案本身即是一个充满矛盾的概念：建立档案的前提恰恰是原生记忆的丧失与毁灭。可以说，档案在先验层面便是反对自身的。",
+          "在德里达看来，精神分析所构建的心理档案本质上也是一种“制度”与“建制”，标志着人类与自然状态的彻底决裂。由此，精神分析理论不仅是关于心理与记忆的学说，更演变成为一种关于档案的理论。",
+          "有趣的是，对德里达来说，档案并不只是关于“过去”的研究，更能影响未来。因为“归档行为”本身就在生产事件：档案的“技术底色”（technical substrate）预先决定了什么是“可被归档的”，进而反过来塑造了我们的生活经验。正如当下的短视频已经预设了特定的时长、画幅、记录逻辑与交互方式，这在很大程度上决定了未来的历史将以何种面貌呈现。"
         ],
         "en": [
-          "Imagine a historian laboring in the dim recesses of an archive, fingertips brushing against dust-laden old manuscripts. As they inhale deeply, an uncontrollable cough erupts—not merely a physiological reaction to the grime, but an intangible pressure emanating from centuries of accumulated lives, stories, and secrets. They yearn to excavate forgotten truths from these yellowed pages, rescuing them from the brink of oblivion; yet, confronted by the overwhelming, insurmountable stacks of records, a profound sense of futility—even a destructive urge—emerges: perhaps it would be a relief to let certain secrets slumber eternally, to allow some burdensome histories to vanish completely? This complex interplay of desire to preserve and destroy archives is what philosopher Jacques Derrida termed \"Archive Fever\" (Mal d'archive). He posited that humanity's pursuit of archives stems from a fundamental contradiction in impulses. On one hand, driven by the \"life instinct\" (Eros), we seek to conserve, document, and repeat, constructing order and continuity like a fortress of memory. On the other, the \"death drive\" (Thanatos) exerts its influence, manifesting as an impulse toward oblivion, destruction, and a return to chaos, aiming to shed history's weight. Archives, as material entities, are inherently finite—destined to decay, be lost, or selectively forgotten—and this very impermanence fuels an obsessive fervor to safeguard them. Derrida described this as \"a compulsive, repetitive, nostalgic desire for the archive,\" a homesickness for an absolute origin. Notably, historian Carolyn Steedman offered a more concrete interpretation. She did not fully align with Derrida's metaphorical reading of \"archive fever,\" instead highlighting its tangible, \"material\" dimension. Steedman argued that \"archive fever\" could also denote a literal occupational hazard, exemplified by the case of historian Jules Michelet, who contracted an illness from years of archival work, inhaling dust and pathogens derived from decomposing animal-based materials like parchment. This dust, as Steedman characterized it, consists of \"atomic remnants of animal bodies that endured hardship, growth, and decay.\" Though transformed through historians' handling and research, these particles never truly vanish, serving as both a metaphor and a physical threat that erodes body and mind. Thus, \"archive fever\" encompasses both a psychological conflict of impulses and a corporeal affliction rooted in the archive's material persistence."
+          "In 1994, at the Freud Museum in London—the psychoanalyst’s final residence—Jacques Derrida delivered a lecture on the \"archive.\" For Derrida, this setting was more than a venue; it profoundly shaped his inquiry. Freud’s records and the transition of his home from a private residence to a museum added layers of meaning to the discussion. Derrida recognized a complex link between the archive and psychoanalysis, one that ripples through private and public programs and institutionalized process.",
+          "Derrida diagnosed a condition he called \"Archive Fever\" (Mal d'Archive) in many figures, including Freud. He described it as \"a compulsive, repetitive, and nostalgic desire to return to the origin.\" Today, we see this \"fever\" manifest in our massive cloud drives, which overflow with years of chat logs, photos, apps, and other fragments of our lives.",
+          "Derrida linked this fever to Freud’s \"death drive.\" The fear of forgetting compels us to build archives in the hope of recording a \"starting point.\" Yet, the archive is not memory (mnēmē) itself; it is a prosthesis—a \"hypomnesic\" memory. It takes what was once \"natural\" and \"internal\" and consigns it to external, reproducible media like paper or hard drives. The archive is paradoxical: the very condition for its existence is the loss or destruction of the original, living memory. In this sense, the archive is \"a priori, against itself.\"",
+          "For Derrida, psychoanalysis is itself a form of institutional archiving—a decisive break from a state of natural memory toward an external record of events. Consequently, psychoanalysis is not merely a study of the mind and memory; it becomes a theory of the archive itself."
         ]
       },
       "example_sentence": {
-        "zh": "在数字时代，面对海量的网络信息和数据备份，我们一方面孜孜不倦地建立云存储、进行数据归档，另一方面又常常渴望按下“永久删除”键，这种对数字档案既依赖又焦虑的心态，正是当代社会“档案热”的一种新表现。",
-        "en": "In the digital age, confronted with vast quantities of online information and data backups, we diligently establish cloud storage and perform data archiving on one hand, while frequently longing to press the \"permanent delete\" button on the other. This dual mindset of reliance on and unease toward digital archives represents a contemporary expression of \"archive fever\" in modern society."
+        "zh": "每一顿饭他都拍照记录，这种档案热让他拥有了完美的数字记录，却也让他发现，如果没有手机里的照片，他甚至无法记起昨晚食物的味道。",
+        "en": "He photographed every dish he had. While this archive fever left him with a perfect digital record, he eventually realized that without those photos, he couldn't even recall the taste of last night's dinner."
       },
-      "diagrams": [],
-      "related_terms": [],
+      "diagrams": [
+        {
+          "src": "images/档案热_diagram_1.png",
+          "caption": {
+            "zh": "伦敦弗洛伊德博物馆的图书馆",
+            "en": "Freud's library at the Freud Museum London"
+          }
+        },
+        {
+          "src": "images/档案热_diagram_2.png",
+          "caption": {
+            "zh": "特雷津集中营（Theresienstadt）里的办公室。摄影： Dirk Reinartzr",
+            "en": "Office at Theresienstadt, Dirk Reinartzr."
+          }
+        }
+      ],
+      "related_terms": [
+        {
+          "id": 6,
+          "relation": "概念相关"
+        },
+        {
+          "id": 20,
+          "relation": "概念相关"
+        },
+        {
+          "id": 19,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -1613,7 +1694,46 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "有趣的是，对德里达来说，档案并不只是关于“过去”的研究，更能影响未来。因为“归档行为”本身就在生产事件：档案的“技术底色”（technical substrate）预先决定了什么是“可被归档的”，进而反过来塑造了我们的生活经验。正如当下的短视频已经预设了特定的时长、画幅、记录逻辑与交互方式，这在很大程度上决定了未来的历史将以何种面貌呈现。",
+            "en": "Derrida argued that archiving is not just about the past—it dictates the future. The act of archiving actually produces the event as much as it records it. The \"technical substrate\" (the medium we use) predetermines what is \"archivable,\" which in turn shapes our actual lived experience. Just as modern short-form video apps pre-set the duration, framing, and modes of interaction for our lives, the technology of the archive decides exactly what face our future history will wear."
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "雅伦",
+            "en": "Yalun"
+          },
+          "background": {
+            "zh": "历史学家卡罗琳·斯底德曼（Carolyn Steedman）不完全认同德里达对“档案”的隐喻化解读，同时她提出了一种更为具体的“物质性”可能性。斯底德曼认为，“档案热”不仅是一种隐喻，也是一种真实的职业病，源于著名史学家儒勒·米什莱（Jules Michelet）由于多年在档案馆工作，吸入过多尘埃和病菌所导致的疾病。疾病源于“尘埃的物质存在，这些尘埃是动物躯体经历艰辛与磨难、成长与衰亡后残存的原子残骸。”这些尘埃在档案室中通过历史学家的研究和处理转变为其他形态，但从未真正消失。",
+            "en": ""
+          },
+          "date": "2024/06/10"
+        },
+        {
+          "content": {
+            "zh": "Sati",
+            "en": "Sati"
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "",
+            "en": ""
+          },
+          "background": {
+            "zh": "",
+            "en": ""
+          },
+          "date": "2024/06/10"
+        }
+      ]
     },
     {
       "id": 14,
@@ -1643,13 +1763,13 @@
         }
       ],
       "source": {
-        "zh": "《表层阅读：导论》（\"Surface Reading: An Introduction\"），载于《表征》（Representations）杂志第108卷第1期（2009年秋季刊），第1-21页，加州大学出版社出版（中文未出版）",
+        "zh": "斯蒂芬·贝斯特、沙伦·马库斯，《表层阅读：导论 (#Surface Reading: An Introduction#)》，载《表征 (#Representations#)》第108卷第1期，伯克利：加州大学出版社 (University of California Press), 2009。尚无中文翻译。",
         "en": "TODO: source"
       },
       "source_image": "images/表层阅读_source_cover.png",
       "related_works": [
         {
-          "zh": "斯蒂芬·贝斯特，《无与伦比：黑人身份、归属感与美学生活》（None Like Us: Blackness, Belonging, Aesthetic Life，2018年），杜克大学出版社出版（中文未出版）\n莎朗·马库斯，《公寓故事：城市生活与维多利亚小说》（Apartment Stories: City and Home in Nineteenth-Century Paris and London，1999年），加州大学出版社出版（中文未出版）",
+          "zh": "TODO：相关著作",
           "en": "TODO: related works"
         }
       ],
@@ -1737,13 +1857,13 @@
         }
       ],
       "source": {
-        "zh": "《过于关怀是工人阶级的诅咒》        \n\"Caring too much.That's the curse of the working classes,\"The Guardian,2014.",
+        "zh": "欧文·琼斯，《过于关怀是工人阶级的诅咒 (#Caring too much. That's the curse of the working classes#)》，载《卫报 (#The Guardian#)》，2014。尚无中文翻译。",
         "en": "TODO: source"
       },
       "source_image": "TODO: source_cover",
       "related_works": [
         {
-          "zh": "福尔布雷, 南希. (2001). 无形之心：市场、关怀与人性 (The Invisible Heart: Economics and Family Values). The New Press. (中文未出版) \n霍克希尔德, 阿莉·拉塞尔. (1983). 被管理的心：人类情感的商品化 (The Managed Heart: Commercialization of Human Feeling). University of California Press. (大陆译本：上海三联书店，2020年) \n特林特, 弗朗西丝卡. (2013). 护理的政治经济学 (The Political Economy of Care). Wiley-Blackwell. (中文未出版)",
+          "zh": "TODO：相关著作",
           "en": "TODO: related works"
         }
       ],
@@ -1831,13 +1951,13 @@
         }
       ],
       "source": {
-        "zh": "《压缩现代性与自我发展精神》（Compressed Modernity and the Spirit of Self-Development），1999年，首尔大学出版社（中文未出版）",
+        "zh": "张庆燮，《压缩现代性与自我发展精神 (#Compressed Modernity and the Spirit of Self-Development#)》，首尔：首尔大学出版社 (Seoul National University Press), 1999。尚无中文翻译。",
         "en": "TODO: source"
       },
       "source_image": "images/压缩现代性_source_cover.png",
       "related_works": [
         {
-          "zh": "阎云翔《中国社会的个体化》（Individualization in Chinese Society），2010年，上海人民出版社 \n张庆燮《东亚的压缩现代性》（Compressed Modernity in East Asia），2007年，首尔大学出版社（中文未出版）",
+          "zh": "TODO：相关著作",
           "en": "TODO: related works"
         }
       ],
@@ -1904,7 +2024,7 @@
         "en": "Liminal Space"
       },
       "termOri": "Limen",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/阈限空间_aigc.png",
       "sm_title": {
         "zh": "那些空无一人的酒店走廊，废弃酒店的消防通道……",
         "en": "TODO: social title"
@@ -1919,20 +2039,20 @@
           "year": "1873-1957",
           "role": {
             "zh": "民族志学家、民俗学家",
-            "en": "French ethnographer and folklorist"
+            "en": "ethnographer and folklorist"
           },
           "image": "images/阈限空间_proposer.png"
         }
       ],
       "source": {
-        "zh": "《过渡礼仪》（Les Rites de Passage，1909），商务印书馆。",
-        "en": "Les Rites de Passage (The Rites of Passage, 1909), Librairie Émile Nourry."
+        "zh": "阿诺尔德·范热内普，《过渡礼仪 (#Les Rites de Passage#)》，巴黎：埃米尔·努里出版社 (Librairie Émile Nourry), 1909。中国大陆已出版，商务印书馆。",
+        "en": "Van Gennep, Arnold. #The Rites of Passage#. Translated by Monika B. Vizedom and Gabrielle L. Caffee. Chicago: University of Chicago Press, 1960."
       },
       "source_image": "images/阈限空间_source_cover.png",
       "related_works": [
         {
-          "zh": "《仪式过程：结构与反结构》（The Ritual Process: Structure and Anti-Structure，1969），维克多·特纳（Victor Turner）著，中国社会科学出版社。",
-          "en": "The Ritual Process: Structure and Anti-Structure (1969), Victor Turner, Aldine Publishing Co."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -1962,26 +2082,47 @@
       ],
       "edit_date": "2024/07/22",
       "brief_definition": {
-        "zh": "一个介于“此端”与“彼端”之间、模糊且不具稳定身份的过渡场域。",
-        "en": "A transitional, ambiguous, and ill-defined spatial realm existing between \"here\" and \"there.\""
+        "zh": "处于过渡状态、模糊不清、缺乏具体功能或稳定身份的场域",
+        "en": "A transitional, ambiguous state, lacking specific function or a stable identity"
       },
       "extended_definition": {
         "zh": [
-          "想象你正独自穿行在一个凌晨三点的长途服务区。日光灯发出轻微的滋滋声，照亮了空荡荡的塑料排椅和紧闭的便利店卷帘门。这里本该挤满了匆匆食客，此刻却静得像一个被现实世界遗忘的存储器槽位。你感到一种莫名的脊背发凉，既不属于你刚离开的家，也不属于你即将到达的城市——这一刻，你就身处“阈限空间”之中。",
-          "“阈限”（Liminality）一词源于拉丁语“limen”，意为“门槛”。它最初并不是描述物理建筑，而是描述一种“过渡”的状态。在阈限空间中，原本清晰的边界消失了，这里是一个“非此非彼”的中间地带。正如你在酒店走廊、深夜的航站楼或刚刚搬空家具的旧宅中所感受到的那种“违和感”和“阴森感”，是因为这些空间失去了它们原本的服务功能，只剩下了纯粹的“过渡性”。",
-          "人类学家范·根纳普指出，这种状态是所有社会礼仪的核心：在一个人从“孩子”变成“成年人”的仪式中，他会经历一段既不再是孩子、也还未成为成人的模糊时期。在现代都市生活中，这种物理上的过渡空间由于其缺乏明确的目的性和社会互动，常常触发人们的“恐怖谷”效应，使我们产生一种处于现实裂缝中的异样情绪。"
+          "空旷的酒店走廊、楼梯间，或是夜晚安静的机场候机大厅，这些空间时常给人带来阴森和荒凉的感觉。它们本该是通往某个目的地的“中转站”，但当空无一人时，这些地方似乎成了失去社会属性和时间感的真空地带，变身为令人不安的过渡场所。",
+          "这种感觉正是“阈限空间”的典型体验。在拉丁语中，“Limen”意为“门槛”或“临界”。它指的是一种“介于两者之间”的过渡场所，是从事物现有状态向下一阶段转换的空间或时间。对人类学家范·根纳普（Arnold van Gennep）而言，仪式分为分离、过渡与融入三个阶段，而“阈限”正指向中间的过渡态——此时参与者已脱离了旧身份，却尚未获得新身份，处于一种模糊的、不确定的状态。维克多·特纳（Victor Turner）进一步深化了这一理论，他认为处于“阈限”中的人，如同掉进了社会结构的缝隙，暂时失去了原本的社会属性。当这种理论投射到物理空间时，那些原本作为“中转站”的楼梯间和候机厅，在空无一人时便失去了时间感与社会性，异化为令人不安的真空地带。"
         ],
         "en": [
-          "Imagine walking through a motorway service station at 3:00 AM. The fluorescent lights hum faintly, illuminating rows of empty plastic chairs and the pulled-down shutters of convenience stores. A place that should be teeming with travelers is now as silent as a forgotten storage slot in a computer. You feel a strange chill; you belong neither to the home you left nor to the city you are heading toward. At this moment, you are in a \"liminal space.\"",
-          "The word \"liminal\" originates from the Latin limen, meaning \"threshold.\" Rather than merely describing physical architecture, it primarily refers to a state of \"transition.\" In a liminal space, clear boundaries vanish; it is a \"betwixt and between\" zone. The eerie sense of \"uncanniness\" we often feel in hotel corridors, empty airport terminals, or a house just cleared of furniture stems from the fact that these spaces have lost their primary functional or social purpose, leaving behind only pure \"transitionality.\"",
-          "Ethnographer Arnold van Gennep posited that this state is central to all \"rites of passage,\" which consist of three stages: separation, transition (liminality), and incorporation. During the liminal phase, the participant no longer holds their pre-ritual status but has not yet attained their post-ritual identity—they exist in a social limbo. In modern urban life, these physical transitional spaces—due to their lack of defined purpose or social interaction—often trigger the \"uncanny valley\" effect, making us feel as though we have slipped into a crack in reality."
+          "Think of an empty hotel hallway at 3 AM or a silent, cavernous airport terminal after the last flight has departed. These are places we usually pass through on our way to somewhere else in our daily lives. But when they are stripped of their usual bustle, it’s as if they’ve lost their sense of time and purpose, transforming into eerie, desolate unsettling transitional spaces.",
+          "This is the experience of a \"liminal space.\" The term comes from the Latin limen, meaning \"threshold.\" It describes the state of being \"betwixt and between\"—the physical or temporal gap where you have left one stage but haven't quite reached the next. Anthropologist Arnold van Gennep originally identified three stages of a rite of passage: pre-liminal (separation), liminal (transition), and post-liminal (incorporation). Liminality is the middle phase where a person is no longer who they were, but not yet who they will become.Turner expanded on the interstitial moment, where individuals exist on a threshold, temporarily stripped of social status, identity, and structure.",
+          "When applied to our physical world, these transitional zones—stairwells, parking lots, or closed shopping malls—become \"liminal\" when they are emptied of their social context, turning into haunting, dreamlike spaces that exist outside of normal reality."
         ]
       },
       "example_sentence": {
         "zh": "对于很多在深夜还在地铁站徘徊的加班族来说，那座空旷、冰冷、充满回音的车站已不再是一个通勤节点，而是一个让他们在职场身份与家庭身份之间短暂喘息的阈限空间。",
         "en": "For many office workers wandering through a subway station late at night, the cavernous, cold, and echoing hall is no longer just a commuting node, but a liminal space that offers a brief respite between their professional identity and their domestic persona."
       },
-      "diagrams": [],
+      "diagrams": [
+        {
+          "src": "images/阈限空间_diagram_1.png",
+          "caption": {
+            "zh": "在4chan上走红的名为“后室”（backrooms）的阈限空间帖子",
+            "en": "The popular post on 4chan titled \"backrooms\""
+          }
+        },
+        {
+          "src": "images/阈限空间_diagram_2.png",
+          "caption": {
+            "zh": "“后室”（backrooms）影像截图",
+            "en": "Video still from \"backrooms\""
+          }
+        },
+        {
+          "src": "images/阈限空间_diagram_3.png",
+          "caption": {
+            "zh": "“后室”（backrooms）影像截图",
+            "en": "Video still from \"backrooms\""
+          }
+        }
+      ],
       "related_terms": [],
       "commentAbs": {
         "content": {
@@ -2012,6 +2153,25 @@
             "en": "Urbanism"
           },
           "date": "2024/07/22"
+        },
+        {
+          "content": {
+            "zh": "卡迪夫大学的亚历山大-迪尔 (Alexander Diel) 和迈克尔-刘易斯 (Michael Lewis) 将“阈限空间”令人不安的性质归因于 \"恐怖谷\" (uncanny valley) 现象。这一术语通常用于那 些与人类不完全相似的人形物体，它们会引起人们的不安情绪。在这种情况下，看似熟悉但却与现实有微妙偏差的物理场所会产生典型的边缘空间的阴森感。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "",
+            "en": "Yunxi"
+          },
+          "background": {
+            "zh": "",
+            "en": ""
+          },
+          "date": "2024/07/22"
         }
       ]
     },
@@ -2021,7 +2181,7 @@
         "zh": "课题分离",
         "en": "Separation of Tasks"
       },
-      "termOri": "Separation of Tasks / Aufgaben-Trennung",
+      "termOri": "Aufgaben-Trennung",
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "关于没有边界感的亲戚",
@@ -2034,7 +2194,7 @@
             "en": "Alfred Adler",
             "ori": "Alfred Adler"
           },
-          "year": "1870—1937",
+          "year": "1870-1937",
           "role": {
             "zh": "心理学家",
             "en": "psychologist"
@@ -2043,14 +2203,14 @@
         }
       ],
       "source": {
-        "zh": "《个体心理学的实践与理论》（The Practice and Theory of Individual Psychology，1920年，商务印书馆，1998年版。德文原名：Praxis und Theorie der Individualpsychologie）",
-        "en": "The Practice and Theory of Individual Psychology (Original German title: Praxis und Theorie der Individualpsychologie, 1920; Bergmann Publishing.)"
+        "zh": "阿尔弗雷德·阿德勒，《个体心理学的实践与理论 (#Praxis und Theorie der Individualpsychologie#)》，慕尼黑：伯格曼出版社 (Bergmann Publishing), 1920。中国大陆已出版，商务印书馆。",
+        "en": "Adler, Alfred. #The Practice and Theory of Individual Psychology#. Translated by P. Radin. London: Routledge & Kegan Paul, 1925."
       },
       "source_image": "images/课题分离_source_cover.png",
       "related_works": [
         {
-          "zh": "《被讨厌的勇气》（岸见一郎 / 古贺史健 著，2013年，机械工业出版社，作为阿德勒心理学的现代解读本，极大地普及了“课题分离”概念）\n《自卑与超越》（What Life Could Mean to You，1932年，作家出版社）",
-          "en": "The Courage to Be Disliked (Ichiro Kishimi & Fumitake Koga, 2013; Diamond Inc. / Mechanical Industry Press)\nWhat Life Could Mean to You (Alfred Adler, 1932; Little, Brown, and Company)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -2085,7 +2245,7 @@
       },
       "extended_definition": {
         "zh": [
-          "大年初三的客厅里，电视机里春晚的回放成了背景音。亲戚们围坐在茶几旁，剥着橘子，话锋一转指向了正在剥核桃的你：“还没谈对象吗？隔壁王阿姨的小孩都买房了。”你感到一种熟悉的、如同被蛛网缠绕般的窒息。这种干涉往往披着“为你好”的外衣，却像是一场越界的入侵。在心理学上，打破这种窒息感的关键，就是“课题分离”。",
+          "大年初三的客厅里，电视机里春晚的回放成了背景音。亲戚们围坐在茶几旁，剥着橘子，话锋一转指向了正在剥核桃的你：“还没谈对象吗？隔壁王阿姨的小孩都买房了。” 你感到一种熟悉的、如同被蛛网缠绕般的窒息。这种干涉往往披着“为你好”的外衣，却像是一场越界的入侵。在心理学上，打破这种窒息感的关键，就是“课题分离”。",
           "这一概念由个体心理学的奠基人阿德勒提出。他认为，几乎所有的人际关系矛盾都源于对他人课题的妄加干涉，或者自己的课题被他人干涉。要判断一个课题属于谁，只需看“这个选择的后果最终由谁承担”。父母干涉子女的择偶，其实是把“子女的人生后果”错当成了自己的KPI；而子女因为父母的焦虑而感到愧疚，则是承担了本不属于自己的情绪责任。",
           "阿德勒的主张诞生于20世纪初的奥地利，那正是现代个体主义蓬勃发展的时期。但在深受儒家文化影响、强调“血缘共同体”的东亚社会，这种边界感往往被视为冷漠。实际上，课题分离并非要切断联系，而是要把这种纠缠不清的“乱麻”梳理成平行的细线。只有当你意识到“我的选择权属于我，而你的失望属于你”时，真正的理解与尊重才有可能发生。它是人际关系的起点，只有建立在独立人格之上的关心，才不至于成为彼此的重担。"
         ],
@@ -2100,7 +2260,20 @@
         "en": "Within an organization lacking effective management, the laxity of regulations often leads to an increase in administrative entropy, eventually plunging the department's operations into total disarray."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 15,
+          "relation": "概念相关"
+        },
+        {
+          "id": 23,
+          "relation": "概念相关"
+        },
+        {
+          "id": 22,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -2132,7 +2305,7 @@
             "en": "Dziga Vertov",
             "ori": "Dziga Vertov"
           },
-          "year": "1896—1954",
+          "year": "1896-1954",
           "role": {
             "zh": "导演、电影理论家",
             "en": "director and film theorist"
@@ -2141,21 +2314,21 @@
         }
       ],
       "source": {
-        "zh": "《电影眼：革命的产物》（Kino-Eye: The Revolution's Output，1923年，原文发表于《列夫》杂志，中文通称《电影眼宣言》，收录于《电影理论选：从维尔托夫到巴赞》）",
-        "en": "Kino-Eye: The Revolution's Output (Original title: Киноглаз: Переворот, 1923; First published in the journal LEF. Commonly known in English as the \"Kino-Eye Manifesto.\")"
+        "zh": "吉加·维尔托夫，《电影眼：革命的产物 (#Kino-Eye: The Revolution's Output#)》，载《列夫 (#LEF#)》，1923。已有中文翻译。",
+        "en": "Vertov, Dziga. \"Kino-Eye: The Revolution's Output\" [Киноглаз: Переворот]. #LEF# (1923)."
       },
       "source_image": "images/电影眼_source_cover.png",
       "related_works": [
         {
-          "zh": "《持摄影机的人》（Man with a Movie Camera，1929年，电影作品）\n《机械复制时代的艺术作品》（瓦尔特·本雅明 著，1936年，商务印书馆）\n《基诺——俄罗斯和苏联电影史》（杰伊·莱达 著，中国电影出版社，台版名《苏联电影史》）",
-          "en": "Man with a Movie Camera (Dziga Vertov, 1929; Film)\nThe Work of Art in the Age of Mechanical Reproduction (Walter Benjamin, 1936; Suhrkamp Verlag)\nKino: A History of the Russian and Soviet Film (Jay Leyda, 1960; George Allen & Unwin)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
         "zh": "电影学 Film Studies",
         "en": "电影学 Film Studies"
       },
-      "proposing_country": "苏联（莫斯科）",
+      "proposing_country": "苏联",
       "proposing_time": "1923",
       "contributors": [
         {
@@ -2198,7 +2371,16 @@
         "en": "While modern action cameras and drone perspectives have become ubiquitous, they often merely pursue visual stimulation, lacking Vertov’s radical ambition to reconstruct social order through the Kino-eye."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 11,
+          "relation": "概念相关"
+        },
+        {
+          "id": 20,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -2235,7 +2417,7 @@
       "id": 20,
       "term": {
         "zh": "赛博格",
-        "en": "TODO: term"
+        "en": "Cyborg"
       },
       "termOri": "TODO: termOri",
       "concept_image": "TODO: concept_image",
@@ -2246,21 +2428,21 @@
       "proposers": [
         {
           "name": {
-            "zh": "TODO：提出者",
-            "en": "TODO: proposer",
-            "ori": "TODO: proposerOri"
+            "zh": "唐娜·哈拉维",
+            "en": "Donna Haraway",
+            "ori": "Donna Haraway"
           },
-          "year": "TODO: year",
+          "year": "1944-",
           "role": {
-            "zh": "TODO：身份",
-            "en": "TODO: role"
+            "zh": "哲学家",
+            "en": "philosopher"
           },
-          "image": "TODO: proposer_image"
+          "image": "images/赛博格_proposer.png"
         }
       ],
       "source": {
-        "zh": "TODO：出处",
-        "en": "TODO: source"
+        "zh": "唐娜·哈拉维，《类人猿、赛博格和女人：自然的重塑 (#Simians, Cyborgs, and Women: The Reinvention of Nature#)》，纽约：劳特利奇出版社 (Routledge), 1991。尚无中文翻译。",
+        "en": "Haraway, Donna J. #Simians, Cyborgs, and Women: The Reinvention of Nature#. New York: Routledge, 1991."
       },
       "source_image": "TODO: source_cover",
       "related_works": [
@@ -2270,17 +2452,33 @@
         }
       ],
       "domain": {
-        "zh": "TODO：学科类型",
-        "en": "TODO: domain"
+        "zh": "哲学\tPhilosophy 政治学 Political Science",
+        "en": "哲学\tPhilosophy 政治学 Political Science"
       },
-      "proposing_country": "TODO: country",
-      "proposing_time": "TODO: time",
-      "contributors": [],
+      "proposing_country": "美国",
+      "proposing_time": "1985",
+      "contributors": [
+        {
+          "name": {
+            "zh": "小王",
+            "en": "Wang"
+          },
+          "role": {
+            "zh": "沙丘研究所和@野路子人类学研究室 主办的线上共创活动“中文互联网编舟记”第一期招募的造船者之一，TA的研究方向是刑法学。",
+            "en": "Wang is one of the participants in the first phase of \"The Chronicle of Building a Ship on the Chinese Internet,\" an online collaborative project organized by the Dune Institute and @Wild Anthropology Research Lab. His research focus is criminal law."
+          }
+        }
+      ],
       "contribute_date": "TODO: contribute_date",
-      "editors": [],
+      "editors": [
+        {
+          "zh": "李雅伦，陈飞樾，沙丘研究所（Gemini 3.0 Pro辅助润色），网站中收录的内容可能基于社交媒体中的内容做了进一步编辑和润色。",
+          "en": "Yalun Li, Feiyue Chen, Dunes Workshop (Gemini 3.0 Pro–assisted editing), content featured on this website may have been further edited and refined based on material from social media."
+        }
+      ],
       "edit_date": "TODO: contribute_date",
       "brief_definition": {
-        "zh": "TODO：简要释义",
+        "zh": "一种新生命形式，指在生物中植入或装配人造部分或人工科技，以此恢复或增强其原有生物体的能力",
         "en": "TODO: brief"
       },
       "extended_definition": {
@@ -2292,11 +2490,20 @@
         ]
       },
       "example_sentence": {
-        "zh": "TODO：例句",
+        "zh": "隐形眼镜、降噪耳机、心脏起搏器、义肢等“增强装置”对很多人来说已必不可少，从这个角度看来，或许地球上大多数人已经可以被看做是赛博格。",
         "en": "TODO: example"
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 19,
+          "relation": "概念相关"
+        },
+        {
+          "id": 39,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -2307,7 +2514,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "赛博格，可以被简单理解为肉身和人造科技混合的生命体。\n我们不妨从这两个问题开始：虽然没有镭射眼或者手臂上的螳螂刀，但你真的完全不依赖人工科技来增强自己的生命体吗？赛博格乍看是一个带有强烈科幻色彩的词，但事实上，隐形眼镜、降噪耳机、防尘口罩、心脏起搏器、义肢等等，都已经是许多人生活中必不可少的“增强装置”了。手机、电脑等外部设备也同样在帮助我们增强记忆和通讯的能力。从这个角度看来，或许地球上大多数人已经可以被看做是赛博格。\n第二，如果女性赛博格在体力、速度、力量都不再弱于男性，或者经过改造之后，不仅女性才有生育的能力，我们的社会性别又会怎么样定义？我们可以想象，很多“男性适合做什么，女性不擅长做什么”的传统说法会自动消散。\n在能够通过技术手段打破生理限制的社会中，二元对立的性别观念的社会建构性质得以被重新审视。这种技术进步不仅可能消除性别之间的生理差异，还可能重新塑造我们对于能力、角色和身份的期望。从哈拉维的角度看，赛博格理论提供了一种解放性的视角，挑战既定的性别规范，开启对平等和多样性更深层次的探讨。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "雅伦、飞樾",
+            "en": ""
+          },
+          "background": {
+            "zh": "",
+            "en": ""
+          },
+          "date": "TODO: contribute_date"
+        }
+      ]
     },
     {
       "id": 21,
@@ -2315,7 +2542,7 @@
         "zh": "牲人",
         "en": "Homo Sacer"
       },
-      "termOri": "Shengren",
+      "termOri": "Homo Sacer",
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "国家创造「牲人」来实现更广泛更深刻的主权控制",
@@ -2328,7 +2555,7 @@
             "en": "Giorgio Agamben",
             "ori": "Giorgio Agamben"
           },
-          "year": "1942—",
+          "year": "1942-",
           "role": {
             "zh": "哲学家",
             "en": "philosopher"
@@ -2337,14 +2564,14 @@
         }
       ],
       "source": {
-        "zh": "《神圣的人：主权权力与赤裸生命》（Homo Sacer: Il potere sovrano e la nuda vita，1995），北京大学出版社（注：大陆通行译名为“神圣的人”，亦有学者译为“牲人”以示其不洁与被剥夺感）。",
-        "en": "Homo Sacer: Il potere sovrano e la nuda vita (Homo Sacer: Sovereign Power and Bare Life, 1995), Giulio Einaudi Editore."
+        "zh": "乔治·阿甘本，《神圣的人：主权权力与赤裸生命 (#Homo Sacer: Il potere sovrano e la nuda vita#)》，都灵：埃陶迪出版社 (Giulio Einaudi Editore), 1995。中国大陆已出版，北京大学出版社。",
+        "en": "Agamben, Giorgio. #Homo Sacer: Sovereign Power and Bare Life#. Translated by Daniel Heller-Roazen. Stanford: Stanford University Press, 1998."
       },
       "source_image": "images/牲人_source_cover.png",
       "related_works": [
         {
-          "zh": "《例外状态》（Stato di Eccezione，2003），西北大学出版社。",
-          "en": "Stato di Eccezione (State of Exception, 2003), Bollati Boringhieri."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -2361,7 +2588,7 @@
           },
           "role": {
             "zh": "沙丘研究所和@野路子人类学研究室 主办的线上共创活动“中文互联网编舟记”第一期招募的造船者之一，TA的研究方向是刑法学。",
-            "en": "This person is one of the participants in the first phase of \"The Chronicle of Building a Ship on the Chinese Internet,\" an online collaborative project organized by the Dune Institute and @Wild Anthropology Research Lab.  Their research focus is criminal law."
+            "en": "Wang is one of the participants in the first phase of \"The Chronicle of Building a Ship on the Chinese Internet,\" an online collaborative project organized by the Dune Institute and @Wild Anthropology Research Lab. His research focus is criminal law."
           }
         }
       ],
@@ -2474,14 +2701,14 @@
         }
       ],
       "source": {
-        "zh": "《力学的热理论》（The Mechanical Theory of Heat，1865年，德文版原名：Abhandlungen über die mechanische Wärmetheorie，波恩：Vieweg 出版社，中文未出版）",
-        "en": "The Mechanical Theory of Heat (Original German title: Abhandlungen über die mechanische Wärmetheorie, 1865; Vieweg & Sohn. Note: The first comprehensive English translation appeared in 1867.)"
+        "zh": "鲁道夫·克劳修斯，《力学的热理论 (#Abhandlungen über die mechanische Wärmetheorie#)》，波恩：维威格出版社 (Vieweg & Sohn), 1865。尚无中文翻译。",
+        "en": "Clausius, Rudolf. #The Mechanical Theory of Heat#. Translated by John Tyndall. London: John van Voorst, 1867."
       },
       "source_image": "images/熵_source_cover.png",
       "related_works": [
         {
-          "zh": "《通信的数学理论》（A Mathematical Theory of Communication，1948，香农著，人民邮电出版社）\n《统计力学讲义》（Lectures on Gas Theory，1896，玻尔兹曼著，商务印书馆）",
-          "en": "A Mathematical Theory of Communication (Claude Shannon, 1948; University of Illinois Press)\nLectures on Gas Theory (Ludwig Boltzmann, 1896; Originally published in German as Vorlesungen über Gastheorie)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -2555,11 +2782,11 @@
             "en": "Contributor"
           },
           "author": {
-            "zh": "沙丘小助手",
+            "zh": "飞樾",
             "en": ""
           },
           "background": {
-            "zh": "",
+            "zh": "城市学",
             "en": ""
           },
           "date": "2024/05/30"
@@ -2631,7 +2858,16 @@
         "en": "TODO: example"
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 15,
+          "relation": "概念相关"
+        },
+        {
+          "id": 18,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -2647,7 +2883,7 @@
     {
       "id": 24,
       "term": {
-        "zh": "*零工经济",
+        "zh": "零工经济",
         "en": "Gig Economy"
       },
       "termOri": "Gig Economy",
@@ -2668,18 +2904,18 @@
             "zh": "编辑和作家",
             "en": "editor and author"
           },
-          "image": "images/_零工经济_proposer.png"
+          "image": "images/零工经济_proposer.png"
         }
       ],
       "source": {
-        "zh": "The Daily Beast网站发表的文章（2009年），中文未出版",
-        "en": "Article by Tina Brown on The Daily Beast website (2009), not published in Chinese"
+        "zh": "蒂娜·布朗，[文章标题]，载《野兽日报 (#The Daily Beast#)》，2009。尚无中文翻译。",
+        "en": "Brown, Tina. [Article Title]. #The Daily Beast#, 2009."
       },
-      "source_image": "images/_零工经济_source_cover.png",
+      "source_image": "images/零工经济_source_cover.png",
       "related_works": [
         {
-          "zh": "Sarah Kessler, Gigged: The End of the Job and the Future of Work, 2018，St. Martin's Press，中文版《零工经济：工作的终结与未来的工作》由中信出版社出版                                    \nAlex Rosenblat, Uberland: How Algorithms Are Rewriting the Rules of Work》（2018，University of California Press），中文未出版",
-          "en": "Sarah Kessler, Gigged: The End of the Job and the Future of Work (2018, St. Martin’s Press).                  \nAlex Rosenblat, Uberland: How Algorithms Are Rewriting the Rules of Work (2018, University of California Press)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -2729,7 +2965,7 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": "悬浮",
+          "id": 31,
           "relation": "概念相关"
         }
       ],
@@ -2773,13 +3009,13 @@
         }
       ],
       "source": {
-        "zh": "TODO：出处",
-        "en": "TODO: source"
+        "zh": "约瑟夫·希普利，《文字游戏 (#Playing With Words#)》，恩格尔伍德克利夫斯：普伦蒂斯·霍尔出版社 (Prentice-Hall), 1960。尚无中文翻译。",
+        "en": "Shipley, Joseph T. #Playing With Words#. Englewood Cliffs, NJ: Prentice-Hall, 1960."
       },
       "source_image": "TODO: source_cover",
       "related_works": [
         {
-          "zh": "Aristotle, Physics Book 4 (亚里士多德，《物理学》卷四，约公元前4世纪中叶) (商务印书馆等有译本)\n\nMartin Heidegger, \"Building Dwelling Thinking\" (海德格尔，“筑·居·思”，1951年) (收录于《演讲与论文集》，商务印书馆)\n\nJacques Derrida and Peter Eisenman, Chora L Works: Thomas Leeser, Jeffrey Kipnis, Jacques Derrida, Peter Eisenman (1997年, Monacelli Press) (中文未出版)\n\nJulia Kristeva, La Révolution du langage poétique (1974年) (中文未出版，但常被引述为《诗性语言的革命》)",
+          "zh": "TODO：相关著作",
           "en": "TODO: related works"
         }
       ],
@@ -2862,13 +3098,13 @@
         }
       ],
       "source": {
-        "zh": "《文字游戏》（Playing With Words），1960年，Prentice-Hall出版社，中文未出版。",
-        "en": "Playing With Words, 1960, Prentice-Hall"
+        "zh": "赵元任，《中国话的文法 (#A Grammar of Spoken Chinese#)》，伯克利：加州大学出版社 (University of California Press), 1968。中国大陆已出版，商务印书馆。",
+        "en": "Chao, Yuen Ren. #A Grammar of Spoken Chinese#. Berkeley: University of California Press, 1968."
       },
       "source_image": "images/反训词_source_cover.png",
       "related_works": [
         {
-          "zh": "Dictionary of Word Origins，1945年，Philosophical Library出版社（中文未出版）\n\nThe Secret Life of Words，2005年，亨利·希金斯（Henry Hitchings）（中文未出版）",
+          "zh": "TODO：相关著作",
           "en": "TODO: related works"
         }
       ],
@@ -3018,14 +3254,14 @@
         }
       ],
       "source": {
-        "zh": "《中国话的文法》（A Grammar of Spoken Chinese），1968年，加州大学出版社（中文版由商务印书馆出版）",
-        "en": "A Grammar of Spoken Chinese (《中国话的文法》), published by the University of California Press in 1968 (the Chinese edition is published by The Commercial Press)."
+        "zh": "TODO：出处",
+        "en": "TODO: source"
       },
       "source_image": "images/反义复词_source_cover.png",
       "related_works": [
         {
-          "zh": "《汉语语法常识》，1953年，张志公，中国青年出版社\n《汉语词汇语义学》（Chinese Lexical Semantics），2000年左右的相关学术论集",
-          "en": "Common Sense of Chinese Grammar (《汉语语法常识》), by Zhang Zhigong, published by China Youth Publishing House in 1953."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -3078,7 +3314,12 @@
         "en": "Antonymous compounds (fǎnyì fùcí 反义复词) in Chinese and oxymoronic compounds in English share both commonalities and distinct differences. For instance, the English word sophomore (a second-year college student) is a classic example of the latter; it is a blend of the Greek roots sophos (wise or experienced) and mōros (foolish or idiotic). The term oxymoron (a figure of speech that pairs contradictory terms) is itself another example, derived from the Greek words oxys (sharp/keen) and mōros (dull/stupid)."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 26,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -3089,7 +3330,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "“东西”一词可能是最常用的反义复词了——两个相反方位的并置，居然可以用来笼统代指大千世界的万事万物。一个比较常见的解释是说，唐朝的长安城内有两个主要的集市：东市和西市。当人们要获取、交换、购置商品，就要“上东市、上西市”，可能慢慢地，这在口语里就演化为了“买东西”，而这里的“东西”再从商品泛化到更广阔的的事物。\n借着考究这个词，再看看其他语言中的情况。英语中的 Thing 和德语中的 Ding 都是来自在古诺斯语（þing）。它原本指的并不是物体，而是事件，是“集会、议事、讨论”，是有待裁决的议题。所以当一个日耳曼先民指着某个物件叫“Thing”时，他的潜台词其实是——“这是我们要开会讨论的那件事”。\n法语中的Chose 和西班牙语 Cosa 也与之有相似性。它们来自拉丁语的 Causa，英语中的cause 是其后代。这个拉丁词原本的意思是“诉讼、案件、法律程序”。从这个意味上来说，拉丁语系的“东西”起始于那些需要在法庭上被争论的事物。",
+            "en": "The word \"Dōng-xī\" (literally \"East-West\") is perhaps the most ubiquitous antithetical compound in the Chinese language. It is a fascinating linguistic phenomenon where the juxtaposition of two cardinal directions serves as a catch-all term for the myriad \"things\" of the world. A common explanation traces this back to the Tang Dynasty, specifically to the two primary marketplaces in the capital of Chang’an: the East Market and the West Market. When people needed to acquire, exchange, or purchase goods, they had to \"visit the East Market\" or \"visit the West Market.\" Over time, this likely evolved into the colloquialism \"buying things\" (mǎi dōng-xī), eventually generalizing from physical commodities to encompass all objects and affairs.\nBy using this etymological lens to examine other languages, we find similar patterns. The English word \"Thing\" and the German \"Ding\" both derive from the Old Norse þing. Originally, the word did not refer to a physical object, but to an event—a \"meeting, assembly, or council\"—an issue awaiting a verdict. Thus, when a Germanic ancestor pointed at an object and called it a \"thing,\" the subtext was essentially: \"This is the matter we are meeting to discuss.\"\nThe French Chose and Spanish Cosa share a similar lineage. They stem from the Latin Causa (the root of the English word \"cause\"). This Latin term originally signified a \"lawsuit, a case, or a legal proceeding.\" In this sense, \"things\" in the Romance languages originated from matters that required debate within a court of law."
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "飞樾",
+            "en": "Feiyue"
+          },
+          "background": {
+            "zh": "城市学",
+            "en": "Urbanism"
+          },
+          "date": "2025/05/13"
+        }
+      ]
     },
     {
       "id": 28,
@@ -3119,14 +3380,14 @@
         }
       ],
       "source": {
-        "zh": "《关于爱因斯坦引力理论的一个解》（Über das Gravitationsfeld eines Massenpunktes nach der Einsteinschen Theorie), Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften, 1916",
-        "en": "Über das Gravitationsfeld eines Massenpunktes nach der Einsteinschen Theorie (1916), Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften"
+        "zh": "卡尔·史瓦西，《关于爱因斯坦引力理论的一个解 (#Über das Gravitationsfeld eines Massenpunktes nach der Einsteinschen Theorie#)》，载《普鲁士科学院报告 (#Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften#)》，1916。尚无中文翻译。",
+        "en": "Schwarzschild, Karl. \"Über das Gravitationsfeld eines Massenpunktes nach der Einsteinschen Theorie.\" #Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften# (1916): 189–196."
       },
       "source_image": "images/事件视界_source_cover.png",
       "related_works": [
         {
           "zh": "TODO：相关著作",
-          "en": "Chinese Lexical Semantics (《汉语词汇语义学》), a series of academic proceedings/collections from around the year 2000."
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -3235,14 +3496,14 @@
         }
       ],
       "source": {
-        "zh": "《日常生活的精神病理学》（Zur Psychopathologie des Alltagslebens，1901年） 中译本：台海出版社，2015年（孙名之 译）",
-        "en": "The Psychopathology of Everyday Life (Zur Psychopathologie des Alltagslebens, 1901). Chinese Translation: Taiwan Straits Publishing House, 2015."
+        "zh": "西格蒙德·弗洛英德，《日常生活的精神病理学 (#Zur Psychopathologie des Alltagslebens#)》，1901。中国大陆已出版，台海出版社。",
+        "en": "Freud, Sigmund. #The Psychopathology of Everyday Life#. Translated by James Strachey. New York: W. W. Norton & Company, 1960."
       },
       "source_image": "images/行为倒错_source_cover.png",
       "related_works": [
         {
-          "zh": "《梦的解析》（Die Traumdeutung，1900年） 中译本：浙江文艺出版社，2016年（孙名之 译）\n《精神分析引论》（Vorlesungen zur Einführung in die Psychoanalyse，1915-1917年） 中译本：商务印书馆，1984年（高觉敷 译）",
-          "en": "The Interpretation of Dreams (Die Traumdeutung, 1900). Chinese Translation: Zhejiang Literature and Art Publishing House, 2016 (Translated by Sun Mingzhi).\nIntroductory Lectures on Psychoanalysis (Vorlesungen zur Einführung in die Psychoanalyse, 1915-1917). Chinese Translation: The Commercial Press, 1984 (Translated by Gao Juefu)."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -3333,14 +3594,14 @@
         }
       ],
       "source": {
-        "zh": "《工作、消费与新穷人》（Work, Consumerism and the New Poor），1998年，江苏人民出版社（中文版）",
-        "en": "Work, Consumerism and the New Poor, 1998, Jiangsu People's Publishing House (Chinese edition)"
+        "zh": "齐格蒙特·鲍曼，《工作、消费与新穷人 (#Work, Consumerism and the New Poor#)》，白金汉：开放大学出版社 (Open University Press), 1998。中国大陆已出版，江苏人民出版社。",
+        "en": "Bauman, Zygmunt. #Work, Consumerism and the New Poor#. Buckingham: Open University Press, 1998."
       },
       "source_image": "images/新穷人_source_cover.png",
       "related_works": [
         {
-          "zh": "《流动的现代性》（Liquid Modernity），2000年，上海译文出版社（中文版）",
-          "en": "Liquid Modernity, 2000, Shanghai Translation Publishing House (Chinese edition)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -3468,14 +3729,14 @@
         }
       ],
       "source": {
-        "zh": "项飙在1995年的研究中首次提出该概念，具体见于其对农民工群体的田野调查，后系统化于著作《跨越边界的社区：北京“浙江村”的生活史》（The Making of a Transnational Community: Life History of Beijing's \"Zhejiang Village\"，1998年出版，北京大学出版社",
-        "en": "First conceptualized in Xiang’s 1995 fieldwork on migrant workers, systematically developed in The Making of a Transnational Community: Life History of Beijing’s \"Zhejiang Village\" (Beijing University Press, 1998)."
+        "zh": "项飙，《跨越边界的社区：北京“浙江村”的生活史 (#The Making of a Transnational Community: Life History of Beijing's \"Zhejiang Village\"#)》，北京：北京大学出版社，1998。中国大陆已出版，北京大学出版社。",
+        "en": "Xiang, Biao. #The Making of a Transnational Community: Life History of Beijing's \"Zhejiang Village\"#. Beijing: Peking University Press, 1998."
       },
       "source_image": "images/悬浮_source_cover.png",
       "related_works": [
         {
-          "zh": "《全球“猎身”：信息产业和印度技术劳工的跨国流动》（Global \"Body Shopping\": An Indian Labor System in the Information Technology Industry，2006年出版，北京大学出版社）\n《把自己作为方法》（As a Method，2020年出版，上海文艺出版社）",
-          "en": "Global \"Body Shopping\": An Indian Labor System in the Information Technology Industry (Beijing University Press, 2006)\nSelf as Method (Shanghai Literature & Art Publishing House, 2020)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -3525,7 +3786,7 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": "*零工经济",
+          "id": 24,
           "relation": "概念相关"
         }
       ],
@@ -3542,7 +3803,7 @@
       "comments": [
         {
           "content": {
-            "zh": "现在网上流行的暴富崇拜可能也是一种“悬浮”心理的表现？追热点，买彩票，赶风口，期待一夜暴富，期待泼天富贵，我想这些行为折射出的都是对所处社会现实和个体当下生活的不满，但又对改造它无望，所以期待某个天降神力能够把自己从这个泥沼里面拽出来，从此过上别样的生活。我们流行说“赚钱嘛，不嗑颤”，可能也是内心知道这事儿就是挺嗑颤，但追逐财富已经变成了大过一切的绝对正当性，所以也就一边厌恶又一边做着那些迎合的、浮肿的、对伦理问题漠然、自己也不相信它对的事。这种追逐或者“悬浮”即是，好像只要财富自由了，就可以润了溜了颠儿了，所以当下的、此处的、附近的公共文化和公共议题被搁置起来，没有人再相信需要对社会产生价值来获得回报。这是场大病",
+            "zh": "现在网上流行的暴富崇拜可能也是一种“悬浮”心理的表现？追热点，买彩票，赶风口，期待一夜暴富，期待泼天富贵，我想这些行为折射出的都是对所处社会现实和个体当下生活的不满，但又对改造它无望，所以期待某个天降神力能够把自己从这个泥沼里面拽出来，从此过上别样的生活。我们流行说“赚钱嘛，不嗑颤”，可能也是内心知道这事儿就是挺嗑颤，但追逐财富已经变成了大过一切的绝对正当性，所以也就一边厌恶又一边做着那些迎合的、浮肿的、对伦理问题漠然、自己也不相信它对的事。这种追逐或者“悬浮”即是，好像只要财富自由了，就可以润了溜了颠儿了，所以当下的、此处的、附近的公共文化和公共议题被搁置起来，没有人再相信需要对社会产生价值来获得回报。这是场大病。",
             "en": ""
           },
           "role": {
@@ -3608,14 +3869,14 @@
         }
       ],
       "source": {
-        "zh": "《海上之民：马达加斯加维佐人的身份与血统》（People of the Sea: Identity and Descent among the Vezo of Madagascar, 1995），丽塔·阿斯特著，剑桥大学出版社。（中文未出版）",
-        "en": "People of the Sea: Identity and Descent Among the Vezo of Madagascar (1995), Rita Astuti, Cambridge University Press."
+        "zh": "丽塔·阿斯特，《海上之民：马达加斯加维佐人的身份与血统 (#People of the Sea: Identity and Descent among the Vezo of Madagascar#)》，剑桥：剑桥大学出版社 (Cambridge University Press), 1995。尚无中文翻译。",
+        "en": "Astuti, Rita. #People of the Sea: Identity and Descent among the Vezo of Madagascar#. Cambridge: Cambridge University Press, 1995."
       },
       "source_image": "images/维佐人_source_cover.png",
       "related_works": [
         {
-          "zh": "《学习文化》（Learning Culture, 2007），丽塔·阿斯特等编，通过认知心理学视角进一步探讨维佐人的思维方式。《礼物》（1925），马塞尔·莫斯著，商务印书馆（虽未直接提及维佐人，但为理解非西方社会的身份构建提供了经典框架）。",
-          "en": "Learning Culture: Anthropological and Psychological Perspectives (2007), Rita Astuti et al."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -3704,14 +3965,14 @@
         }
       ],
       "source": {
-        "zh": "《第三周年演说》（The Third Anniversary Discourse），发表于1786年2月2日。后收录于期刊 Asiatic Researches。",
-        "en": "The Third Anniversary Discourse, delivered on February 2, 1786. Later published in the journal Asiatic Researches."
+        "zh": "威廉·琼斯，《第三周年演说 (#The Third Anniversary Discourse#)》，载《亚洲研究 (#Asiatic Researches#)》，1786。尚无中文翻译。",
+        "en": "Jones, William. \"The Third Anniversary Discourse.\" #Asiatic Researches# (1786)."
       },
       "source_image": "images/同源词_source_cover.png",
       "related_works": [
         {
-          "zh": "《德语语法》（Deutsche Grammatik），雅各布·格林（Jacob Grimm），1819年。\n《论印欧系语言动词变位系统的结构》（Über das Conjugationssystem der Sanskritsprache），弗朗茨·博普（Franz Bopp），1816年。",
-          "en": "Deutsche Grammatik (German Grammar), Jacob Grimm, 1819.\nÜber das Conjugationssystem der Sanskritsprache (On the Conjugation System of the Sanskrit Language), Franz Bopp, 1816."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -3804,14 +4065,14 @@
         }
       ],
       "source": {
-        "zh": "《双形词词典》（Dictionnaire des doublets, ou Doubles formes de la langue française），1868年出版。（中文未出版）",
-        "en": "Dictionary of Doublets, or Double Forms of the French Language (French: Dictionnaire des doublets, ou Doubles formes de la langue française), published in 1868."
+        "zh": "奥古斯特·布拉谢，《双形词词典 (#Dictionnaire des doublets, ou Doubles formes de la langue française#)》，巴黎：利伯里出版社 (Librairie A. Franck), 1868。尚无中文翻译。",
+        "en": "Brachet, Auguste. #Dictionnaire des doublets, ou Doubles formes de la langue française#. Paris: Librairie A. Franck, 1868."
       },
       "source_image": "images/同源异形词_source_cover.png",
       "related_works": [
         {
-          "zh": "《英语词源原理》（Principles of English Etymology），沃尔特·斯基特（Walter William Skeat），1887年，牛津大学出版社。\n 《英语史》（A History of the English Language），阿尔伯特·鲍（Albert C. Baugh），1935年。",
-          "en": "Principles of English Etymology (1887), Walter William Skeat, Oxford University Press.\nA History of the English Language (1935), Albert C. Baugh."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -3902,14 +4163,14 @@
         }
       ],
       "source": {
-        "zh": "《汉语史稿》，1958年由科学出版社出版。",
-        "en": "Draft History of the Chinese Language (Hanyu Shigao), Science Press, 1958."
+        "zh": "王力，《汉语史稿》，北京：科学出版社，1958。中国大陆已出版，科学出版社。",
+        "en": "Wang, Li. #Draft History of the Chinese Language# [Hanyu Shigao]. Beijing: Science Press, 1958."
       },
       "source_image": "images/仿译词_source_cover.png",
       "related_works": [
         {
-          "zh": "《语言接触与词汇借用》（Language Contact and Lexical Borrowing），埃纳尔·豪根（Einar Haugen），1950年。",
-          "en": "\"Language Contact and Lexical Borrowing\" (1950), Einar Haugen"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -4056,14 +4317,14 @@
         }
       ],
       "source": {
-        "zh": "《汉语史稿》，1958年由科学出版社出版。",
-        "en": "Draft History of the Chinese Language (Hanyu Shigao), Science Press, 1958."
+        "zh": "王力，《汉语史稿》，北京：科学出版社，1958。中国大陆已出版，科学出版社。",
+        "en": "Wang, Li. #Draft History of the Chinese Language# [Hanyu Shigao]. Beijing: Science Press, 1958."
       },
       "source_image": "images/音译词_source_cover.png",
       "related_works": [
         {
-          "zh": "《语言与文化》，罗常培 著，1950年，北京大学出版部。\n《现代汉语词汇的形成》（The Formation of Modern Chinese Lexicon），[意] 马西尼（Federico Masini）著，1993年。（黄河清译，汉语大词典出版社，1997年）",
-          "en": "Language and Culture (Yuyan yu Wenhua), Luo Changpei, Peking University Press, 1950. \nThe Formation of Modern Chinese Lexicon, Federico Masini, 1993."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -4192,7 +4453,7 @@
         "zh": "心理地理学",
         "en": "Psychogeography"
       },
-      "termOri": "Psychogeography",
+      "termOri": "Psychogéographie",
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "一座塔楼，一条小径，几个行人，可能就构成了一个城市",
@@ -4208,20 +4469,20 @@
           "year": "1931—1994",
           "role": {
             "zh": "思想家、电影导演",
-            "en": "Thinker, Film Director"
+            "en": "thinker and film director"
           },
           "image": "images/心理地理学_proposer.png"
         }
       ],
       "source": {
-        "zh": "《心理地理学引论》（Introduction to a Critique of Urban Geography, 1955），收录于《景观社会》相关文集，南京大学出版社。",
-        "en": "\"Introduction to a Critique of Urban Geography\" (1955), originally published in the journal Potlatch."
+        "zh": "居伊·德波，《心理地理学引论 (#Introduction à une critique de la géographie urbaine#)》，载《波特拉奇 (#Potlatch#)》，1955。已有中文翻译。",
+        "en": "Debord, Guy. \"Introduction to a Critique of Urban Geography.\" #Potlatch#, no. 6 (1955)."
       },
       "source_image": "images/心理地理学_source_cover.png",
       "related_works": [
         {
-          "zh": "《景观社会》（1967），居伊·德波著，南京大学出版社。 《漂移的理论》（1956），居伊·德波著。 《空虚的伦敦：一部心理地理学史》（2002），默林·科弗利著。（中文未出版）",
-          "en": "The Society of the Spectacle (1967), Guy Debord.Theory of the Dérive (1956), Guy Debord.Psychogeography (2002), Merlin Coverley."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -4251,7 +4512,7 @@
       ],
       "edit_date": "2024/03/04",
       "brief_definition": {
-        "zh": "强调城市环境对个体情绪与行为影响的主观空间认知",
+        "zh": "强调人的行为、情绪等主观感受的城市空间理解方式",
         "en": "A subjective understanding of space that emphasizes the influence of environment on human emotions and behavior."
       },
       "extended_definition": {
@@ -4269,7 +4530,20 @@
         "en": "Rather than consulting a cold travel brochure, he preferred to write his own psychogeographical report through an aimless late-night \"dérive.\""
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 40,
+          "relation": "概念相关"
+        },
+        {
+          "id": 43,
+          "relation": "概念相关"
+        },
+        {
+          "id": 44,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -4289,7 +4563,7 @@
         "en": "Enactment of Expertise"
       },
       "termOri": "Enactment of Expertise",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/做专家_aigc.png",
       "sm_title": {
         "zh": "卖AI课的「专家」不一定懂得技术，但一定懂得表演和行业黑话",
         "en": "TODO: social title"
@@ -4301,73 +4575,92 @@
             "en": "E. Summerson Carr",
             "ori": "E. Summerson Carr"
           },
-          "year": "TODO: year",
+          "year": "Circa 1970-",
           "role": {
             "zh": "社会文化人类学家",
-            "en": "Social and cultural anthropologist"
+            "en": "social and cultural anthropologist"
           },
           "image": "images/做专家_proposer.png"
         }
       ],
       "source": {
-        "zh": "《做专家》（Enactments of Expertise），2010年，发表于《人类学年度评论》（Annual Review of Anthropology）",
-        "en": "\"Enactments of Expertise\" (2010), published in Annual Review of Anthropology."
+        "zh": "多米尼克·博耶，《做专家 (#Enactments of Expertise#)》，载《人类学年度评论 (#Annual Review of Anthropology#)》，2010。尚无中文翻译。",
+        "en": "Boyer, Dominic. \"Enactments of Expertise.\" #Annual Review of Anthropology# 39 (2010): 395–409."
       },
-      "source_image": "TODO: source_cover",
+      "source_image": "images/做专家_source_cover.png",
       "related_works": [
         {
-          "zh": "《专业识见》（Professional Vision，1994），查尔斯·古德温著，发表于《美国人类学家》（American Anthropologist）。（中文未出版）《实验室生活》（Laboratory Life, 1979），布鲁诺·拉图尔著，东方出版社。",
-          "en": "\"Professional Vision\" (1994), Charles Goodwin, published in American Anthropologist.Laboratory Life: The Construction of Scientific Facts (1979), Bruno Latour."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
-        "zh": "人类学 Anthropology 社会学 Sociology",
-        "en": "人类学 Anthropology 社会学 Sociology"
+        "zh": "人类学 Anthropology 社会学 Sociology 教育学 Education 语言学 Linguistics 媒介与传播 Media & Communications",
+        "en": "人类学 Anthropology 社会学 Sociology 教育学 Education 语言学 Linguistics 媒介与传播 Media & Communications"
       },
       "proposing_country": "美国",
       "proposing_time": "2010",
       "contributors": [
         {
           "name": {
-            "zh": "吕孟汀",
-            "en": "Mengding Lu"
+            "zh": "孟汀",
+            "en": "Mengting"
           },
           "role": {
             "zh": "吕孟汀是我们发起的“中文互联网编舟记 第一期”的造船者，TA是芝加哥大学的人类学学生。",
-            "en": "Mengting Lu is the shipbuilder of our inaugural ‘Chinese Internet Compilation Project’, and is an anthropology student at the University of Chicago."
+            "en": "Mengting is a co-creator of Dunes Dictionary and is an anthropology student at the University of Chicago."
           }
         }
       ],
       "contribute_date": "2024/02/24",
       "editors": [
         {
-          "zh": "陈飞樾, 沙丘研究所(Deepseek R1 辅助润色)， 网站中收录的内容可能基于社交媒体中的内容做了进一步编辑和润色",
-          "en": "Feiyue Chen, Dunes Workshop (Deepseek R1 –assisted editing), content featured on this website may have been further edited and refined based on material from social media."
+          "zh": "陈飞樾, 沙丘研究所(Gemini 3.0 Pro 和 Deepseek R1 辅助润色)， 网站中收录的内容可能基于社交媒体中的内容做了进一步编辑和润色",
+          "en": "Feiyue Chen, Dunes Workshop (Gemini 3.0 Pro and Deepseek R1 –assisted editing), content featured on this website may have been further edited and refined based on material from social media."
         }
       ],
       "edit_date": "2024/02/24",
       "brief_definition": {
-        "zh": "为建立并维系专业权威而持续进行的仪式性行动与表演",
-        "en": "The continuous actions and performances undertaken to establish and maintain a professional persona."
+        "zh": "为建立并维系专业权威的形象而持续进行的行动与表演",
+        "en": "A continuous performance of actions and behaviors aimed at establishing and maintaining professional authority"
       },
       "extended_definition": {
         "zh": [
-          "想象你走进一家顶级律所的会议室：深色的实木长桌，整面墙的法律卷宗，以及对面西装革履、口中不断吐出“信托责任”、“除斥期间”等冷僻术语的律师。即便你并不完全理解这些词汇，你也会在瞬间感到一种被压制的权威感。",
-          "这就是“做专家”的典型现场。正如其英文词根 enact 所暗示的，专业性并非一种可以一次性获得的静止物品（如学位证），而是一场永不谢幕的舞台演出。专家必须实时且适时地“表演”专业：他们不仅要掌握晦涩的知识，更要学会用一种“权威的角度”去交流。正如一个健身爱好者，只有在向普通人展示其解剖学知识时，才真正完成了向“肌肉专家”的身份跨越。",
-          "这种“做”的过程往往通过行业黑话（Jargon）来完成。黑话的功能不仅在于交流，更在于掩盖——它将知识生产过程中那些充满争论、否定和“草台班子”式的混乱细节隐藏起来，呈现出一种无懈可击的真理面貌。它划定了一道鸿沟，将“知识的消费者”与“生产者”隔离开来。因此，专业性本质上是一种互动性的社会契约：它既取决于专家的表演，也取决于观众对这种权威意识形态的认同。当这种意识形态坍塌时，专家便重新变回了那个只是读过几本书的普通人。"
+          "这个词和我们现在常谈论的一些现象都有关：行业黑话、术语、假专家、草台班子。我们已经都逐渐意识到，成为专业人士，有很大一部分只是学习一种新的语言。“Enactment”的词根是“使”（en-）+ “行动、表演“（act）组成，它有三重含义最为常见：表示“实施想法或建议”；表示“在舞台上演出”；表示“颁布法案或法律”。",
+          "事实上我们也发现，成为专业人士包含着这三重内容：第一，专业不是一种物品，而是一种动作，它必须持续地发生。第二，专业具有一定的表演性。第三，围绕着“专业”有一系列制度、机构、程序、学习方法来维护它的权威。",
+          "专业知识当然是存在着的，但是它存在的方式是什么？ 零碎知识通过培训、评估、授权、制度化得以专业化。然而，注意，在学位、证书之后，“专家”依然需要不断地“做”专业知识。他们需要实时和适时的表演——专业必须被持续地再生产，必须“被做着”。不是熟悉核物理知识就能马上成为专家，而是学会从权威的角度来交流、展现这种熟悉。只有对普通人展现健身知识的时候，健身爱好者才变成肌肉专家。",
+          "因此“专业”本质上是互动性的：专家不仅要活得像一个一直变魔术的魔术师，还要不断地划出自己和业余人士的界限。也因此，“专业性”的价值取决于知识的消费者想要获得什么。“专业”是世俗性的，而“天才/优秀/天赐的才华”则没有这种可以学习的进度条。“做专家”、“学做专家”在世俗化的现代兴起，又因为其世俗化被拆解。",
+          "语言人类学家特别关心如何还原黑话产生的过程。黑话的使用如何同时隐藏了创造黑话的过程，这些过程充满争论、否定、矛盾，但是当黑话出现时，产生它们的那个乱糟糟的过程就被隐藏了，导致黑话就像是在说真知一样：不需要被产生和辩驳，它们已经在被使用。",
+          "因此专业知识可以说是包含着意识形态的：它必须先预设一些东西可以授权、合法化、认证权威。专业的消解不是知识的全盘普及，而是某种意识形态上的权威先坍塌。“做专家”关心的就是这个持续再生产专业性的过程、以及它所掩盖的过程。"
         ],
         "en": [
-          "Picture yourself walking into the conference room of a prestigious law firm: the dark mahogany table, walls lined with legal volumes, and lawyers in sharp suits uttering obscure terms like \"fiduciary duty\" or \"statutory period of limitation.\" Even if you do not fully grasp these terms, you immediately feel a sense of suppressed awe toward their authority.",
-          "This is a classic scene of the \"enactment of expertise.\" As the root word enact suggests, professionalism is not a static object to be acquired once and for all (like a diploma), but a perpetual stage performance. Expertise must be performed in real-time and at the appropriate moment; experts must not only master obscure knowledge but also learn to communicate and display that mastery from an \"authoritative perspective.\" A fitness enthusiast only truly bridges the gap to becoming an \"expert\" when they begin explaining the anatomical structure of muscle fibers to a layperson.",
-          "This process of \"doing\" is often achieved through professional jargon. The function of jargon extends beyond communication; it serves to conceal. It masks the messy, controversial, and often \"shambolic\" process of knowledge production, presenting instead an unassailable facade of truth. It draws a boundary, separating the \"consumer of knowledge\" from its \"producer.\" Consequently, expertise is essentially an interactive social contract—it depends as much on the expert’s performance as it does on the audience’s acceptance of that underlying ideology. When this ideological authority collapses, the expert reverts to being an ordinary person who has simply read a few more books."
+          "This concept resonates with many contemporary phenomena: industry jargon, technical terminology, \"fake experts,\" and the so-called \"shambolic crews\" (the idea that everything is held together by scotch tape). We have come to realize that becoming a professional is, in large part, simply about learning a new language. The etymology of \"enactment\" comprises the prefix en- (to make/put into) and the root act (to do/perform). In common usage, it carries a triple entendre: to implement a plan or suggestion; to perform on a stage; and to decree a law or statute.",
+          "In practice, we find that being a professional encompasses all three dimensions. First, expertise is not a static object but a continuous action; it must be perpetually \"going on.\" Second, expertise is inherently performative. Third, there exists a suite of institutions, protocols, and pedagogical methods designed to safeguard its authority.",
+          "While specialized knowledge certainly exists, we must ask: in what mode does it exist? Fragmented data becomes \"professionalized\" through training, assessment, credentialing, and institutionalization. Yet, notably, even after obtaining degrees and certificates, an \"expert\" must still continuously \"do\" their expertise. They must engage in timely and real-time performances—professionalism must be incessantly reproduced; it must be \"being done.\" Familiarity with nuclear physics does not instantly make one an expert; rather, one becomes an expert by learning to communicate and display that familiarity from a position of authority. A fitness enthusiast only becomes a \"muscle expert\" at the moment they perform their knowledge for a lay audience.",
+          "Thus, expertise is fundamentally interactive. An expert must not only live like a magician who never stops performing tricks but must also constantly draw boundaries between themselves and the amateur. Consequently, the value of \"professionalism\" is dictated by what the consumer of that knowledge seeks to gain. Professionalism is mundane and secular—unlike \"genius\" or \"divine talent,\" it has a measurable progress bar. The rise of \"doing expertise\" and \"learning to be an expert\" is a product of our secular modern age, and it is through this very secularization that the concept is now being dismantled.",
+          "Linguistic anthropologists are particularly concerned with deconstructing the genesis of jargon. They examine how the use of \"insider speak\" masks the messy process of its creation—a process often fraught with debate, negation, and contradiction. Once jargon enters the lexicon, the chaotic struggle that birthed it vanishes. Jargon then presents itself as \"self-evident truth\": it no longer requires justification or defense; it simply is used.",
+          "Therefore, professional knowledge is inherently ideological: it presupposes a framework that grants authorization and legitimizes authority. The erosion of professionalism is not caused by the universal spread of knowledge, but by the collapse of the ideological authority that underpins it. \"Enacting expertise\" is about this relentless process of reproduction—and everything it seeks to hide."
         ]
       },
       "example_sentence": {
-        "zh": "在当下的社交媒体上，许多博主与其说是在传播知识，不如说是在进行一场精准的“做专家”表演，通过高频使用行业缩写和精致的背景布置，来获取粉丝的信任授权。",
-        "en": "In the current wave of social media, many influencers are not so much disseminating knowledge as they are engaging in a precise \"enactment of expertise,\" using high-frequency industry acronyms and meticulously curated backgrounds to secure the trust and authorization of their followers."
+        "zh": "一个理论能否在大众中传播开，依靠的不仅是学者做学问的能力，很大程度上仰赖的是知名学术人物“做专家”的能力——Ta能否在对的场合，以对的形象，用对的口吻去表演性地讲出这个理论。",
+        "en": "Whether a theory successfully gains traction among the public depends not only on a scholar’s academic rigor, but to a significant extent, on the leading academic's ability to \"enact their expertise.\" It hinges on whether they can performatively articulate the theory—striking the right tone, projecting the right image, and seizing the right moment."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 14,
+          "relation": "概念相关"
+        },
+        {
+          "id": 6,
+          "relation": "概念相关"
+        },
+        {
+          "id": 32,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -4378,7 +4671,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "这个词组为什么没有被翻译为“扮专家”或者“演专家”？Enactment一词虽带有“在台上表演xx”的意味，读起来也更带批判性，但这样翻译，意味不免就偏向于“伪装”，而这个概念并不单单意在打假的，它更像是在描述一种社会现实：即便是有真才实学的人，也得持续地enact （做、操演）这个专家形象，其专业性才对于社会大众“可见”。我猜想这也是孟汀为什么译之为“做专家”——希望它进入中文世界的时候是一个中性的概念。我们收录这个词，也并非想要偏颇地讲“专家都是装的”，而是好奇，这些形象是如何产生并被维持的？人们为什么需要，为什么吃这套？与其说Summerson Carr 想做的是“拆穿专家的面具，给我们看看他们的真成色”，不如说她是在把专家、权威形象的运作作为一种社会化的实践整体分析。\n\n这个词至少让我有会心一笑的感觉的——我自己在中国一所大学做教职，因为还相对年轻，头发长，戴耳钉，并不每天穿着黑白灰的西服出现在校园里，也并不习惯用那种沉稳且不容置疑口吻说话，经常被归类为“另类、时尚的小老师”那一类。好朋友的父母见了也会私下说：“现在大学老师还能这副打扮呢？”这样讲来，我是很不会“做专家”了。真应该多学学江苏科大的郭伟。换句话说，“人以貌相”，这里的貌不只是穿衣打扮，而更有表情、动作、姿态，以及口中专有名词的密度（好笑的是没做专家，但做着沙丘词典）。通过这种“表皮处理”，一个人更容易被作为学者、教授、专家，被人严肃对待。\n\n从这里我们看到一种分离：一面是一个人事实上的知识、技能、思想水准，一面是其更易被直观感知到的社会角色形象。这两者并无等价关系。往愤世嫉俗了说，现在看重后者的人大大多于前者。往中立了说，空有前者的人也得修炼一下后者，方便自己更自然地满足人群的期待，这是人类社会的运作规律使然。\n\n刚好最近听了“独树不成林”的新播客《喜剧演员为何比学者更为高尚》，仲树提了这么一个点——我在paraphrasing——喜剧演员被衡量的点，也就是好不好笑，是更接近于自然真理的；而当代学者被衡量是否是一个好学者，几乎已经完全变成了看基金、头衔、核心期刊论文数量这些外部装饰物。一个很有名望、拿奖无数的喜剧演员，讲了一个不好笑的笑话，观众不会因为其地位就憋着说好笑。但一个学者，特别是年轻学者，在学术圈被评估的时候，已经很少有同辈会去专门调取Ta的文章，看看这个人做学问的水平究竟如何。好像只要这个人在特定地方发布了特定数量的文章，Ta的学术水平自然就高了。这已经不是新闻 ：做学问的人不一定在学术圈，在学术圈的人不一定做学问。\n\n不过这也引发了我一个问题：Summerson Carr 认为专家是一项需要持续“做”着才能维系的形象，但相比而言，难道不是喜剧演员才更是如此吗？当一个人获得了响当当的头衔，比如院士，似乎就“自有大儒为其辩经”——穿着随意被理解为平易近人，讲话不带黑话被美化为大道至简。这是否意味着，学者在获取了某些“勋章”后就可以一劳永逸地成为“专家”了？或许并非如此。Summerson 其实将这种情况形容为“自然化”（naturalization）的转向。院士的“去权威化”的表现实质成为了另一种更高级、更有权力的表演，也就是说：我的权威已经制度化到了不需要任何装饰的地步。这种权威不再依赖瞬时的表演，而是成功地转化为了长效的、可以随取随用的社会资产。但即便如此，这种权威依然是需要维系的。 如果一位院士长期在专业领域失语，或者在公众场合表现出完全丧失专业判断的行为，那种豁免权的红利也会消耗殆尽。",
+            "en": "Why wasn’t this phrase translated as \"ban (mask or play)\"? While the term enactment carries a theatrical connotation and reads with a critical edge, such a translation leans too heavily toward \"pretense.\" This concept isn’t merely about debunking phonies; rather, it describes a social reality: even those with genuine mastery must continuously enact the persona of an \"expert\" for their professionalism to become \"visible\" to the public. I suspect this is why Mengting chose the rendering \"zuo (do)\"—to ensure it entered the Chinese lexicon as a neutral concept. Our inclusion of this term isn't meant to cynically suggest that \"all experts are fakes,\" but rather to explore how these personas are constructed and sustained. Why does the public need them? Why do they buy into them? Summerson Carr’s goal isn’t so much to \"strip away the mask to show the true colors\" as it is to analyze the operation of authority as a holistic social practice.\nThe term certainly gave me a knowing smile. As a relatively young faculty member at a Chinese university—with long hair, earrings, and a wardrobe that shuns the standard grayscale suits—I don’t naturally adopt that steady, unquestionable tone of voice. I’m often pigeonholed as the \"alternative, trendy young teacher.\" Even my best friend’s parents have remarked privately, \"Is this how university professors dress nowadays?\" In that sense, I’m quite poor at \"doing expertise.\" Perhaps I should take a page out of Guo Wei’s book. To put it differently, \"judging a book by its cover\" here involves more than just clothes; it’s about facial expressions, gestures, posture, and the sheer density of jargon in one’s speech (ironically, I may not \"do expertise,\" but I do produce the Dune Dictionary). Through this \"surface processing,\" one is more easily taken seriously as a scholar or professor.\nWhat we see here is a decoupling: on one side lies a person’s actual knowledge and intellectual caliber; on the other, their more readily perceivable social persona. The two are not equivalent. A cynic might say that today, people value the latter far more than the former. More neutrally, one could say that those who possess only the former must still cultivate the latter to meet societal expectations—a fundamental law of how human society functions.\nCoincidentally, I recently listened to a podcast titled Why Comedians are Nobler than Scholars, where Zhong Shu made a point—and I’m paraphrasing here—that the metric for a comedian (whether they are funny) is closer to a \"natural truth.\" In contrast, the metric for a \"good scholar\" has become almost entirely about external trappings: grants, titles, and the volume of core journal publications. If a world-renowned, award-winning comedian tells a bad joke, the audience won’t force a laugh just because of their status. But for a scholar—especially a young one—peers rarely take the time to actually read their papers to judge the quality of their mind. It’s as if publishing a specific number of articles in specific venues automatically equates to high intellectual standing. It’s no longer news: those who do scholarship aren't always in academia, and those in academia aren't always doing scholarship.\nHowever, this raises a question: Summerson Carr argues that expertise is a persona that requires constant \"doing\" to maintain, but isn't that even truer for comedians? Once a person gains a prestigious title—like an Academician—they seem to benefit from a \"built-in\" defense: dressing casually is seen as being \"approachable,\" and avoiding jargon is praised as \"profound simplicity.\" Does this mean that once a scholar acquires certain \"medals,\" they become an \"expert\" once and for all? Perhaps not. Summerson actually describes this shift as \"naturalization.\" An Academician’s lack of traditional authoritative styling is, in itself, a higher-level, more powerful performance. It signals that their authority is so deeply institutionalized that it no longer requires adornment. This authority no longer relies on momentary performance; it has been successfully converted into a long-term, ready-to-use social asset. Yet, even this authority must be maintained. If an Academician remains silent in their field for too long or displays a total lack of professional judgment in public, the \"dividend of immunity\" eventually runs dry."
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "飞樾",
+            "en": "Feiyue"
+          },
+          "background": {
+            "zh": "城市学",
+            "en": "Urbanism"
+          },
+          "date": "2024/02/24"
+        }
+      ]
     },
     {
       "id": 39,
@@ -4402,20 +4715,20 @@
           "year": "1950—",
           "role": {
             "zh": "文化人类学家",
-            "en": "American Cultural Anthropologist"
+            "en": "cultural anthropologist"
           },
           "image": "images/技术有灵论_proposer.png"
         }
       ],
       "source": {
-        "zh": "《千禧年怪兽：当代日本的玩具与精神力》（Millennial Monsters: Japanese Toys and the Global Imagination, 2006），安妮·阿莉森著，加州大学出版社。（中文未出版）",
-        "en": "Millennial Monsters: Japanese Toys and the Global Imagination (2006), Anne Allison, University of California Press."
+        "zh": "安妮·阿莉森，《千禧年怪兽：当代日本的玩具与精神力 (#Millennial Monsters: Japanese Toys and the Global Imagination#)》，伯克利：加州大学出版社 (University of California Press), 2006。尚无中文翻译。",
+        "en": "Allison, Anne. #Millennial Monsters: Japanese Toys and the Global Imagination#. Berkeley: University of California Press, 2006."
       },
       "source_image": "images/技术有灵论_source_cover.png",
       "related_works": [
         {
-          "zh": "《灵性现代性：当代日本的宗教、文化与社会》（2000s相关论文集），以及马可·布拉克关于建筑与有机技术共生的论著。",
-          "en": "Cyborg Spirits: Anthropomorphizing the Desktop (2003), edited by B.P. Herzig. The Soul of Marionettes (2011), John Gray."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -4432,7 +4745,7 @@
           },
           "role": {
             "zh": "张三折是我们发起的“中文互联网编舟记 第一期”的造船者，TA的学科背景是共生学。",
-            "en": "Sanzhe Zhang is the architect of our inaugural ‘Chinese Internet Compilation Project’, with a disciplinary background in symbiosis studies."
+            "en": "Sanzhe Zhang is a co-creator of Dunes Dictionar with a disciplinary background in symbiosis studies."
           }
         }
       ],
@@ -4463,7 +4776,12 @@
         "en": "In debates regarding digital heritage, techno-animism offers a fresh perspective: have social media accounts that carry the memories of the deceased evolved from mere data sets into electronic vessels for the soul?"
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 20,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -4480,9 +4798,9 @@
       "id": 40,
       "term": {
         "zh": "游荡者",
-        "en": "Wanderer"
+        "en": "Flaneur"
       },
-      "termOri": "flâneur",
+      "termOri": "Flâneur",
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "沙丘词典｜Citywalk的人算是「游荡者」吗？",
@@ -4498,20 +4816,20 @@
           "year": "1821—1867",
           "role": {
             "zh": "诗人、评论家",
-            "en": "Poet and critic"
+            "en": "poet and critic"
           },
           "image": "images/游荡者_proposer.png"
         }
       ],
       "source": {
-        "zh": "《现代生活的画家》（1863），中译本由人民文学出版社出版。",
-        "en": "The Painter of Modern Life (1863)."
+        "zh": "夏尔·波德莱尔，《现代生活的画家 (#Le Peintre de la vie moderne#)》，1863。中国大陆已出版，人民文学出版社。",
+        "en": "Baudelaire, Charles. #The Painter of Modern Life#. 1863."
       },
       "source_image": "images/游荡者_source_cover.png",
       "related_works": [
         {
-          "zh": "《发达资本主义时代的抒情诗人》（1938），瓦尔特·本雅明著，商务印书馆。《拱廊计划》（1927—1940，未完成），瓦尔特·本雅明著，三联书店（台版/港版）。",
-          "en": "Charles Baudelaire: A Lyric Poet in the Era of High Capitalism (1938), Walter Benjamin. The Arcades Project (1927–1940, unfinished), Walter Benjamin."
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -4559,7 +4877,20 @@
         "en": "Rather than visiting as a tourist, he preferred to act as a flâneur in this foreign capital, capturing the authentic pulse of the city—hidden beneath the glossy commercial districts—by wandering through the labyrinthine alleys of the Old Town."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 37,
+          "relation": "概念相关"
+        },
+        {
+          "id": 43,
+          "relation": "概念相关"
+        },
+        {
+          "id": 44,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -4594,20 +4925,20 @@
           "year": "1973—至今",
           "role": {
             "zh": "媒体科学家",
-            "en": "Media scientist"
+            "en": "media scientist"
           },
           "image": "images/玩工_proposer.png"
         }
       ],
       "source": {
-        "zh": "《Precarious Playbour: Modders and the Digital Games Industry》（2005）中文未出版",
-        "en": "《Precarious Playbour: Modders and the Digital Games Industry》（2005）"
+        "zh": "朱利安·库克里奇，《不稳定的玩工：Mod制作与数字游戏产业 (#Precarious Playbour: Modders and the Digital Games Industry#)》，载《初动 (#Fibreculture Journal#)》，2005。尚无中文翻译。",
+        "en": "Kücklich, Julian. \"Precarious Playbour: Modders and the Digital Games Industry.\" #Fibreculture Journal# 5 (2005)."
       },
       "source_image": "images/玩工_source_cover.png",
       "related_works": [
         {
-          "zh": "福克斯《Marx and the Political Economy of the Media》(2015)",
-          "en": "Fuchs《Marx and the Political Economy of the Media》(2015)"
+          "zh": "TODO：相关著作",
+          "en": "TODO: related works"
         }
       ],
       "domain": {
@@ -4657,7 +4988,12 @@
         "en": "On short video platforms, users accumulate fans by creating humorous content, inadvertently becoming playbour for the platform and supplying free data sources and traffic to the algorithmic recommendation system."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 9,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -4685,7 +5021,7 @@
       "proposers": [
         {
           "name": {
-            "zh": "TODO：提出者",
+            "zh": "中文互联网网民群体",
             "en": "TODO: proposer",
             "ori": "TODO: proposerOri"
           },
@@ -4712,19 +5048,32 @@
         "zh": "TODO：学科类型",
         "en": "TODO: domain"
       },
-      "proposing_country": "TODO: country",
-      "proposing_time": "TODO: time",
-      "contributors": [],
+      "proposing_country": "中国",
+      "proposing_time": "2021",
+      "contributors": [
+        {
+          "name": {
+            "zh": "飞樾",
+            "en": ""
+          },
+          "role": {
+            "zh": "",
+            "en": ""
+          }
+        }
+      ],
       "contribute_date": "TODO: contribute_date",
       "editors": [],
       "edit_date": "TODO: contribute_date",
       "brief_definition": {
-        "zh": "TODO：简要释义",
+        "zh": "区别于工业模板、易被感知、真实抒发、可能带瑕疵的生命气息",
         "en": "TODO: brief"
       },
       "extended_definition": {
         "zh": [
-          "TODO：详细释义"
+          "社交媒体上现在不乏这样的账号：头像精致、专业，内容全是精心修过的风景大片、高端餐厅打卡、金句频出的励志语录，更新频率稳定得像设定好的程序。它“完美”，得像是橱窗里的塑料模特。这时带有“活人感”的账号反而让你更有好感：头像是随手拍的生活照，偶尔发一些背景杂乱、没有后期处理的自拍，Ta 吐槽生活中的烦恼，也分享小确幸，甚至文案里还有一些错别字。",
+          "“活人感”是中文互联网在长期经历“去人化”环境后自发涌现的审美偏好。它最初的火种可以追溯到2018年前后的“饭圈”文化，粉丝开始厌倦明星工作室那套滴水不漏、仅作为广告位存在的社交账号，转而怀念早期互联网，特别是2010年代初的微博中那些会“深夜发疯”、会直抒胸臆、会展露脆弱的真实艺人。随后，这一诉求在豆瓣、小红书等社区发酵，演变为一种对“样板间”账号的反抗。",
+          "“活人感”虽然是高度绑定在中文互联网的词汇，但可以和菲利普·奥斯兰德（Philip Auslander）所讨论的“现场性”（Liveness）平行讨论，甚至可以被看作后者在数字时代的变体。它不是生理意义上的活着，而是一种通过不可预测性、情感流露以及对日常琐事的共情所构建的互动体验。当网络内容生产从早期的 UGC（用户生成内容），到PGC（专业生成内容） 占据主流，再到AIGC（人工智能生成的内容）和精准算法大行其道，那些带有“人味儿”的小缺憾、即时性的情绪波动、甚至是偶尔的笨拙，反而成为了证明个体存在、建立心理连接的核心资产，也成为了网友寻找“活人同类”的某种暗号。"
         ],
         "en": [
           "TODO: extended"
@@ -4754,7 +5103,7 @@
         "zh": "褶子城市",
         "en": "TODO: term"
       },
-      "termOri": "Fold City",
+      "termOri": "TODO: termOri",
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "沙丘词典丨「褶子城市」保有生活的复杂性，因为它不止有光亮的一面",
@@ -4776,13 +5125,13 @@
         }
       ],
       "source": {
-        "zh": "汪民安编译，《褶子》，2018年，河南大学出版社",
+        "zh": "汪民安 (编译)，《褶子 (#Le Pli#)》，开封：河南大学出版社，2018。中国大陆已出版，河南大学出版社。",
         "en": "TODO: source"
       },
       "source_image": "images/褶子城市_source_cover.png",
       "related_works": [
         {
-          "zh": "《资本主义与精神分裂》1972(Capitalisme et Schizophrenie)《褶子:莱布尼兹与巴洛克风格》1988(Le Pli: Leibnitz et le Baroque)",
+          "zh": "TODO：相关著作",
           "en": "TODO: related works"
         }
       ],
@@ -4795,7 +5144,7 @@
       "contributors": [
         {
           "name": {
-            "zh": "陈飞樾 李雅伦",
+            "zh": "飞樾 雅伦",
             "en": ""
           },
           "role": {
@@ -4830,7 +5179,20 @@
         "en": "TODO: example"
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 37,
+          "relation": "概念相关"
+        },
+        {
+          "id": 40,
+          "relation": "概念相关"
+        },
+        {
+          "id": 44,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -4847,13 +5209,13 @@
       "id": 44,
       "term": {
         "zh": "诺利地图",
-        "en": "TODO: term"
+        "en": "Nolli Map"
       },
       "termOri": "Nolli Map",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/诺利地图_aigc.png",
       "sm_title": {
         "zh": "沙丘词典丨「诺利地图」改写了我们对城市公共空间的理解",
-        "en": "TODO: social title"
+        "en": "Dune Dictionary | 'Noli Map' rewrites our understanding of urban public spaces"
       },
       "proposers": [
         {
@@ -4865,67 +5227,111 @@
           "year": "1701—1756",
           "role": {
             "zh": "意大利建筑师",
-            "en": "TODO: role"
+            "en": "architect"
           },
-          "image": "images/诺利地图_proposer.png"
+          "image": "TODO: proposer_image"
         }
       ],
       "source": {
-        "zh": "《Nuova Pianta di Roma》（1748）（中文未出版）",
-        "en": "TODO: source"
+        "zh": "詹巴蒂斯塔·诺利，《1748年诺利罗马地图 (#Nuova Pianta di Roma data in luce da Giambattista Nolli l'anno 1748#)》，罗马，1748。尚无中文翻译。",
+        "en": "Nolli, Giambattista. #Nuova Pianta di Roma data in luce da Giambattista Nolli l'anno 1748#. Rome, 1748."
       },
       "source_image": "images/诺利地图_source_cover.png",
       "related_works": [
         {
-          "zh": "《新罗马地图》1748\n(La Nuova Topografia di Roma)",
+          "zh": "TODO：相关著作",
           "en": "TODO: related works"
         }
       ],
       "domain": {
-        "zh": "哲学\tPhilosophy 建筑与城市 Architecture & Urbanism",
-        "en": "哲学\tPhilosophy 建筑与城市 Architecture & Urbanism"
+        "zh": "建筑与城市 Architecture & Urbanism 景观与地理 Landscape & Geography",
+        "en": "建筑与城市 Architecture & Urbanism 景观与地理 Landscape & Geography"
       },
-      "proposing_country": "意大利罗马",
+      "proposing_country": "意大利",
       "proposing_time": "1748",
       "contributors": [
         {
           "name": {
             "zh": "李雅伦 陈飞樾",
-            "en": ""
+            "en": "Yalun Li Feiyue Chen"
           },
           "role": {
             "zh": "沙丘研究所创始人",
-            "en": ""
+            "en": "Founder of Dunes Workshop"
           }
         }
       ],
       "contribute_date": "2023/11/14",
       "editors": [
         {
-          "zh": "沙丘研究所(Deepseek R1 辅助润色)， 网站中收录的内容可能基于社交媒体中的内容做了进一步编辑和润色",
-          "en": ""
+          "zh": "沙丘研究所（Gemini 3.0 Pro辅助润色），网站中收录的内容可能基于社交媒体中的内容做了进一步编辑和润色。",
+          "en": "Dunes Workshop (Gemini 3.0 Pro–assisted editing), content featured on this website may have been further edited and refined based on material from social media."
         }
       ],
       "edit_date": "2023/11/14",
       "brief_definition": {
         "zh": "把私密空间作为黑色图，而公共空间作为白色底来区分表达的平面地图",
-        "en": "TODO: brief"
+        "en": "A planimetric map that delineates private spaces as black figures against public spaces rendered as a white ground.​"
       },
       "extended_definition": {
         "zh": [
-          "想象你手握一张18世纪的罗马地图：教堂内部被涂成纯白，与街道广场连成一片光域；而私人宅院则化作漆黑块面，像禁入的孤岛。这张颠覆传统的图纸，正是1748年由建筑师詹巴蒂斯塔·诺利绘制的《新罗马地图》。它用极简的黑白语言重构了城市认知——白色不再代表室外，而是所有公共空间（包括教堂/市厅等室内场所）；黑色则标识私密领域。当万神殿的穹顶空间与广场在图纸上无缝衔接时，城市公共空间的连续性首次以视觉化方式被揭示。",
-          "诺利地图的革命性在于三重突破：其一，打破建筑内外界限，将\"可进入的室内公共空间\"纳入白色体系（如教堂中殿）；其二，通过白色区域的连续性，暴露城市公共空间网络的结构（道路-广场-公共建筑形成流动整体）；其三，颠覆传统图底关系（figure-ground relationship），使\"公共性\"成为空间主体。这种表达启发现代城市设计：纽约洛克菲勒中心下沉广场与地铁站的贯通，正是诺利精神的当代回响——证明公共空间的生命力源于系统性连接，而非孤立存在。"
+          "查看罗马的卫星地图，在各式各样的屋顶和密集的街道中，你很难分辨哪些是可以进入游览的公共建筑，然而在城市中漫步，你却可以从广场走进教堂，穿过教堂庭院的回廊走进下一条街。在传统地图上，“房屋”和“开放空间”构成的黑白“图底关系”，并不能帮我们理解哪些区域对公众开放。因为，像火车站、教堂等室内空间都可以随意进出，但私家花园等露天的“空地”则写着“非请勿入”。",
+          "1748年，詹巴蒂斯塔·诺利（Giambattista Nolli）在之前传统的黑白图底关系地图上做了调整，绘制了一张新的罗马地图，来表达城市“公共”与“私密”的二元关系。在这张地图中，白色部分不只表达室外空间，也同样涵盖了公共建筑。这些公共建筑的内部空间和结构被用平面图形式绘制出来，与室外的部分连接在一起。原本作为“底”的开放空间成为了这张地图的主体，道路、广场与教堂等公共建筑的内部形成一系列连续而流动的空间。这种图像表达或许更接近真实的空间体验，因为城市的公共生活并不止步于建筑的门口。当你从广场走进万神殿，你依然处于一种“公共”的“流动”之中。诺利地图更真实地反应了公共与私密的空间关系。它让建筑师和城市规划者开始意识到，建筑不仅仅是物体（Solid），更是塑造城市空间（Void）的容器。"
         ],
         "en": [
-          "TODO: extended"
+          "From the complex roofscape of a satellite map of Rome, it is almost impossible to distinguish which public buildings are accessible for exploration. Yet, when wandering through the city, one can easily walk from a piazza into a church, pass through a cloister, and emerge onto the next street. In traditional maps, the black-and-white \"figure-ground relationship\"—composed of \"buildings\" and \"open spaces\"—does not help us understand which areas are actually open to the public. We can move freely through indoor spaces like train stations and churches, while we cannot trespass into \"open-air\" private gardens.",
+          "In 1748, Giambattista Nolli adjusted traditional figure-ground mapping to create a new map of Rome that expressed the relationship between the city's public and private realms. In this map, the white areas represent more than just outdoor space; they also encompass the interiors of public buildings. The floor plans of these public buildings are drawn as seamless extensions of the outdoors. Consequently, the open space—originally the \"ground\" (the background) of traditional maps—becomes the primary subject of the Nolli map. Roads, piazzas, and the interiors of public buildings form a series of connected spaces through which the public can flow.",
+          "This graphical representation is perhaps more faithful to the experience of walking through a city, as urban public life does not stop at a building's doorstep. When you walk from a piazza into the Pantheon, you remain within the \"public flow.\" By accurately reflecting the spatial relationship between the public and the private, the Nolli Map allowed architects, urban planners, and designers to see that buildings are not just \"solids\" (objects), but are the very containers that shape the urban public \"void\" (space)."
         ]
       },
       "example_sentence": {
         "zh": "在巴黎奥赛博物馆改造中，设计师运用诺利地图逻辑，将原火车站大厅的拱顶空间与塞纳河岸步行系统用白色区域贯通，使历史建筑成为城市公共网络的活性节点。",
-        "en": "TODO: example"
+        "en": "In renovating Paris’ Musée d’Orsay, designers applied Nolli Map logic by integrating the former railway station’s vaulted hall with the Seine riverbank promenade through contiguous white zones, transforming the historic structure into a dynamic nexus within the urban public network."
       },
-      "diagrams": [],
-      "related_terms": [],
+      "diagrams": [
+        {
+          "src": "images/诺利地图_diagram_1.png",
+          "caption": {
+            "zh": "诺利地图局部（图中有万神殿的平面细节）",
+            "en": "Detail of Nolli Map showing the Panthon"
+          }
+        },
+        {
+          "src": "images/诺利地图_diagram_2.png",
+          "caption": {
+            "zh": "诺利地图局部",
+            "en": "TODO: diagram caption"
+          }
+        },
+        {
+          "src": "images/诺利地图_diagram_3.png",
+          "caption": {
+            "zh": "以诺利地图为底图，由12位建筑师于1978年创作的《被打断的罗马》（Roma Interrotta）\n此局部与图2对应，由柯林·罗（Colin Rowe）创作",
+            "en": "TODO: diagram caption"
+          }
+        },
+        {
+          "src": "images/诺利地图_diagram_4.png",
+          "caption": {
+            "zh": "《向拉斯维加斯学习》中拉斯维加斯大道及其沿街赌场酒店的诺利地图",
+            "en": "TODO: diagram caption"
+          }
+        }
+      ],
+      "related_terms": [
+        {
+          "id": 37,
+          "relation": "概念相关"
+        },
+        {
+          "id": 40,
+          "relation": "概念相关"
+        },
+        {
+          "id": 43,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "TODO：导读",
@@ -4966,13 +5372,13 @@
         }
       ],
       "source": {
-        "zh": "《非地方：超现代人类学引论》（Non-Lieux: Introduction à une anthropologie de la surmodernité） 1992年 商务印书馆（2021年中文版）；台湾版名为《非地方：超現代人類學導論》，群学出版社。",
-        "en": "Non-Places: An Introduction to Supermodernity (Non-Lieux: Introduction à une anthropologie de la surmodernité）Translated by John Howe. London: Verso, 1995."
+        "zh": "马克·奥热，《非地方：超现代人类学引论 (#Non-Lieux: Introduction à une anthropologie de la surmodernité#)》，巴黎：论点出版社 (Le Seuil), 1992。中国大陆已出版，商务印书馆；港台有译本，群學出版社。",
+        "en": "Augé, Marc. #Non-Places: An Introduction to Supermodernity#. Translated by John Howe. London: Verso, 1995."
       },
       "source_image": "images/超现代性_source_cover.png",
       "related_works": [
         {
-          "zh": "《当代世界人类学》（Pour une anthropologie des mondes contemporains），1994年。（中文未出版） 《在一个地铁站的人类学》（Un ethnologue dans le métro），1986年。（浙江大学出版社，2018年）",
+          "zh": "TODO：相关著作",
           "en": "TODO: related works"
         }
       ],
@@ -5025,7 +5431,19 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": "压缩现代性悬浮精神熵",
+          "id": 16,
+          "relation": "概念相关"
+        },
+        {
+          "id": 31,
+          "relation": "概念相关"
+        },
+        {
+          "id": 23,
+          "relation": "概念相关"
+        },
+        {
+          "id": 22,
           "relation": "概念相关"
         }
       ],

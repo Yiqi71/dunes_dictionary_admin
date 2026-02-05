@@ -8,6 +8,18 @@ import { moveIndicator } from "./menu.js";
 
 let focusedWord = null;
 const MENU_COMPACT_CLASS = "menu-compact";
+function prepareLazyImage(img) {
+    if (!img) return;
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.classList.add("lazy-img");
+    if (img.complete && img.naturalWidth > 0) {
+        img.classList.remove("lazy-img");
+        return;
+    }
+    img.addEventListener("load", () => img.classList.remove("lazy-img"), { once: true });
+    img.addEventListener("error", () => img.classList.add("lazy-img-error"), { once: true });
+}
 const noteAuthor = {
     role: { zh: "编辑", en: "Editor" },
     name: { zh: "陈飞樾", en: "Chen Feiyue" }
@@ -284,6 +296,7 @@ export function updateWordDetails() {
     const imageTitle = document.querySelector('#image .detail-title');
     const imageEl = document.querySelector('#image img');
     const relatedWorksEl = document.querySelector('#image .related-works');
+    prepareLazyImage(imageEl);
     if (normalizeLang(state.currentLang) == "en") {
         imageTitle.textContent = 'Related Works';
     } else if (normalizeLang(state.currentLang) == "zh") {
@@ -304,6 +317,7 @@ export function updateWordDetails() {
     const proposerPrimary = document.querySelector('#proposer .proposer-primary');
     const proposerOri = document.querySelector('#proposer .proposer-ori');
     const proposerImg = document.querySelector('#proposer img');
+    prepareLazyImage(proposerImg);
     if(normalizeLang(state.currentLang)=="en"){
         proposerTitle.textContent = 'Proposer';
     }else if(normalizeLang(state.currentLang)=="zh"){

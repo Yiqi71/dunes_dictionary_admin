@@ -46,6 +46,7 @@ async function publishDraft() {
   const status = execSync("git status --porcelain", { cwd: PUBLIC_REPO }).toString().trim();
   if (status) {
     execSync("git commit -m \"Publish update\"", { cwd: PUBLIC_REPO, stdio: "inherit" });
+    execSync("git pull --rebase", { cwd: PUBLIC_REPO, stdio: "inherit" });
     execSync("git push", { cwd: PUBLIC_REPO, stdio: "inherit" });
   }
 

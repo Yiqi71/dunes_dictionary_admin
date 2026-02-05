@@ -99,6 +99,13 @@ function splitLinesToArray(htmlOrText) {
   return t.split(/\r?\n|\u2028/).map(x => x.trim()).filter(Boolean);
 }
 
+function normalizeTermName(v) {
+  return s(v).replace(/\s+/g, "");
+}
+
+function normalizeTermKey(v) {
+  return normalizeTermName(v).toLowerCase();
+}
 function placeholderZH(label) {
   return `TODO：${label}`;
 }
@@ -279,6 +286,7 @@ async function importExcelToDraft(xlsxPath) {
   // 4) build words[]
   const words = [];
   let autoId = 1;
+  const pendingRelated = [];
 
   function pickFirst(...values) {
     for (const v of values) {
@@ -375,11 +383,10 @@ async function importExcelToDraft(xlsxPath) {
       }];
     }
 
-    // related terms
+    // related terms (resolve after all words are built)
     const relatedRaw = cell(zhRow, COLS.RELATED_TERMS);
     if (relatedRaw) {
-      const parts = relatedRaw.split(/[,\uFF0C\u3001;\uFF1B\n]/).map(x => x.trim()).filter(Boolean);
-      w.related_terms = parts.map(x => ({ id: x, relation: "\u6982\u5ff5\u76f8\u5173" }));
+      pendingRelated.push({ word: w, raw: relatedRaw, selfZh: w.term.zh });
     }
 
     // contributor/editor info (keep empty if missing)
@@ -499,6 +506,69 @@ async function importExcelToDraft(xlsxPath) {
     );
 
     words.push(w);
+  }
+
+  // 5) resolve related_terms by zh name -> id
+  const termIdByKey = new Map();
+  const knownTermKeys = new Set();
+
+  for (const w of words) {
+    const zhKey = normalizeTermKey(w.term?.zh);
+    if (zhKey) {
+      termIdByKey.set(zhKey, w.id);
+      knownTermKeys.add(zhKey);
+    }
+
+    const enKey = normalizeTermKey(w.term?.en);
+    if (enKey) {
+      termIdByKey.set(enKey, w.id);
+      knownTermKeys.add(enKey);
+    }
+
+    termIdByKey.set(String(w.id), w.id);
+  }
+
+  const splitDelim = /[,\uFF0C\u3001;\uFF1B\n|\/]+/;
+  const knownTerms = Array.from(knownTermKeys).sort((a, b) => b.length - a.length);
+
+  function resolveRelatedIds(raw, selfZh) {
+    const rawStr = s(raw);
+    if (!rawStr) return [];
+    const selfNorm = normalizeTermKey(selfZh);
+    let parts = [];
+
+    if (splitDelim.test(rawStr)) {
+      parts = rawStr.split(splitDelim).map(x => x.trim()).filter(Boolean);
+    } else {
+      const rawNorm = normalizeTermKey(rawStr);
+      const hits = [];
+      for (const term of knownTerms) {
+        const idx = rawNorm.indexOf(term);
+        if (idx !== -1) hits.push({ term, idx });
+      }
+      hits.sort((a, b) => a.idx - b.idx);
+      parts = hits.map(h => h.term);
+    }
+
+    const ids = [];
+    const seen = new Set();
+    for (const p of parts) {
+      const pNorm = normalizeTermKey(p);
+      if (!pNorm || pNorm === selfNorm) continue;
+      const id = termIdByKey.get(pNorm);
+      if (id && !seen.has(id)) {
+        ids.push(id);
+        seen.add(id);
+      }
+    }
+    return ids;
+  }
+
+  for (const item of pendingRelated) {
+    const ids = resolveRelatedIds(item.raw, item.selfZh);
+    if (ids.length) {
+      item.word.related_terms = ids.map(id => ({ id, relation: "\u6982\u5ff5\u76f8\u5173" }));
+    }
   }
 
   const payload = {

@@ -19,6 +19,23 @@ import { logEvent, startWordView, endWordView } from "/analytics.js";
 let isPanelVisible = false;
 let isExpanded = false;
 
+function setupLazyImages(root) {
+    if (!root) return;
+    const imgs = root.querySelectorAll("img");
+    imgs.forEach((img) => {
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.classList.add("lazy-img");
+
+        if (img.complete && img.naturalWidth > 0) {
+            img.classList.remove("lazy-img");
+            return;
+        }
+        img.addEventListener("load", () => img.classList.remove("lazy-img"), { once: true });
+        img.addEventListener("error", () => img.classList.add("lazy-img-error"), { once: true });
+    });
+}
+
 function filterProposer(name) {
     const focusedWord = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!focusedWord) return [];
@@ -359,7 +376,7 @@ export function renderPanelSections() {
     const title = entryPanel.querySelector('.panel-top');
     title.innerHTML = `
     <p> ${String(currentWord.id).padStart(4, '0')} </p>
-    <img src = "${resolveImagePath(currentWord.concept_image)}" alt = "concept image"></img> 
+    <img src = "${resolveImagePath(currentWord.concept_image)}" alt = "concept image" loading="lazy" decoding="async"></img> 
     <div>
     <div class = "term-main"> ${currentWord.term?.[lang] || '未知单词'} </div>
     <div class = "term-ori"> ${currentWord.termOri || '无'} </div></div>
@@ -418,7 +435,7 @@ export function renderPanelSections() {
         currentWord.diagrams.forEach(diagram => {
             const block = document.createElement("div");
             block.innerHTML = `
-      <img src="${resolveImagePath(diagram.src)}" alt="diagram image">
+      <img src="${resolveImagePath(diagram.src)}" alt="diagram image" loading="lazy" decoding="async">
       <p class="diagram-caption">${diagram.caption?.[lang]}</p>
     `;
             diagramContainer.appendChild(block);
@@ -433,7 +450,7 @@ export function renderPanelSections() {
         const proposerBlock = document.createElement("div");
         proposerBlock.classList = "proposer-block";
         proposerBlock.innerHTML = `
-        <img alt="proposer's img" src=${resolveImagePath(proposer.image)}></img>
+        <img alt="proposer's img" src=${resolveImagePath(proposer.image)} loading="lazy" decoding="async"></img>
         <div>
             <p class="proposer-name">${proposer.name?.[lang]}</p>
             <p class="proposer-year">${proposer.year}</p>
@@ -469,6 +486,7 @@ export function renderPanelSections() {
                         <div id="editors-container">
                         ${currentWord.editors.map(editor => `<p>${editor?.[lang]}</p>`).join('')}
                         </div>`
+    setupLazyImages(entryPanel);
     renderScrollMarkers('entry');
 }
 

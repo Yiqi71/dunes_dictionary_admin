@@ -477,6 +477,15 @@ body[data-scale="5"] .detail-title {
     margin-top: 16px;
 }
 
+.lazy-img {
+    background-color: #d9d0c3;
+    transition: background-color 0.3s ease;
+}
+
+.lazy-img-error {
+    background-color: #c3b3a0;
+}
+
 
 #proposer {
     width: 260px;

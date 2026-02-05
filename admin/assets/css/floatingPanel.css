@@ -1,5 +1,18 @@
 /* Font imports are handled locally in assets/css/fonts.css */
 /* 浮窗样式 */
+.font-cyrillic {
+    font-family: "Noto Sans", "Segoe UI", "Arial", "Helvetica Neue", sans-serif;
+}
+
+.lazy-img {
+    background-color: #d9d0c3;
+    transition: background-color 0.3s ease;
+}
+
+.lazy-img-error {
+    background-color: #c3b3a0;
+}
+
 #floating-panel {
     position: fixed;
     top: 0;
