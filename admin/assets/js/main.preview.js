@@ -558,6 +558,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             window.about = data.about;
             window.allWords = data.words;
+            const homeIdRaw = data?.meta?.home_node_id;
+            const homeIdNum = Number(homeIdRaw);
+            if (Number.isFinite(homeIdNum)) {
+                state.focusedNodeId = homeIdNum;
+            }
             logEvent("data_loaded", { status: "success", count: data.words ? data.words.length : 0 });
             // 调用渲染函数，传入words数组
             renderWordUniverse(data.words);

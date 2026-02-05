@@ -1,7 +1,8 @@
 {
   "meta": {
-    "generated_at": "2026-02-05T22:06:49.765Z",
-    "source": "9aa54082ccf4e5f3c2d17010bbd4da31"
+    "generated_at": "2026-02-05T23:24:17.159Z",
+    "source": "38ed43e3be1d77b5d7e51ed373893770",
+    "home_node_id": 13
   },
   "words": [
     {
@@ -14,7 +15,7 @@
       "concept_image": "images/理性无知_aigc.png",
       "sm_title": {
         "zh": "不动脑子做决定，反而是最优的？",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -38,15 +39,15 @@
       "source_image": "images/理性无知_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "政治学 Political Science 心理与精神分析 Psychology & Psychoanalysis 媒介与传播 Media & Communications",
         "en": "政治学 Political Science 心理与精神分析 Psychology & Psychoanalysis 媒介与传播 Media & Communications"
       },
-      "proposing_country": "美国",
+      "proposing_country": "US",
       "proposing_time": "1957",
       "contributors": [
         {
@@ -177,7 +178,7 @@
       "concept_image": "images/可供性_aigc.png",
       "sm_title": {
         "zh": "不用谁教，我们就知道树冠可供遮雨，洞穴可供休憩",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -201,15 +202,15 @@
       "source_image": "images/可供性_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "心理与精神分析 Psychology & Psychoanalysis 建筑与城市 Architecture & Urbanism",
         "en": "心理与精神分析 Psychology & Psychoanalysis 建筑与城市 Architecture & Urbanism"
       },
-      "proposing_country": "美国",
+      "proposing_country": "US",
       "proposing_time": "1977",
       "contributors": [
         {
@@ -348,7 +349,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "我的存在和你的存在，创造了一个无形的场域",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -372,15 +373,15 @@
       "source_image": "images/主体间性_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "心理与精神分析 Psychology & Psychoanalysis 性别研究\tGender Studies 媒介与传播 Media & Communications",
         "en": "心理与精神分析 Psychology & Psychoanalysis 性别研究\tGender Studies 媒介与传播 Media & Communications"
       },
-      "proposing_country": "美国",
+      "proposing_country": "US",
       "proposing_time": "1978",
       "contributors": [
         {
@@ -515,7 +516,7 @@
       "concept_image": "images/非场所_aigc.png",
       "sm_title": {
         "zh": "那些千篇一律又不建立真实人际关系的机场车站",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -539,15 +540,15 @@
       "source_image": "images/非场所_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "建筑与城市 Architecture & Urbanism 人类学 Anthropology",
         "en": "建筑与城市 Architecture & Urbanism 人类学 Anthropology"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1992",
       "contributors": [
         {
@@ -647,8 +648,8 @@
       "termOri": "Ghetto",
       "concept_image": "images/隔都_aigc.png",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
@@ -672,15 +673,15 @@
       "source_image": "images/隔都_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "建筑与城市 Architecture & Urbanism 人类学 Anthropology 历史学 History",
         "en": "建筑与城市 Architecture & Urbanism 人类学 Anthropology 历史学 History"
       },
-      "proposing_country": "意大利",
+      "proposing_country": "IT",
       "proposing_time": "1516",
       "contributors": [
         {
@@ -741,8 +742,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -761,7 +762,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "沙丘词典 丨 （一）为了能说同一门语言",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -785,15 +786,15 @@
       "source_image": "images/机构_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "哲学\tPhilosophy 建筑与城市 Architecture & Urbanism 人类学 Anthropology",
         "en": "哲学\tPhilosophy 建筑与城市 Architecture & Urbanism 人类学 Anthropology"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1975",
       "contributors": [
         {
@@ -903,7 +904,7 @@
       "concept_image": "images/异托邦_aigc.png",
       "sm_title": {
         "zh": "沙丘词典丨（二）“异托邦”是什么意思？",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -927,15 +928,15 @@
       "source_image": "images/异托邦_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "哲学\tPhilosophy 建筑与城市 Architecture & Urbanism 人类学 Anthropology",
         "en": "哲学\tPhilosophy 建筑与城市 Architecture & Urbanism 人类学 Anthropology"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1967",
       "contributors": [
         {
@@ -994,8 +995,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -1013,8 +1014,8 @@
       "termOri": "Panopticon",
       "concept_image": "images/全景敞视_aigc.png",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
@@ -1038,15 +1039,15 @@
       "source_image": "images/全景敞视_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "哲学\tPhilosophy 建筑与城市 Architecture & Urbanism 社会学 Sociology 政治学 Political Science",
         "en": "哲学\tPhilosophy 建筑与城市 Architecture & Urbanism 社会学 Sociology 政治学 Political Science"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1975",
       "contributors": [
         {
@@ -1097,8 +1098,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -1117,7 +1118,7 @@
       "concept_image": "images/控制论_aigc.png",
       "sm_title": {
         "zh": "沙丘词典丨「控制论」这个概念，其实每一个自媒体人都身临其境",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -1141,15 +1142,15 @@
       "source_image": "images/控制论_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "哲学\tPhilosophy 社会学 Sociology 物理学 Physics 化学与生命科学 Chemistry & Life Sciences",
         "en": "哲学\tPhilosophy 社会学 Sociology 物理学 Physics 化学与生命科学 Chemistry & Life Sciences"
       },
-      "proposing_country": "美国",
+      "proposing_country": "US",
       "proposing_time": "1948",
       "contributors": [
         {
@@ -1208,8 +1209,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -1228,7 +1229,7 @@
       "concept_image": "images/倦怠态度_aigc.png",
       "sm_title": {
         "zh": "沙丘词典丨「倦怠态度」是都市人精神过载而产生的保护机制",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -1252,15 +1253,15 @@
       "source_image": "images/倦怠态度_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "建筑与城市 Architecture & Urbanism 社会学 Sociology",
         "en": "建筑与城市 Architecture & Urbanism 社会学 Sociology"
       },
-      "proposing_country": "德国",
+      "proposing_country": "DE",
       "proposing_time": "1903",
       "contributors": [
         {
@@ -1319,8 +1320,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -1338,8 +1339,8 @@
       "termOri": "Aura",
       "concept_image": "images/灵韵_aigc.png",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
@@ -1363,15 +1364,15 @@
       "source_image": "images/灵韵_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "艺术史论\tArt History & Theory 电影学 Film Studies",
         "en": "艺术史论\tArt History & Theory 电影学 Film Studies"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1957",
       "contributors": [
         {
@@ -1419,8 +1420,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -1438,8 +1439,8 @@
       "termOri": "mise en abîme",
       "concept_image": "images/叙事内镜_aigc.png",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
@@ -1463,15 +1464,15 @@
       "source_image": "images/叙事内镜_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "文学 Literature 艺术史论\tArt History & Theory 电影学 Film Studies",
         "en": "文学 Literature 艺术史论\tArt History & Theory 电影学 Film Studies"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1893",
       "contributors": [
         {
@@ -1557,8 +1558,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -1577,7 +1578,7 @@
       "concept_image": "images/档案热_aigc.png",
       "sm_title": {
         "zh": "人们热衷于记录和存档，然后再毁坏和丢失",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -1601,15 +1602,15 @@
       "source_image": "images/档案热_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "哲学\tPhilosophy 社会学 Sociology 历史学 History 文学 Literature",
         "en": "哲学\tPhilosophy 社会学 Sociology 历史学 History 文学 Literature"
       },
-      "proposing_country": "英国",
+      "proposing_country": "GB",
       "proposing_time": "1995",
       "contributors": [
         {
@@ -1686,8 +1687,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -1739,13 +1740,13 @@
       "id": 14,
       "term": {
         "zh": "表层阅读",
-        "en": "TODO: term"
+        "en": "term"
       },
-      "termOri": "TODO: termOri",
+      "termOri": "termOri",
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "做多了阅读理解，我们都需要一点“表层阅读”",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -1757,20 +1758,20 @@
           "year": "1965—\n1966—",
           "role": {
             "zh": "文学理论家\n文学学者",
-            "en": "TODO: role"
+            "en": "role"
           },
           "image": "TODO: proposer_image"
         }
       ],
       "source": {
         "zh": "斯蒂芬·贝斯特、沙伦·马库斯，《表层阅读：导论 (#Surface Reading: An Introduction#)》，载《表征 (#Representations#)》第108卷第1期，伯克利：加州大学出版社 (University of California Press), 2009。尚无中文翻译。",
-        "en": "TODO: source"
+        "en": "source"
       },
       "source_image": "images/表层阅读_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
@@ -1801,26 +1802,26 @@
       "edit_date": "2023/12/25",
       "brief_definition": {
         "zh": "提倡表面关注的诠释方法",
-        "en": "TODO: brief"
+        "en": "brief"
       },
       "extended_definition": {
         "zh": [
           "想象你坐在一个阳光明媚的公园长椅上，翻开一本诗集，不再绞尽脑汁地猜测诗人是否在隐喻社会不公或心理创伤，而是单纯地沉醉于文字的韵律、纸张的触感，以及诗句中描绘的蓝天白云——就像享受一杯清茶般纯粹。这种阅读方式，正是“表层阅读”的核心：它鼓励我们放下“侦探”般的猜疑，回归文本的可见表面。 表层阅读源于对传统文学批评方法的反思。在20世纪，主流批评如“症候阅读”（Symptomatic Reading）或“妄想阅读”（Paranoid Reading）要求读者扮演多疑的侦探，坚信文本背后隐藏着深层含义、意识形态或“症状”，必须挖掘出来才能揭示真相。例如，在分析一部小说时，批评家可能会过度解读一个角色的行为，将其视为资本主义压迫的象征。然而，表层阅读反对这种“深度挖掘”，转而强调文本的表面元素：包括语言的结构、字面意义、物质形式（如书籍的物理属性），以及显而易见的规律。它倡导一种“不带有妄想和猜忌”的阅读态度，旨在让读者从过度解读的负担中解放出来，在文学本身的享受中获得自由——就像在公园里，你不再为每片落叶赋予象征意义，而是单纯欣赏它的飘落之美。 这种方法并非否定深度，而是提醒我们：文本的表面同样丰富。它有助于避免主观臆断，促进更客观的文学分析，同时让阅读回归愉悦的本质。在数字时代，表层阅读还呼应了人们对信息过载的反思，鼓励我们慢下来，专注于眼前的内容。"
         ],
         "en": [
-          "TODO: extended"
+          "extended"
         ]
       },
       "example_sentence": {
         "zh": "在讨论一部现代小说时，教授建议学生采用表层阅读的方法，专注于分析对话的节奏和场景描述的视觉细节，而不是急于推断作者的潜在政治立场。",
-        "en": "TODO: example"
+        "en": "example"
       },
       "diagrams": [],
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -1833,13 +1834,13 @@
       "id": 15,
       "term": {
         "zh": "关怀阶级",
-        "en": "TODO: term"
+        "en": "term"
       },
-      "termOri": "TODO: termOri",
+      "termOri": "termOri",
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "“关怀阶级”营造了公共空间和公共变革的前提",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -1851,20 +1852,20 @@
           "year": "1961-2020",
           "role": {
             "zh": "人类学家",
-            "en": "TODO: role"
+            "en": "role"
           },
           "image": "images/关怀阶级_proposer.png"
         }
       ],
       "source": {
         "zh": "欧文·琼斯，《过于关怀是工人阶级的诅咒 (#Caring too much. That's the curse of the working classes#)》，载《卫报 (#The Guardian#)》，2014。尚无中文翻译。",
-        "en": "TODO: source"
+        "en": "source"
       },
       "source_image": "TODO: source_cover",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
@@ -1895,26 +1896,26 @@
       "edit_date": "2023/12/06",
       "brief_definition": {
         "zh": "被忽视的、以情感关怀为核心的非标准化劳动群体。",
-        "en": "TODO: brief"
+        "en": "brief"
       },
       "extended_definition": {
         "zh": [
           "想象一下清晨的医院走廊。张护士长刚结束夜班，她不仅完成了输液、记录体征等“分内事”，更在一位焦虑的癌症患者床边多停留了半小时，握着他的手，听他倾诉对治疗的恐惧和家庭的担忧。她的眼神、语气和那份安静的陪伴，是药物之外的另一剂“良药”。这份工作记录表上无法量化、绩效考核难以体现的付出，正是“关怀阶级”劳动的缩影。 “关怀阶级”指的是那些在日常工作中，将大量时间和精力投入到对他人直接的、情感性的、非标准化的照料和支持中的劳动者群体。他们的核心价值不在于生产有形的商品或完成可精确计量的任务，而在于维系人际关系、提供情感支持、保障他人的基本福祉和尊严。这包括但不限于：基层服务人员（如社区工作者、养老护理员、幼儿教师）、大量从事辅助性工作的服务业人员（如文中提到的检票员），以及承担着繁重无偿家务和情感劳动的个体（尤其是女性）。 这类劳动常被主流经济模式所忽视或低估，因为它难以被标准化、流程化，其产出——如安全感、信任感、情感联结——不易被货币化衡量。然而，正是这些看似“无形”的关怀劳动，构成了社会运转和人日常生活的“情感脚手架”。它支撑着正式经济体系的运行（例如，家庭照护让其他成员能投入有偿工作），并直接关系到人的生活质量和社会凝聚力。 关注“关怀阶级”，旨在揭示和重新评估这类劳动的巨大社会价值，挑战以生产效率、GDP增长和标准化流程为核心的传统经济叙事。它呼吁社会政策和经济体系转向更重视人的实际福祉、互助关系和可持续性的公共经济模式，承认并支持这些维系社会基本温度的“关怀者”。"
         ],
         "en": [
-          "TODO: extended"
+          "extended"
         ]
       },
       "example_sentence": {
         "zh": "部分批判性社会理论忽视\"关怀\", 认为\"关怀\"是私人，家庭领域的活动，缺乏政治性讨论的可能，是对积极行动和结构性变革的逃避，有去政治化的色彩。然而很多时候，\"关怀阶级\"营造了公共空间和公共变革的前提，也应当被重新思考。",
-        "en": "TODO: example"
+        "en": "example"
       },
       "diagrams": [],
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -1927,13 +1928,13 @@
       "id": 16,
       "term": {
         "zh": "压缩现代性",
-        "en": "TODO: term"
+        "en": "term"
       },
-      "termOri": "TODO: termOri",
+      "termOri": "termOri",
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "过快的现代化带来了复合的社会危机",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -1945,20 +1946,20 @@
           "year": "1962-",
           "role": {
             "zh": "社会学家",
-            "en": "TODO: role"
+            "en": "role"
           },
           "image": "images/压缩现代性_proposer.png"
         }
       ],
       "source": {
         "zh": "张庆燮，《压缩现代性与自我发展精神 (#Compressed Modernity and the Spirit of Self-Development#)》，首尔：首尔大学出版社 (Seoul National University Press), 1999。尚无中文翻译。",
-        "en": "TODO: source"
+        "en": "source"
       },
       "source_image": "images/压缩现代性_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
@@ -1989,26 +1990,26 @@
       "edit_date": "2024/05/05",
       "brief_definition": {
         "zh": "现代化进程过快导致的高度压缩时空共存状况",
-        "en": "TODO: brief"
+        "en": "brief"
       },
       "extended_definition": {
         "zh": [
           "想象一下，你在玩一款城市模拟游戏，比如《模拟城市》。游戏中，你需要在短短几年内将一个小村庄发展成高科技大都市。你疯狂地建造工厂、摩天大楼和AI数据中心，但村庄里的老庙宇还没拆除，居民们一边用智能手机点外卖，一边参加传统祭祀活动，同时担心机器人会抢走他们的工作。这种混乱而快速的转型，就是压缩现代性的缩影——不同时代元素被硬生生挤进同一个时空里。 压缩现代性描述的是社会变迁中时间和空间被极度压缩的现象。当现代化进程过快时，前现代（如传统农业社会）、现代（如工业化城市）和后现代（如数字风险和全球化）元素被迫共存，形成一种流动而复合的体系。以韩国为例，它在20世纪后半叶仅用50年就完成了西方200-300年的工业化和经济增长，导致社会同时呈现发达国家的高科技、不发达国家的贫困问题以及独特的文化冲突。例如，首尔的年轻人可能一边追求个人主义（后现代），一边被家庭责任（前现代）束缚，同时面临经济不稳定（现代风险）。这种压缩性催生了“快文化”——结果主义、指标至上和效率优先，但也带来复合风险，如环境危机或社会分裂。张庆燮将这一概念扩展到东亚，中国改革开放的快速转型也类似：传统家庭价值观与现代个体主义交织，阎云翔等学者用它分析中国社会变迁。本质上，压缩现代性揭示了快速发展的代价：历史被折叠，社会在矛盾中前行。"
         ],
         "en": [
-          "TODO: extended"
+          "extended"
         ]
       },
       "example_sentence": {
         "zh": "在巴西里约热内卢的贫民窟改造项目中，压缩现代性现象表现为原住民社区的传统手工艺与现代数字创业公司共存，居民们既参与古老节日庆典，又通过社交媒体推广业务，同时面临快速城市化带来的住房短缺问题。",
-        "en": "TODO: example"
+        "en": "example"
       },
       "diagrams": [],
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -2027,7 +2028,7 @@
       "concept_image": "images/阈限空间_aigc.png",
       "sm_title": {
         "zh": "那些空无一人的酒店走廊，废弃酒店的消防通道……",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -2051,15 +2052,15 @@
       "source_image": "images/阈限空间_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "建筑与城市 Architecture & Urbanism 人类学 Anthropology 社会学 Sociology",
         "en": "建筑与城市 Architecture & Urbanism 人类学 Anthropology 社会学 Sociology"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1909",
       "contributors": [
         {
@@ -2126,8 +2127,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -2185,7 +2186,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "关于没有边界感的亲戚",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -2209,15 +2210,15 @@
       "source_image": "images/课题分离_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "心理与精神分析 Psychology & Psychoanalysis 社会学 Sociology",
         "en": "心理与精神分析 Psychology & Psychoanalysis 社会学 Sociology"
       },
-      "proposing_country": "奥地利",
+      "proposing_country": "AT",
       "proposing_time": "1920",
       "contributors": [
         {
@@ -2276,8 +2277,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -2296,7 +2297,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "机械之眼所看到的世界",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -2320,15 +2321,15 @@
       "source_image": "images/电影眼_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "电影学 Film Studies",
         "en": "电影学 Film Studies"
       },
-      "proposing_country": "苏联",
+      "proposing_country": "RU",
       "proposing_time": "1923",
       "contributors": [
         {
@@ -2383,8 +2384,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -2419,11 +2420,11 @@
         "zh": "赛博格",
         "en": "Cyborg"
       },
-      "termOri": "TODO: termOri",
+      "termOri": "termOri",
       "concept_image": "TODO: concept_image",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
@@ -2447,15 +2448,15 @@
       "source_image": "TODO: source_cover",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "哲学\tPhilosophy 政治学 Political Science",
         "en": "哲学\tPhilosophy 政治学 Political Science"
       },
-      "proposing_country": "美国",
+      "proposing_country": "US",
       "proposing_time": "1985",
       "contributors": [
         {
@@ -2479,19 +2480,19 @@
       "edit_date": "TODO: contribute_date",
       "brief_definition": {
         "zh": "一种新生命形式，指在生物中植入或装配人造部分或人工科技，以此恢复或增强其原有生物体的能力",
-        "en": "TODO: brief"
+        "en": "brief"
       },
       "extended_definition": {
         "zh": [
-          "TODO：详细释义"
+          "详细释义"
         ],
         "en": [
-          "TODO: extended"
+          "extended"
         ]
       },
       "example_sentence": {
         "zh": "隐形眼镜、降噪耳机、心脏起搏器、义肢等“增强装置”对很多人来说已必不可少，从这个角度看来，或许地球上大多数人已经可以被看做是赛博格。",
-        "en": "TODO: example"
+        "en": "example"
       },
       "diagrams": [],
       "related_terms": [
@@ -2506,8 +2507,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -2546,7 +2547,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "国家创造「牲人」来实现更广泛更深刻的主权控制",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -2570,15 +2571,15 @@
       "source_image": "images/牲人_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "哲学\tPhilosophy 人类学 Anthropology",
         "en": "哲学\tPhilosophy 人类学 Anthropology"
       },
-      "proposing_country": "意大利",
+      "proposing_country": "IT",
       "proposing_time": "1995",
       "contributors": [
         {
@@ -2624,8 +2625,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -2683,7 +2684,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "无序度并不等于事物的混乱程度",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -2707,15 +2708,15 @@
       "source_image": "images/熵_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "物理学 Physics",
         "en": "物理学 Physics"
       },
-      "proposing_country": "瑞士",
+      "proposing_country": "CH",
       "proposing_time": "1865",
       "contributors": [
         {
@@ -2763,8 +2764,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -2797,43 +2798,43 @@
       "id": 23,
       "term": {
         "zh": "精神熵",
-        "en": "TODO: term"
+        "en": "term"
       },
-      "termOri": "TODO: termOri",
+      "termOri": "termOri",
       "concept_image": "TODO: concept_image",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
           "name": {
-            "zh": "TODO：提出者",
-            "en": "TODO: proposer",
-            "ori": "TODO: proposerOri"
+            "zh": "提出者",
+            "en": "proposer",
+            "ori": "proposerOri"
           },
           "year": "TODO: year",
           "role": {
-            "zh": "TODO：身份",
-            "en": "TODO: role"
+            "zh": "身份",
+            "en": "role"
           },
           "image": "TODO: proposer_image"
         }
       ],
       "source": {
-        "zh": "TODO：出处",
-        "en": "TODO: source"
+        "zh": "出处",
+        "en": "source"
       },
       "source_image": "TODO: source_cover",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
-        "zh": "TODO：学科类型",
-        "en": "TODO: domain"
+        "zh": "学科类型",
+        "en": "domain"
       },
       "proposing_country": "TODO: country",
       "proposing_time": "TODO: time",
@@ -2842,20 +2843,20 @@
       "editors": [],
       "edit_date": "TODO: contribute_date",
       "brief_definition": {
-        "zh": "TODO：简要释义",
-        "en": "TODO: brief"
+        "zh": "简要释义",
+        "en": "brief"
       },
       "extended_definition": {
         "zh": [
-          "TODO：详细释义"
+          "详细释义"
         ],
         "en": [
-          "TODO: extended"
+          "extended"
         ]
       },
       "example_sentence": {
-        "zh": "TODO：例句",
-        "en": "TODO: example"
+        "zh": "例句",
+        "en": "example"
       },
       "diagrams": [],
       "related_terms": [
@@ -2870,8 +2871,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -2890,7 +2891,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "沙丘词典丨上门制图？中国建筑行业是否也在无奈地走入「零工经济」",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -2914,15 +2915,15 @@
       "source_image": "images/零工经济_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "社会学 Sociology 经济学 Economics 建筑与城市 Architecture & Urbanism",
         "en": "社会学 Sociology 经济学 Economics 建筑与城市 Architecture & Urbanism"
       },
-      "proposing_country": "美国",
+      "proposing_country": "US",
       "proposing_time": "2009",
       "contributors": [
         {
@@ -2971,8 +2972,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -2990,8 +2991,8 @@
       "termOri": "χώρα",
       "concept_image": "TODO: concept_image",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
@@ -3015,15 +3016,15 @@
       "source_image": "TODO: source_cover",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
-        "zh": "TODO：学科类型",
-        "en": "TODO: domain"
+        "zh": "学科类型",
+        "en": "domain"
       },
-      "proposing_country": "法国",
+      "proposing_country": "French",
       "proposing_time": "TODO: time",
       "contributors": [
         {
@@ -3041,27 +3042,27 @@
       "editors": [],
       "edit_date": "2026/01/17",
       "brief_definition": {
-        "zh": "TODO：简要释义",
-        "en": "TODO: brief"
+        "zh": "简要释义",
+        "en": "brief"
       },
       "extended_definition": {
         "zh": [
-          "TODO：详细释义"
+          "详细释义"
         ],
         "en": [
-          "TODO: extended"
+          "extended"
         ]
       },
       "example_sentence": {
-        "zh": "TODO：例句",
-        "en": "TODO: example"
+        "zh": "例句",
+        "en": "example"
       },
       "diagrams": [],
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -3080,7 +3081,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "词语反对词语",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -3104,15 +3105,15 @@
       "source_image": "images/反训词_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "语言学 Linguistics 文化研究 Cultural Studies",
         "en": "语言学 Linguistics 文化研究 Cultural Studies"
       },
-      "proposing_country": "美国",
+      "proposing_country": "US",
       "proposing_time": "1960",
       "contributors": [
         {
@@ -3236,7 +3237,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "词语反对词语",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -3254,21 +3255,21 @@
         }
       ],
       "source": {
-        "zh": "TODO：出处",
-        "en": "TODO: source"
+        "zh": "出处",
+        "en": "source"
       },
       "source_image": "images/反义复词_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "语言学 Linguistics 文化研究 Cultural Studies",
         "en": "语言学 Linguistics 文化研究 Cultural Studies"
       },
-      "proposing_country": "美国",
+      "proposing_country": "US",
       "proposing_time": "1968",
       "contributors": [
         {
@@ -3322,8 +3323,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -3362,7 +3363,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "宇宙中有些事物，是我们永远看不见的",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -3386,15 +3387,15 @@
       "source_image": "images/事件视界_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "物理学 Physics",
         "en": "物理学 Physics"
       },
-      "proposing_country": "德国",
+      "proposing_country": "DE",
       "proposing_time": "1916",
       "contributors": [
         {
@@ -3438,8 +3439,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -3478,7 +3479,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "我们不经意说走嘴的话，可能反映了内心真实的想法",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -3502,15 +3503,15 @@
       "source_image": "images/行为倒错_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "心理与精神分析 Psychology & Psychoanalysis",
         "en": "心理与精神分析 Psychology & Psychoanalysis"
       },
-      "proposing_country": "奥地利",
+      "proposing_country": "AT",
       "proposing_time": "1901",
       "contributors": [
         {
@@ -3556,8 +3557,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -3576,7 +3577,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "收入增加不多，但被创造的需求增加了很多很多",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -3600,15 +3601,15 @@
       "source_image": "images/新穷人_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "社会学 Sociology 心理与精神分析 Psychology & Psychoanalysis",
         "en": "社会学 Sociology 心理与精神分析 Psychology & Psychoanalysis"
       },
-      "proposing_country": "英国",
+      "proposing_country": "GB",
       "proposing_time": "1998",
       "contributors": [
         {
@@ -3652,8 +3653,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -3711,7 +3712,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "没有人活在当下和此处，都期望着暴富然后逃离",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -3735,15 +3736,15 @@
       "source_image": "images/悬浮_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "人类学 Anthropology 社会学 Sociology",
         "en": "人类学 Anthropology 社会学 Sociology"
       },
-      "proposing_country": "中国",
+      "proposing_country": "CN",
       "proposing_time": "1995",
       "contributors": [
         {
@@ -3792,8 +3793,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -3851,7 +3852,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "「维佐人」的身份不是生来即有，也非一成不变",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -3875,15 +3876,15 @@
       "source_image": "images/维佐人_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "人类学 Anthropology",
         "en": "人类学 Anthropology"
       },
-      "proposing_country": "英国",
+      "proposing_country": "GB",
       "proposing_time": "1995",
       "contributors": [
         {
@@ -3927,8 +3928,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -3946,8 +3947,8 @@
       "termOri": "Cognates",
       "concept_image": "TODO: concept_image",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
@@ -3971,15 +3972,15 @@
       "source_image": "images/同源词_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "语言学 Linguistics 文化研究 Cultural Studies 媒介与传播 Media & Communications",
         "en": "语言学 Linguistics 文化研究 Cultural Studies 媒介与传播 Media & Communications"
       },
-      "proposing_country": "印度",
+      "proposing_country": "IN",
       "proposing_time": "1786",
       "contributors": [
         {
@@ -4027,8 +4028,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -4046,8 +4047,8 @@
       "termOri": "Doublets",
       "concept_image": "TODO: concept_image",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
@@ -4059,7 +4060,7 @@
           "year": "1844—1898",
           "role": {
             "zh": "罗曼语语文学家",
-            "en": "TODO: role"
+            "en": "role"
           },
           "image": "TODO: proposer_image"
         }
@@ -4071,15 +4072,15 @@
       "source_image": "images/同源异形词_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "语言学 Linguistics 文化研究 Cultural Studies 媒介与传播 Media & Communications",
         "en": "语言学 Linguistics 文化研究 Cultural Studies 媒介与传播 Media & Communications"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1868",
       "contributors": [
         {
@@ -4125,8 +4126,8 @@
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -4145,7 +4146,7 @@
       "concept_image": "images/仿译词_aigc.png",
       "sm_title": {
         "zh": "蓝牙、超人、洗脑、摩天大楼……",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -4169,15 +4170,15 @@
       "source_image": "images/仿译词_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "语言学 Linguistics 文化研究 Cultural Studies 媒介与传播 Media & Communications",
         "en": "语言学 Linguistics 文化研究 Cultural Studies 媒介与传播 Media & Communications"
       },
-      "proposing_country": "中国",
+      "proposing_country": "CN",
       "proposing_time": "1957",
       "contributors": [
         {
@@ -4299,7 +4300,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "「普罗」其实是一个音译词\n幽默、休克、歇斯底里、俱乐部……",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -4323,15 +4324,15 @@
       "source_image": "images/音译词_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "语言学 Linguistics 文化研究 Cultural Studies 媒介与传播 Media & Communications",
         "en": "语言学 Linguistics 文化研究 Cultural Studies 媒介与传播 Media & Communications"
       },
-      "proposing_country": "中国",
+      "proposing_country": "CN",
       "proposing_time": "1957",
       "contributors": [
         {
@@ -4457,7 +4458,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "一座塔楼，一条小径，几个行人，可能就构成了一个城市",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -4481,15 +4482,15 @@
       "source_image": "images/心理地理学_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "文化研究 Cultural Studies 建筑与城市 Architecture & Urbanism",
         "en": "文化研究 Cultural Studies 建筑与城市 Architecture & Urbanism"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1955",
       "contributors": [
         {
@@ -4546,8 +4547,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -4566,7 +4567,7 @@
       "concept_image": "images/做专家_aigc.png",
       "sm_title": {
         "zh": "卖AI课的「专家」不一定懂得技术，但一定懂得表演和行业黑话",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -4590,15 +4591,15 @@
       "source_image": "images/做专家_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "人类学 Anthropology 社会学 Sociology 教育学 Education 语言学 Linguistics 媒介与传播 Media & Communications",
         "en": "人类学 Anthropology 社会学 Sociology 教育学 Education 语言学 Linguistics 媒介与传播 Media & Communications"
       },
-      "proposing_country": "美国",
+      "proposing_country": "US",
       "proposing_time": "2010",
       "contributors": [
         {
@@ -4663,8 +4664,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -4703,7 +4704,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "「技术有灵论」不只是针对电子产品的拟人化修辞",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -4727,15 +4728,15 @@
       "source_image": "images/技术有灵论_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "人类学 Anthropology 文化研究 Cultural Studies 科学技术史 History of Science & Tech",
         "en": "人类学 Anthropology 文化研究 Cultural Studies 科学技术史 History of Science & Tech"
       },
-      "proposing_country": "美国/日本",
+      "proposing_country": "JP",
       "proposing_time": "2006",
       "contributors": [
         {
@@ -4784,8 +4785,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -4804,7 +4805,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "沙丘词典｜Citywalk的人算是「游荡者」吗？",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -4828,15 +4829,15 @@
       "source_image": "images/游荡者_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "社会学 Sociology 哲学\tPhilosophy 建筑与城市 Architecture & Urbanism",
         "en": "社会学 Sociology 哲学\tPhilosophy 建筑与城市 Architecture & Urbanism"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1863",
       "contributors": [
         {
@@ -4893,8 +4894,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -4937,15 +4938,15 @@
       "source_image": "images/玩工_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "社会学 Sociology 媒介与传播 Media & Communications",
         "en": "社会学 Sociology 媒介与传播 Media & Communications"
       },
-      "proposing_country": "德国",
+      "proposing_country": "DE",
       "proposing_time": "2005",
       "contributors": [
         {
@@ -4996,8 +4997,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -5010,43 +5011,43 @@
       "id": 42,
       "term": {
         "zh": "活人感",
-        "en": "TODO: term"
+        "en": "term"
       },
-      "termOri": "TODO: termOri",
+      "termOri": "termOri",
       "concept_image": "TODO: concept_image",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
           "name": {
             "zh": "中文互联网网民群体",
-            "en": "TODO: proposer",
-            "ori": "TODO: proposerOri"
+            "en": "proposer",
+            "ori": "proposerOri"
           },
           "year": "TODO: year",
           "role": {
-            "zh": "TODO：身份",
-            "en": "TODO: role"
+            "zh": "身份",
+            "en": "role"
           },
           "image": "TODO: proposer_image"
         }
       ],
       "source": {
-        "zh": "TODO：出处",
-        "en": "TODO: source"
+        "zh": "出处",
+        "en": "source"
       },
       "source_image": "TODO: source_cover",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
-        "zh": "TODO：学科类型",
-        "en": "TODO: domain"
+        "zh": "学科类型",
+        "en": "domain"
       },
       "proposing_country": "中国",
       "proposing_time": "2021",
@@ -5067,7 +5068,7 @@
       "edit_date": "TODO: contribute_date",
       "brief_definition": {
         "zh": "区别于工业模板、易被感知、真实抒发、可能带瑕疵的生命气息",
-        "en": "TODO: brief"
+        "en": "brief"
       },
       "extended_definition": {
         "zh": [
@@ -5076,19 +5077,19 @@
           "“活人感”虽然是高度绑定在中文互联网的词汇，但可以和菲利普·奥斯兰德（Philip Auslander）所讨论的“现场性”（Liveness）平行讨论，甚至可以被看作后者在数字时代的变体。它不是生理意义上的活着，而是一种通过不可预测性、情感流露以及对日常琐事的共情所构建的互动体验。当网络内容生产从早期的 UGC（用户生成内容），到PGC（专业生成内容） 占据主流，再到AIGC（人工智能生成的内容）和精准算法大行其道，那些带有“人味儿”的小缺憾、即时性的情绪波动、甚至是偶尔的笨拙，反而成为了证明个体存在、建立心理连接的核心资产，也成为了网友寻找“活人同类”的某种暗号。"
         ],
         "en": [
-          "TODO: extended"
+          "extended"
         ]
       },
       "example_sentence": {
-        "zh": "TODO：例句",
-        "en": "TODO: example"
+        "zh": "例句",
+        "en": "example"
       },
       "diagrams": [],
       "related_terms": [],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -5101,13 +5102,13 @@
       "id": 43,
       "term": {
         "zh": "褶子城市",
-        "en": "TODO: term"
+        "en": "term"
       },
-      "termOri": "TODO: termOri",
+      "termOri": "termOri",
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "沙丘词典丨「褶子城市」保有生活的复杂性，因为它不止有光亮的一面",
-        "en": "TODO: social title"
+        "en": "social title"
       },
       "proposers": [
         {
@@ -5119,20 +5120,20 @@
           "year": "1969—至今",
           "role": {
             "zh": "中国哲学家、编译者",
-            "en": "TODO: role"
+            "en": "role"
           },
           "image": "images/褶子城市_proposer.png"
         }
       ],
       "source": {
         "zh": "汪民安 (编译)，《褶子 (#Le Pli#)》，开封：河南大学出版社，2018。中国大陆已出版，河南大学出版社。",
-        "en": "TODO: source"
+        "en": "source"
       },
       "source_image": "images/褶子城市_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
@@ -5163,7 +5164,7 @@
       "edit_date": "2023/11/03",
       "brief_definition": {
         "zh": "指既非封闭也非完全敞开，拥有不断折叠的层次，公共性与私密性共存的城市",
-        "en": "TODO: brief"
+        "en": "brief"
       },
       "extended_definition": {
         "zh": [
@@ -5171,12 +5172,12 @@
           "这一概念源于法国哲学家吉尔·德勒兹的“褶子”（fold）哲学隐喻，他将世界视为不断折叠、缠绕的动态网络，超越简单的二元对立（如开放/封闭）。中文编译者汪民安将其创造性应用到城市学领域，区分出三种城市类型：“条纹城市”指僵化的网格系统（如只有大马路的开发区），缺乏日常生活活力；“平滑城市”则像精密机器（如高效运转的新区），追求无缝效率。而“褶子城市”与之不同，它通过“褶皱”创造出丰富层次——小巷、庭院、过渡空间——既容纳公共社交，又庇护私密生活，孕育出更多可能性（如街头艺术或社区活动）。本质上，褶子城市强调空间的流动性与复杂性，反映了德勒兹哲学中“生成”而非“存在”的核心思想，为现代城市规划提供了批判性视角。"
         ],
         "en": [
-          "TODO: extended"
+          "extended"
         ]
       },
       "example_sentence": {
         "zh": "在上海的老城厢改造中，设计师保留了弄堂的曲折布局，让公共市集与私密住宅交织，创造出典型的褶子城市空间，既促进社区互动，又尊重居民隐私。",
-        "en": "TODO: example"
+        "en": "example"
       },
       "diagrams": [],
       "related_terms": [
@@ -5195,8 +5196,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -5239,15 +5240,15 @@
       "source_image": "images/诺利地图_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "建筑与城市 Architecture & Urbanism 景观与地理 Landscape & Geography",
         "en": "建筑与城市 Architecture & Urbanism 景观与地理 Landscape & Geography"
       },
-      "proposing_country": "意大利",
+      "proposing_country": "IT",
       "proposing_time": "1748",
       "contributors": [
         {
@@ -5300,21 +5301,21 @@
           "src": "images/诺利地图_diagram_2.png",
           "caption": {
             "zh": "诺利地图局部",
-            "en": "TODO: diagram caption"
+            "en": "diagram caption"
           }
         },
         {
           "src": "images/诺利地图_diagram_3.png",
           "caption": {
             "zh": "以诺利地图为底图，由12位建筑师于1978年创作的《被打断的罗马》（Roma Interrotta）\n此局部与图2对应，由柯林·罗（Colin Rowe）创作",
-            "en": "TODO: diagram caption"
+            "en": "diagram caption"
           }
         },
         {
           "src": "images/诺利地图_diagram_4.png",
           "caption": {
             "zh": "《向拉斯维加斯学习》中拉斯维加斯大道及其沿街赌场酒店的诺利地图",
-            "en": "TODO: diagram caption"
+            "en": "diagram caption"
           }
         }
       ],
@@ -5334,8 +5335,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",
@@ -5353,8 +5354,8 @@
       "termOri": "Surmodernité",
       "concept_image": "TODO: concept_image",
       "sm_title": {
-        "zh": "TODO：社媒标题",
-        "en": "TODO: social title"
+        "zh": "社媒标题",
+        "en": "social title"
       },
       "proposers": [
         {
@@ -5378,15 +5379,15 @@
       "source_image": "images/超现代性_source_cover.png",
       "related_works": [
         {
-          "zh": "TODO：相关著作",
-          "en": "TODO: related works"
+          "zh": "相关著作",
+          "en": "related works"
         }
       ],
       "domain": {
         "zh": "人类学 Anthropology 社会学 Sociology",
         "en": "人类学 Anthropology 社会学 Sociology"
       },
-      "proposing_country": "法国",
+      "proposing_country": "FR",
       "proposing_time": "1992",
       "contributors": [
         {
@@ -5449,8 +5450,8 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "TODO：导读",
-          "en": "TODO: abstract"
+          "zh": "导读",
+          "en": "abstract"
         },
         "author": {
           "zh": "TODO",

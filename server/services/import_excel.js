@@ -12,6 +12,7 @@ const DRAFT_JSON_PATH = path.join(DRAFT_DIR, "data.json");
 const COLS = {
   TERM: "\u8bcd\u6761ID",
   CODE: "\u8bcd\u6761\u7f16\u53f7 ID",
+  HOME: "\u662f\u5426\u505a\u9996\u9875\u8bcd\uff1f",
   PARENT: "\u7236\u8bb0\u5f55",
   ORI: "\u8bcd\u6761\u539f\u8bed\u8a00 Entry Source Language",
   DOMAIN: "\u5b66\u79d1\u7c7b\u578b Disciplines",
@@ -95,8 +96,15 @@ function s(v) {
 function splitLinesToArray(htmlOrText) {
   const t = s(htmlOrText);
   if (!t) return [];
-  // 先按换行切（你表格里“详细释义/例句”一般是长文本）
   return t.split(/\r?\n|\u2028/).map(x => x.trim()).filter(Boolean);
+}
+
+function isTruthyFlag(v) {
+  const t = s(v).toLowerCase();
+  if (!t) return false;
+  if (["true", "1", "yes", "y", "\u662f", "\u5bf9", "\u221a"].includes(t)) return true;
+  if (t === "\u2713") return true;
+  return false;
 }
 
 function normalizeTermName(v) {
@@ -106,11 +114,12 @@ function normalizeTermName(v) {
 function normalizeTermKey(v) {
   return normalizeTermName(v).toLowerCase();
 }
+
 function placeholderZH(label) {
-  return `TODO：${label}`;
+  return label;
 }
 function placeholderEN(label) {
-  return `TODO: ${label}`;
+  return label;
 }
 
 function toWordTemplate() {
@@ -287,6 +296,7 @@ async function importExcelToDraft(xlsxPath) {
   const words = [];
   let autoId = 1;
   const pendingRelated = [];
+  let focusedNodeId = null;
 
   function pickFirst(...values) {
     for (const v of values) {
@@ -315,6 +325,12 @@ async function importExcelToDraft(xlsxPath) {
     const codeRaw = cell(zhRow, COLS.CODE);
     const codeNum = parseInt(codeRaw, 10);
     w.id = Number.isFinite(codeNum) ? codeNum : autoId++;
+
+    // home flag -> focusedNodeId (prefer highest id if multiple)
+    const homeFlag = cell(zhRow, COLS.HOME) || (enRow ? cell(enRow, COLS.HOME) : "");
+    if (isTruthyFlag(homeFlag)) {
+      if (focusedNodeId === null || w.id > focusedNodeId) focusedNodeId = w.id;
+    }
 
     // term
     w.term.zh = zhTerm;
@@ -418,7 +434,11 @@ async function importExcelToDraft(xlsxPath) {
     }
 
     // proposing place/year
-    const proposingPlace = cell(zhRow, COLS.PROPOSING_PLACE) || (enRow ? cell(enRow, COLS.PROPOSING_PLACE) : "") || cell(zhRow, COLS.PROPOSER_COUNTRY);
+    // Prefer English-row values so ISO-2 country codes in the sheet are used directly.
+    const proposingPlace = (enRow ? cell(enRow, COLS.PROPOSING_PLACE) : "")
+      || (enRow ? cell(enRow, COLS.PROPOSER_COUNTRY) : "")
+      || cell(zhRow, COLS.PROPOSING_PLACE)
+      || cell(zhRow, COLS.PROPOSER_COUNTRY);
     w.proposing_country = proposingPlace || "TODO: country";
     w.proposing_time = cell(zhRow, COLS.PROPOSING_YEAR) || (enRow ? cell(enRow, COLS.PROPOSING_YEAR) : "") || "TODO: time";
 
@@ -572,7 +592,11 @@ async function importExcelToDraft(xlsxPath) {
   }
 
   const payload = {
-    meta: { generated_at: new Date().toISOString(), source: path.basename(xlsxPath) },
+    meta: {
+      generated_at: new Date().toISOString(),
+      source: path.basename(xlsxPath),
+      home_node_id: focusedNodeId
+    },
     words
   };
 
@@ -581,7 +605,8 @@ async function importExcelToDraft(xlsxPath) {
   return {
     draft_json: "content/draft/data.json",
     draft_images_dir: "content/draft/images",
-    words_count: words.length
+    words_count: words.length,
+    focused_node_id: focusedNodeId
   };
 }
 
