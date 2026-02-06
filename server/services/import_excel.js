@@ -591,6 +591,25 @@ async function importExcelToDraft(xlsxPath) {
     }
   }
 
+  // 6) ensure related_terms are bidirectional
+  const wordById = new Map(words.map(w => [w.id, w]));
+  function ensureRelated(fromWord, toId, relation) {
+    if (!fromWord) return;
+    if (!Array.isArray(fromWord.related_terms)) fromWord.related_terms = [];
+    const exists = fromWord.related_terms.some(r => r && r.id == toId);
+    if (!exists) fromWord.related_terms.push({ id: toId, relation });
+  }
+
+  for (const w of words) {
+    if (!Array.isArray(w.related_terms)) continue;
+    for (const rel of w.related_terms) {
+      if (!rel || rel.id == null) continue;
+      const target = wordById.get(rel.id);
+      if (!target) continue;
+      ensureRelated(target, w.id, rel.relation || "\u6982\u5ff5\u76f8\u5173");
+    }
+  }
+
   const payload = {
     meta: {
       generated_at: new Date().toISOString(),

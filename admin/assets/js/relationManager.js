@@ -339,11 +339,30 @@ export function updateRelations() {
     if (!state.focusedNodeId) return;
 
     const thisWord = window.allWords.find(w => w.id == state.focusedNodeId);
-    if (!thisWord || !thisWord.related_terms) return;
+    if (!thisWord) return;
     
     // 1. 绘制概念相关的关系
-    thisWord.related_terms.forEach(relation => {
-        drawLine(state.focusedNodeId, relation.id, '概念相关');
+    const drawn = new Set();
+
+    if (Array.isArray(thisWord.related_terms)) {
+        thisWord.related_terms.forEach(relation => {
+            const key = `${state.focusedNodeId}->${relation.id}:concept`;
+            if (drawn.has(key)) return;
+            drawn.add(key);
+            drawLine(state.focusedNodeId, relation.id, '概念相关');
+        });
+    }
+
+    // 1b. 反向相关：其他词条指向当前词条，也画出来
+    window.allWords.forEach(otherWord => {
+        if (!otherWord || otherWord.id === thisWord.id) return;
+        if (!Array.isArray(otherWord.related_terms)) return;
+        const hits = otherWord.related_terms.some(r => r && r.id == thisWord.id);
+        if (!hits) return;
+        const key = `${state.focusedNodeId}->${otherWord.id}:concept`;
+        if (drawn.has(key)) return;
+        drawn.add(key);
+        drawLine(state.focusedNodeId, otherWord.id, '概念相关');
     });
 
     // 2. 绘制共同提出者的关系

@@ -107,9 +107,11 @@ export function handleZoomWheel(e) {
     e.preventDefault();
 
     let scale = state.currentScale;
+    const isPreview = window.location.pathname.endsWith('preview.html');
+    const minScale = isPreview ? 1.2 : 1;
     const zoomStep = 0.28;
     const delta = e.deltaY > 0 ? -zoomStep : zoomStep;
-    let newScale = Math.min(state.scaleThreshold, Math.max(1, scale + delta));
+    let newScale = Math.min(state.scaleThreshold, Math.max(minScale, scale + delta));
 
     // 获取当前�?snapped scale 级别
     const currentSnapped = getSnappedScale(scale);

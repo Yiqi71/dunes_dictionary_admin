@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-02-05T23:24:17.159Z",
-    "source": "38ed43e3be1d77b5d7e51ed373893770",
+    "generated_at": "2026-02-05T23:58:01.043Z",
+    "source": "deab4722cf8df5c253950867bfc7f930",
     "home_node_id": 13
   },
   "words": [
@@ -841,6 +841,14 @@
         {
           "id": 9,
           "relation": "概念相关"
+        },
+        {
+          "id": 13,
+          "relation": "概念相关"
+        },
+        {
+          "id": 38,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -1204,6 +1212,14 @@
         },
         {
           "id": 8,
+          "relation": "概念相关"
+        },
+        {
+          "id": 6,
+          "relation": "概念相关"
+        },
+        {
+          "id": 41,
           "relation": "概念相关"
         }
       ],
@@ -1817,7 +1833,12 @@
         "en": "example"
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 38,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "导读",
@@ -1911,7 +1932,16 @@
         "en": "example"
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 18,
+          "relation": "概念相关"
+        },
+        {
+          "id": 23,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "导读",
@@ -2005,7 +2035,12 @@
         "en": "example"
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 45,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "导读",
@@ -2273,6 +2308,10 @@
         {
           "id": 22,
           "relation": "概念相关"
+        },
+        {
+          "id": 3,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -2379,6 +2418,10 @@
         },
         {
           "id": 20,
+          "relation": "概念相关"
+        },
+        {
+          "id": 13,
           "relation": "概念相关"
         }
       ],
@@ -2502,6 +2545,14 @@
         },
         {
           "id": 39,
+          "relation": "概念相关"
+        },
+        {
+          "id": 9,
+          "relation": "概念相关"
+        },
+        {
+          "id": 13,
           "relation": "概念相关"
         }
       ],
@@ -2761,7 +2812,20 @@
         "en": "Within an organization lacking effective management, the laxity of regulations often leads to an increase in administrative entropy, eventually plunging the department's operations into total disarray."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 9,
+          "relation": "概念相关"
+        },
+        {
+          "id": 18,
+          "relation": "概念相关"
+        },
+        {
+          "id": 45,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "导读",
@@ -2866,6 +2930,10 @@
         },
         {
           "id": 18,
+          "relation": "概念相关"
+        },
+        {
+          "id": 45,
           "relation": "概念相关"
         }
       ],
@@ -3156,7 +3224,16 @@
         "en": "In Latin, the word hospes carries the twofold meaning of \"guest\" and \"host.\" In English, dust is a curious example of a word that can mean both to sprinkle something on and to wipe something away."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 2,
+          "relation": "概念相关"
+        },
+        {
+          "id": 27,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "对于阿甘本的著作，中文译本可以找到“神圣人”和“牲人”两种用语。",
@@ -3789,6 +3866,14 @@
         {
           "id": 24,
           "relation": "概念相关"
+        },
+        {
+          "id": 4,
+          "relation": "概念相关"
+        },
+        {
+          "id": 45,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -3925,7 +4010,12 @@
         "en": "In Vezo philosophy, there is no such thing as a \"once and for all\" sense of belonging; this serves as a reminder to every lost soul in the modern metropolis that we are defined not by a birth certificate, but by what we choose to do every day."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 38,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "导读",
@@ -5445,6 +5535,10 @@
         },
         {
           "id": 22,
+          "relation": "概念相关"
+        },
+        {
+          "id": 10,
           "relation": "概念相关"
         }
       ],
