@@ -275,7 +275,7 @@
 .panel-comment .panel-bottom section {
     max-height: 260px;
     overflow: hidden;
-    transition: max-height 0.3s ease, transform 0.45s ease;
+    transition: transform 0.45s ease;
     cursor: pointer;
     position: relative;
     transform: translateY(0);
@@ -288,6 +288,69 @@
 /* 展开状态 */
 .panel-comment .panel-bottom section.note-expanded {
     max-height: none;
+}
+
+/* Note panel layout when a note is expanded */
+#floating-panel .panel-comment .panel-main.notes-fixed .panel-top {
+    display: none;
+}
+
+#floating-panel .panel-comment .panel-main.notes-fixed {
+    overflow: hidden;
+}
+
+#floating-panel .panel-comment .panel-bottom.notes-mode {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#floating-panel .panel-comment .panel-bottom.notes-mode section {
+    flex: 0 0 auto;
+}
+
+#floating-panel .panel-comment .panel-bottom.notes-mode section.note-expanded {
+    flex: 1 1 auto;
+    overflow: auto;
+    min-height: 60vh;
+}
+
+#floating-panel .panel-comment .panel-bottom.notes-mode section.note-below-first {
+    margin-top: auto;
+}
+
+/* Hide contributors/editors when a note is expanded */
+#floating-panel .panel-comment .panel-bottom.notes-mode #section-contributors,
+#floating-panel .panel-comment .panel-bottom.notes-mode #section-editors {
+    display: none;
+}
+
+/* Collapsed notes stick to top/bottom and only show left title height */
+#floating-panel .panel-comment {
+    --note-title-line-height: 22px;
+    --note-title-lines: 2;
+    --note-title-pad: 16px;
+}
+html:lang(en) #floating-panel .panel-comment {
+    --note-title-line-height: 22px;
+    --note-title-lines: 2;
+    --note-title-pad: 16px;
+}
+
+#floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded) {
+    align-items: center;
+    height: calc((var(--note-title-line-height) * var(--note-title-lines)) + (var(--note-title-pad) * 2));
+    padding: var(--note-title-pad) 64px var(--note-title-pad) 32px;
+    overflow: hidden;
+}
+
+#floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded) .note-body {
+    display: none;
+}
+
+#floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded) .left-title {
+    line-height: var(--note-title-line-height);
+    padding: 0;
 }
 
 /* 折叠状态 hover 时向上位移，露出更多内容（不影响其他元素布局） */

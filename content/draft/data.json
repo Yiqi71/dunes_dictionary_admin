@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-02-05T23:58:01.043Z",
-    "source": "deab4722cf8df5c253950867bfc7f930",
+    "generated_at": "2026-02-07T22:18:59.825Z",
+    "source": "a0cbafec9e368836ca720ab5064043ad",
     "home_node_id": 13
   },
   "words": [
@@ -95,6 +95,10 @@
       "related_terms": [
         {
           "id": 10,
+          "relation": "概念相关"
+        },
+        {
+          "id": 28,
           "relation": "概念相关"
         }
       ],
@@ -346,7 +350,7 @@
         "en": "Intersubjectivity"
       },
       "termOri": "Intersubjectivity",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/主体间性_aigc.png",
       "sm_title": {
         "zh": "我的存在和你的存在，创造了一个无形的场域",
         "en": "social title"
@@ -604,6 +608,10 @@
         },
         {
           "id": 31,
+          "relation": "概念相关"
+        },
+        {
+          "id": 17,
           "relation": "概念相关"
         }
       ],
@@ -999,6 +1007,10 @@
         {
           "id": 4,
           "relation": "概念相关"
+        },
+        {
+          "id": 17,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -1332,6 +1344,10 @@
         {
           "id": 4,
           "relation": "概念相关"
+        },
+        {
+          "id": 40,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -1431,6 +1447,10 @@
       "related_terms": [
         {
           "id": 19,
+          "relation": "概念相关"
+        },
+        {
+          "id": 40,
           "relation": "概念相关"
         }
       ],
@@ -1571,7 +1591,12 @@
           }
         }
       ],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 17,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "导读",
@@ -1582,7 +1607,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "以博尔赫斯“环形废墟”为例，魔法师逃到一座被火焚毁的火神庙想要实现他的意志，即创造一个世界上不曾有过的人。他在梦中塑造了这个“儿子”的心脏、肉身与意识，并最终将其带入现实世界。唯有“火”本身和魔法师知道他是个幻影，证据是不会被火烧伤。在一次意外中火神庙再次焚于大火中，而魔法师却发现自己也不过只是另一人梦中的幻影。\n这总是让我联想到佛教中的因果轮回观。今世如果是前世的业报，那么现世将是无穷尽的，好似没有源头。而在“叙事内镜”的结构中，故事和故事相互嵌套，真实渐隐于不断的映照中，没有哪一层是绝对的意义源头。《红楼梦》中对金陵十二钗的判词、戏文、诗词，同样预示着书中角色的生命走向，每个人的命运都在大观园的大兴衰中交织出因果的网，且“假作真时真亦假”，情与欲、生与死，前世与今世，在书中界限往往模糊而层层叠叠，而并非泾渭分明。\n阿伦·雷乃的电影《去年在马里昂巴德》则以更为抽象的方式呈现了 mise en abyme 的结构。影片中的人物不断复述、修正同一段“记忆”，叙述本身被不断重复和修改，而记忆也在反复的讲述中变得模糊，以至于像一个不断重复的环形结构。对我来说Mise en abyme的结构就像是这样的环形，或者是一条被反复描画过无数次的线条，周围有钢笔反复的痕迹，但是很难找到最初的是哪条。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "兰依桥",
+            "en": ""
+          },
+          "background": {
+            "zh": "动画",
+            "en": ""
+          },
+          "date": "2025/04/12"
+        }
+      ]
     },
     {
       "id": 13,
@@ -1699,42 +1744,31 @@
         {
           "id": 19,
           "relation": "概念相关"
+        },
+        {
+          "id": 14,
+          "relation": "概念相关"
+        },
+        {
+          "id": 39,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
         "content": {
-          "zh": "导读",
-          "en": "abstract"
+          "zh": "斯底德曼认为，“档案热”不仅是一种隐喻，也是一种真实的职业病，源于著名史学家儒勒·米什莱（Jules Michelet）由于多年在档案馆工作，吸入过多尘埃和病菌所导致的疾病。",
+          "en": "Steedman argues that \"archive fever\" is not merely a metaphor but a genuine occupational disease, exemplified by the famous historian Jules Michelet, who fell ill after years of inhaling the dust and pathogens of the archives."
         },
         "author": {
-          "zh": "TODO",
-          "en": "TODO"
+          "zh": "Sati",
+          "en": "Sati"
         }
       },
       "comments": [
         {
           "content": {
-            "zh": "有趣的是，对德里达来说，档案并不只是关于“过去”的研究，更能影响未来。因为“归档行为”本身就在生产事件：档案的“技术底色”（technical substrate）预先决定了什么是“可被归档的”，进而反过来塑造了我们的生活经验。正如当下的短视频已经预设了特定的时长、画幅、记录逻辑与交互方式，这在很大程度上决定了未来的历史将以何种面貌呈现。",
-            "en": "Derrida argued that archiving is not just about the past—it dictates the future. The act of archiving actually produces the event as much as it records it. The \"technical substrate\" (the medium we use) predetermines what is \"archivable,\" which in turn shapes our actual lived experience. Just as modern short-form video apps pre-set the duration, framing, and modes of interaction for our lives, the technology of the archive decides exactly what face our future history will wear."
-          },
-          "role": {
-            "zh": "贡献者",
-            "en": "Contributor"
-          },
-          "author": {
-            "zh": "雅伦",
-            "en": "Yalun"
-          },
-          "background": {
             "zh": "历史学家卡罗琳·斯底德曼（Carolyn Steedman）不完全认同德里达对“档案”的隐喻化解读，同时她提出了一种更为具体的“物质性”可能性。斯底德曼认为，“档案热”不仅是一种隐喻，也是一种真实的职业病，源于著名史学家儒勒·米什莱（Jules Michelet）由于多年在档案馆工作，吸入过多尘埃和病菌所导致的疾病。疾病源于“尘埃的物质存在，这些尘埃是动物躯体经历艰辛与磨难、成长与衰亡后残存的原子残骸。”这些尘埃在档案室中通过历史学家的研究和处理转变为其他形态，但从未真正消失。",
-            "en": ""
-          },
-          "date": "2024/06/10"
-        },
-        {
-          "content": {
-            "zh": "Sati",
-            "en": "Sati"
+            "en": "Historian Carolyn Steedman does not fully subscribe to Derrida’s metaphorical reading of the \"archive,\" proposing instead a possibility grounded in a more concrete \"materiality.\" Steedman argues that \"archive fever\" is not merely a metaphor but a genuine occupational disease, exemplified by the famous historian Jules Michelet, who fell ill after years of inhaling the dust and pathogens of the archives. This malady stems from \"the physical existence of dust, which is the atomic remains of animal bodies, their pain and their endurance, their growth and their decay.\" Through the historian’s research and handling, this dust is transmuted into other forms within the archive, yet it never truly vanishes."
           },
           "role": {
             "zh": "贡献者",
@@ -1743,6 +1777,25 @@
           "author": {
             "zh": "",
             "en": ""
+          },
+          "background": {
+            "zh": "Sati",
+            "en": "Sati"
+          },
+          "date": "2024/06/10"
+        },
+        {
+          "content": {
+            "zh": "有趣的是，对德里达来说，档案并不只是关于“过去”的研究，更能影响未来。因为“归档行为”本身就在生产事件：档案的“技术底色”（technical substrate）预先决定了什么是“可被归档的”，进而反过来塑造了我们的生活经验。正如当下的短视频已经预设了特定的时长、画幅、记录逻辑与交互方式，这在很大程度上决定了未来的历史将以何种面貌呈现。\n我在想Sati的笔记中提到的“档案热”物质层面的可能性，这种灰尘和病菌，在数字档案中基本已经消失了，",
+            "en": "Derrida argued that archiving is not just about the past—it dictates the future. The act of archiving actually produces the event as much as it records it. The \"technical substrate\" (the medium we use) predetermines what is \"archivable,\" which in turn shapes our actual lived experience. Just as \"reels\" pre-determined the duration, framing, and modes of interaction for our lives, the technology of the archive decides what our  history will be."
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "雅伦",
+            "en": "Yalun"
           },
           "background": {
             "zh": "",
@@ -1835,6 +1888,10 @@
       "diagrams": [],
       "related_terms": [
         {
+          "id": 13,
+          "relation": "概念相关"
+        },
+        {
           "id": 38,
           "relation": "概念相关"
         }
@@ -1849,7 +1906,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "我好奇的是表层阅读是否也有一套比较严格的方法——类似于“暂停怀疑”（suspension of skepticism)的阅读方法。事实上，究竟如何阅读应当是一个比较矛盾的过程，既有“不求甚解”也有“追根究底”可能才是最好的，我比较担心的是“表层阅读”像是一种情绪上的反弹：我累了，不想再当侦探了。我觉得这很真实，也很必要。但如果把它当成唯一正确的方法，那可能又走到了另一个极端。确实，过度的“分析解读”内在是一种控制欲，总想控制、揭露、占有意义，把文学当成了战斗对象。“表层阅读”强调回到语言本身、回到显现出来的样子，这在某种程度上是更“此在式”的，是一种愿意停下来、愿意被打动的阅读，这个态度值得学习，但象征、隐喻、深层意义恰恰是很多经典文本的生命力所在。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "孟汀",
+            "en": ""
+          },
+          "background": {
+            "zh": "人类学",
+            "en": ""
+          },
+          "date": "2023/12/25"
+        }
+      ]
     },
     {
       "id": 15,
@@ -1858,7 +1935,7 @@
         "en": "term"
       },
       "termOri": "termOri",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/关怀阶级_aigc.png",
       "sm_title": {
         "zh": "“关怀阶级”营造了公共空间和公共变革的前提",
         "en": "social title"
@@ -1879,7 +1956,7 @@
         }
       ],
       "source": {
-        "zh": "欧文·琼斯，《过于关怀是工人阶级的诅咒 (#Caring too much. That's the curse of the working classes#)》，载《卫报 (#The Guardian#)》，2014。尚无中文翻译。",
+        "zh": "《过于关怀是工人阶级的诅咒 (#Caring too much. That's the curse of the working classes#)》，载《卫报 (#The Guardian#)》，2014。",
         "en": "source"
       },
       "source_image": "TODO: source_cover",
@@ -1952,7 +2029,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "下层劳动者大量的工作是关心他人，而非机械的流水线生产。如，检票员大部分时间不在检票，而是指路、维护设施、寻找走丢的小孩、照顾老人、病人等。大量女性承担的家务牵扯情感、时间、精力，但并不在传统的“劳动”框架中。这样的关怀可能并不生产实际的“商品”或“有用之物”，却为商品的生产以及正式的劳动能够运行提供了基础。\n        \n关注“关怀阶层”，有助于突显更多人的劳动，以及大量被忽视的劳动时间和内容。与此同时，“关怀”与官僚和行政管理形成对比，后者更关注工作的标准化，而前者非标准化的工作落脚点在他人如何获益。关注“关怀”有助于摆脱以生产、消费、标准化效率为核心的经济模式，转向一种有益于人的实际互助福祉的公共经济。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "孟汀",
+            "en": ""
+          },
+          "background": {
+            "zh": "人类学",
+            "en": ""
+          },
+          "date": "2023/12/06"
+        }
+      ]
     },
     {
       "id": 16,
@@ -1961,7 +2058,7 @@
         "en": "term"
       },
       "termOri": "termOri",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/压缩现代性_aigc.png",
       "sm_title": {
         "zh": "过快的现代化带来了复合的社会危机",
         "en": "social title"
@@ -2051,7 +2148,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "A large portion of the work performed by lower-class workers involves caring for others, rather than mechanical assembly-line production. For example, ticket inspectors spend most of their time not checking tickets, but giving directions, maintaining facilities, finding lost children, and caring for the elderly and the sick.  The domestic work performed by many women involves emotions, time, and energy, but it is not included in the traditional framework of \"labor.\" This kind of care may not produce actual \"goods\" or \"useful things,\" but it provides the foundation for the production of goods and the functioning of formal labor. Focusing on the \"care sector\" helps to highlight the labor of more people, as well as a large amount of overlooked labor time and content.  At the same time, \"care\" contrasts with bureaucracy and administrative management, which focus more on the standardization of work, while the non-standardized work of care centers on how others benefit. Focusing on \"care\" helps to move away from an economic model centered on production, consumption, and standardized efficiency, towards a public economy that benefits people through practical mutual aid and well-being.",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "",
+            "en": ""
+          },
+          "background": {
+            "zh": "",
+            "en": ""
+          },
+          "date": "2024/05/05"
+        }
+      ]
     },
     {
       "id": 17,
@@ -2159,7 +2276,20 @@
           }
         }
       ],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 7,
+          "relation": "概念相关"
+        },
+        {
+          "id": 4,
+          "relation": "概念相关"
+        },
+        {
+          "id": 12,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "导读",
@@ -2218,7 +2348,7 @@
         "en": "Separation of Tasks"
       },
       "termOri": "Aufgaben-Trennung",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/课题分离_aigc.png",
       "sm_title": {
         "zh": "关于没有边界感的亲戚",
         "en": "social title"
@@ -2333,7 +2463,7 @@
         "en": "Kino-eye"
       },
       "termOri": "Кино-глаз",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/电影眼_aigc.png",
       "sm_title": {
         "zh": "机械之眼所看到的世界",
         "en": "social title"
@@ -2454,6 +2584,25 @@
             "en": ""
           },
           "date": "2023/12/05"
+        },
+        {
+          "content": {
+            "zh": "2022年的纪录片《人体结构》（De Humani Corporis Fabrica）",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "",
+            "en": ""
+          },
+          "background": {
+            "zh": "",
+            "en": ""
+          },
+          "date": "2023/12/05"
         }
       ]
     },
@@ -2464,7 +2613,7 @@
         "en": "Cyborg"
       },
       "termOri": "termOri",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/赛博格_aigc.png",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
@@ -2537,7 +2686,22 @@
         "zh": "隐形眼镜、降噪耳机、心脏起搏器、义肢等“增强装置”对很多人来说已必不可少，从这个角度看来，或许地球上大多数人已经可以被看做是赛博格。",
         "en": "example"
       },
-      "diagrams": [],
+      "diagrams": [
+        {
+          "src": "images/赛博格_diagram_1.png",
+          "caption": {
+            "zh": "电影《攻壳机动队2：无罪》中致敬唐娜·哈拉维的角色。",
+            "en": "diagram caption"
+          }
+        },
+        {
+          "src": "images/赛博格_diagram_2.png",
+          "caption": {
+            "zh": "电影《攻壳机动队》中创造赛博格的场景。",
+            "en": "diagram caption"
+          }
+        }
+      ],
       "related_terms": [
         {
           "id": 19,
@@ -2554,6 +2718,10 @@
         {
           "id": 13,
           "relation": "概念相关"
+        },
+        {
+          "id": 42,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -2567,6 +2735,25 @@
         }
       },
       "comments": [
+        {
+          "content": {
+            "zh": "之前在沙丘研究所上发过一篇文章，是关于押井守导演的两部《攻壳机动队》的。这里选了一段和“赛博格”相关的内容分享：\n\n持续的网络化将我们带向一种极端程度的生物躯体与意识的脱离（disembodiment），这会从根本上改变了我们对人类的定义。\n海尔斯在《我们何以成为后人类》 （#How We Became Posthuman#） 第一章中提到了笛卡尔经典的身心二元论，她认为这一哲学模型在当今时代正面对一些问题。譬如以下两个思维实验案例：第一，由汉斯·莫拉维克（Hans Moravec）提出的通过电脑下载可以获得的人类意识；第二，星际迷航系列电影中的瞬移机器。这两种当下科幻作品中热门的技术想象都对笛卡尔的身心二元论提出了扩充性的挑战。\n\n身心二元论也是 #攻壳机动队# 系列无法避过的哲学主题。作品的片名“#Ghost in the Shell#”中的“ghost（灵魂）”即指意识和精神，而它是存在于“shell（躯壳）”即身体中的。在这一主线的引导下，海尔斯将“脱离生物基质”作为后人类的要素。海尔斯提出后人类将”身体视为原始的假肢/义体”，因此对它进行替换，改造和延展是自然而正常的。在这种视角下，赛博格就是完美的后人类范式。\n在《赛博宣言》中，哈拉维将“赛博格的意象”视作“一种走出二元迷宫的方式”。“赛博格”对于哈拉维是一个抽象或隐喻的概念。在哈拉维看来，离体，或者说离体的意象，是人类达到理想的社会和政治环境的解放力量。\n押井守在1995年的电影中对“认识论问题及其与赛博范式的关系”很感兴趣。在 #攻壳机动队# 中，先进的赛博世界“从根本上颠覆了人类的本体论基础”。在这个未来的世界里，人类的身体被电子机械的部分不断取代和增强。在 #攻壳机动队# 中，所有的角色都被不同程度地进行了电子化改造。最常见的是电子脑，一种人类大脑的机械外壳，它可以接入网络，存储记忆和与他人交流。而秘书们则有一双机械的手，关节可以移位展开，这样手指可以分裂成更多个指尖，在工作时打字速度更快。\n巴特植入了机械的眼睛，而素子更是只有生物脑的女性赛博格（gynoid）。这些角色在导演的刻画下是与我们相近的人的形象。他们的身份为电影设置了前提，即身体是可以在不改变主体身份的情况下进行改变、替换、和增强。在这种预设下，押井守有针对性地设置了挑战这一假设的人物和情节，重申了人的身份问题。\n影片利用赛博格主角、她的同事和“反派”傀儡师，提供了不同程度的“离体性”。\n户草代表了对赛博化的反抗，也代表了对传统的人与我们的社会关系的定义的坚持。作为义体化最少的角色，他象征了一种将我们原生的生物身体视为身份定义的观点。另外，他是一个已婚，并有年幼的女儿的父亲。这种基于亲属关系的家庭建构，使他成为我们传统的社会建构的代表，反抗整个“后人类”的设定。\n另一方面，反面人物傀儡师作为一个获得意识的电脑程序，进一步向离体的方向推进，达到一种意识纯粹的非物质性。傀儡师从未拥有过身体却获得了意识的事实，不仅支持了人意识的非物质性，也说明意识并不局限于“人”。他提供了一个关于意识诞生的新故事，一个纯粹的虚拟的、没有任何身体或生物化身的意识诞生的故事。\n正如素子在与傀儡师的对比中产生了对自己 “人类性”的质疑，这部电影是对我们如何用物质和个体性来定义人的探索。主角和反面角色代表了两个极端：一个是作为个体人类出生，但完全化身为机械躯体进入网络空间的赛博格，另一个是在信息海洋中诞生的个体意识。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "雅伦",
+            "en": "Yalun"
+          },
+          "background": {
+            "zh": "",
+            "en": ""
+          },
+          "date": "TODO: contribute_date"
+        },
         {
           "content": {
             "zh": "赛博格，可以被简单理解为肉身和人造科技混合的生命体。\n我们不妨从这两个问题开始：虽然没有镭射眼或者手臂上的螳螂刀，但你真的完全不依赖人工科技来增强自己的生命体吗？赛博格乍看是一个带有强烈科幻色彩的词，但事实上，隐形眼镜、降噪耳机、防尘口罩、心脏起搏器、义肢等等，都已经是许多人生活中必不可少的“增强装置”了。手机、电脑等外部设备也同样在帮助我们增强记忆和通讯的能力。从这个角度看来，或许地球上大多数人已经可以被看做是赛博格。\n第二，如果女性赛博格在体力、速度、力量都不再弱于男性，或者经过改造之后，不仅女性才有生育的能力，我们的社会性别又会怎么样定义？我们可以想象，很多“男性适合做什么，女性不擅长做什么”的传统说法会自动消散。\n在能够通过技术手段打破生理限制的社会中，二元对立的性别观念的社会建构性质得以被重新审视。这种技术进步不仅可能消除性别之间的生理差异，还可能重新塑造我们对于能力、角色和身份的期望。从哈拉维的角度看，赛博格理论提供了一种解放性的视角，挑战既定的性别规范，开启对平等和多样性更深层次的探讨。",
@@ -2595,7 +2782,7 @@
         "en": "Homo Sacer"
       },
       "termOri": "Homo Sacer",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/牲人_aigc.png",
       "sm_title": {
         "zh": "国家创造「牲人」来实现更广泛更深刻的主权控制",
         "en": "social title"
@@ -2687,7 +2874,7 @@
       "comments": [
         {
           "content": {
-            "zh": "像小王讲的，homo sacer 译作‘神圣人’确实容易产生歧义——毕竟在意涵上面Homo Sacer正是不能用于献祭，所以恰恰在宗教上是不神圣的。这个词毫无疑问是阿甘本最重要的几个概念之一，我们在此处也希望提供一些基于现代社会的例子，方便大家理解。当然，沙丘的两位主理人并不是哲学或者政治哲学的背景，所以这部分举例也是基于“编舟记共创会”上大家的讨论和联想——首先是一些现实生活中的例子，如果在概念上和“牲人”并不相合，也欢迎大家指出和讨论：\n1. 纳粹统治下的犹太人\n2. “红色高棉时期”在柬埔寨被怀疑为资本主义者、知识分子、有外国联系的人\n3. 从内乱的非洲国家逃往欧洲，漂在海上的难民和无国籍人士\n4. 被美军视作恐怖分子嫌疑人，于是无限期拘留在关塔那摩湾，且不给予基本法律保护的囚犯",
+            "zh": "homo sacer 译作‘神圣人’确实容易产生歧义——毕竟在意涵上面Homo Sacer正是不能用于献祭，所以恰恰在宗教上是不神圣的。这个词毫无疑问是阿甘本最重要的几个概念之一，我们在此处也希望提供一些基于现代社会的例子，方便大家理解。当然，沙丘的两位主理人并不是哲学或者政治哲学的背景，所以这部分举例也是基于“编舟记共创会”上大家的讨论和联想——首先是一些现实生活中的例子，如果在概念上和“牲人”并不相合，也欢迎大家指出和讨论：\n1. 纳粹统治下的犹太人\n2. “红色高棉时期”在柬埔寨被怀疑为资本主义者、知识分子、有外国联系的人\n3. 从内乱的非洲国家逃往欧洲，漂在海上的难民和无国籍人士\n4. 被美军视作恐怖分子嫌疑人，于是无限期拘留在关塔那摩湾，且不给予基本法律保护的囚犯",
             "en": ""
           },
           "role": {
@@ -2706,7 +2893,7 @@
         },
         {
           "content": {
-            "zh": "我也联想到了一些虚构创作中的例子，同样，欢迎大家的指正和讨论：\n1. 科幻电影《第九区》里面被隔离在特定区域的外星难民，被视为次等生命，可以被任意剥削和掠夺\n2. 科幻电影《银翼杀手》中的复制人，他们在法律上没有人权，被视为生产工具。尽管在外观、情感和智力上与人类无异，他们的生命仍然可以被任意剥夺\n3. 《饥饿游戏》当中被选中参与“饥饿游戏”的选手，生命可以在全国电视上被合法地剥夺",
+            "zh": "我也联想到了一些虚构创作中的例子：\n1. 科幻电影《第九区》里面被隔离在特定区域的外星难民，被视为次等生命，可以被任意剥削和掠夺\n2. 科幻电影《银翼杀手》中的复制人，他们在法律上没有人权，被视为生产工具。尽管在外观、情感和智力上与人类无异，他们的生命仍然可以被任意剥夺\n3. 《饥饿游戏》当中被选中参与“饥饿游戏”的选手，生命可以在全国电视上被合法地剥夺",
             "en": ""
           },
           "role": {
@@ -2732,7 +2919,7 @@
         "en": "Entropy"
       },
       "termOri": "Entropy",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/熵_aigc.png",
       "sm_title": {
         "zh": "无序度并不等于事物的混乱程度",
         "en": "social title"
@@ -2956,7 +3143,7 @@
         "en": "Gig Economy"
       },
       "termOri": "Gig Economy",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/零工经济_aigc.png",
       "sm_title": {
         "zh": "沙丘词典丨上门制图？中国建筑行业是否也在无奈地走入「零工经济」",
         "en": "social title"
@@ -2996,7 +3183,7 @@
       "contributors": [
         {
           "name": {
-            "zh": "沙丘研究所",
+            "zh": "飞樾 雅伦",
             "en": "Dunes Workshop"
           },
           "role": {
@@ -3019,12 +3206,11 @@
       },
       "extended_definition": {
         "zh": [
-          "想象一个雨夜的深圳街头：外卖员小王骑着电动车，手机屏幕不断闪烁新订单提示——“30分钟送达，超时扣分”。他刚结束一单，又接到一个“上门制图”任务，匆匆赶往客户家。这不是电影情节，而是零工经济的真实缩影——一个由互联网平台匹配供需的临时工作世界，时间短、灵活性强，却常伴随着福利缺失和职业不稳定。",
+          "零工是当下最迫切、最普遍的劳工状况。零工经济一个由互联网平台匹配供需的临时工作世界，时间短、灵活性强，却常伴随着福利缺失和职业不稳定，它尤其剥削原本就处于社会底层的劳工，包括低收入、低教育程度群体、女性等，但随着互联网和“接单”式工作成为主流，大量曾经的白领工作也逐渐“零工化”。",
           "零工经济并非21世纪的新产物。早在三百年前，欧洲的艺术家就承接“独立计件合同”，类似今天的自由职业；中国乡土社会的农忙“短工”，也是其历史雏形。但数字技术的崛起重塑了这一模式：平台App（如网约车软件或闲鱼）取代了传统的熟人介绍或集市匹配，将出行、外卖、设计甚至剧本写作等产业“零工化”。这带来了双重效应：一方面，它为个体（如失业建筑师或学生）开辟了灵活收入渠道，经济学家赞其为“解放朝九晚五的枷锁”；另一方面，平台算法主导的派单和评分机制，往往将零工者推向“丛林竞争”——低价抢单、缺乏职业成长空间，且难以形成工会或行业规范。本质上，零工经济是社会原子化的数字表现：工作者被降级为可替换的“零件”，而平台垄断话语权，加剧了经济不平等。"
         ],
         "en": [
-          "Picture a rainy night in Shenzhen: delivery rider Wang navigates his e-bike through neon-lit streets, his phone screen flashing with new orders—\"Deliver within 30 minutes or face penalties.\" After completing one task, he instantly accepts an \"on-site drafting\" gig, rushing to a client’s apartment. This isn’t cinematic fiction but a real-world snapshot of the gig economy—an ecosystem of short-term, platform-mediated work characterized by flexibility yet plagued by benefit gaps and professional instability.",
-          "The gig economy isn’t a 21st-century novelty. Three centuries ago, European artists undertook piecework contracts akin to modern freelancing; seasonal farmhands in pre-industrial China embodied its early forms. However, digital platforms have revolutionized this model: Apps (like ride-hailing services or Xianyu) now replace traditional matchmaking through personal networks or marketplaces, transforming industries from transportation and food delivery to design and scriptwriting into \"gigified\" segments. This dual-edged phenomenon unlocks flexible income streams for individuals (e.g., unemployed architects or students), hailed by economists as \"liberation from the 9-to-5 grind.\" Conversely, algorithm-driven dispatch and rating systems often thrust gig workers into cutthroat competition—undercutting wages, stifling career growth, and hindering collective bargaining or industry standardization. At its core, the gig economy epitomizes the digital fragmentation of social bonds: workers become replaceable \"cogs,\" while platforms monopolize power and exacerbate economic inequality."
+          "Gig work is currently the most pressing and widespread labor situation. The gig economy is a world of temporary work facilitated by internet platforms that match supply and demand.  While it offers short-term work and flexibility, it often comes with a lack of benefits and job insecurity. It particularly exploits workers already at the bottom of the social ladder, including low-income individuals, those with low levels of education, and women. However, as the internet and \"on-demand\" work become mainstream, a large number of previously white-collar jobs are also gradually becoming \"gigified.\""
         ]
       },
       "example_sentence": {
@@ -3048,7 +3234,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "在卡尔·波兰尼的《大转型》一书中，pauperism（贫民化）是英国工业转型中最明显的社会问题，波兰尼指出，随着工厂资本主义发展，出现了伪商品（Fictitious Commodity）：土地、人的生命、货币都不应该作为商品存在，却被变成了商品。在数字时代，平台经济似乎重现了一些fictitious commodity: 劳动、时间、注意力。波兰尼认为劳动力本质上是人类生命活动，而非为市场而生的商品。当平台通过算法将鲜活的人还原为可随时调取、按秒计价的“运力单位”时，这种强制的伪商品化逻辑重现了，它的商品交易掩盖了残酷的现实：算法在剥离了社会保险与法律责任的同时，也剥夺了劳动者作为“社会人”的稳定性。它虽然创造了极具灵活性的劳动力市场，却以摧毁人的社会尊严与生存韧性为代价。",
+            "en": "In Karl Polanyi’s The Great Transformation, pauperism stands as the most conspicuous social wreckage of the English industrial transition. Polanyi contends that the rise of industrial capitalism necessitated the invention of fictitious commodities: land, labor, and money—elements that are fundamentally not produced for sale, yet are treated as if they were. In the digital era, the platform economy resurrects this fiction by commodifying not just labor, but time and attention itself. Since labor is merely another name for a human being’s life activity, its reduction by algorithms into 'on-demand units' or 'per-second logistics' represents a radical re-commodification. This market fiction veils a grim reality: by stripping away social protections and legal accountability, the algorithm eviscerates the stability of the 'social man.' It yields a hyper-flexible labor market at the catastrophic cost of human dignity and social resilience."
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "孟汀",
+            "en": ""
+          },
+          "background": {
+            "zh": "人类学",
+            "en": ""
+          },
+          "date": "2023/09/24"
+        }
+      ]
     },
     {
       "id": 25,
@@ -3512,8 +3718,42 @@
         "zh": "在构思硬核科幻小说时，作者需要精确理解事件视界的物理含义：任何落入其中的角色或飞船，从宇宙的视角看，其命运在穿过边界的那一刻就已注定与外部世界彻底隔绝，任何信息都无法逃逸出来。",
         "en": "When conceiving a hardcore science fiction novel, the author needs to precisely understand the physical meaning of the event horizon: Any character or spacecraft that falls into it, from the perspective of the universe, its fate is predetermined to be completely isolated from the outside world from the moment it crosses the boundary, and no information can escape."
       },
-      "diagrams": [],
-      "related_terms": [],
+      "diagrams": [
+        {
+          "src": "images/事件视界_diagram_1.png",
+          "caption": {
+            "zh": "事件视界望远镜观测的M87黑洞",
+            "en": "diagram caption"
+          }
+        },
+        {
+          "src": "images/事件视界_diagram_2.png",
+          "caption": {
+            "zh": "事件视界望远镜",
+            "en": "diagram caption"
+          }
+        },
+        {
+          "src": "images/事件视界_diagram_3.png",
+          "caption": {
+            "zh": "在星球表面，观察者的视野会被“地平线”限制，地平线之外的部分在“视界之外。”",
+            "en": "diagram caption"
+          }
+        },
+        {
+          "src": "images/事件视界_diagram_4.png",
+          "caption": {
+            "zh": "在黑洞的抽象几何模型中，可以看到“事件视界”的范围。\n图像来源：astronomysource.com/category/cosmos/black-holes/",
+            "en": "diagram caption"
+          }
+        }
+      ],
+      "related_terms": [
+        {
+          "id": 1,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "导读",
@@ -3527,19 +3767,19 @@
       "comments": [
         {
           "content": {
-            "zh": "以前一直不知道\"视界\"是什么，直到我发现它原来就是地平线",
-            "en": ""
+            "zh": "我试图理解了这个词，在物理学中，事件视界是信息无法逃逸的单向边界。很有趣的是，“horizon”一词不仅在物理学界被使用，在文学、文化研究等领域、以及日常口语中，horizon，地平线，也是一个经常被使用的描述预期以及无法预料的未来的词语。人类学家Ariana Petryna 在《Horizon Work》中恰恰捕捉到了类似的逻辑：当旧有的数据不再有用，当基于过去信息的预测变得具有误导性、甚至产生高昂的计算成本或不稳定性时，一个“新的预测视界（predictive horizon）”必须被确立 。比如人类在面对失控的气候变化时 。",
+            "en": "“Data from the past is useful, but only up to a point.\nAnd precisely when data is no longer useful, and prediction\ncapability derived from past or present\ninformation becomes\nmisleading (or yields high computational cost or instability), a\nnew predictive horizon must be put into place.\""
           },
           "role": {
             "zh": "贡献者",
             "en": "Contributor"
           },
           "author": {
-            "zh": "kang",
+            "zh": "孟汀",
             "en": ""
           },
           "background": {
-            "zh": "",
+            "zh": "人类学",
             "en": ""
           },
           "date": "2024/10/21"
@@ -3553,7 +3793,7 @@
         "en": "Parapraxis"
       },
       "termOri": "Parapraxis",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/行为倒错_aigc.png",
       "sm_title": {
         "zh": "我们不经意说走嘴的话，可能反映了内心真实的想法",
         "en": "social title"
@@ -3642,7 +3882,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "所有的“社死”时刻，本质上都是一场潜意识的武装起义。\n在社交媒体构建的精密世界里，我们习惯了用“自我（Ego）”去精心维护一个体面、专业、情绪稳定的外壳。但“本我（Id）”从不休息，它像一个在后台运行却从未关闭的进程，一直在寻找防御的漏洞。而现在的智能输入法通过联想功能，某种程度上成为了我们潜意识的外部化器官。\n那个发错群的吐槽、那个因手滑而点亮的赞，或许都是潜意识在表层意识上留下的暴力痕迹。在那一刻，那个被你压抑许久的、愤怒的、嫉妒的、或者仅仅是感到疲惫的“本我”，突然撕开了面具，发出一声响亮的尖叫。\n“社死”之所以痛苦，是因为它强行打破了我们维持虚假秩序的幻觉。它在提醒你：即便你把自己包装得再像一个完美的社会生物，你的身体里依然跳动着一颗充满裂缝、不守规矩的人心。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "奶油",
+            "en": ""
+          },
+          "background": {
+            "zh": "编辑",
+            "en": ""
+          },
+          "date": "2025/01/18"
+        }
+      ]
     },
     {
       "id": 30,
@@ -3651,7 +3911,7 @@
         "en": "The New Poor"
       },
       "termOri": "The New Poor",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/新穷人_aigc.png",
       "sm_title": {
         "zh": "收入增加不多，但被创造的需求增加了很多很多",
         "en": "social title"
@@ -3741,8 +4001,8 @@
       "comments": [
         {
           "content": {
-            "zh": "作为词条作者回复一层朋友的问题（我写的太长了最后一个发不出去😁）首先新穷人是一个系统现象/问题，我认为个人解决的第一步是在自己的日常生活中思考这个现象。如果可以为其发声，可以避免消费主义被无限地合理化。\n鲍曼这样形容新穷人的现实后果：由于新穷人是不服从工作伦理的，常常被指责称为道德劣等的人，这使得“穷人的苦难不再能汇聚成一项共同的事业，每一个有缺陷的消费者都在孤独中舔舐自己的伤口，最多只能与ta们尚未破碎的家庭为伴，与同样没有资源的朋友为伴”。\n在这里我们可以看到，新穷人的困境一定程度上源自和植根于“沉默”。这是一种系统性的难以发声、难以被理解的沉默。这使得新穷人往往不被识别、被孤立、被怪罪。这就是为什么针对这一现象的提问、反思，对自己日常生活的审视，都是积极的面对方式。\n同时我们需要意识到，消费社会如果不能在物理上分隔新穷人，便试图在精神上将其隔绝。在互联网上发出更多声音去反思消费（比如近几年常常有人分享自己在主动寻求消费降级），让新穷人变得更可见，都是有价值的行动",
-            "en": ""
+            "zh": "首先新穷人是一个系统现象/问题，我认为个人解决的第一步是在自己的日常生活中思考这个现象。如果可以为其发声，可以避免消费主义被无限地合理化。\n鲍曼这样形容新穷人的现实后果：由于新穷人是不服从工作伦理的，常常被指责称为道德劣等的人，这使得“穷人的苦难不再能汇聚成一项共同的事业，每一个有缺陷的消费者都在孤独中舔舐自己的伤口，最多只能与ta们尚未破碎的家庭为伴，与同样没有资源的朋友为伴”。\n在这里我们可以看到，新穷人的困境一定程度上源自和植根于“沉默”。这是一种系统性的难以发声、难以被理解的沉默。这使得新穷人往往不被识别、被孤立、被怪罪。这就是为什么针对这一现象的提问、反思，对自己日常生活的审视，都是积极的面对方式。\n同时我们需要意识到，消费社会如果不能在物理上分隔新穷人，便试图在精神上将其隔绝。在互联网上发出更多声音去反思消费（比如近几年常常有人分享自己在主动寻求消费降级），让新穷人变得更可见，都是有价值的行动。",
+            "en": "First, the new poor must be understood as a systemic phenomenon and a structural problem. I believe that the first step of individual engagement lies in reflecting on this phenomenon within one’s own everyday life. Giving voice to it, where possible, can prevent consumerism from being endlessly legitimized through rationalization.\nBauman describes the concrete consequences faced by the new poor in the following terms: because the new poor are perceived as deviating from the work ethic, they are frequently accused of moral inferiority. As a result, “the suffering of the poor can no longer crystallize into a common cause; each defective consumer is left to lick their wounds in solitude, accompanied at most by families not yet broken apart, or by friends who are themselves equally deprived of resources.”\nHere we can observe that the predicament of the new poor is, to a significant extent, rooted in and sustained by silence—a form of systemically produced silence, characterized by the difficulty of articulation and recognition. This silence renders the new poor largely invisible, socially isolated, and morally blamed.\nThis is precisely why posing questions about this phenomenon, engaging in reflection, and critically examining one’s own everyday practices constitute active and meaningful forms of response.\nAt the same time, we must recognize that when consumer society fails to segregate the new poor in physical space, it seeks instead to isolate them on the symbolic and psychological level. Making more voices heard—particularly in digital spaces—to reflect critically on consumption (for example, the growing tendency in recent years to share experiences of deliberate consumption downgrading), and thereby increasing the visibility of the new poor, are actions of genuine value."
           },
           "role": {
             "zh": "贡献者",
@@ -3750,25 +4010,6 @@
           },
           "author": {
             "zh": "欣欣然地",
-            "en": ""
-          },
-          "background": {
-            "zh": "",
-            "en": ""
-          },
-          "date": "2024/05/06"
-        },
-        {
-          "content": {
-            "zh": "您这个问题就像问如何消除传统贫困一样?从了解概念，到知其所以然（怎么产生的），到如何摆脱贫困，中间还省略了很多步啊，每一步的著作都是汗牛充栋。\n能让我们先了解到粗浅的定义，就是第一步。第一步非常重要",
-            "en": ""
-          },
-          "role": {
-            "zh": "贡献者",
-            "en": "Contributor"
-          },
-          "author": {
-            "zh": "卡尔维诺jr",
             "en": ""
           },
           "background": {
@@ -3786,7 +4027,7 @@
         "en": "Suspension"
       },
       "termOri": "悬浮",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/悬浮_aigc.png",
       "sm_title": {
         "zh": "没有人活在当下和此处，都期望着暴富然后逃离",
         "en": "social title"
@@ -3924,6 +4165,25 @@
             "en": ""
           },
           "date": "2024/05/01"
+        },
+        {
+          "content": {
+            "zh": "想补充两个接近于“悬浮”的例子。\n一是一种时间上的悬浮，（一直在等待未来）。我的妈妈，一个在没有搬家之前永远属于“悬浮”状态的中年女性。妈妈离婚之后搬进了一个之前的老房子里，老房子即使被翻新了，她依然非常不满意，当我说提一些建议的时候，她总是说：“等这段时间过了多”，“等搬新房子多”，仿佛现在的生活是“暂时”的，这段苦日子总会过去的。\n现在她终于搬家了，我说你多久重新开始运动啊?，她说“等春天来了多”…\n\n另外一种是空间上的悬浮，（一直在寻找别处）。是迁徙于被于各种国家间的年轻人，他们通常不想回到自己的国家，但是又同样平等地讨厌每个她们长期呆过的城市和国家，其中我听到辱骂声最多的是德国，每一个在德国长期待的人都仿佛特别憎恨这片土地。\n\n他们（或者是我们）仿佛永远在寻找一块并不存在的 Dream Land，也许扎根质地都是牢笼，所以只能在移动中和未完成种获得一种安全感。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "李若竹",
+            "en": ""
+          },
+          "background": {
+            "zh": "设计",
+            "en": ""
+          },
+          "date": "2024/05/01"
         }
       ]
     },
@@ -3937,7 +4197,7 @@
       "concept_image": "TODO: concept_image",
       "sm_title": {
         "zh": "「维佐人」的身份不是生来即有，也非一成不变",
-        "en": "social title"
+        "en": "The identity of a \"Vezo\" is not innate or unchanging"
       },
       "proposers": [
         {
@@ -4009,7 +4269,22 @@
         "zh": "在维佐人的哲学里，并没有“一劳永逸”的归属感；这提醒了每一个在大城市里感到迷失的现代人：定义我们的不应是那张薄薄的出生证明，而应是我们每天坚持在做的事情。",
         "en": "In Vezo philosophy, there is no such thing as a \"once and for all\" sense of belonging; this serves as a reminder to every lost soul in the modern metropolis that we are defined not by a birth certificate, but by what we choose to do every day."
       },
-      "diagrams": [],
+      "diagrams": [
+        {
+          "src": "images/维佐人_diagram_1.png",
+          "caption": {
+            "zh": "图像来自：\n捕鱼的维佐人。摄影：Rhett A. Butler",
+            "en": "diagram caption"
+          }
+        },
+        {
+          "src": "images/维佐人_diagram_2.png",
+          "caption": {
+            "zh": "图像来自：\n捕鱼的维佐人。摄影：Frank Janssens",
+            "en": "diagram caption"
+          }
+        }
+      ],
       "related_terms": [
         {
           "id": 38,
@@ -4026,7 +4301,46 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "生活在马达加斯加西海岸的维佐人的身份通过其当下的行为来定义：生计方式、居住地、定居后所掌握的技能、烙在身上的“标志”等，身份仅在行为发生的当下起效。举例而言，在完全习得游泳、捕鱼等技能之前，维佐人的孩子只能被叫做“小维佐（little Vezo）”，不能被称为“维佐人（Vezo）”；搬到内陆居住却精于独木舟制作的人，在制作独木舟时是维佐人，在劳作于耕地时不是维佐人；海上航行时遇到风浪，奋力使船只航行、抱着船身飘回岸边的是维佐人，瑟瑟发抖、无所作为的不是维佐人。维佐人的身份是一种行为方式，而非一种存在状态。\n行为在身体上留下痕迹，身体由此成为身份的表征。要想检验维佐人，也可以看看ta身上的伤疤、走路的姿势。维佐人手上有鱼线勒出的伤痕，没有耕种留下的老茧；出于对沙滩的适应选择用脚尖抓地走路，以至在平地上走路会起水泡。然而表象无法取代行为，如果不延续行动，身体上的痕迹也会逐渐消去。对行动与当下的重视构筑了维佐人的身份认同。在生时，维佐人的身份是一种彻头彻尾的获致身份。如果你我愿意，我们都可以在某一刻成为维佐人。\n————\n“维佐人”的身份认同方式能够给我们诸多启示——我们是怎样的人或许也可以不依靠血脉和宗族，而是依靠行动。",
+            "en": "The identity of the Vezo people living along the west coast of Madagascar is defined through their actions in the present: their means of subsistence, place of residence, the skills they acquire after settling, and the “marks” inscribed upon their bodies. Identity is operative only in the moment of action.\nFor example, before fully mastering skills such as swimming and fishing, Vezo children can only be called “little Vezo,” not “Vezo.” A person who moves inland but excels at making dugout canoes is Vezo while building a canoe, but not Vezo while laboring in the fields. At sea, when a storm arises, those who struggle to keep the boat moving or cling to its hull and drift back to shore are Vezo; those who tremble with fear and do nothing are not Vezo. Vezo identity is thus a mode of action rather than a state of being.\nAction leaves traces on the body, and the body in turn becomes a visible index of identity. To recognize a Vezo person, one may look at their scars or the way they walk. Vezo hands bear the cuts left by fishing lines, not the calluses of agricultural labor. Adapted to sandy beaches, they grip the ground with their toes when walking, a habit that causes blisters on flat, hardened surfaces. Yet bodily signs can never replace action itself: without the continuation of practice, such traces gradually fade. It is this emphasis on action and immediacy that constitutes Vezo identity. In life, Vezo identity is entirely an achieved identity. If you or I so choose, we too could become Vezo at a given moment."
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "太白",
+            "en": ""
+          },
+          "background": {
+            "zh": "人类学",
+            "en": ""
+          },
+          "date": "2024/04/18"
+        },
+        {
+          "content": {
+            "zh": "在人类学领域，一度被认为已经僵化的亲属关系研究现在正在经历一场复苏，Janet Carsten的《亲属关系之后》（After Kinship）所强调的，是将亲属关系从血缘、谱系与制度结构中“松绑”，转而理解为一种在日常生活中被不断生成、维系和转化的实践过程。维佐人的身份认同方式与这一理论取向高度契合：身份并非先于行动而存在，而是在具体实践中被不断实现。正如 Carsten 所指出的，亲属并不是一种自然事实，而是一种通过共居、劳动、照料与身体经验逐渐“变成的关系”，维佐人的“成为维佐人”同样是一种持续的获致过程。两者都拒绝将社会身份理解为稳定的本质，而是强调行动、身体与当下情境的重要性。唐娜·哈拉维（Donna Haraway）在《留在麻烦中》（Staying with the Trouble）里提出了一个有趣又响亮的口号：“造亲，而非造人！”（Make Kin, Not Babies!）—— 她的意思是，亲属关系不止是血缘关系，而是产生连结的能力，比如说，与机器人成为亲属（AI伴侣）、与动物成为亲属等，都展现了我们并没有被绝对的“原子化”而是被迫开发种种新的社会关系。",
+            "en": "In anthropology, the study of kinship—once widely regarded as rigid and exhausted—has recently undergone a revival. Janet Carsten’s After Kinship plays a key role in this shift by loosening kinship from blood, genealogy, and formal institutional structures, and instead understanding it as a set of practices continuously generated, maintained, and transformed in everyday life.\nThe Vezo mode of identity formation closely aligns with this theoretical orientation: identity does not exist prior to action, but is repeatedly realized through concrete practice. As Carsten points out, kinship is not a natural fact, but a relationship that gradually “comes into being” through co-residence, labor, care, and embodied experience. In the same way, “becoming Vezo” is an ongoing process of achievement. Both perspectives reject the notion of social identity as a stable essence, and instead emphasize the importance of action, the body, and the immediacy of the present situation.\nDonna Haraway, in Staying with the Trouble, offers a striking and memorable slogan: “Make kin, not babies!” What she means is that kinship is not limited to biological ties, but lies in the capacity to form connections—for example, becoming kin with machines (such as AI companions) or with animals. These forms of relatedness show that we have not been completely reduced to isolated individuals; rather, we are being pushed to invent new kinds of social relations."
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "孟汀",
+            "en": ""
+          },
+          "background": {
+            "zh": "人类学",
+            "en": ""
+          },
+          "date": "2024/04/18"
+        }
+      ]
     },
     {
       "id": 33,
@@ -4545,7 +4859,7 @@
         "en": "Psychogeography"
       },
       "termOri": "Psychogéographie",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/心理地理学_aigc.png",
       "sm_title": {
         "zh": "一座塔楼，一条小径，几个行人，可能就构成了一个城市",
         "en": "social title"
@@ -4604,23 +4918,31 @@
       "edit_date": "2024/03/04",
       "brief_definition": {
         "zh": "强调人的行为、情绪等主观感受的城市空间理解方式",
-        "en": "A subjective understanding of space that emphasizes the influence of environment on human emotions and behavior."
+        "en": "An urban spatial understanding emphasizing subjective experiences, such as human act and emotions"
       },
       "extended_definition": {
         "zh": [
-          "想象你正手持一张巴黎的城市地图，却试图在伦敦的街道中寻找出口。你不再按照导航指示的最短路径行走，而是被一条深邃的小巷吸引，或是被某处斑驳墙面透出的忧郁氛围所阻拦。在你的脑海里，那些快步经过的商业街由于极度平庸而缩减成了一个点，而那家曾偶遇过旧友的转角书店，却在心理地图上扩张成了一片广袤的森林。",
-          "这种“乱码”式的感官体验正是心理地理学的核心。它并非传统地理学那种精确到经纬度的测量，而是一场对城市空间的主观阅读。其创始人居伊·德波不满于现代城市沦为枯燥的、被资本异化的功能区间，于是提出通过“漂移”（Dérive）来夺回生活的创造性。正如1953年夏天德波与朋友们在巴黎进行的“暴力漂移”：他们漫无目的地搭乘便车，让司机的意志决定终点。这种游戏般的混乱，将城市切割、重组、陌生化。心理地理学告诉我们，城市不只是钢筋混凝土的堆砌，它是一系列情绪氛围的集合，每一条街道都隐藏着引发愉悦、恐惧或反思的伏笔。"
+          "想象你不看导航，在城市中漫步，你所经历的空间并不会像传统地图中绘制的那样展开——快步经过的街道在记忆中迅速淡去，而两个相邻的街区，可能仅仅因为完全不同的建筑风格或光影氛围，在你脑海中显得相隔甚远。如果更本真地根据这段体验绘制地图，那些匆匆走过的街巷将成为空白，而停留更久的街区则会充满细节。",
+          "这种对空间的“主观记录”便是心理地理学的核心。不同于传统地理学对物理空间的测量与记录，它试图捕捉不同个体或群体所感受到的空间氛围，以及环境对人情绪的影响。同一座城市会在不同人心中呈现出完全不同的“地理”。深受本雅明“游荡者”这一概念的影响，居伊·德波及其合作者阿斯格·尤恩（Asger Jorn）尝试用更图像化的方式记录对城市的主观体验。在1958年他们创作的巴黎地图中，两人通过剪切、拼贴和红色箭头指向的方式，呈现了在不同空间中穿行以及搭车穿越巴黎街区的感官体验。"
         ],
         "en": [
-          "Imagine holding a map of Paris while attempting to navigate the labyrinthine streets of London. You stop following the shortest routes suggested by your GPS and instead find yourself drawn in by the allure of a shadowed alley or halted by the melancholic aura of a weathered wall. In your mind, the bustling commercial streets you hurried through shrink into mere points due to their banality, while the corner bookstore where you once chanced upon an old friend expands into a vast forest on your mental map.",
-          "This \"distorted\" sensory experience lies at the heart of psychogeography. It is not the precise measurement of longitudes and latitudes found in traditional geography, but a subjective reading of the city. Its founder, Guy Debord, dissatisfied with modern cities becoming dull, functional zones alienated by capital, proposed reclaiming life's creativity through the practice of Dérive (drifting). Consider the \"radical drifting\" performed by Debord and his companions in Paris during the summer of 1953: they hitchhiked aimlessly, letting the whims of the drivers determine their destinations. This playful chaos cut, reorganized, and defamiliarized urban space. Psychogeography teaches us that a city is more than an accumulation of reinforced concrete; it is a collection of emotional atmospheres, where every street hides a latent spark of joy, fear, or reflection."
+          "Imagine wandering through a city without GPS. The space you experience won’t unfold neatly like a traditional map. Streets you rush through might vanish from your memory, while two adjacent blocks could feel miles apart simply because of their different architectural styles or lighting. If you were to draw a map based truly on this lived experience, some parts would remain blank, while other spaces would be dense with detail.",
+          "This \"subjective recording\" of space is at the heart of psychogeography. Moving away from the physical measurements of traditional geography, it seeks to capture the unique atmospheres felt by individuals and the emotional impression of the environment. The same city can manifest as a completely different \"geography\" in the minds of different people. Influenced by Walter Benjamin’s concept of the flâneur, Guy Debord and his collaborator Asger Jorn sought more graphic ways to document this subjective urban experience. In 1958, they created The Naked City, a psychogeographic map of Paris where they used cut-outs, collages, and directional arrows to map the sensory experience of drifting through different sectors of the city."
         ]
       },
       "example_sentence": {
         "zh": "与其查阅冷冰冰的旅游手册，他更倾向于通过一次漫无目的的深夜“漂移”，去书写属于自己的心理地理学报告。",
         "en": "Rather than consulting a cold travel brochure, he preferred to write his own psychogeographical report through an aimless late-night \"dérive.\""
       },
-      "diagrams": [],
+      "diagrams": [
+        {
+          "src": "images/心理地理学_diagram_1.png",
+          "caption": {
+            "zh": "《巴黎心理地理学地图》局部。",
+            "en": "diagram caption"
+          }
+        }
+      ],
       "related_terms": [
         {
           "id": 40,
@@ -4645,7 +4967,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "居伊·德波（Guy Debord）的纪录片《景观社会》（The Society of the Spectacle）存在一种特殊的断裂感：画面缺乏连贯的叙事，充斥着广告、新闻和政治宣传拼贴式的快速剪辑；语调冷漠的旁白与画面之间并没有直接的内容关联，而是直接朗读《景观社会》一书的理论文本。这种“反电影”式的断裂感，似乎正是居伊·德波和情境主义国际（Situationist International，简称SI）所追求的空间体验。\n在1957年，几个欧洲激进的前卫团体合并成立了SI，其中包括以居伊·德波为首的“字母主义国际”（Lettrist International）和以阿斯格·约恩（Asger Jorn）为代表的“想象主义包豪斯”（Imaginist Bauhaus）。SI主张将艺术从博物馆和画廊陈列的“物品”的定义中解放出来，他们认为“艺术”应该构建“情境”（Constructed Situations）。所谓情境，就是“通过集体性的环境组织和游戏，创造出一种短暂的、独特的、能让参与者成为主角的生活瞬间”。\n在现代城市中，街道被异化为无数“景观”（Spectacle）的堆叠。资本主义不再仅仅生产商品，更生产影像和社会关系。城市本身变成了商品的陈列柜，甚至成为商品本身，而城市生活则是观看和消费。为了对抗这种令人窒息的资本主义景观，情境主义国际构想出了一种游击战式的空间策略——“漂移”（Dérive）。\n不同于波德莱尔式“游荡者”（Flâneur）那种忧郁、孤独且旁观式的漫步，情境主义者更像是城市规则的“破坏者”。“漂移”是一种在主观体验上对城市空间进行的暴力剪切与重组，它让那些本被阶级和功能区隔开的街区发生碰撞。这一策略要求参与者彻底抛弃工作、身份和习惯的重负，听从潜意识的召唤，进行一种即兴的、主观的穿越。其目的是在“此时此地”制造陌生感与邂逅的可能，找回现代城市所缺失的不完整性、短暂性和创造性。可以说，“漂移”本质上带有某种狂欢的性质。\n1953年的夏天，当整个巴黎依然按照生产的节律运转时，德波和让-米歇尔·曼森（Jean-Michel Mension）发起了一场“不间断的搭便车漂移”。在这场没有终点的旅程中，他们将去向交给随机停下的司机，“快速地穿越不同的氛围”，让原本毫不相关的地理碎片在心理层面发生剧烈碰撞，从而在城市中制造出一种玩乐式的混乱。这种行为本身即是一种宣言：对于深受达达主义和超现实主义影响的左翼国际组织而言，“漂移”构成了瞬间的、艺术性的日常生活革命，以及对资本主义景观的反抗。\n相比之下，前段时间流行的“Citywalk”更像是一种对“反叛”的收编和规训。在精心设计的路线图上打卡网红店铺，很难产生漂移的“断裂感”。这种漫步体验本身甚至也被异化为一种可供售卖和消费的商品——曾经对景观的破坏，如今转变成了对景观的再次消费。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "雅伦",
+            "en": "Yalun"
+          },
+          "background": {
+            "zh": "",
+            "en": ""
+          },
+          "date": "2024/03/04"
+        }
+      ]
     },
     {
       "id": 38,
@@ -4791,7 +5133,7 @@
         "en": "Techno-animism"
       },
       "termOri": "Techno-animism",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/技术有灵论_aigc.png",
       "sm_title": {
         "zh": "「技术有灵论」不只是针对电子产品的拟人化修辞",
         "en": "social title"
@@ -4871,6 +5213,10 @@
         {
           "id": 20,
           "relation": "概念相关"
+        },
+        {
+          "id": 13,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -4883,7 +5229,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "去年做了一些和机器人有关的设计工作，似乎这两年机器人产业的发展得很好。所有的广告片中，小孩，大人，老人，都已经和一个人形机器人和睦地相处在一起，这些广告片段如果倒转五年看的话，我会以为是一个科幻片的片段。而现在，广告所反复传达的信息却是：三年之后，人形机器人将进入普通人的家庭，成为一种日常配置。\n\n我在工作得异常疲乏的某一天也问自己：之后我的家里会有一个人形机器人吗？机器人需要是人形的吗？我需要ta吗？\n\n这个问题让我想起二十世纪初的一段私人记忆。小时候，我家里曾经有一架望远镜——那似乎是那个年代相当常见的家庭物件。千禧年前后的太空热，让我们的父母相信“看得更远”本身就是一种价值：看月亮，看行星，看星云。望远镜承载着一种被技术点燃的未来想象，而并非一种不可替代的日常需求。后来，人们不再购买望远镜，我家那一架也早已不知去向。那场关于宇宙的狂热并没有真正消失，而是被转移到了新的技术对象之上。\n\n那么，今天关于“人形机器人”的热情，是否也来自类似的机制？是否同样源于长期被科幻电影、文学和影像训练过的想象？在技术尚未充分进入日常之前，我们是否已经在心理上为它预留了位置？",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "李若竹",
+            "en": ""
+          },
+          "background": {
+            "zh": "设计",
+            "en": ""
+          },
+          "date": "2023/12/02"
+        }
+      ]
     },
     {
       "id": 40,
@@ -4892,7 +5258,7 @@
         "en": "Flaneur"
       },
       "termOri": "Flâneur",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/游荡者_aigc.png",
       "sm_title": {
         "zh": "沙丘词典｜Citywalk的人算是「游荡者」吗？",
         "en": "social title"
@@ -4955,17 +5321,19 @@
       },
       "extended_definition": {
         "zh": [
-          "想象你正身处一座繁忙都市的午后，没有赶往办公室的焦虑，也没有购物清单的束缚。你只是在街头漫无目的地行走，透过街角咖啡店明亮的玻璃窗，观察窗外匆匆路过的人群，注视着他们形形色色的身姿、步态、穿着和表情。你既在人群之中，又在人群之外，世界对你而言不再是通勤的背景板，而是一场永不谢幕的露天电影。",
-          "这种状态最早被爱伦·坡在小说《人群中的人》中捕捉：一个久病初愈的主人公，通过观察行人的皮靴或围巾来推测他们的身世。随后，波德莱尔在《现代生活的画家》中将这种虚构升华为一种艺术人格。对他而言，游荡者处于一种永久的“康复期”，像孩子一样对一切充满热情和好奇。到了20世纪，本雅明进一步赋予其哲学深度：游荡者是现代性的产物。他不像素人游客那样忙于“打卡”名胜，而是一个日常生活的旁观者。在这个过程中，“城市成为一片向他敞开的风景，同时也是一个将他围合的客厅。”尽管这个词在语源上曾带有“无所事事”甚至“徘徊伺机”的贬义，但在急躁繁杂的工业时代，这种“悠然的品鉴”反而成了一种罗曼蒂克的、对抗异化的生活艺术。"
+          "爱伦·坡在小说《人群中的人》中描绘了这样一位主人公：他久病初愈，一整天无所事事地观察着窗外匆匆路过的人群，试图通过行人的皮靴或围巾来揣摩他们的身份。在《现代生活的画家》中，波德莱尔将法国画家康斯坦丁·盖伊也描述为处于永久的“康复期”，像孩子一般对一切充满热情与好奇。盖伊擅长用水彩描绘各阶层的生活，波德莱尔评价他像“一面镜子”，“像那群人一样庞大”。",
+          "对于波德莱尔和本雅明来说，游荡者是现代生活的产物，是“现代城市生活的观察者”——“城市成为一片向他敞开的风景，同时也是一个将他围合的客厅。”",
+          "“Flâneur”一词源自古挪威语动词 flana，原意为“没有目的地闲逛”。这一略带负面的含义在法语中得以延续，直到 19 世纪，或许是因为工业化带来的快节奏与高效率打破了古典城市原有的平静，“游荡者”的行为反而获得了丰富且正面的新意味——在急躁繁杂的都市中悠然、好奇地打量并品鉴生活，这本身便可以是艺术化的、有情致且罗曼蒂克的。"
         ],
         "en": [
-          "Imagine yourself walking aimlessly through a bustling city on a late afternoon. You are free from the anxiety of rushing to an office and unburdened by the constraints of a shopping list. You simply drift through the streets, peering through the polished glass of a corner café, observing the sea of passersby—their diverse silhouettes, gaits, attires, and fleeting expressions. You are simultaneously amidst the crowd and apart from it; to you, the world is no longer a mere backdrop for a commute, but an inexhaustible, open-air cinematic performance.",
-          "This psychological state was first captured by Edgar Allan Poe in his short story The Man of the Crowd, which depicts a protagonist, newly recovered from illness, who spends his day deciphering the identities of strangers by the stitching of their boots or the drape of their scarves. Subsequently, in The Painter of Modern Life, Charles Baudelaire elevated this fictional persona into an artistic archetype. For Baudelaire, the flâneur exists in a state of \"perpetual convalescence,\" possessing a child-like passion and curiosity for the world. By the 20th century, Walter Benjamin further endowed the term with philosophical depth, identifying the flâneur as a quintessential product of modernity. Unlike the typical tourist preoccupied with \"checking off\" landmarks, the flâneur is a bystander of everyday life. In this process, \"the city becomes for him a landscape that opens up to him, yet remains a drawing room that encloses him.\" Although the etymological roots of the word once carried derogatory connotations of \"idling\" or \"loitering,\" in the frantic and high-efficiency era of industrialization, this act of \"leisurely appreciation\" has evolved into a romantic art of living—a resistance against alienation."
+          "Edgar Allan Poe’s short story #The Man of the Crowd# depicts a protagonist who, having just recovered from a long illness, spends an entire day in idle fascination, observing passersby through a window. He studies the texture of their boots and the drape of their scarves, deciphering their social identities. In #The Painter of Modern Life#, Charles Baudelaire finds this same spirit in the French watercolor painter Constantin Guys, describing him as being in a state of \"perpetual convalescence\"—like a child, possessed by a curiosity for everything he sees, capturing the lives of every social stratum in watercolor. He is like \"a mirror as vast as the crowd.\"",
+          "For Baudelaire and later Walter Benjamin, the #flâneur# is the quintessential product of modern life: a detached observer of modern metropolitan life for whom the city \"opens up to him as a landscape, even as it closes around him as a room.\"",
+          "The word #flâneur# traces back to the Old Norse verb #flana#, meaning \"to wander aimlessly.\" This slightly pejorative nuance lingered in French for centuries, but by the 19th century, its meaning shifted. As industrialization broke the tranquility of the traditional city, the act of wandering took on a rich, subversive dimension. To stroll leisurely and inquisitively through the frantic bustle of the city became an artistic endeavor—an act of romantic resistance against the pace of modern life."
         ]
       },
       "example_sentence": {
-        "zh": "与其说是去旅行，他更像是在这个陌生的异国首府扮演一名游荡者，通过在老城区的小巷中漫步，去捕捉那些掩盖在繁华商圈之下的、属于这座城市的真实体温。",
-        "en": "Rather than visiting as a tourist, he preferred to act as a flâneur in this foreign capital, capturing the authentic pulse of the city—hidden beneath the glossy commercial districts—by wandering through the labyrinthine alleys of the Old Town."
+        "zh": "电影《柏林苍穹下》和《绝美之城意大利》都以一个城市“游荡者”作为摄影机的推动动力。",
+        "en": "The films #Wings of Desire# and #The Great Beauty# are both propelled by the perspective of an urban #flâneur#, who serves as the driving force for the camera."
       },
       "diagrams": [],
       "related_terms": [
@@ -4980,19 +5348,85 @@
         {
           "id": 44,
           "relation": "概念相关"
+        },
+        {
+          "id": 11,
+          "relation": "概念相关"
+        },
+        {
+          "id": 10,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
         "content": {
-          "zh": "导读",
+          "zh": "特别是如果在上海这种已经景观化的大城市中，它既足够暧昧，又足够安全，还能有一种情调，“在大城市中孤独的两个青年的浪漫一夜”， 谁不这样幻想呢？",
           "en": "abstract"
         },
         "author": {
-          "zh": "TODO",
+          "zh": "若竹",
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "“拱廊”还是“艺术馆”？\n在巴黎游荡的时候，法国朋友说带我去几个gallery，我以为要带我去几个美术馆，到了之后发现，诶？不对，这是购物街啊。购物街的门口写着Galerie，我奇怪。\n\n哦！这个词最早起源于中世纪拉丁语 Galilaea，起初是指教堂入口处的门廊或前厅。后来演变为古法语 Galerie，指长长的、有顶棚的走廊。\n\n16、17世纪的欧洲宫殿，长廊不仅是通道，也是挂满绘画、摆放雕塑用来炫耀财富的地方。比如凡尔赛宫的镜厅（Galerie des Glaces）。后来这种“挂画的长廊”演变成了专门展示艺术品的空间。所以在英语里， art gallery成了美术馆/画廊的统称。\n\n在19世纪的巴黎，为了让贵族和资产阶级在雨天也能优雅地购物，建筑师在两栋楼之间加了玻璃顶棚，这种长条形的商业街。 “拱廊”叫Galerie，是因为它在建筑形式上就是一条“长廊”。这就是本雅明所说的“游荡”的地方。\n\n啊！懂了！",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "李若竹",
+            "en": ""
+          },
+          "background": {
+            "zh": "设计",
+            "en": ""
+          },
+          "date": "2023/11/22"
+        },
+        {
+          "content": {
+            "zh": "在 thread 上看到一个帖子，很mean，大意是：接触过的好几位青年导演，几乎不约而同地想拍同一个短片——一男一女，从夜晚到清晨，游荡在上海的街头。\n\n的确，“午夜的游荡者” 是非常多电影主题。从单人男人游荡的《下班后》《玩乐时间》和《午夜巴黎》，单人女人游荡的《卡比利亚之夜》，再到男女两人游荡《爱在黎明破晓前》。而通常在这样的电影中，戏剧性的一晚结束之后，没有人的生活被改变。《下班后》的结局是主人公走到公司的门前，看铁门打开。《卡比利亚之夜》结尾主人公像开头一样再次遭遇欺骗。我们想象自己能拥有一个一个魔幻的夜晚，不可预计的失控，企图逃离日常，但并不改变日常。\n\n\n本dating app多年用户可以负责任地说，的确进几年来在dating app上如果问别人约会出来干嘛？很大几率会得到“散步”这个回答。的确，“散步”是个很容易掌控的约会项目，首先比较经济实惠，其次时间可控，可以聊天，但又不用害怕无话可聊的尴尬时刻（因为街边总是会出现新东西）。特别是如果在上海这种已经景观化的大城市中，它既足够暧昧，又足够安全，还能有一种情调，“在大城市中孤独的两个青年的浪漫一夜”， 谁不这样幻想呢？",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "李若竹",
+            "en": ""
+          },
+          "background": {
+            "zh": "设计",
+            "en": ""
+          },
+          "date": "2023/11/22"
+        },
+        {
+          "content": {
+            "zh": "在过往的方言里，东北话里的“瞎溜达”或是北京话里的“晃荡”，似乎最贴合游荡者的精髓。它带有对时间的奢侈挥霍，是一种把闲暇当作对主流评价体系的消极抵抗。\n而今天的我们，自以为是“数字游荡者”，其实更像是被算法牵着鼻子的牧羊。我们在虚拟的信息广场上窥视他人的生活片段，观察赛博街头的奇观。但我们的每一次“转弯”都被精心计算过，每一次“偶遇”都是大数据投其所好的结果。曾经的游荡是向外的探索，现在的数字游荡是向内的封闭。\n就连曾经红极一时的“CityWalk”热潮，某种程度上，也只是对“游荡者”的某种当代降级或商业补偿。我们失去了真正的闲暇，取而代之的，是有着精准的路线、打卡点和社交媒体的出片任务。当“漫无目的”被量化为“步数”和“攻略”，游荡者便失去了那份超然的对抗效率的底气。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "奶油",
+            "en": ""
+          },
+          "background": {
+            "zh": "编辑",
+            "en": ""
+          },
+          "date": "2023/11/22"
+        }
+      ]
     },
     {
       "id": 41,
@@ -5001,7 +5435,7 @@
         "en": "Playbour"
       },
       "termOri": "Playbour",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/玩工_aigc.png",
       "sm_title": {
         "zh": "沙丘词典｜上班打工，回家当「玩工」，没有什么不在生产和消费的循环里",
         "en": "Dune Dictionary | Working at work, returning home as a 'playbour', there is nothing that is not in the cycle of production and consumption"
@@ -5095,7 +5529,27 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "一些app设计中，Gamification（游戏化）可以以非常优美又有效的方式呈现，这是我一直想要学习的，比如大家都爱的多邻国。但在又一些app中，游戏化的出现简直令人厌恶，比如说拼多多。最典型的例子莫过于我母亲常发给我的助力返现链接。出于亲情，我每次都会点击支持，但当我过段时间询问结果时，她的回答永远是“没拿到钱”。\n\n但我在这里也想补充一个消解“玩工”焦虑的方法，这个方法非常个人。试想如果玩工是“把玩耍变成工作”，那如果我们可以把“工作变成玩耍”呢？这个见解的起因主要是我近几年来沉迷于编织，最近又开始使用缝纫机给自己做衣服。我会称呼己是“缝纫女工”和“织女”，每天最幸福的时候就是创作这些实体作品的时候。几年之间我也发现编织在年轻人当中也越来越流行了，身边的很多朋友都开始感兴趣起来。我想，拿起针和线，一行一行地创造，这的确慢慢在成为一种对社交媒体控制的反抗，",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "李若竹",
+            "en": ""
+          },
+          "background": {
+            "zh": "设计",
+            "en": ""
+          },
+          "date": "2023/11/29"
+        }
+      ]
     },
     {
       "id": 42,
@@ -5106,7 +5560,7 @@
       "termOri": "termOri",
       "concept_image": "TODO: concept_image",
       "sm_title": {
-        "zh": "社媒标题",
+        "zh": "沙丘词典｜不要永远正确的机械运行，要「活人感」",
         "en": "social title"
       },
       "proposers": [
@@ -5125,7 +5579,7 @@
         }
       ],
       "source": {
-        "zh": "出处",
+        "zh": "2025年12月，中文刊物《咬文嚼字》发布本年度十大流行语，“活人感”一词赫然在列。",
         "en": "source"
       },
       "source_image": "TODO: source_cover",
@@ -5136,8 +5590,8 @@
         }
       ],
       "domain": {
-        "zh": "学科类型",
-        "en": "domain"
+        "zh": "媒介与传播 Media & Communications 人类学 Anthropology",
+        "en": "媒介与传播 Media & Communications 人类学 Anthropology"
       },
       "proposing_country": "中国",
       "proposing_time": "2021",
@@ -5148,21 +5602,26 @@
             "en": ""
           },
           "role": {
-            "zh": "",
+            "zh": "沙丘研究所创始人",
             "en": ""
           }
         }
       ],
-      "contribute_date": "TODO: contribute_date",
-      "editors": [],
-      "edit_date": "TODO: contribute_date",
+      "contribute_date": "2026/02/07",
+      "editors": [
+        {
+          "zh": "孟汀 编辑，参考人民日报《入选年度十大流行语，“活人感”何以打动人心》文章（2025年12月9日）",
+          "en": ""
+        }
+      ],
+      "edit_date": "2026/02/07",
       "brief_definition": {
-        "zh": "区别于工业模板、易被感知、真实抒发、可能带瑕疵的生命气息",
+        "zh": "富有生命力和情感、甚至带有出其不意的搞笑、偏颇和瑕疵的真实生命感",
         "en": "brief"
       },
       "extended_definition": {
         "zh": [
-          "社交媒体上现在不乏这样的账号：头像精致、专业，内容全是精心修过的风景大片、高端餐厅打卡、金句频出的励志语录，更新频率稳定得像设定好的程序。它“完美”，得像是橱窗里的塑料模特。这时带有“活人感”的账号反而让你更有好感：头像是随手拍的生活照，偶尔发一些背景杂乱、没有后期处理的自拍，Ta 吐槽生活中的烦恼，也分享小确幸，甚至文案里还有一些错别字。",
+          "社交媒体上现在不乏这样的账号：头像精致、专业，内容全是精心修过的风景大片、高端餐厅打卡、金句频出的励志语录，更新频率稳定得像设定好的程序。它“完美”，得像是橱窗里的塑料模特。这时带有“活人感”的账号反而让你更有好感：头像是随手拍的生活照，偶尔发一些背景杂乱、没有后期处理的自拍，吐槽生活中的烦恼，也分享小确幸，甚至文案里还有一些错别字。",
           "“活人感”是中文互联网在长期经历“去人化”环境后自发涌现的审美偏好。它最初的火种可以追溯到2018年前后的“饭圈”文化，粉丝开始厌倦明星工作室那套滴水不漏、仅作为广告位存在的社交账号，转而怀念早期互联网，特别是2010年代初的微博中那些会“深夜发疯”、会直抒胸臆、会展露脆弱的真实艺人。随后，这一诉求在豆瓣、小红书等社区发酵，演变为一种对“样板间”账号的反抗。",
           "“活人感”虽然是高度绑定在中文互联网的词汇，但可以和菲利普·奥斯兰德（Philip Auslander）所讨论的“现场性”（Liveness）平行讨论，甚至可以被看作后者在数字时代的变体。它不是生理意义上的活着，而是一种通过不可预测性、情感流露以及对日常琐事的共情所构建的互动体验。当网络内容生产从早期的 UGC（用户生成内容），到PGC（专业生成内容） 占据主流，再到AIGC（人工智能生成的内容）和精准算法大行其道，那些带有“人味儿”的小缺憾、即时性的情绪波动、甚至是偶尔的笨拙，反而成为了证明个体存在、建立心理连接的核心资产，也成为了网友寻找“活人同类”的某种暗号。"
         ],
@@ -5171,11 +5630,16 @@
         ]
       },
       "example_sentence": {
-        "zh": "例句",
+        "zh": "比起西装革履的辩论我还是喜欢看微博发疯文学，就是更有活人感。",
         "en": "example"
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 20,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "导读",
@@ -5186,7 +5650,65 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "“活人感”指的是在言语和行为上呈现出真实自然、有血有肉、带有情绪甚至是偏颇的“人味”。它强调反对完美、反对完全的正确，袒露情绪化、生活化的烟火气，对抗被精心包装的“人设”，是一种对回归真实生活状态和真实人际交往的渴求。\n\n这个词有几层比较主要的打动人心的原因，虽然没有与之对应的学术词汇，但有与之可以形成对应的一些平行概念。首先，它是对“异化”的回应和反击，身处快节奏的现代社会，面对各种各样的生活和工作压力，人们容易陷入倦怠，“活人感”正是针对这种低能量状态，肯定生命本能的流露，期望重拾活力。\n\n其次，AI时代，语言变得更加机械、人的情感体验也很多时候被机器所衡量、调和（mediated)，AI应用渗透到文字、图像、音视频创作领域，但却时常因为表达得太完美而令人感到不真实、无法产生情感上的连接，促使人们寻找“人味儿”、对抗“人机感”。STS学者Kalindi Vora与Neda Atanasoski提出Surrogate Humanity一词，在“赛博格”的概念基础上，讨论了当下机器大规模渗透人类劳动和思维、社交模式的状态。\n\n人们对人工智能及数字交互中“活人感”的渴求，实则充满残酷的讽刺。当我们训练AI模仿人类的温暖、共情与即兴时，屏幕后真实的人类却早在AI大规模铺排之前就被迫像机器般运作——标准化、可预测、少休息。或许，随着AI的使用更加无处不在，真正属于“人”的生命力和创造力将得到新的关注，而活人感不仅是对AI时代的逃逸，也更是对资本主义时代的劳工问题的批判。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "孟汀",
+            "en": ""
+          },
+          "background": {
+            "zh": "人类学",
+            "en": ""
+          },
+          "date": "2026/02/07"
+        },
+        {
+          "content": {
+            "zh": "曾经，“亚健康”是主流概念框架。这个术语暗示个体只需通过维护（休息、补充维生素、锻炼）就能恢复生产力。如今该词已被视为过时，新词汇“活人微死”表明损害已不仅限于生理层面，更涉及存在主义层面。过去我们认为身体坏了是“生病”，可以用医学解决。但现在的词汇（如“微死”、“班味”、“赛博供养”）反映出一种集体的病理学共识：问题不在于我身体的细胞，而在于我所处的结构。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "孟汀",
+            "en": ""
+          },
+          "background": {
+            "zh": "医学人文、STS",
+            "en": ""
+          },
+          "date": "2026/02/07"
+        },
+        {
+          "content": {
+            "zh": "随着社交媒体不断开发“注意力经济”，人们在互联网上都更加注重“人设”，并以维护“人设”获取收入，但“活人感”恰恰跳出种种精致“人设”，展露出真实的自我，反而备受流量的偏好。当AI可以模仿人类写出得体的邮件，当社交媒体算法要求我们磨平棱角以换取流量，我们正逐渐沦为自己生活中的“代理人”。“活人感”是对这种代理状态的反叛。它拒绝成为一个精准的零件，而是选择做一个“多余”的人、“错误”的人——拥有那些无法被算法模拟的、偶尔的失控、旺盛的表达欲以及真实的共情，不是为了完成任务而存在。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "孟汀",
+            "en": ""
+          },
+          "background": {
+            "zh": "媒体研究",
+            "en": ""
+          },
+          "date": "2026/02/07"
+        }
+      ]
     },
     {
       "id": 43,
@@ -5195,7 +5717,7 @@
         "en": "term"
       },
       "termOri": "termOri",
-      "concept_image": "TODO: concept_image",
+      "concept_image": "images/褶子城市_aigc.png",
       "sm_title": {
         "zh": "沙丘词典丨「褶子城市」保有生活的复杂性，因为它不止有光亮的一面",
         "en": "social title"
@@ -5294,7 +5816,46 @@
           "en": "TODO"
         }
       },
-      "comments": []
+      "comments": [
+        {
+          "content": {
+            "zh": "第一眼看到这个词条很难不让人联想到《北京折叠》，实际上两者更像是两个刚好相反的概念（在另外一条笔记中，雅伦也有更详细解释）。从字面上理解的话，褶子即是一张纸，被无限地折叠，折叠，再被无限地摊开。摊开之后的城市，依然在同一个平面上，只留下很多的痕迹。这些褶子便是城市的形态。\n\n德勒兹用“褶子”讲17世纪的巴洛克艺术（雕塑，绘画，建筑和教堂），他也提到了佛罗伦萨，我去过两次，很容易就理解到了城市当中的“褶子感”。在佛罗伦萨，从一个非常大的广场，雄伟精美的教堂周围衍生出，是很多极其窄的街道，这些街道的汽车道是用石板铺出来的，人行道可能就只有一个50厘米（甚至30厘米）的窄台阶，尺度骤然收紧，身体被迫进入一种贴近建筑、贴近他人的行走状态。这种空间上的折叠，在整个意大利都反复出现。我和朋友一澜聊到过那不勒斯，也是很好的例子。\n\n我只在那不勒斯停留了一天，却迅速意识到这是一座由不同时间、阶层和生活方式同时搭建的城市。晚上同一个这个城市生活的朋友带着溜街串巷，那不里王国的余晖没有散尽，只是被涂鸦给遮盖了一点，巴洛克教堂与私人加建的现代住宅并置；一条街是移民聚居区，转个弯便是打乒乓球、喝酒的年轻人；Pulcinella （一个戴帽子的丑角）的雕塑、圣人祭坛、马拉多纳的画像和涂鸦在同一面墙上叠加出现。那天恰逢意甲夜晚，海岸线同时燃起烟火——你很难在这里用单一视角去“理解”什么，只能被不断拉入新的场景之中，真正体验到一种 Everything Everywhere All at Once 的状态。城市通过不断的折叠、压缩与展开，保持其开放性与不确定性，“褶子”成为一种持续发生的现实。\n\n本雅明在用“多孔性”来描述那不勒斯（但我认为和“褶子城市”的意思异曲同工）：“这座城市的建筑如同它的石材一样多孔。在庭院、拱廊和楼梯间，建筑与行为相互渗透。在一切事物中，都保留着成为一座展演崭新的、不可预见的星丛之剧场的可能性。那种“盖棺定论”的印记在这里被有意回避，没有任何情境被设定为永恒，没有任何形象宣称“唯此如此，别无他法”。在这里，建筑——作为共同生活节奏中最具约束力的部分——正是这样诞生的：文明、私密、有秩序的事物，只出现在码头旁的大饭店和仓库中；而在城市中心，则是无政府状态的、混乱的、如同乡村的模样，直到四十年前，大街才像刀劈斧砍般切入其中。而只有在这些大街中，“房屋”才开始具备北欧那种“城市建筑的单元”的意义。相较之下，在那些公寓楼中，房屋的角落勉强固定住，仿佛用铁夹将圣母像固定住那样。没有人依靠门牌号码来辨认方向。人们以商铺、水井和教堂为参考点——而这些，也并非总是明确易懂的标识。………建筑物被用作大众舞台。它们被分割成无数个同时活跃的剧场。阳台、庭院、窗户、大门、楼梯、屋顶既是舞台，也是包厢。即使是最穷困潦倒的贫民，也能在朦胧的双重意识中，一面参与到那不勒斯一去不复返的街头生活画卷中，一面在赤贫中享有欣赏这幕全景剧的闲暇。楼梯上的作业，堪称舞台调度的高级课程。这些楼梯，从未完全暴露在外，但更不会被囚禁在北欧住宅那种阴沉封闭的盒子中——它们从建筑中断裂般地突现出来，折转、消失，又蓦地再度出现。”\n\n朋友一澜也评价过这座城市：“那不勒斯是一个山地里的古城，古王国的首都，尤其是在老城区那种折叠、挤压还有了一个时间的维度。这里的感受是多孔性的另一种现象，所有东西都被向内挤压在一起，不得不有了互相的接触、渗透甚至溢出，街头的摊位，天上挂的衣服和床单，马纳多纳伸出手的牌子，突然收紧的拱门出口，街边的饮水泉。它不是窒息的，而是充盈的，应接不暇的，好像挤着挤着生活总能找到缝隙冒出来。这样与其说多孔是一种好像结构上的特质，摆在分析实验室里的一块火山石，而更多是一种力的集合。……这种更直接的身体的经验的多孔性的感觉，好像也更展示了那不勒斯的那种对于被归纳、分类、固定的反抗，一种充满了不同的方向的力量，充满矛盾和冲突，无需化解（resolution），不断流动交融的特质。\n\n\n也正因如此，我发现关于那不勒斯的书写几乎不可避免地走向铺陈，描述形态如何在无穷延展中抵抗封闭与定型。例如乌格雷西奇在《狐狸》中描述：“如果我的目光再锋利一点，我就能看到那不勒斯的一幅幅画面，它们像巨大的蜂群一样在我四周涌动：北非难民在难民营前四处游荡，不知该何去何从；透过公交车窗，黑黢黢的影子如幽灵般在街头出没；难民像沙漠狐獴一样在田园风光中徐徐站起身，他们在垃圾堆旁、在破败的公寓里生根发芽，而他们的阳台上开满鲜花；人群如墓地十字架一样到处扎根，遮挡住了维苏威火山的风景；一个女孩用手肘撑在窗台上，凝视着排列整齐的微型仙人掌；在一个市场摊位上阳光照耀下的水果像是发光的纸灯笼；一个小姑娘用纤细的手指熟练地抖开贝壳千层酥(sfogliatella)，仿佛那是一团羊毛线……那不勒斯就像装在宽大、扁平的圆形展示盘中的鱼，在我面前活蹦乱跳，法院街上的小贩使用的正是那种盘子。影像、气味(腐烂的味道，街头食物的味道，树的味道，柠檬的味道，大海的味道，甜美、刺鼻、令人沉醉的味道) 和声音的狂欢让我无法呼吸，头晕脑涨，阻止我停靠在自身视角的安全港湾。而我自己的视角不停转换，一会儿晶莹剔透，一会儿又模糊不清，下一刻又重叠在一起，它翻转在悲剧和喜剧之间，好像眼前经过的东西没有一样不带着自己的两面性：没有一个生灵不在背上拖拽着自己的尸体，没有一个好运不连着厄运，没有种爱不在背包里随身携带着恨。\n唯一确凿不变的东西就是失去。每个人都以这种或那种方式处在失去当中。我们都在走下坡路，唯一重要的只有我们放慢速度的技巧。橘子树就向我们展示了这种技巧，它们生长在圣塞巴斯蒂安诺附近的人行道上，把果实砸向车顶和聒噪的摩托车手。”",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "李若竹",
+            "en": ""
+          },
+          "background": {
+            "zh": "设计",
+            "en": ""
+          },
+          "date": "2023/11/03"
+        },
+        {
+          "content": {
+            "zh": "-诚心发问，这个 褶子城市 和折叠城市有什么区别吗～\n\n-个人认为 折叠城市 来自郝景芳的小说《北京折叠》，用来描述因为经济条件、社会阶级等差异被割裂成不同空间的城市。折叠城市似乎有较强的反乌托邦色彩和对城市中不平等的批判。城中村或许是折叠城市的例子，由于居住者经济条件和阶级限制被与周围高楼大厦在空间上被分割开，虽然没有围墙，但存在某种社会和心理层面的边界。汪民安老师所提的褶子城市并不是“割裂”的空间，而是充满“褶皱”的空间。个人认为胡同是很好的例子，在胡同中游走会感觉穿梭在私密和公共的“褶皱”之间，可以看到层次丰富的“日常生活”。“褶子城市”更带有积极意义。",
+            "en": ""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "李雅伦",
+            "en": ""
+          },
+          "background": {
+            "zh": "建筑",
+            "en": ""
+          },
+          "date": "2023/11/03"
+        }
+      ]
     },
     {
       "id": 44,

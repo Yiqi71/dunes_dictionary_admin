@@ -519,6 +519,7 @@ function renderCommentSection() {
 
     const commentPanel = queryFloating('.panel-comment');
     if (!commentPanel) return;
+    const panelMain = commentPanel.querySelector('.panel-main');
 
     // Upper section
     const title = commentPanel.querySelector('.panel-top');
@@ -571,11 +572,41 @@ function renderCommentSection() {
                         </div>`
 
     // 为每个note section添加折叠/展开功能
-    const noteSections = contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-editors)');
+    const noteSections = Array.from(
+        contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-editors)')
+    );
+
+    const clearNoteLayout = () => {
+        contentScroll.classList.remove('notes-mode');
+        if (panelMain) panelMain.classList.remove('notes-fixed');
+        noteSections.forEach(sec => {
+            sec.classList.remove('note-expanded', 'note-above', 'note-below', 'note-below-first');
+        });
+    };
+
+    const applyNoteLayout = (activeSection) => {
+        clearNoteLayout();
+        if (!activeSection) return;
+        contentScroll.classList.add('notes-mode');
+        if (panelMain) panelMain.classList.add('notes-fixed');
+        const activeIndex = noteSections.indexOf(activeSection);
+        noteSections.forEach((sec, idx) => {
+            if (idx < activeIndex) sec.classList.add('note-above');
+            if (idx > activeIndex) sec.classList.add('note-below');
+        });
+        activeSection.classList.add('note-expanded');
+        const firstBelow = noteSections[activeIndex + 1];
+        if (firstBelow) firstBelow.classList.add('note-below-first');
+    };
+
     noteSections.forEach(section => {
-        section.addEventListener('click', () => {
-            // 切换展开/折叠状态
-            section.classList.toggle('note-expanded');
+        section.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (section.classList.contains('note-expanded')) {
+                clearNoteLayout();
+                return;
+            }
+            applyNoteLayout(section);
         });
     });
 }
