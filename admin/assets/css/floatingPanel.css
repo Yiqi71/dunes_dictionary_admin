@@ -13,7 +13,8 @@
     background-color: #c3b3a0;
 }
 
-#floating-panel {
+#floating-panel,
+#about-panel {
     position: fixed;
     top: 0;
     right: 0;
@@ -33,13 +34,15 @@
     /* fixed元素可以作为absolute子元素的定位上下文 */
 }
 
-#floating-panel.hidden {
+#floating-panel.hidden,
+#about-panel.hidden {
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
 }
 
-#floating-panel:not(.hidden) {
+#floating-panel:not(.hidden),
+#about-panel:not(.hidden) {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
@@ -638,42 +641,52 @@ line-height: 40px;
 
 
 /* 展开状态的样式 */
-#floating-panel.expanded {
+#floating-panel.expanded,
+#about-panel.expanded {
     width: 70vw;
 }
 
 /* 展开状态下底部section的padding调整 */
-#floating-panel.expanded .panel-bottom .left-title {
+#floating-panel.expanded .panel-bottom .left-title,
+#about-panel.expanded .panel-bottom .left-title {
     width: 160px;
 }
 
-#floating-panel.expanded .panel-bottom section {
+#floating-panel.expanded .panel-bottom section,
+#about-panel.expanded .panel-bottom section {
     padding: 32px 140px 0 64px;
 }
-#floating-panel.expanded .panel-bottom #section-brief {
+#floating-panel.expanded .panel-bottom #section-brief,
+#about-panel.expanded .panel-bottom #section-brief {
     padding-top: 180px;
 }
-#floating-panel.expanded .panel-bottom #section-example {
+#floating-panel.expanded .panel-bottom #section-example,
+#about-panel.expanded .panel-bottom #section-example {
     padding-top: 55px;
 }
-#floating-panel.expanded .panel-bottom #section-proposers {
+#floating-panel.expanded .panel-bottom #section-proposers,
+#about-panel.expanded .panel-bottom #section-proposers {
     padding-top: 118px;
 }
-#floating-panel.expanded .panel-bottom #section-related-works {
+#floating-panel.expanded .panel-bottom #section-related-works,
+#about-panel.expanded .panel-bottom #section-related-works {
     /* padding-top:80px; */
     padding-bottom: 40px;
 }
 
-#floating-panel.expanded .panel-bottom #section-contributors {
+#floating-panel.expanded .panel-bottom #section-contributors,
+#about-panel.expanded .panel-bottom #section-contributors {
     padding-top: 80px;
 }
 
-#floating-panel.expanded .panel-bottom #section-editors {
+#floating-panel.expanded .panel-bottom #section-editors,
+#about-panel.expanded .panel-bottom #section-editors {
     padding-top: 160px;
 }
 
 /* 展开状态下的图片调整 */
-#floating-panel.expanded .panel-top img {
+#floating-panel.expanded .panel-top img,
+#about-panel.expanded .panel-top img {
     width: 60vw; /* 比默认的541px更大 */
     height: 36vh; /* 比默认的339px更大 */
     object-fit: cover;
@@ -681,14 +694,16 @@ line-height: 40px;
     padding: 0;
     margin-bottom: 50px;
 }
-#floating-panel.expanded #section-example img {
+#floating-panel.expanded #section-example img,
+#about-panel.expanded #section-example img {
     width: 33vw !important; /* 比默认的406px更大 */
     height: 33vh !important; /* 比默认的270px更大 */
     object-fit: cover !important;
 }
 
 /* 展开状态下字体 */
-#floating-panel.expanded .panel-bottom p {
+#floating-panel.expanded .panel-bottom p,
+#about-panel.expanded .panel-bottom p {
     font-size: 24px;
     font-style: normal;
     font-weight: 450;
@@ -696,7 +711,8 @@ line-height: 40px;
     letter-spacing: 1.2px;
 }
 
-#floating-panel.expanded .panel-bottom .left-title {
+#floating-panel.expanded .panel-bottom .left-title,
+#about-panel.expanded .panel-bottom .left-title {
     color: #FAF4E5;
     font-family: "ChillDINGothic", "ChillDIN";
     font-size: 20px;
@@ -704,53 +720,65 @@ line-height: 40px;
     font-weight: 600;
 }
 
-#floating-panel.expanded .panel-bottom h2 {
+#floating-panel.expanded .panel-bottom h2,
+#about-panel.expanded .panel-bottom h2 {
     font-size: 45px; 
     font-weight: 600;
     letter-spacing: 2.25px;
 }
 
-#floating-panel.expanded .panel-bottom h3 {
+#floating-panel.expanded .panel-bottom h3,
+#about-panel.expanded .panel-bottom h3 {
     font-family: "ChillDIN";
     font-size: 28px; 
     line-height: 35px; 
     font-weight: 400;
     letter-spacing: 1.4px;
 }
-#floating-panel.expanded .panel-bottom .diagram-caption {
+#floating-panel.expanded .panel-bottom .diagram-caption,
+#about-panel.expanded .panel-bottom .diagram-caption {
     font-size: 20px;
     letter-spacing: 1px;
 }
-#floating-panel.expanded .panel-bottom .proposer-name {
+#floating-panel.expanded .panel-bottom .proposer-name,
+#about-panel.expanded .panel-bottom .proposer-name {
     font-size: 28px;
     letter-spacing: 1.4px;
 }
-#floating-panel.expanded .panel-bottom .proposer-year p {
+#floating-panel.expanded .panel-bottom .proposer-year p,
+#about-panel.expanded .panel-bottom .proposer-year p {
     font-size: 24px;
     line-height: 28px;
     letter-spacing: 1.2px;
 }
 
 /* 展开状态下笔记面板的颜色 */
-#floating-panel.expanded .panel-comment .panel-bottom p {
+#floating-panel.expanded .panel-comment .panel-bottom p,
+#about-panel.expanded .panel-comment .panel-bottom p {
     color: #43403B;
 }
-#floating-panel.expanded .panel-comment .panel-bottom .left-title {
+#floating-panel.expanded .panel-comment .panel-bottom .left-title,
+#about-panel.expanded .panel-comment .panel-bottom .left-title {
     color: #43403B;
 }
-#floating-panel.expanded .panel-comment .panel-bottom h2 {
+#floating-panel.expanded .panel-comment .panel-bottom h2,
+#about-panel.expanded .panel-comment .panel-bottom h2 {
     color: #43403B;
 }
-#floating-panel.expanded .panel-comment .panel-bottom h3 {
+#floating-panel.expanded .panel-comment .panel-bottom h3,
+#about-panel.expanded .panel-comment .panel-bottom h3 {
     color: #43403B;
 }
-#floating-panel.expanded .panel-comment .panel-bottom .diagram-caption {
+#floating-panel.expanded .panel-comment .panel-bottom .diagram-caption,
+#about-panel.expanded .panel-comment .panel-bottom .diagram-caption {
     color: #43403B;
 }
-#floating-panel.expanded .panel-comment .panel-bottom .proposer-name {
+#floating-panel.expanded .panel-comment .panel-bottom .proposer-name,
+#about-panel.expanded .panel-comment .panel-bottom .proposer-name {
     color: #43403B;
 }
-#floating-panel.expanded .panel-comment .panel-bottom .proposer-year p {
+#floating-panel.expanded .panel-comment .panel-bottom .proposer-year p,
+#about-panel.expanded .panel-comment .panel-bottom .proposer-year p {
     color: #43403B;
 }
 
@@ -761,13 +789,15 @@ line-height: 40px;
 }
 
 /* 隐藏状态保持不变 */
-#floating-panel.hidden {
+#floating-panel.hidden,
+#about-panel.hidden {
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
 }
 
-#floating-panel:not(.hidden) {
+#floating-panel:not(.hidden),
+#about-panel:not(.hidden) {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;

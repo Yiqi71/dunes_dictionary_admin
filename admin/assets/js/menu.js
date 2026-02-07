@@ -20,7 +20,7 @@ import {
 import { logEvent, startWordView, endWordView } from "/analytics.js";
 
 // �?menu.js 文件顶部�?import 部分添加
-import { showAboutPanel } from "./detail.js";
+import { showAboutPanel } from "./aboutPanel.js";
 
 function normalizeLang(code) {
     const v = (code || "").toLowerCase();
