@@ -8,6 +8,8 @@ const cors = require("cors");
 app.use(cors({
   origin: [
     "https://dunes-dictionary-admin.vercel.app",
+    "https://dunes-dictionary.com",
+    "https://www.dunes-dictionary.com",
     "http://localhost:3000",
     "http://127.0.0.1:3000"
   ],
@@ -30,7 +32,10 @@ app.use("/tracking", express.static(trackingDir));
 app.use("/content", express.static(contentDir));
 
 // ---- SQLite store ----
-const DB_PATH = path.join(trackingDir, "events.sqlite");
+const DB_PATH = process.env.EVENTS_DB_PATH
+  ? process.env.EVENTS_DB_PATH
+  : path.join(trackingDir, "events.sqlite");
+
 const db = new sqlite3.Database(DB_PATH);
 
 db.serialize(() => {
