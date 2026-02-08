@@ -398,9 +398,14 @@ async function importExcelToDraft(xlsxPath) {
   }
 
   function pushComment(w, noteZh, noteEn, authorZh, authorEn, bgZh, bgEn, dateValue) {
-    if (!s(noteZh) && !s(noteEn)) return null;
+    const contentZhParts = splitLinesToArray(noteZh);
+    const contentEnParts = splitLinesToArray(noteEn);
+    if (!contentZhParts.length && !contentEnParts.length) return null;
     const comment = {
-      content: { zh: s(noteZh), en: s(noteEn) },
+      content: {
+        zh: contentZhParts.length ? contentZhParts : [],
+        en: contentEnParts.length ? contentEnParts : []
+      },
       role: { zh: "\u8d21\u732e\u8005", en: "Contributor" },
       author: { zh: s(authorZh), en: s(authorEn) },
       background: { zh: s(bgZh), en: s(bgEn) },

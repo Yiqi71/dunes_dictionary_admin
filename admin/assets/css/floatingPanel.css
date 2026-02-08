@@ -558,6 +558,10 @@ line-height: 40px;
     letter-spacing: 2px;
     
 }
+/* Entry panel: brief definition body (en) */
+:lang(en) .panel-entry #section-brief h3 {
+    text-align: left;
+}
 
 /* Entry panel body text (Chinese) */
 .panel-entry .panel-bottom div p {

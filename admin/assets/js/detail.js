@@ -555,7 +555,13 @@ function renderCommentSection() {
             const titleLabel = (roleLabel || nameLabel)
                 ? `${roleLabel}${roleLabel && nameLabel ? "<br>" : ""}${nameLabel}`
                 : fallbackLabel;
-            const content = applyHashItalics(c?.content?.[lang] || "");
+            const rawContent = c?.content?.[lang];
+            const contentParts = Array.isArray(rawContent)
+                ? rawContent
+                : (typeof rawContent === "string" ? rawContent.split(/\r?\n|\u2028/) : []);
+            const content = contentParts.length
+                ? contentParts.map(p => `<p>${applyHashItalics(p)}</p>`).join("")
+                : "";
             const images = Array.isArray(c?.images) ? c.images : [];
             const imagesHtml = images.length
                 ? `<div class="note-images">

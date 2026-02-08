@@ -330,9 +330,9 @@ export function updateWordDetails() {
     const proposerImg = document.querySelector('#proposer img');
     prepareLazyImage(proposerImg);
     if(normalizeLang(state.currentLang)=="en"){
-        proposerTitle.textContent = 'Proposer';
+        proposerTitle.textContent = 'Proponent';
     }else if(normalizeLang(state.currentLang)=="zh"){
-        proposerTitle.textContent = '提出人';
+        proposerTitle.textContent = '提出者';
     }
     if (word.proposers && word.proposers.length>0) {
         const proposer = word.proposers[0];
