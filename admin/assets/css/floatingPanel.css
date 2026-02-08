@@ -195,10 +195,10 @@
     margin: 0;
     padding: 0;
     color: #FAF4E5;
-    font-family: "ChillDINGothic";
-    font-size: 30px;
+    font-family: "Stint Ultra Condensed";
+    font-size: 66px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
     line-height: 80px;
 }
@@ -215,12 +215,12 @@
 }
 :lang(en) .panel-comment .panel-top .term-main {
     color: #43403B;
-    text-align: center;
-    font-family: "ChillDINGothic";
-    font-size: 30px;
+    font-family: "Stint Ultra Condensed";
+    font-size: 66px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 60px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 80px;
 }
 
 .panel-top .term-ori {
@@ -234,16 +234,9 @@
     text-align: center;
     line-height: 50px;
 }
-:lang(en) .panel-top .term-ori {
-    margin: 0;
-    padding: 0;
-    color: #FAF4E5;
-    font-family: "Stint Ultra Condensed";
-    font-size: 66px;
-    font-style: normal;
-    font-weight: 400;
-    text-align: center;
-    line-height: 25.928px;
+:lang(en) #floating-panel .panel-top .term-ori,
+:lang(en) #about-panel .panel-top .term-ori {
+    display: none;
 }
 
 /* 笔记面板的term-ori颜色 */
