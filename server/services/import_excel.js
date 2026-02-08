@@ -197,6 +197,14 @@ function buildColIndexMap(headerRowValues) {
   return map;
 }
 
+function getRelatedWorksHeaders(headerRowValues) {
+  const prefix = s(COLS.RELATED_WORKS);
+  if (!prefix) return [];
+  return headerRowValues
+    .map(v => s(v))
+    .filter(name => name && name.startsWith(prefix));
+}
+
 async function compressImageBuffer(buffer, rule) {
   if (!rule) return buffer;
   try {
@@ -237,6 +245,7 @@ async function importExcelToDraft(xlsxPath) {
   const headerRow = ws.getRow(1);
   const headerValues = headerRow.values.slice(1); // values[0] 空
   const colMap = buildColIndexMap(headerValues);
+  const relatedWorksHeaders = getRelatedWorksHeaders(headerValues);
   const headerByCol = new Map();
   for (let c = 1; c <= headerValues.length; c++) {
     headerByCol.set(c, s(headerValues[c - 1]));
@@ -474,13 +483,19 @@ async function importExcelToDraft(xlsxPath) {
     w.source.zh = sourceZh;
     w.source.en = sourceEn;
 
-    const rwZh = cell(zhRow, COLS.RELATED_WORKS);
-    const rwEn = enRow ? cell(enRow, COLS.RELATED_WORKS) : "";
-    if (rwZh || rwEn) {
-      w.related_works = [{
-        zh: rwZh || placeholderZH("\u76f8\u5173\u8457\u4f5c"),
-        en: rwEn || placeholderEN("related works")
-      }];
+    const relatedWorks = [];
+    relatedWorksHeaders.forEach((headerName) => {
+      const rwZh = cell(zhRow, headerName);
+      const rwEn = enRow ? cell(enRow, headerName) : "";
+      if (rwZh || rwEn) {
+        relatedWorks.push({
+          zh: rwZh || placeholderZH("\u76f8\u5173\u8457\u4f5c"),
+          en: rwEn || placeholderEN("related works")
+        });
+      }
+    });
+    if (relatedWorks.length) {
+      w.related_works = relatedWorks;
     }
 
     // related terms (resolve after all words are built)

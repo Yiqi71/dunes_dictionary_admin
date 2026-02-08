@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-02-08T21:08:02.431Z",
-    "source": "9caa1fd14c2e7cffd99b2a9f7bf90fbc",
+    "generated_at": "2026-02-08T21:31:03.550Z",
+    "source": "e4e902e55b7a36e3e41ad657d577049b",
     "home_node_id": 13
   },
   "words": [
@@ -39,8 +39,12 @@
       "source_image": "images/理性无知_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "曼瑟尔·奥尔森，《集体行动的逻辑 (#The Logic of Collective Action#)》，剑桥: 哈佛大学出版社 (Harvard University Press)，1965。中国大陆已出版，上海人民出版社。",
+          "en": "Mancur Olson, #The Logic of Collective Action#, Cambridge: Harvard University Press, 1965."
+        },
+        {
+          "zh": "罗杰·D·康格尔顿，《牛津公共选择手册 (#The Oxford Handbook of Public Choice#)》，牛津: 牛津大学出版社 (Oxford University Press)，2019。尚无中文翻译。",
+          "en": "Roger D. Congleton, Bernard Grofman, and Stefan Voigt, eds., #The Oxford Handbook of Public Choice#, Oxford: Oxford University Press, 2019."
         }
       ],
       "domain": {
@@ -206,8 +210,12 @@
       "source_image": "images/可供性_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "詹姆斯·J·吉布森，《生态视觉论 (#The Ecological Approach to Visual Perception#)》，波士顿: 霍顿·米夫林出版社 (Houghton Mifflin)，1979。中国大陆已出版，中信出版社。",
+          "en": "James J. Gibson, #The Ecological Approach to Visual Perception#, Boston: Houghton Mifflin, 1979."
+        },
+        {
+          "zh": "唐纳德·诺曼，《设计心理学1：日常的设计 (#The Design of Everyday Things#)》，纽约: 基础书局 (Basic Books)，1988。中国大陆已出版，中信出版社。",
+          "en": "Don Norman, #The Design of Everyday Things#, New York: Basic Books, 1988."
         }
       ],
       "domain": {
@@ -381,8 +389,12 @@
       "source_image": "images/主体间性_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "乔治·E·阿特伍德，《主体性的结构：精神分析现象学的探索 (#Structures of Subjectivity: Explorations in Psychoanalytic Phenomenology#)》，希尔斯代尔: 分析出版社 (The Analytic Press)，1984。尚无中文翻译。",
+          "en": "George E. Atwood and Robert D. Stolorow, #Structures of Subjectivity: Explorations in Psychoanalytic Phenomenology#, Hillsdale: The Analytic Press, 1984."
+        },
+        {
+          "zh": "罗伯特·D·斯托罗楼，《体验的世界：精神分析主体间性理论及其应用 (#Worlds of Experience: Interweaving Clinical and Philosophical Dimensions in Psychoanalysis#)》，纽约: 基础书局 (Basic Books)，2002。中国大陆已出版，人民邮电出版社。",
+          "en": "Robert D. Stolorow, George E. Atwood, and Donna M. Orange, #Worlds of Experience: Interweaving Clinical and Philosophical Dimensions in Psychoanalysis#, New York: Basic Books, 2002."
         }
       ],
       "domain": {
@@ -548,8 +560,12 @@
       "source_image": "images/非场所_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "马克·奥热，《地铁上的民族学家 (#Un ethnologue dans le métro#)》，巴黎: 哈切特出版社 (Hachette)，1986。中国大陆已出版，广西师范大学出版社。",
+          "en": "Marc Augé, #In the Metro#, translated by Tom Conley, Minneapolis: University of Minnesota Press, 2002."
+        },
+        {
+          "zh": "亨利·列斐伏尔，《空间的生产 (#La production de l'espace#)》，牛津: 伯克维尔出版社 (Blackwell)，1974。中国大陆已出版，商务印书馆。",
+          "en": "Henri Lefebvre, #The Production of Space#, translated by Donald Nicholson-Smith, Oxford: Blackwell, 1991."
         }
       ],
       "domain": {
@@ -685,8 +701,16 @@
       "source_image": "images/隔都_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "理查德·桑内特，《触摸的恐惧：文艺复兴时期威尼斯的犹太区 (#Fear of Touching: The Jewish Ghetto in Renaissance Venice#)》，载《肉体与石头 (#Flesh and Stone: The Body and the City in Western Civilization#)》，1994。中国大陆已出版，上海译文出版社。",
+          "en": "Richard Sennett, \"Fear of Touching: The Jewish Ghetto in Renaissance Venice,\" in #Flesh and Stone: The Body and the City in Western Civilization#, New York: W. W. Norton, 1994."
+        },
+        {
+          "zh": "米切尔·邓尼尔，《贫民窟：一个地点的发明，一个观念的历史 (#Ghetto: The Invention of a Place, the History of an Idea#)》，纽约: 法拉尔、斯特劳斯和吉鲁出版社 (Farrar, Straus and Giroux)，2016。尚无中文翻译。",
+          "en": "Mitchell Duneier, #Ghetto: The Invention of a Place, the History of an Idea#, New York: Farrar, Straus and Giroux, 2016."
+        },
+        {
+          "zh": "路易斯·沃斯，《贫民窟 (#The Ghetto#)》，芝加哥: 芝加哥大学出版社 (University of Chicago Press)，1928。尚无中文翻译。",
+          "en": "Louis Wirth, #The Ghetto#, Chicago: University of Chicago Press, 1928."
         }
       ],
       "domain": {
@@ -827,8 +851,16 @@
       "source_image": "images/机构_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "欧文·戈夫曼，《精神病院：论精神病患和其他被关押者的社会处境 (#Asylums: Essays on the Social Situation of Mental Patients and Other Inmates#)》，纽约: 安克尔图书 (Anchor Books)，1961。中国大陆已出版，商务印书馆。",
+          "en": "Erving Goffman, #Asylums: Essays on the Social Situation of Mental Patients and Other Inmates#, New York: Anchor Books, 1961."
+        },
+        {
+          "zh": "路易·阿尔都塞，《论再生产 (#Sur la reproduction#)》，巴黎: 法国大学出版社 (Presses Universitaires de France)，1995。中国大陆已出版，西北大学出版社。",
+          "en": "Louis Althusser, #On the Reproduction of Capitalism#, translated by G. M. Goshgarian, London: Verso, 2014."
+        },
+        {
+          "zh": "米歇尔·福柯，《疯癫与文明 (#Folie et Déraison: Histoire de la folie à l'âge classique#)》，巴黎: 普隆出版社 (Plon)，1961。中国大陆已出版，生活·读书·新知三联书店。",
+          "en": "Michel Foucault, #Madness and Civilization: A History of Insanity in the Age of Reason#, translated by Richard Howard, New York: Pantheon, 1965."
         }
       ],
       "domain": {
@@ -977,8 +1009,12 @@
       "source_image": "images/异托邦_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "米歇尔·福柯，《词与物 (#Les Mots et les choses#)》，巴黎: 伽利玛出版社 (Gallimard)，1966。中国大陆已出版，上海三联书店。",
+          "en": "Michel Foucault, #The Order of Things: An Archaeology of the Human Sciences#, New York: Pantheon, 1970."
+        },
+        {
+          "zh": "大卫·哈维，《后现代的状况 (#The Condition of Postmodernity#)》，牛津: 伯克维尔出版社 (Blackwell)，1989。中国大陆已出版，商务印书馆。",
+          "en": "David Harvey, #The Condition of Postmodernity: An Enquiry into the Origins of Cultural Change#, Oxford: Blackwell, 1989."
         }
       ],
       "domain": {
@@ -1092,8 +1128,12 @@
       "source_image": "images/全景敞视_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "吉尔·德勒兹，《控制社会后记 (#Post-scriptum sur les sociétés de contrôle#)》，载《谈判 (#Pourparlers#)》，1990。已有中文翻译。",
+          "en": "Gilles Deleuze, \"Postscript on the Societies of Control,\" in #Negotiations#, translated by Martin Joughin, New York: Columbia University Press, 1995."
+        },
+        {
+          "zh": "肖莎娜·祖博夫，《监视资本主义时代 (#The Age of Surveillance Capitalism#)》，纽约: 公共事务出版社 (PublicAffairs)，2019。中国大陆已出版，北京联合出版公司；港台有译本，時報文化。",
+          "en": "Shoshana Zuboff, #The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power#, New York: PublicAffairs, 2019."
         }
       ],
       "domain": {
@@ -1238,8 +1278,12 @@
       "source_image": "images/控制论_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "诺伯特·维纳，《人有人的用处：控制论与社会 (#The Human Use of Human Beings: Cybernetics and Society#)》，波士顿: 霍顿·米夫林出版社 (Houghton Mifflin)，1950。中国大陆已出版，商务印书馆。",
+          "en": "Norbert Wiener, #The Human Use of Human Beings: Cybernetics and Society#, Boston: Houghton Mifflin, 1950."
+        },
+        {
+          "zh": "吉尔·德勒兹，《控制社会后记 (#Post-scriptum sur les sociétés de contrôle#)》，载《谈判 (#Pourparlers#)》，1990。已有中文翻译。",
+          "en": "Gilles Deleuze, \"Postscript on the Societies of Control,\" in #Negotiations#, translated by Martin Joughin, New York: Columbia University Press, 1995."
         }
       ],
       "domain": {
@@ -1377,8 +1421,12 @@
       "source_image": "images/倦怠态度_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "格奥尔格·齐美尔，《货币哲学 (#Philosophie des Geldes#)》，伦敦: 劳特利奇出版社 (Routledge)，1978。中国大陆已出版，华夏出版社。",
+          "en": "Georg Simmel, #The Philosophy of Money#, translated by Tom Bottomore and David Frisby, London: Routledge, 1978."
+        },
+        {
+          "zh": "瓦尔特·本雅明，《发达资本主义时代的抒情诗人 (#Charles Baudelaire: Ein Lyriker im Zeitalter des Hochkapitalismus#)》，伦敦: NLB出版社 (NLB)，1973。中国大陆已出版，生活·读书·新知三联书店。",
+          "en": "Walter Benjamin, #Charles Baudelaire: A Lyric Poet in the Era of High Capitalism#, translated by Harry Zohn, London: NLB, 1973."
         }
       ],
       "domain": {
@@ -1512,8 +1560,12 @@
       "source_image": "images/灵韵_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "瓦尔特·本雅明，《讲故事的人 (#Der Erzähler#)》，载《启迪：本雅明文选 (#Illuminations#)》，1936。中国大陆已出版，生活·读书·新知三联书店。",
+          "en": "Walter Benjamin, \"The Storyteller,\" in #Illuminations: Essays and Reflections#, edited by Hannah Arendt, New York: Schocken Books, 1968."
+        },
+        {
+          "zh": "瓦尔特·本雅明，《拱廊计划 (#Das Passagen-Werk#)》，剑桥: 哈佛大学出版社 (Harvard University Press)，1999。中国大陆已出版，商务印书馆。",
+          "en": "Walter Benjamin, #The Arcades Project#, translated by Howard Eiland and Kevin McLaughlin, Cambridge: Harvard University Press, 1999."
         }
       ],
       "domain": {
@@ -1650,8 +1702,16 @@
       "source_image": "images/叙事内镜_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "安德烈·纪德，《伪币制造者 (#Les Faux-monnayeurs#)》，巴黎: 加利玛出版社 (Gallimard)，1925。中国大陆已出版，上海译文出版社。",
+          "en": "André Gide, #The Counterfeiters#, translated by Dorothy Bussy, New York: Vintage Books, 1953."
+        },
+        {
+          "zh": "威廉·莎士比亚，《哈姆雷特 (#Hamlet#)》，伦敦: 1603。中国大陆已出版，人民文学出版社。",
+          "en": "William Shakespeare, #Hamlet#, edited by Ann Thompson and Neil Taylor, London: Arden Shakespeare, 2006."
+        },
+        {
+          "zh": "约翰·沃尔夫冈·冯·歌德，《威廉·迈斯特的学习时代 (#Wilhelm Meisters Lehrjahre#)》，柏林: 1795。中国大陆已出版，上海译文出版社。",
+          "en": "Johann Wolfgang von Goethe, #Wilhelm Meister's Apprenticeship#, translated by Eric A. Blackall, New York: Suhrkamp, 1989."
         }
       ],
       "domain": {
@@ -1834,8 +1894,16 @@
       "source_image": "images/档案热_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "卡罗琳·斯底德曼，《尘埃 (#Dust#)》，曼彻斯特: 曼彻斯特大学出版社 (Manchester University Press)，2001。尚无中文翻译。",
+          "en": "Carolyn Steedman, #Dust: The Archive and Cultural History#, Manchester: Manchester University Press, 2001."
+        },
+        {
+          "zh": "雅克·德里达，《论文字学 (#De la grammatologie#)》，巴黎: 午夜出版社 (Les Éditions de Minuit)，1967。中国大陆已出版，上海译文出版社。",
+          "en": "Jacques Derrida, #Of Grammatology#, translated by Gayatri Chakravorty Spivak, Baltimore: Johns Hopkins University Press, 1976."
+        },
+        {
+          "zh": "埃德加·爱伦·坡，《厄舍府的倒塌 (#The Fall of the House of Usher#)》，费城: 1839。中国大陆已出版，人民文学出版社。",
+          "en": "Edgar Allan Poe, \"The Fall of the House of Usher,\" in #Burton's Gentleman's Magazine#, Philadelphia: 1839."
         }
       ],
       "domain": {
@@ -2010,8 +2078,12 @@
       "source_image": "images/表层阅读_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "斯蒂芬·贝斯特，《无与伦比：黑人身份、归属感与美学生活 (#None Like Us: Blackness, Belonging, Aesthetic Life#)》，达勒姆: 杜克大学出版社 (Duke University Press)，2018。尚无中文翻译。",
+          "en": "Stephen Best, #None Like Us: Blackness, Belonging, Aesthetic Life#, Durham: Duke University Press, 2018."
+        },
+        {
+          "zh": "莎朗·马库斯，《公寓故事：城市生活与维多利亚小说 (#Apartment Stories: City and Home in Nineteenth-Century Paris and London#)》，伯克利: 加州大学出版社 (University of California Press)，1999。尚无中文翻译。",
+          "en": "Sharon Marcus, #Apartment Stories: City and Home in Nineteenth-Century Paris and London#, Berkeley: University of California Press, 1999."
         }
       ],
       "domain": {
@@ -2136,8 +2208,16 @@
       "source_image": "images/关怀阶级_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "南希·福尔布雷，《无形之心：市场、关怀与人性 (#The Invisible Heart: Economics and Family Values#)》，纽约: 新出版社 (The New Press)，2001。尚无中文翻译。",
+          "en": "Nancy Folbre, #The Invisible Heart: Economics and Family Values#, New York: The New Press, 2001."
+        },
+        {
+          "zh": "阿莉·拉塞尔·霍克希尔德，《被管理的心：人类情感的商品化 (#The Managed Heart: Commercialization of Human Feeling#)》，伯克利: 加州大学出版社 (University of California Press)，1983。中国大陆已出版，上海三联书店。",
+          "en": "Arlie Russell Hochschild, #The Managed Heart: Commercialization of Human Feeling#, Berkeley: University of California Press, 1983."
+        },
+        {
+          "zh": "琼·C·特林特，《护理民主：市场、平等与正义 (#Caring Democracy: Markets, Equality, and Justice#)》，纽约: 纽约大学出版社 (New York University Press)，2013。尚无中文翻译。",
+          "en": "Joan C. Tronto, #Caring Democracy: Markets, Equality, and Justice#, New York: New York University Press, 2013."
         }
       ],
       "domain": {
@@ -2259,8 +2339,12 @@
       "source_image": "images/压缩现代性_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "阎云翔，《中国社会的个体化 (#Individualization in Chinese Society#)》，牛津: 伯克维尔出版社 (Berg)，2009。中国大陆已出版，上海人民出版社。",
+          "en": "Yunxiang Yan, #Individualization in Chinese Society#, Oxford: Berg, 2009."
+        },
+        {
+          "zh": "张庆燮，《东亚的压缩现代性 (#Compressed Modernity in East Asia#)》，首尔: 首尔大学出版社 (Seoul National University Press)，2007。尚无中文翻译。",
+          "en": "Kyung-Sup Chang, #South Korea under Compressed Modernity: Familial Political Economy in Transition#, London: Routledge, 2010."
         }
       ],
       "domain": {
@@ -2364,8 +2448,12 @@
       "source_image": "images/阈限空间_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "维克多·特纳，《仪式过程：结构与反结构 (#The Ritual Process: Structure and Anti-Structure#)》，芝加哥: 阿尔丁出版社 (Aldine Publishing Co.)，1969。中国大陆已出版，中国社会科学出版社。",
+          "en": "Victor Turner, #The Ritual Process: Structure and Anti-Structure#, Chicago: Aldine Publishing Co., 1969."
+        },
+        {
+          "zh": "岸见一郎、古贺史健，《被讨厌的勇气 (#The Courage to Be Disliked#)》，东京: 钻石社 (Diamond Inc.)，2013。中国大陆已出版，机械工业出版社。",
+          "en": "Ichiro Kishimi and Fumitake Koga, #The Courage to Be Disliked#, translated by John Williams, New York: Atria Books, 2018."
         }
       ],
       "domain": {
@@ -2539,8 +2627,12 @@
       "source_image": "images/课题分离_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "岸见一郎、古贺史健，《被讨厌的勇气 (#Kirawareru Yuuki#)》，东京: 钻石社 (Diamond Inc.)，2013。中国大陆已出版，机械工业出版社。",
+          "en": "Ichiro Kishimi and Fumitake Koga, #The Courage to Be Disliked#, Tokyo: Diamond Inc., 2013."
+        },
+        {
+          "zh": "阿尔弗雷德·阿德勒，《自卑与超越 (#What Life Could Mean to You#)》，波士顿: 利特尔、布朗出版社 (Little, Brown, and Company)，1932。中国大陆已出版，作家出版社。",
+          "en": "Alfred Adler, #What Life Could Mean to You#, Boston: Little, Brown, and Company, 1932."
         }
       ],
       "domain": {
@@ -2683,8 +2775,16 @@
       "source_image": "images/电影眼_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "吉加·维尔托夫，《持摄影机的人 (#Man with a Movie Camera#)》，1929。已有中文翻译。",
+          "en": "Dziga Vertov, dir., #Man with a Movie Camera#, 1929."
+        },
+        {
+          "zh": "瓦尔特·本雅明，《机械复制时代的艺术作品 (#Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit#)》，法兰克福: 苏尔坎普出版社 (Suhrkamp Verlag)，1936。中国大陆已出版，商务印书馆。",
+          "en": "Walter Benjamin, #The Work of Art in the Age of Mechanical Reproduction#, translated by Harry Zohn, New York: Schocken Books, 1969."
+        },
+        {
+          "zh": "杰伊·莱达，《基诺：俄罗斯和苏联电影史 (#Kino: A History of the Russian and Soviet Film#)》，伦敦: 乔治·艾伦与昂温出版社 (George Allen & Unwin)，1960。中国大陆已出版，中国电影出版社；港台有译本，志文出版社。",
+          "en": "Jay Leyda, #Kino: A History of the Russian and Soviet Film#, London: George Allen & Unwin, 1960."
         }
       ],
       "domain": {
@@ -2834,7 +2934,7 @@
       "related_works": [
         {
           "zh": "相关著作",
-          "en": "related works"
+          "en": "Hayles, Nancy Katherine. “Unfinished Work: From Cyborg to Cognisphere.” #Theory, Culture & Society# 23, no. 7-8 (2006): 159-66. https://doi.org/10.1177%2F0263276406069229"
         }
       ],
       "domain": {
@@ -3029,8 +3129,8 @@
       "source_image": "images/牲人_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "吉奥乔·阿甘本，《例外状态 (#Stato di Eccezione#)》，都灵: 博拉蒂·博林吉耶里出版社 (Bollati Boringhieri)，2003。中国大陆已出版，西北大学出版社。",
+          "en": "Giorgio Agamben, #State of Exception#, translated by Kevin Attell, Chicago: University of Chicago Press, 2005."
         }
       ],
       "domain": {
@@ -3185,8 +3285,12 @@
       "source_image": "images/熵_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "克劳德·香农，《通信的数学理论 (#A Mathematical Theory of Communication#)》，厄巴纳: 伊利诺伊大学出版社 (University of Illinois Press)，1948。中国大陆已出版，人民邮电出版社。",
+          "en": "Claude E. Shannon and Warren Weaver, #The Mathematical Theory of Communication#, Urbana: University of Illinois Press, 1949."
+        },
+        {
+          "zh": "路德维希·玻尔兹曼，《统计力学讲义 (#Vorlesungen über Gastheorie#)》，莱比锡: 1896。中国大陆已出版，商务印书馆。",
+          "en": "Ludwig Boltzmann, #Lectures on Gas Theory#, translated by Stephen G. Brush, Berkeley: University of California Press, 1964."
         }
       ],
       "domain": {
@@ -3327,8 +3431,12 @@
       "source_image": "images/零工经济_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "莎拉·凯斯勒，《零工经济：工作的终结与未来的工作 (#Gigged: The End of the Job and the Future of Work#)》，纽约: 圣马丁出版社 (St. Martin's Press)，2018。中国大陆已出版，中信出版社。",
+          "en": "Sarah Kessler, #Gigged: The End of the Job and the Future of Work#, New York: St. Martin's Press, 2018."
+        },
+        {
+          "zh": "亚历克斯·罗森布拉特，《优步之地：算法如何重写工作规则 (#Uberland: How Algorithms Are Rewriting the Rules of Work#)》，伯克利: 加州大学出版社 (University of California Press)，2018。尚无中文翻译。",
+          "en": "Alex Rosenblat, #Uberland: How Algorithms Are Rewriting the Rules of Work#, Berkeley: University of California Press, 2018."
         }
       ],
       "domain": {
@@ -3457,8 +3565,16 @@
       "source_image": "images/廓落_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "《蒂迈欧篇》（Timaeus），约公元前360年，中国大陆已出版，商务印书馆。",
+          "en": "Plato, #Timaeus#. Translated by Donald J. Zeyl. Indianapolis: Hackett Publishing, 2000."
+        },
+        {
+          "zh": "马丁·海德格尔，《筑·居·思 (#Bauen Wohnen Denken#)》，载《演讲与论文集 (#Vorträge und Aufsätze#)》，1951。中国大陆已出版，商务印书馆。",
+          "en": "Heidegger, Martin. \"Building Dwelling Thinking,\" in #Poetry, Language, Thought#, translated by Albert Hofstadter, New York: Harper & Row, 1971."
+        },
+        {
+          "zh": "雅克·德里达、彼得·艾森曼，(#Chora L Works#)，纽约: 莫纳切利出版社 (Monacelli Press)，1997。尚无中文翻译。",
+          "en": "Jacques Derrida and Peter Eisenman, #Chora L Works: Thomas Leeser, Jeffrey Kipnis, Jacques Derrida, Peter Eisenman#, New York: Monacelli Press, 1997."
         }
       ],
       "domain": {
@@ -3564,8 +3680,12 @@
       "source_image": "images/反训词_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "约瑟夫·T·希普利，《词源词典 (#Dictionary of Word Origins#)》，纽约: 哲学图书馆出版社 (Philosophical Library)，1945。尚无中文翻译。",
+          "en": "Joseph T. Shipley, #Dictionary of Word Origins#, New York: Philosophical Library, 1945."
+        },
+        {
+          "zh": "亨利·希金斯，《词的秘密生活 (#The Secret Life of Words#)》，伦敦: 约翰·默里出版社 (John Murray)，2005。尚无中文翻译。",
+          "en": "Henry Hitchings, #The Secret Life of Words: How English Became English#, London: John Murray, 2008."
         }
       ],
       "domain": {
@@ -3729,8 +3849,12 @@
       "source_image": "images/反义复词_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "张志公，《汉语语法常识》，北京: 中国青年出版社 (China Youth Publishing House)，1953。中国大陆已出版，中国青年出版社。",
+          "en": "Zhang Zhigong, #Common Sense of Chinese Grammar#, Beijing: China Youth Publishing House, 1953."
+        },
+        {
+          "zh": "黄居仁等，《汉语词汇语义学 (#Chinese Lexical Semantics#)》，柏林: 施普林格出版社 (Springer)，2000。已有中文翻译。",
+          "en": "Chu-Ren Huang et al., eds., #Chinese Lexical Semantics#, Berlin: Springer, 2000."
         }
       ],
       "domain": {
@@ -4005,8 +4129,12 @@
       "source_image": "images/行为倒错_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "西格蒙德·弗洛伊德，《梦的解析 (#Die Traumdeutung#)》，莱比锡: 德蒂克出版社 (Franz Deuticke)，1900。中国大陆已出版，浙江文艺出版社。",
+          "en": "Sigmund Freud, #The Interpretation of Dreams#, translated by James Strachey, New York: Basic Books, 2010."
+        },
+        {
+          "zh": "西格蒙德·弗洛伊德，《精神分析引论 (#Vorlesungen zur Einführung in die Psychoanalyse#)》，莱比锡: 海勒出版社 (Heller)，1917。中国大陆已出版，商务印书馆。",
+          "en": "Sigmund Freud, #Introductory Lectures on Psychoanalysis#, translated by James Strachey, New York: W. W. Norton, 1966."
         }
       ],
       "domain": {
@@ -4125,8 +4253,12 @@
       "source_image": "images/新穷人_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "齐格蒙特·鲍曼，《流动的现代性 (#Liquid Modernity#)》，剑桥: 派利提出版社 (Polity)，2000。中国大陆已出版，上海译文出版社。",
+          "en": "Zygmunt Bauman, #Liquid Modernity#, Cambridge: Polity, 2000."
+        },
+        {
+          "zh": "让·鲍德里亚（Jean Baudrillard）《消费社会》（The Consumer Society，1970）",
+          "en": "Baudrillard, J. (1970). The Consumer Society: Myths and Structures. Theory, Culture & Society."
         }
       ],
       "domain": {
@@ -4243,8 +4375,12 @@
       "source_image": "images/悬浮_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "项飙，《全球“猎身”：信息产业和印度技术劳工的跨国流动 (#Global \"Body Shopping\": An Indian Labor System in the IT Industry#)》，普林斯顿: 普林斯顿大学出版社 (Princeton University Press)，2006。中国大陆已出版，北京大学出版社。",
+          "en": "Biao Xiang, #Global \"Body Shopping\": An Indian Labor System in the Information Technology Industry#, Princeton: Princeton University Press, 2007."
+        },
+        {
+          "zh": "项飙、吴琦，《把自己作为方法 (#Self as Method#)》，北京: 上海文艺出版社 (Shanghai Literature & Art Publishing House)，2020。中国大陆已出版。",
+          "en": "Biao Xiang and Qi Wu, #Self as Method#, translated by David Ownby, Singapore: Palgrave Macmillan, 2023."
         }
       ],
       "domain": {
@@ -4412,8 +4548,16 @@
       "source_image": "images/维佐人_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "丽塔·阿斯特等编，《学习文化：人类学与心理学的视角 (#Learning Culture: Anthropological and Psychological Perspectives#)》，牛津: 伯克出版社 (Berg)，2007。已有中文翻译。",
+          "en": "Rita Astuti, Jonathan Parry, and Charles Stafford, eds., #Learning Culture: Anthropological and Psychological Perspectives#, Oxford: Berg, 2007."
+        },
+        {
+          "zh": "马塞尔·莫斯，《礼物 (#Essai sur le don#)》，巴黎: 阿尔肯出版社 (Alcan)，1925。中国大陆已出版，商务印书馆。",
+          "en": "Marcel Mauss, #The Gift: Forms and Functions of Exchange in Archaic Societies#, translated by Ian Cunnison, London: Cohen & West, 1954."
+        },
+        {
+          "zh": "Janet Carsten（珍妮特·卡斯滕），After Kinship（亲属关系之后），剑桥大学出版社，2004",
+          "en": "Carsten, J. (2004). After kinship. Cambridge University Press. https://doi.org/10.1017/CBO9780511800382"
         }
       ],
       "domain": {
@@ -4567,8 +4711,12 @@
       "source_image": "images/同源词_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "雅各布·格林，《德语语法 (#Deutsche Grammatik#)》，哥廷根: 迪特里希出版社 (Dieterich)，1819。尚无中文翻译。",
+          "en": "Jacob Grimm, #Deutsche Grammatik#, Göttingen: Dieterich, 1819."
+        },
+        {
+          "zh": "弗朗茨·博普，《论印欧系语言动词变位系统的结构 (#Über das Conjugationssystem der Sanskritsprache#)》，柏林: 安德烈出版社 (Andreäische Buchhandlung)，1816。尚无中文翻译。",
+          "en": "Franz Bopp, #Über das Conjugationssystem der Sanskritsprache#, Berlin: Andreäische Buchhandlung, 1816."
         }
       ],
       "domain": {
@@ -4667,8 +4815,12 @@
       "source_image": "images/同源异形词_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "沃尔特·斯基特，《英语词源原理 (#Principles of English Etymology#)》，牛津: 克拉伦登出版社 (Clarendon Press)，1887。尚无中文翻译。",
+          "en": "Walter William Skeat, #Principles of English Etymology#, Oxford: Clarendon Press, 1887."
+        },
+        {
+          "zh": "阿尔伯特·鲍，《英语史 (#A History of the English Language#)》，纽约: 阿普尔顿-世纪出版社 (Appleton-Century)，1935。中国大陆已出版，外语教学与研究出版社。",
+          "en": "Albert C. Baugh and Thomas Cable, #A History of the English Language#, 6th ed., London: Routledge, 2012."
         }
       ],
       "domain": {
@@ -4765,8 +4917,8 @@
       "source_image": "images/仿译词_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "埃纳尔·豪根，《语言接触与词汇借用 (#Language Contact and Lexical Borrowing#)》，载《语言 (#Language#)》，1950。已有中文翻译。",
+          "en": "Einar Haugen, \"The Analysis of Linguistic Borrowing,\" #Language# 26, no. 2 (1950): 210-231."
         }
       ],
       "domain": {
@@ -4919,8 +5071,12 @@
       "source_image": "images/音译词_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "罗常培，《语言与文化》，北京: 北京大学出版部 (Peking University Press)，1950。中国大陆已出版。",
+          "en": "Luo Changpei, #Language and Culture#, Beijing: Peking University Press, 1950."
+        },
+        {
+          "zh": "马西尼，《现代汉语词汇的形成 (#The Formation of Modern Chinese Lexicon#)》，佛罗伦萨: 奥尔什基出版社 (Olschki)，1993。中国大陆已出版，汉语大词典出版社。",
+          "en": "Federico Masini, #The Formation of Modern Chinese Lexicon and Its Evolution Toward a National Language#, Florence: Olschki, 1993."
         }
       ],
       "domain": {
@@ -5077,8 +5233,16 @@
       "source_image": "images/心理地理学_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "居伊·德波，《景观社会 (#La Société du spectacle#)》，巴黎: 步谢-沙斯泰尔出版社 (Buchet/Chastel)，1967。中国大陆已出版，南京大学出版社。",
+          "en": "Guy Debord, #The Society of the Spectacle#, translated by Donald Nicholson-Smith, New York: Zone Books, 1994."
+        },
+        {
+          "zh": "居伊·德波，《漂移的理论 (#Théorie de la dérive#)》，载《裸唇 (#Les Lèvres Nues#)》，1956。已有中文翻译。",
+          "en": "Guy Debord, \"Theory of the Dérive,\" translated by Ken Knabb, #Situationist International Anthology#, 1981."
+        },
+        {
+          "zh": "默林·科弗利，《心理地理学 (#Psychogeography#)》，哈彭登: 口袋精选 (Pocket Essentials)，2006。尚无中文翻译。",
+          "en": "Merlin Coverley, #Psychogeography#, Harpenden: Pocket Essentials, 2006."
         }
       ],
       "domain": {
@@ -5214,8 +5378,12 @@
       "source_image": "images/做专家_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "查尔斯·古德温，《专业识见 (#Professional Vision#)》，载《美国人类学家 (#American Anthropologist#)》，1994。尚无中文翻译。",
+          "en": "Charles Goodwin, \"Professional Vision,\" #American Anthropologist# 96, no. 3 (1994): 606-633."
+        },
+        {
+          "zh": "布鲁诺·拉图尔，《实验室生活 (#Laboratory Life: The Construction of Scientific Facts#)》，比弗利山: 赛吉出版社 (Sage)，1979。中国大陆已出版，东方出版社。",
+          "en": "Bruno Latour and Steve Woolgar, #Laboratory Life: The Construction of Scientific Facts#, Beverly Hills: Sage, 1979."
         }
       ],
       "domain": {
@@ -5350,8 +5518,12 @@
       "source_image": "images/技术有灵论_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "B·P·赫齐格编，《赛博格之魂：桌面的人格化 (#Cyborg Spirits: Anthropomorphizing the Desktop#)》，纽约: 帕尔格雷夫·麦克米伦 (Palgrave Macmillan)，2003。尚无中文翻译。",
+          "en": "B.P. Herzig, ed., #Cyborg Spirits: Anthropomorphizing the Desktop#, New York: Palgrave Macmillan, 2003."
+        },
+        {
+          "zh": "约翰·格雷，《提线木偶的灵魂 (#The Soul of Marionettes#)》，伦敦: 艾伦·莱恩出版社 (Allen Lane)，2011。尚无中文翻译。",
+          "en": "John Gray, #The Soul of Marionettes: A Adventure in Pessimism#, London: Allen Lane, 2011."
         }
       ],
       "domain": {
@@ -5477,8 +5649,12 @@
       "source_image": "images/游荡者_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "瓦尔特·本雅明，《发达资本主义时代的抒情诗人 (#Charles Baudelaire: Ein Lyriker im Zeitalter des Hochkapitalismus#)》，法兰克福: 苏尔坎普出版社 (Suhrkamp)，1969。中国大陆已出版，商务印书馆。",
+          "en": "Walter Benjamin, #Charles Baudelaire: A Lyric Poet in the Era of High Capitalism#, translated by Harry Zohn, London: NLB, 1973."
+        },
+        {
+          "zh": "瓦尔特·本雅明，《拱廊计划 (#Das Passagen-Werk#)》，剑桥: 哈佛大学出版社 (Harvard University Press)，1999。中国大陆已出版，商务印书馆；港台有译本，三民書局。",
+          "en": "Walter Benjamin, #The Arcades Project#, translated by Howard Eiland and Kevin McLaughlin, Cambridge: Harvard University Press, 1999."
         }
       ],
       "domain": {
@@ -5670,8 +5846,8 @@
       "source_image": "images/玩工_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "克里斯蒂安·福克斯，《马克思与媒介政治经济学 (#Marx and the Political Economy of the Media#)》，莱顿: 布里尔出版社 (Brill)，2015。尚无中文翻译。",
+          "en": "Christian Fuchs, #Marx and the Political Economy of the Media#, Leiden: Brill, 2015."
         }
       ],
       "domain": {
@@ -5961,8 +6137,12 @@
       "source_image": "images/褶子城市_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "吉尔·德勒兹、费利克斯·瓜塔里，《资本主义与精神分裂 (#Capitalisme et schizophrénie#)》，巴黎: 午夜出版社 (Les Éditions de Minuit)，1972。中国大陆已出版，上海人民出版社。",
+          "en": "Gilles Deleuze and Félix Guattari, #Anti-Oedipus: Capitalism and Schizophrenia#, translated by Robert Hurley, Mark Seem, and Helen R. Lane, Minneapolis: University of Minnesota Press, 1983."
+        },
+        {
+          "zh": "吉尔·德勒兹，《褶子：莱布尼茨与巴洛克风格 (#Le Pli: Leibniz et le baroque#)》，巴黎: 午夜出版社 (Les Éditions de Minuit)，1988。中国大陆已出版，湖南文艺出版社。",
+          "en": "Gilles Deleuze, #The Fold: Leibniz and the Baroque#, translated by Tom Conley, Minneapolis: University of Minnesota Press, 1993."
         }
       ],
       "domain": {
@@ -6109,8 +6289,8 @@
       "source_image": "images/诺利地图_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "柯林·罗、弗雷德·科特，《拼贴城市 (#Collage City#)》，剑桥: 麻省理工学院出版社 (MIT Press)，1978。中国大陆已出版，中国建筑工业出版社；港台有译本，田園城市。",
+          "en": "Colin Rowe and Fred Koetter, #Collage City#, Cambridge, MA: MIT Press, 1978."
         }
       ],
       "domain": {
@@ -6248,8 +6428,12 @@
       "source_image": "images/超现代性_source_cover.jpg",
       "related_works": [
         {
-          "zh": "相关著作",
-          "en": "related works"
+          "zh": "马克·奥热，《当代世界人类学 (#Pour une anthropologie des mondes contemporains#)》，巴黎: 欧比埃出版社 (Aubier)，1994。尚无中文翻译。",
+          "en": "Marc Augé, #A Sense for the Other: The Timeliness and Relevance of Anthropology#, translated by Amy Jacobs, Stanford: Stanford University Press, 1998."
+        },
+        {
+          "zh": "马克·奥热，《在一个地铁站的人类学 (#Un ethnologue dans le métro#)》，巴黎: 阿切特出版社 (Hachette)，1986。中国大陆已出版，浙江大学出版社。",
+          "en": "Marc Augé, #In the Metro#, translated by Tom Conley, Minneapolis: University of Minnesota Press, 2002."
         }
       ],
       "domain": {

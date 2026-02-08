@@ -176,6 +176,11 @@ function normalizeLang(code) {
     return v.startsWith("en") ? "en" : "zh";
 }
 
+function applyHashItalics(text) {
+    if (text === null || text === undefined) return "";
+    return String(text).replace(/#([^#]+)#/g, "<i>$1</i>");
+}
+
 function resolveImagePath(src) {
     if (!src) return "";
     if (src.startsWith("http") || src.startsWith("data:") || src.startsWith("/")) return src;
@@ -301,9 +306,9 @@ export function updateWordDetails() {
     const relatedWorksEl = document.querySelector('#image .related-works');
     prepareLazyImage(imageEl);
     if (normalizeLang(state.currentLang) == "en") {
-        imageTitle.textContent = 'Related Works';
+        imageTitle.textContent = 'Source';
     } else if (normalizeLang(state.currentLang) == "zh") {
-        imageTitle.textContent = '相关著作';
+        imageTitle.textContent = '出处';
     }
 
     if (word.source_image) {
@@ -314,6 +319,9 @@ export function updateWordDetails() {
         imageEl.src = '';
         imageEl.style.display = 'none';
     }
+
+    relatedWorksEl.innerHTML = "";
+    relatedWorksEl.style.display = "none";
 
     // proposer section
     const proposerTitle = document.querySelector('#proposer .detail-title');

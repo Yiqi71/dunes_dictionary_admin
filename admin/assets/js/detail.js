@@ -365,12 +365,12 @@ export function hideFloatingPanel() {
 // 定义标题中英文映�?
 const sectionTitles = {
     brief: { zh: "简要释义", en: "Definition" },
-    example: { zh: "例句", en: "Example Sentences" },
-    proposers: { zh: "提出者", en: "Proposers" },
+    example: { zh: "例句", en: "e.g." },
+    proposers: { zh: "提出者", en: "Proponent" },
     source: { zh: "出处", en: "Source" },
     relatedWorks: { zh: "相关著作", en: "Related Works" },
     contributors: { zh: "贡献者", en: "Contributors" },
-    editors: { zh: "编辑", en: "Editors" }
+    editors: { zh: "编辑", en: "Edit" }
 };
 
 
@@ -492,9 +492,13 @@ export function renderPanelSections() {
                             <p>${applyHashItalics(currentWord.source?.[lang] || '暂无出处')}</p>
                         </div>`;
 
+    const relatedWorks = Array.isArray(currentWord.related_works) ? currentWord.related_works : [];
+    const relatedHtml = relatedWorks.length
+        ? relatedWorks.map(work => `<p>${applyHashItalics(work?.[lang] || "")}</p>`).join("")
+        : `<p>${lang === "en" ? "No related works yet." : "暂无相关著作"}</p>`;
     relatedSec.innerHTML = `<p class="left-title">${sectionTitles.relatedWorks[lang]}</p>
                         <div id="related-works-container">
-                        ${currentWord.related_works.map(work => `<p>${applyHashItalics(work?.[lang])}</p>`).join('')}
+                        ${relatedHtml}
                         </div>`;
 
     const contributors = Array.isArray(currentWord.contributors) ? currentWord.contributors : [];
@@ -506,7 +510,7 @@ export function renderPanelSections() {
     const contributorText = contributorNames.length
         ? (lang === "en"
             ? `The contributor for this entry is ${contributorNames.join(", ")}.`
-            : `本期词条的贡献者是${contributorNames.join(", ")}`)
+            : `本期词条的贡献者是${contributorNames.join(", ")}。`)
         : (lang === "en" ? "No contributor information yet." : "暂无贡献者信息");
     contributorsSec.innerHTML = `<p>${contributorText}</p>`;
 
@@ -586,7 +590,7 @@ function renderCommentSection() {
     const contributorTextInComment = contributorNamesInComment.length
         ? (lang === "en"
             ? `The contributor for this entry is ${contributorNamesInComment.join(", ")}.`
-            : `本期词条的贡献者是${contributorNamesInComment.join("、")}`)
+            : `本期词条的贡献者是${contributorNamesInComment.join("、")}。`)
         : (lang === "en" ? "No contributor information yet." : "暂无贡献者信息");
     contributorsSec.innerHTML = `<p>${applyHashItalics(contributorTextInComment)}</p>`;
 
