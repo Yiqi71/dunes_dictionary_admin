@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-02-08T20:30:38.817Z",
-    "source": "b3159cbdb26ab82325f10fe9a87abb1e",
+    "generated_at": "2026-02-08T21:08:02.431Z",
+    "source": "9caa1fd14c2e7cffd99b2a9f7bf90fbc",
     "home_node_id": 13
   },
   "words": [
@@ -12,7 +12,7 @@
         "en": "Rational Ignorance"
       },
       "termOri": "Rational Ignorance",
-      "concept_image": "images/理性无知_aigc.png",
+      "concept_image": "images/理性无知_aigc.jpg",
       "sm_title": {
         "zh": "不动脑子做决定，反而是最优的？",
         "en": "social title"
@@ -29,14 +29,14 @@
             "zh": "经济学家",
             "en": "economist"
           },
-          "image": "images/理性无知_proposer.png"
+          "image": "images/理性无知_proposer.jpg"
         }
       ],
       "source": {
         "zh": "安东尼·唐斯，《民主的经济理论 (#An Economic Theory of Democracy#)》，纽约：哈珀与罗出版社 (Harper & Row), 1957。中国大陆已出版，商务印书馆。",
         "en": "Downs, Anthony. #An Economic Theory of Democracy#. New York: Harper & Row, 1957."
       },
-      "source_image": "images/理性无知_source_cover.png",
+      "source_image": "images/理性无知_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -179,7 +179,7 @@
         "en": "Affordance"
       },
       "termOri": "Affordance",
-      "concept_image": "images/可供性_aigc.png",
+      "concept_image": "images/可供性_aigc.jpg",
       "sm_title": {
         "zh": "不用谁教，我们就知道树冠可供遮雨，洞穴可供休憩",
         "en": "social title"
@@ -196,14 +196,14 @@
             "zh": "心理学家",
             "en": "psychologist"
           },
-          "image": "images/可供性_proposer.png"
+          "image": "images/可供性_proposer.jpg"
         }
       ],
       "source": {
         "zh": "詹姆斯·吉布森，《作为知觉系统的感官 (#The Senses Considered as Perceptual Systems#)》，波士顿：霍顿·米夫林出版公司 (Houghton Mifflin), 1966。尚无中文翻译。",
         "en": "Gibson, James J. #The Senses Considered as Perceptual Systems#. Boston: Houghton Mifflin, 1966."
       },
-      "source_image": "images/可供性_source_cover.png",
+      "source_image": "images/可供性_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -260,7 +260,7 @@
       },
       "diagrams": [
         {
-          "src": "images/可供性_diagram_1.png",
+          "src": "images/可供性_diagram_1.jpg",
           "caption": {
             "zh": "日本摄影师冨安隼久（Hayahisa Tomiyasu）的项目《TTP》：他在德国莱比锡学生宿舍的窗户边，持续多年对着同一张室外乒乓球桌拍摄，记录它被当作聊天、伸展、乘凉、晒太阳等各种用途。在这里，乒乓球桌展示了丰富的“可供性”。",
             "en": "Project \"TTP\" by Japanese Photographer Hayahisa Tomiyasu: From the vantage point of his student dormitory window in Leipzig, Germany, Japanese photographer Hayahisa Tomiyasu spent several years documenting a single outdoor ping-pong table. His longitudinal photographic study captures the table's metamorphosis into a multifaceted social hub—serving as a site for conversation, physical stretching, seeking shade, and sunbathing. In this context, the ping-pong table serves as a profound manifestation of \"affordance,\" revealing a diverse spectrum of latent functions beyond its intended athletic purpose."
@@ -354,7 +354,7 @@
         "en": "Intersubjectivity"
       },
       "termOri": "Intersubjectivity",
-      "concept_image": "images/主体间性_aigc.png",
+      "concept_image": "images/主体间性_aigc.jpg",
       "sm_title": {
         "zh": "我的存在和你的存在，创造了一个无形的场域",
         "en": "social title"
@@ -371,14 +371,14 @@
             "zh": "临床心理学家",
             "en": "clinical psychologist"
           },
-          "image": "images/主体间性_proposer.png"
+          "image": "images/主体间性_proposer.jpg"
         }
       ],
       "source": {
         "zh": "乔治·阿特伍德、罗伯特·斯托洛罗，《精神分析治疗的主体间性背景 (#The Intersubjective Context of Psychoanalytic Treatment#)》，载《国际精神分析杂志 (#International Journal of Psycho-Analysis#)》，1978。尚无中文翻译。",
         "en": "Atwood, George E., and Robert D. Stolorow. \"The Intersubjective Context of Psychoanalytic Treatment.\" #International Journal of Psycho-Analysis# 59 (1978): 313–324."
       },
-      "source_image": "images/主体间性_source_cover.png",
+      "source_image": "images/主体间性_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -431,7 +431,7 @@
       },
       "diagrams": [
         {
-          "src": "images/主体间性_diagram_1.png",
+          "src": "images/主体间性_diagram_1.jpg",
           "caption": {
             "zh": "照片来自玛丽娜·阿布拉莫维奇（Marina Abramović）2010年在MoMA的行为艺术作品《艺术家在场》（The Artist is Present）。在凝视中，两个世界相遇。",
             "en": "Photo from Marina Abramović’s 2010 performance art piece at MoMA, The Artist is Present. Within the gaze, two worlds encounter one another."
@@ -521,7 +521,7 @@
         "en": "Non-place"
       },
       "termOri": "Non-lieux",
-      "concept_image": "images/非场所_aigc.png",
+      "concept_image": "images/非场所_aigc.jpg",
       "sm_title": {
         "zh": "那些千篇一律又不建立真实人际关系的机场车站",
         "en": "social title"
@@ -538,14 +538,14 @@
             "zh": "人类学家",
             "en": "anthropologist"
           },
-          "image": "images/非场所_proposer.png"
+          "image": "images/非场所_proposer.jpg"
         }
       ],
       "source": {
         "zh": "马克·奥热，《非地方：超现代人类学引论 (#Non-Lieux: Introduction à une anthropologie de la surmodernité#)》，巴黎：论点出版社 (Le Seuil), 1992。中国大陆已出版，商务印书馆；港台有译本，群學出版社。",
         "en": "Augé, Marc. #Non-Places: An Introduction to Supermodernity#. Translated by John Howe. London: Verso, 1995."
       },
-      "source_image": "images/非场所_source_cover.png",
+      "source_image": "images/非场所_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -658,7 +658,7 @@
         "en": "Ghetto"
       },
       "termOri": "Ghetto",
-      "concept_image": "images/隔都_aigc.png",
+      "concept_image": "images/隔都_aigc.jpg",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
@@ -675,14 +675,14 @@
             "zh": "总督",
             "en": "Doge of Venice"
           },
-          "image": "images/隔都_proposer.png"
+          "image": "images/隔都_proposer.jpg"
         }
       ],
       "source": {
         "zh": "教皇保罗四世，教皇诏书 #Cum nimis absurdum#，1555。尚无中文翻译。",
         "en": "Pope Paul IV. #Cum nimis absurdum#. Papal Bull. July 14, 1555."
       },
-      "source_image": "images/隔都_source_cover.png",
+      "source_image": "images/隔都_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -739,7 +739,7 @@
       },
       "diagrams": [
         {
-          "src": "images/隔都_diagram_1.png",
+          "src": "images/隔都_diagram_1.jpg",
           "caption": {
             "zh": "威尼斯隔都鸟瞰",
             "en": "Aerial photo of Venice Ghetto"
@@ -780,7 +780,16 @@
             "zh": "平面设计",
             "en": "Graphic Design"
           },
-          "date": "2023/10/03"
+          "date": "2023/10/03",
+          "images": [
+            {
+              "src": "images/隔都_note1_1.jpg",
+              "caption": {
+                "zh": "博洛尼亚隔都的地图",
+                "en": "博洛尼亚隔都的地图"
+              }
+            }
+          ]
         }
       ]
     },
@@ -808,14 +817,14 @@
             "zh": "哲学家、社会理论家",
             "en": "philosopher and social theorist"
           },
-          "image": "images/机构_proposer.png"
+          "image": "images/机构_proposer.jpg"
         }
       ],
       "source": {
         "zh": "米歇尔·福柯，《规训与惩罚 (#Surveiller et punir#)》，巴黎：伽利玛出版社 (Gallimard), 1975。中国大陆已出版，生活·读书·新知三联书店。",
         "en": "Foucault, Michel. #Discipline and Punish: The Birth of the Prison#. Translated by Alan Sheridan. New York: Pantheon Books, 1977."
       },
-      "source_image": "images/机构_source_cover.png",
+      "source_image": "images/机构_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -941,7 +950,7 @@
         "en": "Heterotopia"
       },
       "termOri": "Hétérotopie",
-      "concept_image": "images/异托邦_aigc.png",
+      "concept_image": "images/异托邦_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典丨（二）“异托邦”是什么意思？",
         "en": "social title"
@@ -958,14 +967,14 @@
             "zh": "哲学家、社会理论家",
             "en": "philosopher and social theorist"
           },
-          "image": "images/异托邦_proposer.png"
+          "image": "images/异托邦_proposer.jpg"
         }
       ],
       "source": {
         "zh": "米歇尔·福柯，《另类空间 (#Des espaces autres#)》，载《建筑、运动、连续性 (#Architecture, Mouvement, Continuité#)》，1984。已有中文翻译。",
         "en": "Foucault, Michel. \"Des espaces autres\" [Of Other Spaces]. #Architecture, Mouvement, Continuité#, no. 5 (October 1984): 46–49."
       },
-      "source_image": "images/异托邦_source_cover.png",
+      "source_image": "images/异托邦_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -1056,7 +1065,7 @@
         "en": "Panopticon"
       },
       "termOri": "Panopticon",
-      "concept_image": "images/全景敞视_aigc.png",
+      "concept_image": "images/全景敞视_aigc.jpg",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
@@ -1073,14 +1082,14 @@
             "zh": "哲学家、社会理论家",
             "en": "philosopher and social theorist"
           },
-          "image": "images/全景敞视_proposer.png"
+          "image": "images/全景敞视_proposer.jpg"
         }
       ],
       "source": {
         "zh": "米歇尔·福柯，《规训与惩罚 (#Surveiller et punir#)》，巴黎：伽利玛出版社 (Gallimard), 1975。中国大陆已出版，生活·读书·新知三联书店。",
         "en": "Foucault, Michel. #Discipline and Punish: The Birth of the Prison#. Translated by Alan Sheridan. New York: Pantheon Books, 1977."
       },
-      "source_image": "images/全景敞视_source_cover.png",
+      "source_image": "images/全景敞视_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -1168,7 +1177,30 @@
             "zh": "城市学",
             "en": "Urbanism"
           },
-          "date": "2020/06/11"
+          "date": "2020/06/11",
+          "images": [
+            {
+              "src": "images/全景敞视_note1_1.jpg",
+              "caption": {
+                "zh": "沙丘研究所自绘。",
+                "en": "沙丘研究所自绘。"
+              }
+            },
+            {
+              "src": "images/全景敞视_note1_2.jpg",
+              "caption": {
+                "zh": "左上：法国奥顿（Autun）监狱，20世纪末停用；\n右上：美国斯泰特维尔惩教中心（State Ville Correctional center），2016年停用；\n左下：古巴新赫罗纳监狱（Presidio Modelo），1967年停用；\n右下：荷兰阿纳姆德伯格监狱（Koepelgevangenis 'De Berg'），2016年停用。",
+                "en": "左上：法国奥顿（Autun）监狱，20世纪末停用；\n右上：美国斯泰特维尔惩教中心（State Ville Correctional center），2016年停用；\n左下：古巴新赫罗纳监狱（Presidio Modelo），1967年停用；\n右下：荷兰阿纳姆德伯格监狱（Koepelgevangenis 'De Berg'），2016年停用。"
+              }
+            },
+            {
+              "src": "images/全景敞视_note1_3.jpg",
+              "caption": {
+                "zh": "徐冰，由监控摄影剪辑而成的电影《蜻蜓之眼》片段。",
+                "en": "徐冰，由监控摄影剪辑而成的电影《蜻蜓之眼》片段。"
+              }
+            }
+          ]
         }
       ]
     },
@@ -1179,7 +1211,7 @@
         "en": "Cybernetics"
       },
       "termOri": "κυβερνητικός",
-      "concept_image": "images/控制论_aigc.png",
+      "concept_image": "images/控制论_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典丨「控制论」这个概念，其实每一个自媒体人都身临其境",
         "en": "social title"
@@ -1196,14 +1228,14 @@
             "zh": "数学家、哲学家",
             "en": "mathematician and philosopher"
           },
-          "image": "images/控制论_proposer.png"
+          "image": "images/控制论_proposer.jpg"
         }
       ],
       "source": {
         "zh": "诺伯特·维纳，《控制论：或关于在动物和机器中控制和通讯的科学 (#Cybernetics: Or Control and Communication in the Animal and the Machine#)》，剑桥：麻省理工学院出版社 (MIT Press), 1948。中国大陆已出版，北京大学出版社。",
         "en": "Wiener, Norbert. #Cybernetics: Or Control and Communication in the Animal and the Machine#. Cambridge, MA: MIT Press, 1948."
       },
-      "source_image": "images/控制论_source_cover.png",
+      "source_image": "images/控制论_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -1318,7 +1350,7 @@
         "en": "Blasé Attitude"
       },
       "termOri": "Blasiertheit",
-      "concept_image": "images/倦怠态度_aigc.png",
+      "concept_image": "images/倦怠态度_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典丨「倦怠态度」是都市人精神过载而产生的保护机制",
         "en": "social title"
@@ -1335,14 +1367,14 @@
             "zh": "社会学家",
             "en": "sociologist"
           },
-          "image": "images/倦怠态度_proposer.png"
+          "image": "images/倦怠态度_proposer.jpg"
         }
       ],
       "source": {
         "zh": "乔治·齐美尔，《大都市与精神生活 (#Die Großstädte und das Geistesleben#)》，德累斯顿：彼得曼出版社 (Petermann), 1903。已有中文翻译。",
         "en": "Simmel, Georg. \"The Metropolis and Mental Life.\" In #The Sociology of Georg Simmel#, edited by Kurt H. Wolff. Glencoe, IL: Free Press, 1950."
       },
-      "source_image": "images/倦怠态度_source_cover.png",
+      "source_image": "images/倦怠态度_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -1453,7 +1485,7 @@
         "en": "Aura"
       },
       "termOri": "Aura",
-      "concept_image": "images/灵韵_aigc.png",
+      "concept_image": "images/灵韵_aigc.jpg",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
@@ -1470,14 +1502,14 @@
             "zh": "哲学家",
             "en": "philosopher"
           },
-          "image": "images/灵韵_proposer.png"
+          "image": "images/灵韵_proposer.jpg"
         }
       ],
       "source": {
         "zh": "瓦尔特·本雅明，《机械复制时代的艺术作品 (#Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit#)》，1935。中国大陆已出版，生活·读书·新知三联书店。",
         "en": "Benjamin, Walter. \"The Work of Art in the Age of Mechanical Reproduction.\" 1935."
       },
-      "source_image": "images/灵韵_source_cover.png",
+      "source_image": "images/灵韵_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -1571,7 +1603,16 @@
             "zh": "建筑学",
             "en": "Architecture"
           },
-          "date": "2023/11/16"
+          "date": "2023/11/16",
+          "images": [
+            {
+              "src": "images/灵韵_note1_1.jpg",
+              "caption": {
+                "zh": "Stephen Shore #Uncommon Places: The Complete Works#, Thames & Hudson, 2014",
+                "en": "Stephen Shore #Uncommon Places: The Complete Works#, Thames & Hudson, 2014"
+              }
+            }
+          ]
         }
       ]
     },
@@ -1582,7 +1623,7 @@
         "en": "Mise en abyme"
       },
       "termOri": "mise en abîme",
-      "concept_image": "images/叙事内镜_aigc.png",
+      "concept_image": "images/叙事内镜_aigc.jpg",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
@@ -1599,14 +1640,14 @@
             "zh": "作家",
             "en": "writer"
           },
-          "image": "images/叙事内镜_proposer.png"
+          "image": "images/叙事内镜_proposer.jpg"
         }
       ],
       "source": {
         "zh": "安德烈·纪德，《纪德日记 (#The Journals of André Gide#)》，巴黎：伽利玛出版社 (Gallimard), 1889–1939。中国大陆已出版，上海译文出版社。",
         "en": "Gide, André. #The Journals of André Gide: 1889–1913#. Translated by Justin O'Brien. New York: Alfred A. Knopf, 1947."
       },
-      "source_image": "images/叙事内镜_source_cover.png",
+      "source_image": "images/叙事内镜_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -1663,42 +1704,42 @@
       },
       "diagrams": [
         {
-          "src": "images/叙事内镜_diagram_1.png",
+          "src": "images/叙事内镜_diagram_1.jpg",
           "caption": {
             "zh": "英国乔治四世时期的纹章，1816-1837",
             "en": "Coat of Arms of King George IV, 1816–1837"
           }
         },
         {
-          "src": "images/叙事内镜_diagram_2.png",
+          "src": "images/叙事内镜_diagram_2.jpg",
           "caption": {
             "zh": "《阿诺芬尼的婚礼》，扬·凡·艾克，1434",
             "en": "The Arnolfini Portrait, Jan van Eyck, 1434"
           }
         },
         {
-          "src": "images/叙事内镜_diagram_3.png",
+          "src": "images/叙事内镜_diagram_3.jpg",
           "caption": {
             "zh": "《宫娥》，委拉斯开兹，1656",
             "en": "Las Meninas, Diego Velázquez, 1656"
           }
         },
         {
-          "src": "images/叙事内镜_diagram_4.png",
+          "src": "images/叙事内镜_diagram_4.jpg",
           "caption": {
             "zh": "《公民凯恩》，奥森·威尔斯，1941",
             "en": "Citizen Kane, Orson Welles, 1941"
           }
         },
         {
-          "src": "images/叙事内镜_diagram_5.png",
+          "src": "images/叙事内镜_diagram_5.jpg",
           "caption": {
             "zh": "《红辣椒》，今敏，2006",
             "en": "Paprika, Satoshi Kon, 2006"
           }
         },
         {
-          "src": "images/叙事内镜_diagram_6.png",
+          "src": "images/叙事内镜_diagram_6.jpg",
           "caption": {
             "zh": "《盗梦空间》，克里斯托弗·诺兰，2010",
             "en": "Inception, Christopher Nolan, 2010"
@@ -1739,7 +1780,23 @@
             "zh": "动画",
             "en": "Animation"
           },
-          "date": "2025/04/12"
+          "date": "2025/04/12",
+          "images": [
+            {
+              "src": "images/叙事内镜_note1_1.jpg",
+              "caption": {
+                "zh": "莫里茨·科内利斯·埃舍尔，《画廊》，1956",
+                "en": "莫里茨·科内利斯·埃舍尔，《画廊》，1956"
+              }
+            },
+            {
+              "src": "images/叙事内镜_note1_2.jpg",
+              "caption": {
+                "zh": "阿伦·雷乃，《去年在马里昂巴德》，1961",
+                "en": "阿伦·雷乃，《去年在马里昂巴德》，1961"
+              }
+            }
+          ]
         }
       ]
     },
@@ -1750,7 +1807,7 @@
         "en": "Archive Fever"
       },
       "termOri": "Mal d'archive",
-      "concept_image": "images/档案热_aigc.png",
+      "concept_image": "images/档案热_aigc.jpg",
       "sm_title": {
         "zh": "人们热衷于记录和存档，然后再毁坏和丢失",
         "en": "social title"
@@ -1767,14 +1824,14 @@
             "zh": "哲学家",
             "en": "philosopher"
           },
-          "image": "images/档案热_proposer.png"
+          "image": "images/档案热_proposer.jpg"
         }
       ],
       "source": {
         "zh": "雅克·德里达，《档案热：一种弗洛伊德式的印象 (#Mal d'archive: une impression freudienne#)》，巴黎：伽利略出版社 (Éditions Galilée), 1995。中国大陆已出版，中国人民大学出版社。",
         "en": "Derrida, Jacques. #Archive Fever: A Freudian Impression#. Translated by Eric Prenowitz. Chicago: University of Chicago Press, 1996."
       },
-      "source_image": "images/档案热_source_cover.png",
+      "source_image": "images/档案热_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -1832,14 +1889,14 @@
       },
       "diagrams": [
         {
-          "src": "images/档案热_diagram_1.png",
+          "src": "images/档案热_diagram_1.jpg",
           "caption": {
             "zh": "伦敦弗洛伊德博物馆的图书馆",
             "en": "Freud's library at the Freud Museum London"
           }
         },
         {
-          "src": "images/档案热_diagram_2.png",
+          "src": "images/档案热_diagram_2.jpg",
           "caption": {
             "zh": "特雷津集中营（Theresienstadt）里的办公室。摄影： Dirk Reinartzr",
             "en": "Office at Theresienstadt, Dirk Reinartzr."
@@ -1950,7 +2007,7 @@
         "zh": "斯蒂芬·贝斯特、沙伦·马库斯，《表层阅读：导论 (#Surface Reading: An Introduction#)》，载《表征 (#Representations#)》第108卷第1期，伯克利：加州大学出版社 (University of California Press), 2009。尚无中文翻译。",
         "en": "Best, Stephen, and Sharon Marcus. \"Surface Reading: An Introduction.\" #Representations# 108, no. 1 (Fall 2009): 1–21."
       },
-      "source_image": "images/表层阅读_source_cover.png",
+      "source_image": "images/表层阅读_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -2052,7 +2109,7 @@
         "en": "The Caring Classes"
       },
       "termOri": "The Caring Classes",
-      "concept_image": "images/关怀阶级_aigc.png",
+      "concept_image": "images/关怀阶级_aigc.jpg",
       "sm_title": {
         "zh": "“关怀阶级”营造了公共空间和公共变革的前提",
         "en": "social title"
@@ -2069,14 +2126,14 @@
             "zh": "人类学家",
             "en": "anthropologist"
           },
-          "image": "images/关怀阶级_proposer.png"
+          "image": "images/关怀阶级_proposer.jpg"
         }
       ],
       "source": {
         "zh": "《过于关怀是工人阶级的诅咒 (#Caring too much. That's the curse of the working classes#)》，载《卫报 (#The Guardian#)》，2014。",
         "en": "Jones, Owen. \"Caring too much. That's the curse of the working classes.\" #The Guardian#, November 17, 2014."
       },
-      "source_image": "images/关怀阶级_source_cover.png",
+      "source_image": "images/关怀阶级_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -2175,7 +2232,7 @@
         "en": "Compressed Modernity"
       },
       "termOri": "압축적근대성",
-      "concept_image": "images/压缩现代性_aigc.png",
+      "concept_image": "images/压缩现代性_aigc.jpg",
       "sm_title": {
         "zh": "过快的现代化带来了复合的社会危机",
         "en": "social title"
@@ -2192,14 +2249,14 @@
             "zh": "社会学家",
             "en": "sociologist"
           },
-          "image": "images/压缩现代性_proposer.png"
+          "image": "images/压缩现代性_proposer.jpg"
         }
       ],
       "source": {
         "zh": "张庆燮，《压缩现代性与自我发展精神 (#Compressed Modernity and the Spirit of Self-Development#)》，首尔：首尔大学出版社 (Seoul National University Press), 1999。尚无中文翻译。",
         "en": "Chang, Kyung-Sup. #Compressed Modernity and the Spirit of Self-Development#. Seoul: Seoul National University Press, 1999."
       },
-      "source_image": "images/压缩现代性_source_cover.png",
+      "source_image": "images/压缩现代性_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -2280,7 +2337,7 @@
         "en": "Liminal Space"
       },
       "termOri": "Limen",
-      "concept_image": "images/阈限空间_aigc.png",
+      "concept_image": "images/阈限空间_aigc.jpg",
       "sm_title": {
         "zh": "那些空无一人的酒店走廊，废弃酒店的消防通道……",
         "en": "social title"
@@ -2297,14 +2354,14 @@
             "zh": "民族志学家、民俗学家",
             "en": "ethnographer and folklorist"
           },
-          "image": "images/阈限空间_proposer.png"
+          "image": "images/阈限空间_proposer.jpg"
         }
       ],
       "source": {
         "zh": "阿诺尔德·范热内普，《过渡礼仪 (#Les Rites de Passage#)》，巴黎：埃米尔·努里出版社 (Librairie Émile Nourry), 1909。中国大陆已出版，商务印书馆。",
         "en": "Van Gennep, Arnold. #The Rites of Passage#. Translated by Monika B. Vizedom and Gabrielle L. Caffee. Chicago: University of Chicago Press, 1960."
       },
-      "source_image": "images/阈限空间_source_cover.png",
+      "source_image": "images/阈限空间_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -2358,21 +2415,21 @@
       },
       "diagrams": [
         {
-          "src": "images/阈限空间_diagram_1.png",
+          "src": "images/阈限空间_diagram_1.jpg",
           "caption": {
             "zh": "在4chan上走红的名为“后室”（backrooms）的阈限空间帖子",
             "en": "The popular post on 4chan titled \"backrooms\""
           }
         },
         {
-          "src": "images/阈限空间_diagram_2.png",
+          "src": "images/阈限空间_diagram_2.jpg",
           "caption": {
             "zh": "“后室”（backrooms）影像截图",
             "en": "Video still from \"backrooms\""
           }
         },
         {
-          "src": "images/阈限空间_diagram_3.png",
+          "src": "images/阈限空间_diagram_3.jpg",
           "caption": {
             "zh": "“后室”（backrooms）影像截图",
             "en": "Video still from \"backrooms\""
@@ -2455,7 +2512,7 @@
         "en": "Separation of Tasks"
       },
       "termOri": "Aufgaben-Trennung",
-      "concept_image": "images/课题分离_aigc.png",
+      "concept_image": "images/课题分离_aigc.jpg",
       "sm_title": {
         "zh": "关于没有边界感的亲戚",
         "en": "social title"
@@ -2472,14 +2529,14 @@
             "zh": "心理学家",
             "en": "psychologist"
           },
-          "image": "images/课题分离_proposer.png"
+          "image": "images/课题分离_proposer.jpg"
         }
       ],
       "source": {
         "zh": "阿尔弗雷德·阿德勒，《个体心理学的实践与理论 (#Praxis und Theorie der Individualpsychologie#)》，慕尼黑：伯格曼出版社 (Bergmann Publishing), 1920。中国大陆已出版，商务印书馆。",
         "en": "Adler, Alfred. #The Practice and Theory of Individual Psychology#. Translated by P. Radin. London: Routledge & Kegan Paul, 1925."
       },
-      "source_image": "images/课题分离_source_cover.png",
+      "source_image": "images/课题分离_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -2599,7 +2656,7 @@
         "en": "Kino-eye"
       },
       "termOri": "Кино-глаз",
-      "concept_image": "images/电影眼_aigc.png",
+      "concept_image": "images/电影眼_aigc.jpg",
       "sm_title": {
         "zh": "机械之眼所看到的世界",
         "en": "social title"
@@ -2616,14 +2673,14 @@
             "zh": "导演、电影理论家",
             "en": "director and film theorist"
           },
-          "image": "images/电影眼_proposer.png"
+          "image": "images/电影眼_proposer.jpg"
         }
       ],
       "source": {
         "zh": "吉加·维尔托夫，《电影眼：革命的产物 (#Kino-Eye: The Revolution's Output#)》，载《列夫 (#LEF#)》，1923。已有中文翻译。",
         "en": "Vertov, Dziga. \"Kino-Eye: The Revolution's Output\" [Киноглаз: Переворот]. #LEF# (1923)."
       },
-      "source_image": "images/电影眼_source_cover.png",
+      "source_image": "images/电影眼_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -2749,7 +2806,7 @@
         "en": "Cyborg"
       },
       "termOri": "Cyborg",
-      "concept_image": "images/赛博格_aigc.png",
+      "concept_image": "images/赛博格_aigc.jpg",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
@@ -2766,14 +2823,14 @@
             "zh": "哲学家",
             "en": "philosopher"
           },
-          "image": "images/赛博格_proposer.png"
+          "image": "images/赛博格_proposer.jpg"
         }
       ],
       "source": {
         "zh": "唐娜·哈拉维，《类人猿、赛博格和女人：自然的重塑 (#Simians, Cyborgs, and Women: The Reinvention of Nature#)》，纽约：劳特利奇出版社 (Routledge), 1991。尚无中文翻译。",
         "en": "Haraway, Donna J. #Simians, Cyborgs, and Women: The Reinvention of Nature#. New York: Routledge, 1991."
       },
-      "source_image": "images/赛博格_source_cover.png",
+      "source_image": "images/赛博格_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -2828,14 +2885,14 @@
       },
       "diagrams": [
         {
-          "src": "images/赛博格_diagram_1.png",
+          "src": "images/赛博格_diagram_1.jpg",
           "caption": {
             "zh": "电影《攻壳机动队2：无罪》中致敬唐娜·哈拉维的角色。",
             "en": "diagram caption"
           }
         },
         {
-          "src": "images/赛博格_diagram_2.png",
+          "src": "images/赛博格_diagram_2.jpg",
           "caption": {
             "zh": "电影《攻壳机动队》中创造赛博格的场景。",
             "en": "diagram caption"
@@ -2892,7 +2949,30 @@
             "zh": "建筑学",
             "en": "Architecture"
           },
-          "date": "TODO: contribute_date"
+          "date": "TODO: contribute_date",
+          "images": [
+            {
+              "src": "images/赛博格_note1_1.jpg",
+              "caption": {
+                "zh": "《攻壳机动队》中狙击手斋藤的义眼。",
+                "en": "《攻壳机动队》中狙击手斋藤的义眼。"
+              }
+            },
+            {
+              "src": "images/赛博格_note1_2.jpg",
+              "caption": {
+                "zh": "《攻壳机动队》中适用于打字的义肢。",
+                "en": "《攻壳机动队》中适用于打字的义肢。"
+              }
+            },
+            {
+              "src": "images/赛博格_note1_3.jpg",
+              "caption": {
+                "zh": "《攻壳机动队》中带有武器的义肢。",
+                "en": "《攻壳机动队》中带有武器的义肢。"
+              }
+            }
+          ]
         },
         {
           "content": {
@@ -2922,7 +3002,7 @@
         "en": "Homo Sacer"
       },
       "termOri": "Homo Sacer",
-      "concept_image": "images/牲人_aigc.png",
+      "concept_image": "images/牲人_aigc.jpg",
       "sm_title": {
         "zh": "国家创造「牲人」来实现更广泛更深刻的主权控制",
         "en": "social title"
@@ -2939,14 +3019,14 @@
             "zh": "哲学家",
             "en": "philosopher"
           },
-          "image": "images/牲人_proposer.png"
+          "image": "images/牲人_proposer.jpg"
         }
       ],
       "source": {
         "zh": "乔治·阿甘本，《神圣的人：主权权力与赤裸生命 (#Homo Sacer: Il potere sovrano e la nuda vita#)》，都灵：埃陶迪出版社 (Giulio Einaudi Editore), 1995。中国大陆已出版，北京大学出版社。",
         "en": "Agamben, Giorgio. #Homo Sacer: Sovereign Power and Bare Life#. Translated by Daniel Heller-Roazen. Stanford: Stanford University Press, 1998."
       },
-      "source_image": "images/牲人_source_cover.png",
+      "source_image": "images/牲人_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -3078,7 +3158,7 @@
         "en": "Entropy"
       },
       "termOri": "Entropy",
-      "concept_image": "images/熵_aigc.png",
+      "concept_image": "images/熵_aigc.jpg",
       "sm_title": {
         "zh": "无序度并不等于事物的混乱程度",
         "en": "social title"
@@ -3095,14 +3175,14 @@
             "zh": "物理学家、数学家",
             "en": "physicist and mathematician"
           },
-          "image": "images/熵_proposer.png"
+          "image": "images/熵_proposer.jpg"
         }
       ],
       "source": {
         "zh": "鲁道夫·克劳修斯，《力学的热理论 (#Abhandlungen über die mechanische Wärmetheorie#)》，波恩：维威格出版社 (Vieweg & Sohn), 1865。尚无中文翻译。",
         "en": "Clausius, Rudolf. #The Mechanical Theory of Heat#. Translated by John Tyndall. London: John van Voorst, 1867."
       },
-      "source_image": "images/熵_source_cover.png",
+      "source_image": "images/熵_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -3220,7 +3300,7 @@
         "en": "Gig Economy"
       },
       "termOri": "Gig Economy",
-      "concept_image": "images/零工经济_aigc.png",
+      "concept_image": "images/零工经济_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典丨上门制图？中国建筑行业是否也在无奈地走入「零工经济」",
         "en": "social title"
@@ -3237,14 +3317,14 @@
             "zh": "编辑和作家",
             "en": "editor and author"
           },
-          "image": "images/零工经济_proposer.png"
+          "image": "images/零工经济_proposer.jpg"
         }
       ],
       "source": {
         "zh": "蒂娜·布朗，[零工经济]，载《野兽日报 (#The Daily Beast#)》，2009。尚无中文翻译。",
         "en": "Brown, Tina. [The Gig Economy]. #The Daily Beast#, 2009."
       },
-      "source_image": "images/零工经济_source_cover.png",
+      "source_image": "images/零工经济_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -3330,7 +3410,16 @@
             "zh": "人类学",
             "en": ""
           },
-          "date": "2023/09/24"
+          "date": "2023/09/24",
+          "images": [
+            {
+              "src": "images/零工经济_note1_1.jpg",
+              "caption": {
+                "zh": "Getty Image \"pauperism\"",
+                "en": "Getty Image \"pauperism\""
+              }
+            }
+          ]
         }
       ]
     },
@@ -3358,14 +3447,14 @@
             "zh": "哲学家",
             "en": "philosopher"
           },
-          "image": "images/廓落_proposer.png"
+          "image": "images/廓落_proposer.jpg"
         }
       ],
       "source": {
         "zh": "《廓落》（Khôra），1993年，雅克·德里达（Jacques Derrida）著，上海人民出版社（中文译本多见于论文集或《他者的单语主义》；台版译名为《柯拉》，由桂冠图书出版）",
         "en": "Derrida, Jacques. #Khôra#. Translated by Ian McLeod. In On the Name, edited by Thomas Dutoit, 88–130. Stanford: Stanford University Press, 1995."
       },
-      "source_image": "images/廓落_source_cover.png",
+      "source_image": "images/廓落_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -3472,7 +3561,7 @@
         "zh": "赵元任，《中国话的文法 (#A Grammar of Spoken Chinese#)》，伯克利：加州大学出版社 (University of California Press), 1968。中国大陆已出版，商务印书馆。",
         "en": "Chao, Yuen Ren. #A Grammar of Spoken Chinese#. Berkeley: University of California Press, 1968."
       },
-      "source_image": "images/反训词_source_cover.png",
+      "source_image": "images/反训词_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -3637,7 +3726,7 @@
         "zh": "出处",
         "en": "source"
       },
-      "source_image": "images/反义复词_source_cover.png",
+      "source_image": "images/反义复词_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -3756,14 +3845,14 @@
             "zh": "物理学家、天文学家",
             "en": "physicist, astronomer"
           },
-          "image": "images/事件视界_proposer.png"
+          "image": "images/事件视界_proposer.jpg"
         }
       ],
       "source": {
         "zh": "卡尔·史瓦西，《关于爱因斯坦引力理论的一个解 (#Über das Gravitationsfeld eines Massenpunktes nach der Einsteinschen Theorie#)》，载《普鲁士科学院报告 (#Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften#)》，1916。尚无中文翻译。",
         "en": "Schwarzschild, Karl. \"Über das Gravitationsfeld eines Massenpunktes nach der Einsteinschen Theorie.\" #Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften# (1916): 189–196."
       },
-      "source_image": "images/事件视界_source_cover.png",
+      "source_image": "images/事件视界_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -3816,28 +3905,28 @@
       },
       "diagrams": [
         {
-          "src": "images/事件视界_diagram_1.png",
+          "src": "images/事件视界_diagram_1.jpg",
           "caption": {
             "zh": "事件视界望远镜观测的M87黑洞",
             "en": "diagram caption"
           }
         },
         {
-          "src": "images/事件视界_diagram_2.png",
+          "src": "images/事件视界_diagram_2.jpg",
           "caption": {
             "zh": "事件视界望远镜",
             "en": "diagram caption"
           }
         },
         {
-          "src": "images/事件视界_diagram_3.png",
+          "src": "images/事件视界_diagram_3.jpg",
           "caption": {
             "zh": "在星球表面，观察者的视野会被“地平线”限制，地平线之外的部分在“视界之外。”",
             "en": "diagram caption"
           }
         },
         {
-          "src": "images/事件视界_diagram_4.png",
+          "src": "images/事件视界_diagram_4.jpg",
           "caption": {
             "zh": "在黑洞的抽象几何模型中，可以看到“事件视界”的范围。\n图像来源：astronomysource.com/category/cosmos/black-holes/",
             "en": "diagram caption"
@@ -3889,7 +3978,7 @@
         "en": "Parapraxis"
       },
       "termOri": "Parapraxis",
-      "concept_image": "images/行为倒错_aigc.png",
+      "concept_image": "images/行为倒错_aigc.jpg",
       "sm_title": {
         "zh": "我们不经意说走嘴的话，可能反映了内心真实的想法",
         "en": "social title"
@@ -3906,14 +3995,14 @@
             "zh": "心理学家",
             "en": "psychologist"
           },
-          "image": "images/行为倒错_proposer.png"
+          "image": "images/行为倒错_proposer.jpg"
         }
       ],
       "source": {
         "zh": "西格蒙德·弗洛英德，《日常生活的精神病理学 (#Zur Psychopathologie des Alltagslebens#)》，1901。中国大陆已出版，台海出版社。",
         "en": "Freud, Sigmund. #The Psychopathology of Everyday Life#. Translated by James Strachey. New York: W. W. Norton & Company, 1960."
       },
-      "source_image": "images/行为倒错_source_cover.png",
+      "source_image": "images/行为倒错_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -4009,7 +4098,7 @@
         "en": "The New Poor"
       },
       "termOri": "The New Poor",
-      "concept_image": "images/新穷人_aigc.png",
+      "concept_image": "images/新穷人_aigc.jpg",
       "sm_title": {
         "zh": "收入增加不多，但被创造的需求增加了很多很多",
         "en": "social title"
@@ -4026,14 +4115,14 @@
             "zh": "社会学家",
             "en": "sociologist"
           },
-          "image": "images/新穷人_proposer.png"
+          "image": "images/新穷人_proposer.jpg"
         }
       ],
       "source": {
         "zh": "齐格蒙特·鲍曼，《工作、消费与新穷人 (#Work, Consumerism and the New Poor#)》，白金汉：开放大学出版社 (Open University Press), 1998。中国大陆已出版，江苏人民出版社。",
         "en": "Bauman, Zygmunt. #Work, Consumerism and the New Poor#. Buckingham: Open University Press, 1998."
       },
-      "source_image": "images/新穷人_source_cover.png",
+      "source_image": "images/新穷人_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -4127,7 +4216,7 @@
         "en": "Suspension"
       },
       "termOri": "Suspension",
-      "concept_image": "images/悬浮_aigc.png",
+      "concept_image": "images/悬浮_aigc.jpg",
       "sm_title": {
         "zh": "没有人活在当下和此处，都期望着暴富然后逃离",
         "en": "social title"
@@ -4144,14 +4233,14 @@
             "zh": "人类学家",
             "en": "Anthropologist"
           },
-          "image": "images/悬浮_proposer.png"
+          "image": "images/悬浮_proposer.jpg"
         }
       ],
       "source": {
         "zh": "项飙，《跨越边界的社区：北京“浙江村”的生活史 (#The Making of a Transnational Community: Life History of Beijing's \"Zhejiang Village\"#)》，北京：北京大学出版社，1998。中国大陆已出版，北京大学出版社。",
         "en": "Xiang, Biao. #The Making of a Transnational Community: Life History of Beijing's \"Zhejiang Village\"#. Beijing: Peking University Press, 1998."
       },
-      "source_image": "images/悬浮_source_cover.png",
+      "source_image": "images/悬浮_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -4296,7 +4385,7 @@
         "en": "Vezo"
       },
       "termOri": "Vezo",
-      "concept_image": "images/维佐人_aigc.png",
+      "concept_image": "images/维佐人_aigc.jpg",
       "sm_title": {
         "zh": "「维佐人」的身份不是生来即有，也非一成不变",
         "en": "The identity of a \"Vezo\" is not innate or unchanging"
@@ -4313,14 +4402,14 @@
             "zh": "人类学家",
             "en": "Anthropologist"
           },
-          "image": "images/维佐人_proposer.png"
+          "image": "images/维佐人_proposer.jpg"
         }
       ],
       "source": {
         "zh": "丽塔·阿斯特，《海上之民：马达加斯加维佐人的身份与血统 (#People of the Sea: Identity and Descent among the Vezo of Madagascar#)》，剑桥：剑桥大学出版社 (Cambridge University Press), 1995。尚无中文翻译。",
         "en": "Astuti, Rita. #People of the Sea: Identity and Descent among the Vezo of Madagascar#. Cambridge: Cambridge University Press, 1995."
       },
-      "source_image": "images/维佐人_source_cover.png",
+      "source_image": "images/维佐人_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -4373,14 +4462,14 @@
       },
       "diagrams": [
         {
-          "src": "images/维佐人_diagram_1.png",
+          "src": "images/维佐人_diagram_1.jpg",
           "caption": {
             "zh": "图像来自：\n捕鱼的维佐人。摄影：Rhett A. Butler",
             "en": "diagram caption"
           }
         },
         {
-          "src": "images/维佐人_diagram_2.png",
+          "src": "images/维佐人_diagram_2.jpg",
           "caption": {
             "zh": "图像来自：\n捕鱼的维佐人。摄影：Frank Janssens",
             "en": "diagram caption"
@@ -4468,14 +4557,14 @@
             "zh": "语言学家、法学家",
             "en": "Philologist and Jurist"
           },
-          "image": "images/同源词_proposer.png"
+          "image": "images/同源词_proposer.jpg"
         }
       ],
       "source": {
         "zh": "威廉·琼斯，《第三周年演说 (#The Third Anniversary Discourse#)》，载《亚洲研究 (#Asiatic Researches#)》，1786。尚无中文翻译。",
         "en": "Jones, William. \"The Third Anniversary Discourse.\" #Asiatic Researches# (1786)."
       },
-      "source_image": "images/同源词_source_cover.png",
+      "source_image": "images/同源词_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -4575,7 +4664,7 @@
         "zh": "奥古斯特·布拉谢，《双形词词典 (#Dictionnaire des doublets, ou Doubles formes de la langue française#)》，巴黎：利伯里出版社 (Librairie A. Franck), 1868。尚无中文翻译。",
         "en": "Brachet, Auguste. #Dictionnaire des doublets, ou Doubles formes de la langue française#. Paris: Librairie A. Franck, 1868."
       },
-      "source_image": "images/同源异形词_source_cover.png",
+      "source_image": "images/同源异形词_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -4649,7 +4738,7 @@
         "en": "Calque"
       },
       "termOri": "Calque",
-      "concept_image": "images/仿译词_aigc.png",
+      "concept_image": "images/仿译词_aigc.jpg",
       "sm_title": {
         "zh": "蓝牙、超人、洗脑、摩天大楼……",
         "en": "social title"
@@ -4666,14 +4755,14 @@
             "zh": "语言学家",
             "en": "linguist"
           },
-          "image": "images/仿译词_proposer.png"
+          "image": "images/仿译词_proposer.jpg"
         }
       ],
       "source": {
         "zh": "王力，《汉语史稿》，北京：科学出版社，1958。中国大陆已出版，科学出版社。",
         "en": "Wang, Li. #Draft History of the Chinese Language# [Hanyu Shigao]. Beijing: Science Press, 1958."
       },
-      "source_image": "images/仿译词_source_cover.png",
+      "source_image": "images/仿译词_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -4820,14 +4909,14 @@
             "zh": "语言学家",
             "en": "linguist"
           },
-          "image": "images/音译词_proposer.png"
+          "image": "images/音译词_proposer.jpg"
         }
       ],
       "source": {
         "zh": "王力，《汉语史稿》，北京：科学出版社，1958。中国大陆已出版，科学出版社。",
         "en": "Wang, Li. #Draft History of the Chinese Language# [Hanyu Shigao]. Beijing: Science Press, 1958."
       },
-      "source_image": "images/音译词_source_cover.png",
+      "source_image": "images/音译词_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -4961,7 +5050,7 @@
         "en": "Psychogeography"
       },
       "termOri": "Psychogéographie",
-      "concept_image": "images/心理地理学_aigc.png",
+      "concept_image": "images/心理地理学_aigc.jpg",
       "sm_title": {
         "zh": "一座塔楼，一条小径，几个行人，可能就构成了一个城市",
         "en": "social title"
@@ -4978,14 +5067,14 @@
             "zh": "思想家、电影导演",
             "en": "thinker and film director"
           },
-          "image": "images/心理地理学_proposer.png"
+          "image": "images/心理地理学_proposer.jpg"
         }
       ],
       "source": {
         "zh": "居伊·德波，《心理地理学引论 (#Introduction à une critique de la géographie urbaine#)》，载《波特拉奇 (#Potlatch#)》，1955。已有中文翻译。",
         "en": "Debord, Guy. \"Introduction to a Critique of Urban Geography.\" #Potlatch#, no. 6 (1955)."
       },
-      "source_image": "images/心理地理学_source_cover.png",
+      "source_image": "images/心理地理学_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -5038,7 +5127,7 @@
       },
       "diagrams": [
         {
-          "src": "images/心理地理学_diagram_1.png",
+          "src": "images/心理地理学_diagram_1.jpg",
           "caption": {
             "zh": "《巴黎心理地理学地图》局部。",
             "en": "diagram caption"
@@ -5098,7 +5187,7 @@
         "en": "Enactment of Expertise"
       },
       "termOri": "Enactment of Expertise",
-      "concept_image": "images/做专家_aigc.png",
+      "concept_image": "images/做专家_aigc.jpg",
       "sm_title": {
         "zh": "卖AI课的「专家」不一定懂得技术，但一定懂得表演和行业黑话",
         "en": "social title"
@@ -5115,14 +5204,14 @@
             "zh": "社会文化人类学家",
             "en": "social and cultural anthropologist"
           },
-          "image": "images/做专家_proposer.png"
+          "image": "images/做专家_proposer.jpg"
         }
       ],
       "source": {
         "zh": "多米尼克·博耶，《做专家 (#Enactments of Expertise#)》，载《人类学年度评论 (#Annual Review of Anthropology#)》，2010。尚无中文翻译。",
         "en": "Boyer, Dominic. \"Enactments of Expertise.\" #Annual Review of Anthropology# 39 (2010): 395–409."
       },
-      "source_image": "images/做专家_source_cover.png",
+      "source_image": "images/做专家_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -5234,7 +5323,7 @@
         "en": "Techno-animism"
       },
       "termOri": "Techno-animism",
-      "concept_image": "images/技术有灵论_aigc.png",
+      "concept_image": "images/技术有灵论_aigc.jpg",
       "sm_title": {
         "zh": "「技术有灵论」不只是针对电子产品的拟人化修辞",
         "en": "social title"
@@ -5251,14 +5340,14 @@
             "zh": "文化人类学家",
             "en": "cultural anthropologist"
           },
-          "image": "images/技术有灵论_proposer.png"
+          "image": "images/技术有灵论_proposer.jpg"
         }
       ],
       "source": {
         "zh": "安妮·阿莉森，《千禧年怪兽：当代日本的玩具与精神力 (#Millennial Monsters: Japanese Toys and the Global Imagination#)》，伯克利：加州大学出版社 (University of California Press), 2006。尚无中文翻译。",
         "en": "Allison, Anne. #Millennial Monsters: Japanese Toys and the Global Imagination#. Berkeley: University of California Press, 2006."
       },
-      "source_image": "images/技术有灵论_source_cover.png",
+      "source_image": "images/技术有灵论_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -5361,7 +5450,7 @@
         "en": "Flaneur"
       },
       "termOri": "Flâneur",
-      "concept_image": "images/游荡者_aigc.png",
+      "concept_image": "images/游荡者_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典｜Citywalk的人算是「游荡者」吗？",
         "en": "social title"
@@ -5378,14 +5467,14 @@
             "zh": "诗人、评论家",
             "en": "poet and critic"
           },
-          "image": "images/游荡者_proposer.png"
+          "image": "images/游荡者_proposer.jpg"
         }
       ],
       "source": {
         "zh": "夏尔·波德莱尔，《现代生活的画家 (#Le Peintre de la vie moderne#)》，1863。中国大陆已出版，人民文学出版社。",
         "en": "Baudelaire, Charles. #The Painter of Modern Life#. 1863."
       },
-      "source_image": "images/游荡者_source_cover.png",
+      "source_image": "images/游荡者_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -5489,7 +5578,23 @@
             "zh": "动画",
             "en": "Animation"
           },
-          "date": "2023/11/22"
+          "date": "2023/11/22",
+          "images": [
+            {
+              "src": "images/游荡者_note1_1.jpg",
+              "caption": {
+                "zh": "爱德华·霍普，夜游者，1942",
+                "en": "爱德华·霍普，夜游者，1942"
+              }
+            },
+            {
+              "src": "images/游荡者_note1_2.jpg",
+              "caption": {
+                "zh": "伯纳德·奎桑，沉睡的人，1974",
+                "en": "伯纳德·奎桑，沉睡的人，1974"
+              }
+            }
+          ]
         },
         {
           "content": {
@@ -5538,7 +5643,7 @@
         "en": "Playbour"
       },
       "termOri": "Playbour",
-      "concept_image": "images/玩工_aigc.png",
+      "concept_image": "images/玩工_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典｜上班打工，回家当「玩工」，没有什么不在生产和消费的循环里",
         "en": "Dune Dictionary | Working at work, returning home as a 'playbour', there is nothing that is not in the cycle of production and consumption"
@@ -5555,14 +5660,14 @@
             "zh": "媒体科学家",
             "en": "media scientist"
           },
-          "image": "images/玩工_proposer.png"
+          "image": "images/玩工_proposer.jpg"
         }
       ],
       "source": {
         "zh": "朱利安·库克里奇，《不稳定的玩工：Mod制作与数字游戏产业 (#Precarious Playbour: Modders and the Digital Games Industry#)》，载《初动 (#Fibreculture Journal#)》，2005。尚无中文翻译。",
         "en": "Kücklich, Julian. \"Precarious Playbour: Modders and the Digital Games Industry.\" #Fibreculture Journal# 5 (2005)."
       },
-      "source_image": "images/玩工_source_cover.png",
+      "source_image": "images/玩工_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -5771,7 +5876,16 @@
             "zh": "人类学",
             "en": ""
           },
-          "date": "2026/02/07"
+          "date": "2026/02/07",
+          "images": [
+            {
+              "src": "images/活人感_note1_1.jpg",
+              "caption": {
+                "zh": "surrogate humanity 代理人类 （一本相关STS书）的封面",
+                "en": "surrogate humanity 代理人类 （一本相关STS书）的封面"
+              }
+            }
+          ]
         },
         {
           "content": {
@@ -5820,7 +5934,7 @@
         "en": "Fold City"
       },
       "termOri": "La Ville-pli",
-      "concept_image": "images/褶子城市_aigc.png",
+      "concept_image": "images/褶子城市_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典丨「褶子城市」保有生活的复杂性，因为它不止有光亮的一面",
         "en": "Dune Dictionary | The 'fold city' retains the complexity of life because it has more than just a bright side"
@@ -5837,14 +5951,14 @@
             "zh": "中国哲学家、编译者",
             "en": "philosopher"
           },
-          "image": "images/褶子城市_proposer.png"
+          "image": "images/褶子城市_proposer.jpg"
         }
       ],
       "source": {
         "zh": "汪民安 (编译)，《褶子 (#Le Pli#)》，开封：河南大学出版社，2018。中国大陆已出版，河南大学出版社。",
         "en": "Wang, Min'an, ed. #Le Pli#. Kaifeng: Henan University Press, 2018."
       },
-      "source_image": "images/褶子城市_source_cover.png",
+      "source_image": "images/褶子城市_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -5968,7 +6082,7 @@
         "en": "Nolli Map"
       },
       "termOri": "Nolli Map",
-      "concept_image": "images/诺利地图_aigc.png",
+      "concept_image": "images/诺利地图_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典丨「诺利地图」改写了我们对城市公共空间的理解",
         "en": "Dune Dictionary | 'Noli Map' rewrites our understanding of urban public spaces"
@@ -5992,7 +6106,7 @@
         "zh": "詹巴蒂斯塔·诺利，《1748年诺利罗马地图 (#Nuova Pianta di Roma data in luce da Giambattista Nolli l'anno 1748#)》，罗马，1748。尚无中文翻译。",
         "en": "Nolli, Giambattista. #Nuova Pianta di Roma data in luce da Giambattista Nolli l'anno 1748#. Rome, 1748."
       },
-      "source_image": "images/诺利地图_source_cover.png",
+      "source_image": "images/诺利地图_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",
@@ -6046,28 +6160,28 @@
       },
       "diagrams": [
         {
-          "src": "images/诺利地图_diagram_1.png",
+          "src": "images/诺利地图_diagram_1.jpg",
           "caption": {
             "zh": "诺利地图局部（图中有万神殿的平面细节）",
             "en": "Detail of Nolli Map showing the Panthon"
           }
         },
         {
-          "src": "images/诺利地图_diagram_2.png",
+          "src": "images/诺利地图_diagram_2.jpg",
           "caption": {
             "zh": "诺利地图局部",
             "en": "diagram caption"
           }
         },
         {
-          "src": "images/诺利地图_diagram_3.png",
+          "src": "images/诺利地图_diagram_3.jpg",
           "caption": {
             "zh": "以诺利地图为底图，由12位建筑师于1978年创作的《被打断的罗马》（Roma Interrotta）\n此局部与图2对应，由柯林·罗（Colin Rowe）创作",
             "en": "diagram caption"
           }
         },
         {
-          "src": "images/诺利地图_diagram_4.png",
+          "src": "images/诺利地图_diagram_4.jpg",
           "caption": {
             "zh": "《向拉斯维加斯学习》中拉斯维加斯大道及其沿街赌场酒店的诺利地图",
             "en": "diagram caption"
@@ -6124,14 +6238,14 @@
             "zh": "人类学家",
             "en": "anthropologist"
           },
-          "image": "images/超现代性_proposer.png"
+          "image": "images/超现代性_proposer.jpg"
         }
       ],
       "source": {
         "zh": "马克·奥热，《非地方：超现代人类学引论 (#Non-Lieux: Introduction à une anthropologie de la surmodernité#)》，巴黎：论点出版社 (Le Seuil), 1992。中国大陆已出版，商务印书馆；港台有译本，群學出版社。",
         "en": "Augé, Marc. #Non-Places: An Introduction to Supermodernity#. Translated by John Howe. London: Verso, 1995."
       },
-      "source_image": "images/超现代性_source_cover.png",
+      "source_image": "images/超现代性_source_cover.jpg",
       "related_works": [
         {
           "zh": "相关著作",

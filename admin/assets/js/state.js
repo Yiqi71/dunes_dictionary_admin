@@ -7,7 +7,7 @@ export const state = {
   baseWidth: 100,
   baseHeight: 100,
   scaleThreshold: 20,
-  currentLang: "zh"
+  currentLang: "en"
 };
 
 

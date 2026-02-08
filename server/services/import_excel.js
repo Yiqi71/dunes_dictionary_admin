@@ -77,6 +77,12 @@ const COLS = {
   NOTE1_CONTENT: "\u7b14\u8bb0\u5185\u5bb91",
   NOTE1_AUTHOR: "\u7b14\u8bb0\u8d21\u732e\u80051",
   NOTE1_BG: "\u7b14\u8bb0\u8d21\u732e\u8005\u5b66\u79d11",
+  NOTE1_IMG1: "\u7b14\u8bb01\u914d\u56fe1-1",
+  NOTE1_IMG1_CAP: "\u7b14\u8bb01\u914d\u56fe1 \u8bf4\u660e\u4e0e\u6765\u6e90",
+  NOTE1_IMG2: "\u7b14\u8bb01\u914d\u56fe2-1",
+  NOTE1_IMG2_CAP: "\u7b14\u8bb01\u914d\u56fe2 \u8bf4\u660e\u4e0e\u6765\u6e90",
+  NOTE1_IMG3: "\u7b14\u8bb01\u914d\u56fe3-1",
+  NOTE1_IMG3_CAP: "\u7b14\u8bb01\u914d\u56fe3 \u8bf4\u660e\u4e0e\u6765\u6e90",
   NOTE2_CONTENT: "\u7b14\u8bb0\u5185\u5bb92",
   NOTE2_AUTHOR: "\u7b14\u8bb0\u8d21\u732e\u80052",
   NOTE2_BG: "\u7b14\u8bb0\u8d21\u732e\u8005\u5b66\u79d12",
@@ -94,6 +100,9 @@ const IMAGE_RULES_BY_HEADER = new Map([
   [COLS.DIAGRAM4_IMG, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
   [COLS.DIAGRAM5_IMG, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
   [COLS.DIAGRAM6_IMG, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
+  [COLS.NOTE1_IMG1, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
+  [COLS.NOTE1_IMG2, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
+  [COLS.NOTE1_IMG3, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
   [COLS.PROPOSER_PHOTO, { maxWidth: 300, maxHeight: 300, quality: 75, forceJpg: true }],
   [COLS.SOURCE_COVER, { maxLongEdge: 1000, quality: 80, forceJpg: true }]
 ]);
@@ -272,6 +281,9 @@ async function importExcelToDraft(xlsxPath) {
   const colProposerPhoto = col(COLS.PROPOSER_PHOTO);
   const colSourceCover = col(COLS.SOURCE_COVER);
   const colAigcImg = col(COLS.AIGC_IMG);
+  const colNote1Img1 = col(COLS.NOTE1_IMG1);
+  const colNote1Img2 = col(COLS.NOTE1_IMG2);
+  const colNote1Img3 = col(COLS.NOTE1_IMG3);
 
   const diagramCols = [
     { imgName: COLS.DIAGRAM1_IMG, cap: COLS.DIAGRAM1_CAP, src: COLS.DIAGRAM1_SRC },
@@ -291,7 +303,7 @@ async function importExcelToDraft(xlsxPath) {
     }
   });
 
-  // row -> { proposer, source_cover, aigc, diagrams: [] }
+  // row -> { proposer, source_cover, aigc, diagrams: [], note1_images: [] }
   const imageByRow = new Map();
 
   const images = ws.getImages(); // [{imageId, range}]
@@ -314,6 +326,15 @@ async function importExcelToDraft(xlsxPath) {
     else if (diagramColIndex.has(col1)) {
       kind = "diagram";
       diagramIndex = diagramColIndex.get(col1);
+    } else if (colNote1Img1 && col1 === colNote1Img1) {
+      kind = "note1";
+      diagramIndex = 0;
+    } else if (colNote1Img2 && col1 === colNote1Img2) {
+      kind = "note1";
+      diagramIndex = 1;
+    } else if (colNote1Img3 && col1 === colNote1Img3) {
+      kind = "note1";
+      diagramIndex = 2;
     }
 
     if (!kind) continue;
@@ -324,7 +345,15 @@ async function importExcelToDraft(xlsxPath) {
     const outExt = rule?.forceJpg ? "jpg" : ext;
 
     const term = cell(row1, COLS.TERM) || `row_${row1}`;
-    const filename = `${term}_${kind}${kind === "diagram" ? `_${diagramIndex + 1}` : ""}.${outExt}`.replace(/[\\/:*?"<>|]/g, "_");
+    const safeTerm = term.replace(/[\\/:*?"<>|]/g, "_");
+    let filename = "";
+    if (kind === "diagram") {
+      filename = `${safeTerm}_${kind}_${diagramIndex + 1}.${outExt}`;
+    } else if (kind === "note1") {
+      filename = `${safeTerm}_note1_${diagramIndex + 1}.${outExt}`;
+    } else {
+      filename = `${safeTerm}_${kind}.${outExt}`;
+    }
     const outAbs = path.join(DRAFT_IMG_DIR, filename);
 
     fs.writeFileSync(outAbs, outBuffer);
@@ -335,6 +364,10 @@ async function importExcelToDraft(xlsxPath) {
       const list = bag.diagrams || [];
       list[diagramIndex] = rel;
       bag.diagrams = list;
+    } else if (kind === "note1") {
+      const list = bag.note1_images || [];
+      list[diagramIndex] = rel;
+      bag.note1_images = list;
     } else {
       bag[kind] = rel;
     }
@@ -356,14 +389,16 @@ async function importExcelToDraft(xlsxPath) {
   }
 
   function pushComment(w, noteZh, noteEn, authorZh, authorEn, bgZh, bgEn, dateValue) {
-    if (!s(noteZh) && !s(noteEn)) return;
-    w.comments.push({
+    if (!s(noteZh) && !s(noteEn)) return null;
+    const comment = {
       content: { zh: s(noteZh), en: s(noteEn) },
       role: { zh: "\u8d21\u732e\u8005", en: "Contributor" },
       author: { zh: s(authorZh), en: s(authorEn) },
       background: { zh: s(bgZh), en: s(bgEn) },
       date: s(dateValue)
-    });
+    };
+    w.comments.push(comment);
+    return comment;
   }
 
   for (const [zhTerm, zhRow] of parents.entries()) {
@@ -543,7 +578,7 @@ async function importExcelToDraft(xlsxPath) {
 
     // notes -> comments
     w.comments = [];
-    pushComment(
+    const note1 = pushComment(
       w,
       cell(zhRow, COLS.NOTE1_CONTENT),
       enRow ? cell(enRow, COLS.NOTE1_CONTENT) : "",
@@ -553,6 +588,29 @@ async function importExcelToDraft(xlsxPath) {
       enRow ? cell(enRow, COLS.NOTE1_BG) : "",
       w.contribute_date
     );
+
+    if (note1) {
+      const noteImgs = [];
+      const noteImgCells = [
+        { img: COLS.NOTE1_IMG1, cap: COLS.NOTE1_IMG1_CAP },
+        { img: COLS.NOTE1_IMG2, cap: COLS.NOTE1_IMG2_CAP },
+        { img: COLS.NOTE1_IMG3, cap: COLS.NOTE1_IMG3_CAP }
+      ];
+      noteImgCells.forEach((cfg, idx) => {
+        const img =
+          (imgsZh.note1_images && imgsZh.note1_images[idx]) ||
+          cell(zhRow, cfg.img) ||
+          (enRow ? cell(enRow, cfg.img) : "");
+        if (!img) return;
+        const cap = cell(zhRow, cfg.cap) || (enRow ? cell(enRow, cfg.cap) : "");
+        noteImgs.push({
+          src: img,
+          caption: { zh: cap, en: cap }
+        });
+      });
+      if (noteImgs.length) note1.images = noteImgs;
+    }
+
     pushComment(
       w,
       cell(zhRow, COLS.NOTE2_CONTENT),

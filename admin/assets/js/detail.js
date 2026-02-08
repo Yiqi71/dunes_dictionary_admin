@@ -552,9 +552,21 @@ function renderCommentSection() {
                 ? `${roleLabel}${roleLabel && nameLabel ? "<br>" : ""}${nameLabel}`
                 : fallbackLabel;
             const content = applyHashItalics(c?.content?.[lang] || "");
+            const images = Array.isArray(c?.images) ? c.images : [];
+            const imagesHtml = images.length
+                ? `<div class="note-images">
+                    ${images.map(img => {
+                        const cap = applyHashItalics(img?.caption?.[lang] || "");
+                        return `
+                            <img src="${resolveImagePath(img?.src)}" alt="note image" loading="lazy" decoding="async">
+                            ${cap ? `<p class="diagram-caption">${cap}</p>` : ""}
+                        `;
+                    }).join("")}
+                  </div>`
+                : "";
             return `<section>
                 <p class="left-title">${titleLabel}</p>
-                <div class="note-body"><br><br><br><br>${content}</div>
+                <div class="note-body"><br><br><br><br>${content}${imagesHtml}</div>
             </section>`;
         }).join('') : emptyCommentsLabel}
 

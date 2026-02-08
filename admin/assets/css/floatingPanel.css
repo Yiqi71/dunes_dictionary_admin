@@ -415,6 +415,22 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
     object-fit: cover !important;
 }
 
+#floating-panel.expanded .panel-comment .note-body img,
+#about-panel.expanded .panel-comment .note-body img {
+    width: 33vw !important;
+    height: 33vh !important;
+    object-fit: cover !important;
+}
+
+/* Note images in comment panel */
+.panel-comment .note-body img {
+    padding: 24px 0 36px 0;
+    width: 406px !important;
+    height: 270px !important;
+    object-fit: cover !important;
+    display: block;
+}
+
 #section-proposers {
     padding-top: 118px;
 }
