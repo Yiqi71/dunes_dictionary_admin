@@ -1,6 +1,7 @@
 const ExcelJS = require("exceljs");
 const fs = require("fs");
 const path = require("path");
+const sharp = require("sharp");
 
 const ROOT = path.resolve(__dirname, "..", "..");
 
@@ -83,6 +84,19 @@ const COLS = {
   NOTE3_AUTHOR: "\u7b14\u8bb0\u8d21\u732e\u80053",
   NOTE3_BG: "\u7b14\u8bb0\u8d21\u732e\u8005\u5b66\u79d13"
 };
+
+// Image compression rules by column header
+const IMAGE_RULES_BY_HEADER = new Map([
+  [COLS.AIGC_IMG, { maxLongEdge: 1400, quality: 80, forceJpg: true }],
+  [COLS.DIAGRAM1_IMG, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
+  [COLS.DIAGRAM2_IMG, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
+  [COLS.DIAGRAM3_IMG, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
+  [COLS.DIAGRAM4_IMG, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
+  [COLS.DIAGRAM5_IMG, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
+  [COLS.DIAGRAM6_IMG, { maxLongEdge: 1000, quality: 80, forceJpg: true }],
+  [COLS.PROPOSER_PHOTO, { maxWidth: 300, maxHeight: 300, quality: 75, forceJpg: true }],
+  [COLS.SOURCE_COVER, { maxLongEdge: 1000, quality: 80, forceJpg: true }]
+]);
 
 function ensureDir(p) {
   fs.mkdirSync(p, { recursive: true });
@@ -174,6 +188,32 @@ function buildColIndexMap(headerRowValues) {
   return map;
 }
 
+async function compressImageBuffer(buffer, rule) {
+  if (!rule) return buffer;
+  try {
+    let pipeline = sharp(buffer, { failOnError: false });
+    if (rule.maxLongEdge) {
+      pipeline = pipeline.resize({
+        width: rule.maxLongEdge,
+        height: rule.maxLongEdge,
+        fit: "inside",
+        withoutEnlargement: true
+      });
+    } else if (rule.maxWidth || rule.maxHeight) {
+      pipeline = pipeline.resize({
+        width: rule.maxWidth,
+        height: rule.maxHeight,
+        fit: "inside",
+        withoutEnlargement: true
+      });
+    }
+    const quality = Number.isFinite(rule.quality) ? rule.quality : 80;
+    return await pipeline.jpeg({ quality, mozjpeg: true }).toBuffer();
+  } catch (err) {
+    return buffer;
+  }
+}
+
 async function importExcelToDraft(xlsxPath) {
   ensureDir(DRAFT_DIR);
   ensureDir(DRAFT_IMG_DIR);
@@ -188,6 +228,10 @@ async function importExcelToDraft(xlsxPath) {
   const headerRow = ws.getRow(1);
   const headerValues = headerRow.values.slice(1); // values[0] 空
   const colMap = buildColIndexMap(headerValues);
+  const headerByCol = new Map();
+  for (let c = 1; c <= headerValues.length; c++) {
+    headerByCol.set(c, s(headerValues[c - 1]));
+  }
 
   function col(name) {
     const c = colMap.get(name);
@@ -274,11 +318,16 @@ async function importExcelToDraft(xlsxPath) {
 
     if (!kind) continue;
 
+    const headerName = headerByCol.get(col1) || "";
+    const rule = IMAGE_RULES_BY_HEADER.get(headerName);
+    const outBuffer = await compressImageBuffer(img.buffer, rule);
+    const outExt = rule?.forceJpg ? "jpg" : ext;
+
     const term = cell(row1, COLS.TERM) || `row_${row1}`;
-    const filename = `${term}_${kind}${kind === "diagram" ? `_${diagramIndex + 1}` : ""}.${ext}`.replace(/[\\/:*?"<>|]/g, "_");
+    const filename = `${term}_${kind}${kind === "diagram" ? `_${diagramIndex + 1}` : ""}.${outExt}`.replace(/[\\/:*?"<>|]/g, "_");
     const outAbs = path.join(DRAFT_IMG_DIR, filename);
 
-    fs.writeFileSync(outAbs, img.buffer);
+    fs.writeFileSync(outAbs, outBuffer);
 
     const rel = `images/${filename}`;
     const bag = imageByRow.get(row1) || {};
