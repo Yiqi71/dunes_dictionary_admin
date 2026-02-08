@@ -149,40 +149,40 @@ function toWordTemplate() {
   // 按你现有 data.json 结构做最小兼容（缺的都用 TODO）
   return {
     id: 0,
-    term: { zh: placeholderZH("词条"), en: placeholderEN("term") },
-    termOri: placeholderEN("termOri"),
-    concept_image: "TODO: concept_image",
-    sm_title: { zh: placeholderZH("社媒标题"), en: placeholderEN("social title") },
+    term: { zh: placeholderZH("暂无词条"), en: placeholderEN("No term info yet.") },
+    termOri: placeholderEN("No termOri info yet."),
+    concept_image: "No concept image yet.",
+    sm_title: { zh: placeholderZH("暂无社媒标题"), en: placeholderEN("No social title info yet.") },
 
     proposers: [{
-      name: { zh: placeholderZH("提出者"), en: placeholderEN("proposer"), ori: placeholderEN("proposerOri") },
-      year: "TODO: year",
-      role: { zh: placeholderZH("身份"), en: placeholderEN("role") },
-      image: "TODO: proposer_image"
+      name: { zh: placeholderZH("暂无提出者"), en: placeholderEN("No proponent info yet."), ori: placeholderEN("No proponent info yet.") },
+      year: "No year info yet.",
+      role: { zh: placeholderZH("暂无身份"), en: placeholderEN("No role info yet.") },
+      image: "No proponent image yet."
     }],
 
-    source: { zh: placeholderZH("出处"), en: placeholderEN("source") },
-    source_image: "TODO: source_cover",
+    source: { zh: placeholderZH("暂无出处"), en: placeholderEN("source") },
+    source_image: "No source cover yet.",
 
-    related_works: [{ zh: placeholderZH("相关著作"), en: placeholderEN("related works") }],
-    domain: { zh: placeholderZH("学科类型"), en: placeholderEN("domain") },
+    related_works: [{ zh: placeholderZH("暂无相关著作"), en: placeholderEN("No related works yet.") }],
+    domain: { zh: placeholderZH("暂无学科类型"), en: placeholderEN("domain") },
 
-    proposing_country: "TODO: country",
-    proposing_time: "TODO: time",
+    proposing_country: "No country info yet.",
+    proposing_time: "No proposing time info yet.",
 
     contributors: [],
-    contribute_date: "TODO: contribute_date",
+    contribute_date: "No contribute date yet.",
     editors: [],
-    edit_date: "TODO: edit_date",
+    edit_date: "No edit date yet.",
 
-    brief_definition: { zh: placeholderZH("简要释义"), en: placeholderEN("brief") },
-    extended_definition: { zh: [placeholderZH("详细释义")], en: [placeholderEN("extended")] },
-    example_sentence: { zh: placeholderZH("例句"), en: placeholderEN("example") },
+    brief_definition: { zh: placeholderZH("暂无简要释义"), en: placeholderEN("No brief definition yet.") },
+    extended_definition: { zh: [placeholderZH("暂无详细释义")], en: [placeholderEN("No extended definition yet.")] },
+    example_sentence: { zh: placeholderZH("暂无例句"), en: placeholderEN("No example sentence yet.") },
 
     diagrams: [],
     related_terms: [],
 
-    commentAbs: { content: { zh: placeholderZH("导读"), en: placeholderEN("abstract") }, author: { zh: "TODO", en: "TODO" } },
+    commentAbs: { content: { zh: placeholderZH("暂无导读"), en: placeholderEN("No abstract info yet.") }, author: { zh: "暂无作者信息", en: placeholderEN("No author info yet.") } },
     comments: []
   };
 }
@@ -398,14 +398,9 @@ async function importExcelToDraft(xlsxPath) {
   }
 
   function pushComment(w, noteZh, noteEn, authorZh, authorEn, bgZh, bgEn, dateValue) {
-    const contentZhParts = splitLinesToArray(noteZh);
-    const contentEnParts = splitLinesToArray(noteEn);
-    if (!contentZhParts.length && !contentEnParts.length) return null;
+    if (!s(noteZh) && !s(noteEn)) return null;
     const comment = {
-      content: {
-        zh: contentZhParts.length ? contentZhParts : [],
-        en: contentEnParts.length ? contentEnParts : []
-      },
+      content: { zh: s(noteZh), en: s(noteEn) },
       role: { zh: "\u8d21\u732e\u8005", en: "Contributor" },
       author: { zh: s(authorZh), en: s(authorEn) },
       background: { zh: s(bgZh), en: s(bgEn) },

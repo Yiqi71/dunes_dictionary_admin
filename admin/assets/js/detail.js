@@ -362,7 +362,7 @@ export function hideFloatingPanel() {
 
 }
 
-// 定义标题中英文映�?
+// 定义标题中英文映射
 const sectionTitles = {
     brief: { zh: "简要释义", en: "Definition" },
     example: { zh: "例句", en: "e.g." },
@@ -384,6 +384,91 @@ function resolveImagePath(src) {
     if (src.startsWith("http") || src.startsWith("data:") || src.startsWith("/")) return src;
     if (src.startsWith("images/")) return `/content/draft/${src}`;
     return src;
+}
+
+function getCaptionText(caption, lang) {
+    if (caption === null || caption === undefined) return "";
+    if (typeof caption === "string") return caption;
+    if (typeof caption === "object") {
+        return caption?.[lang] || caption?.zh || caption?.en || "";
+    }
+    return "";
+}
+
+function buildDiagramCarousel(items, lang, options = {}) {
+    if (!Array.isArray(items) || items.length === 0) return null;
+
+    let currentIndex = 0;
+    const arrowLeftSrc = options.arrowLeftSrc || "assets/images/left_arrow.svg";
+    const arrowRightSrc = options.arrowRightSrc || "assets/images/right_arrow.svg";
+
+    const carousel = document.createElement("div");
+    carousel.className = "diagram-carousel";
+
+    const stage = document.createElement("div");
+    stage.className = "diagram-stage";
+
+    const leftBtn = document.createElement("button");
+    leftBtn.className = "diagram-arrow diagram-arrow-left";
+    leftBtn.type = "button";
+    leftBtn.setAttribute("aria-label", "Previous image");
+    leftBtn.innerHTML = `<img src="${arrowLeftSrc}" alt="">`;
+
+    const rightBtn = document.createElement("button");
+    rightBtn.className = "diagram-arrow diagram-arrow-right";
+    rightBtn.type = "button";
+    rightBtn.setAttribute("aria-label", "Next image");
+    rightBtn.innerHTML = `<img src="${arrowRightSrc}" alt="">`;
+
+    const img = document.createElement("img");
+    img.className = "diagram-image";
+    img.alt = "diagram image";
+    img.loading = "lazy";
+    img.decoding = "async";
+
+    const caption = document.createElement("p");
+    caption.className = "diagram-caption";
+
+    const source = document.createElement("p");
+    source.className = "diagram-source";
+
+    function renderAt(index) {
+        const safeIndex = Math.max(0, Math.min(index, items.length - 1));
+        currentIndex = safeIndex;
+        const item = items[safeIndex] || {};
+        img.src = resolveImagePath(item.src);
+        caption.innerHTML = applyHashItalics(getCaptionText(item.caption, lang));
+        if (options.includeSource) {
+            source.innerHTML = applyHashItalics(getCaptionText(item.source, lang));
+        } else {
+            source.innerHTML = "";
+        }
+
+        leftBtn.classList.toggle("is-hidden", safeIndex === 0);
+        rightBtn.classList.toggle("is-hidden", safeIndex === items.length - 1);
+    }
+
+    leftBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (currentIndex > 0) renderAt(currentIndex - 1);
+    });
+
+    rightBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (currentIndex < items.length - 1) renderAt(currentIndex + 1);
+    });
+
+    stage.appendChild(leftBtn);
+    stage.appendChild(img);
+    stage.appendChild(rightBtn);
+    carousel.appendChild(stage);
+    carousel.appendChild(caption);
+    if (options.includeSource) {
+        carousel.appendChild(source);
+    }
+
+    renderAt(0);
+    return carousel;
 }
 
 export function renderPanelSections() {
@@ -457,14 +542,9 @@ export function renderPanelSections() {
 
     const diagramContainer = entryPanel.querySelector(".diagram-container");
     if (currentWord.diagrams && currentWord.diagrams.length > 0) {
-        currentWord.diagrams.forEach(diagram => {
-            const block = document.createElement("div");
-            block.innerHTML = `
-      <img src="${resolveImagePath(diagram.src)}" alt="diagram image" loading="lazy" decoding="async">
-      <p class="diagram-caption">${applyHashItalics(diagram.caption?.[lang])}</p>
-    `;
-            diagramContainer.appendChild(block);
-        });
+        const diagramItems = currentWord.diagrams.map(d => ({ src: d?.src, caption: d?.caption, source: d?.source }));
+        const carousel = buildDiagramCarousel(diagramItems, lang, { includeSource: false });
+        if (carousel) diagramContainer.appendChild(carousel);
     }
 
     proposerSec.innerHTML = `<p class="left-title">${sectionTitles.proposers[lang]}</p>
@@ -505,7 +585,7 @@ export function renderPanelSections() {
     const contributorNames = contributors.map(c => {
         const name = c?.name?.[lang] || "";
         const role = c?.role?.[lang] || "";
-        return name ? `${name}${role ? ` �?{role}` : ""}` : "";
+        return name ? `${name}${role ? ` (${role})` : ""}` : "";
     }).filter(Boolean);
     const contributorText = contributorNames.length
         ? (lang === "en"
@@ -518,6 +598,7 @@ export function renderPanelSections() {
                         <div id="editors-container">
                         ${currentWord.editors.map(editor => `<p>${applyHashItalics(editor?.[lang])}</p>`).join('')}
                         </div>`
+
     setupLazyImages(entryPanel);
     renderScrollMarkers('entry');
 }
@@ -564,15 +645,17 @@ function renderCommentSection() {
                 : "";
             const images = Array.isArray(c?.images) ? c.images : [];
             const imagesHtml = images.length
-                ? `<div class="note-images">
-                    ${images.map(img => {
-                        const cap = applyHashItalics(img?.caption?.[lang] || "");
-                        return `
-                            <img src="${resolveImagePath(img?.src)}" alt="note image" loading="lazy" decoding="async">
-                            ${cap ? `<p class="diagram-caption">${cap}</p>` : ""}
-                        `;
-                    }).join("")}
-                  </div>`
+                ? (idx === 0
+                    ? `<div class="note-images note-images-carousel"></div>`
+                    : `<div class="note-images">
+                        ${images.map(img => {
+                            const cap = applyHashItalics(getCaptionText(img?.caption, lang));
+                            return `
+                                <img src="${resolveImagePath(img?.src)}" alt="note image" loading="lazy" decoding="async">
+                                ${cap ? `<p class="diagram-caption">${cap}</p>` : ""}
+                            `;
+                        }).join("")}
+                      </div>`)
                 : "";
             return `<section>
                 <p class="left-title">${titleLabel}</p>
@@ -591,7 +674,7 @@ function renderCommentSection() {
     const contributorNamesInComment = contributorsInComment.map(c => {
         const name = c?.name?.[lang] || "";
         const role = c?.role?.[lang] || "";
-        return name ? `${name}${role ? `，${role}` : ""}` : "";
+        return name ? `${name}${role ? `, ${role}` : ""}` : "";
     }).filter(Boolean);
     const contributorTextInComment = contributorNamesInComment.length
         ? (lang === "en"
@@ -604,6 +687,21 @@ function renderCommentSection() {
                         <div id="editors-container">
                         ${currentWord.editors.map(editor => `<p>${applyHashItalics(editor?.[lang])}</p>`).join('')}
                         </div>`
+
+    const firstComment = comments[0];
+    const firstImages = Array.isArray(firstComment?.images) ? firstComment.images : [];
+    if (firstImages.length > 0) {
+        const target = contentScroll.querySelector(".note-images-carousel");
+        if (target) {
+            const items = firstImages.map(img => ({ src: img?.src, caption: img?.caption, source: img?.source }));
+            const carousel = buildDiagramCarousel(items, lang, {
+                includeSource: true,
+                arrowLeftSrc: "assets/images/left_arrow_dark.svg",
+                arrowRightSrc: "assets/images/right_arrow_dark.svg"
+            });
+            if (carousel) target.appendChild(carousel);
+        }
+    }
 
     // 为每个note section添加折叠/展开功能
     const noteSections = Array.from(
@@ -652,7 +750,7 @@ function initTabs() {
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); // 防止触发panel的点击事�?
+            e.stopPropagation(); // 防止触发panel的点击事件
             const tabName = btn.dataset.tab;
             switchTab(tabName);
         });
@@ -664,19 +762,19 @@ initTabs();
 
 // === Tab 边缘切换逻辑 ===
 
-// 阈值（像素），表示一�?scroll �?touchmove 的力�?
+// 阈值（像素），表示scroll touchmove 的力度
 const SWITCH_THRESHOLD = 180;
 
-// 当前 tab 状�?
-let currentTab = "entry"; // 默认�?entry
+// 当前 tab 状态
+let currentTab = "entry"; // 默认entry
 
-// 监听 tab 按钮，保�?currentTab 同步（已在initTabs中处理）
+// 监听 tab 按钮，保 currentTab 同步（已在initTabs中处理）
 
 function switchTab(tabName) {
     const entryPanel = queryFloating('.panel-entry');
     const commentPanel = queryFloating('.panel-comment');
     
-    // 更新所有panel的tab按钮状�?
+    // 更新所有panel的tab按钮状态
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => {
         btn.classList.remove('active');
@@ -685,7 +783,7 @@ function switchTab(tabName) {
         }
     });
     
-    // 切换panel的active状�?
+    // 切换panel的active状态
     if (tabName === "entry") {
         if (entryPanel) entryPanel.classList.add('active');
         if (commentPanel) commentPanel.classList.remove('active');
