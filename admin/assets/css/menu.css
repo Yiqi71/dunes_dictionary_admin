@@ -287,6 +287,41 @@
     box-shadow: 0 10px 24px rgba(57, 47, 23, 0.2);
     padding: 8px 0;
     z-index: 11005;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 37, 19, 0.7) rgba(0, 0, 0, 0);
+}
+
+.menu-search-results::-webkit-scrollbar {
+    width: 8px;
+}
+
+.menu-search-results::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.menu-search-results::-webkit-scrollbar-thumb {
+    background-color: rgba(59, 37, 19, 0.7);
+    border-radius: 10px;
+    min-height: 20px;
+}
+
+.menu-search-results::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.menu-search-results::-webkit-scrollbar-button:single-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.menu-search-results::-webkit-scrollbar-button:vertical:decrement,
+.menu-search-results::-webkit-scrollbar-button:vertical:increment {
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 .menu-search-results.hidden {
