@@ -364,7 +364,7 @@ export function hideFloatingPanel() {
 
 // 定义标题中英文映�?
 const sectionTitles = {
-    brief: { zh: "简要释义", en: "Brief Definition" },
+    brief: { zh: "简要释义", en: "Definition" },
     example: { zh: "例句", en: "Example Sentences" },
     proposers: { zh: "提出者", en: "Proposers" },
     source: { zh: "出处", en: "Source" },
@@ -435,7 +435,7 @@ export function renderPanelSections() {
                            <h3>${briefText}</h3>
                       </div>`;
 
-    const extendedTitle = lang === "zh" ? "详细释义" : "Extended Definition";
+    const extendedTitle = lang === "zh" ? "详细释义" : "Description";
     const extendedValue = currentWord.extended_definition?.[lang];
     const extendedParts = Array.isArray(extendedValue)
         ? extendedValue
@@ -498,13 +498,16 @@ export function renderPanelSections() {
                         </div>`;
 
     const contributors = Array.isArray(currentWord.contributors) ? currentWord.contributors : [];
-    const contributorText = contributors.length
-        ? `本期词条的贡献者是${contributors.map(c => {
-            const name = c?.name?.[lang] || "";
-            const role = c?.role?.[lang] || "";
-            return name ? `${name}${role ? `，${role}` : ""}` : "";
-        }).filter(Boolean).join("；")}。`
-        : "暂无贡献者信息";
+    const contributorNames = contributors.map(c => {
+        const name = c?.name?.[lang] || "";
+        const role = c?.role?.[lang] || "";
+        return name ? `${name}${role ? ` ，${role}` : ""}` : "";
+    }).filter(Boolean);
+    const contributorText = contributorNames.length
+        ? (lang === "en"
+            ? `The contributor for this entry is ${contributorNames.join(", ")}.`
+            : `本期词条的贡献者是${contributorNames.join(", ")}`)
+        : (lang === "en" ? "No contributor information yet." : "暂无贡献者信息");
     contributorsSec.innerHTML = `<p>${contributorText}</p>`;
 
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>
@@ -563,13 +566,16 @@ function renderCommentSection() {
     const editorsSec = document.getElementById("section-editors");
 
     const contributorsInComment = Array.isArray(currentWord.contributors) ? currentWord.contributors : [];
-    const contributorTextInComment = contributorsInComment.length
-        ? `本期词条的贡献者是${contributorsInComment.map(c => {
-            const name = c?.name?.[lang] || "";
-            const role = c?.role?.[lang] || "";
-            return name ? `${name}${role ? `,${role}` : ""}` : "";
-        }).filter(Boolean).join(";")}。`
-        : "暂无贡献者信息";
+    const contributorNamesInComment = contributorsInComment.map(c => {
+        const name = c?.name?.[lang] || "";
+        const role = c?.role?.[lang] || "";
+        return name ? `${name}${role ? `，${role}` : ""}` : "";
+    }).filter(Boolean);
+    const contributorTextInComment = contributorNamesInComment.length
+        ? (lang === "en"
+            ? `The contributor for this entry is ${contributorNamesInComment.join(", ")}.`
+            : `本期词条的贡献者是${contributorNamesInComment.join("、")}`)
+        : (lang === "en" ? "No contributor information yet." : "暂无贡献者信息");
     contributorsSec.innerHTML = `<p>${applyHashItalics(contributorTextInComment)}</p>`;
 
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>

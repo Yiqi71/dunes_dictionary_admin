@@ -924,6 +924,15 @@ line-height: 40px;
     color: #FAF4E5;
 }
 
+:lang(en) .panel-entry .panel-bottom .left-title {
+    color: #FAF4E5;
+    font-family: "Barlow Condensed";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+}
+
 .panel-tabs button.active {
     background:#43403B ;
 }
