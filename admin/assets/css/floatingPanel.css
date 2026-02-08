@@ -392,6 +392,12 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
     margin: 0;
 }
 
+/* allow inline italics inside panel content */
+.panel-bottom i,
+.panel-bottom em {
+    font-style: italic;
+}
+
 #section-brief {
     padding-top: 180px;
 }

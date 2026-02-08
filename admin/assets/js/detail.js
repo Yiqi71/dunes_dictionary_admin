@@ -13,6 +13,7 @@ import {
     updateRelations
 } from "./relationManager.js"
 
+import { applyStintFallbackIn } from "./fontFallback.js";
 
 import { logEvent, startWordView, endWordView } from "/analytics.js";
 // 浮窗相关变量
@@ -49,16 +50,21 @@ function setupLazyImages(root) {
     });
 }
 
+function applyHashItalics(text) {
+    if (text === null || text === undefined) return "";
+    return String(text).replace(/#([^#]+)#/g, "<i>$1</i>");
+}
+
 function filterProposer(name) {
     const focusedWord = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!focusedWord) return [];
 
-    // 先渲染 proposer 相关的词
+    // 先渲�?proposer 相关的词
     const relatedContainer = document.createElement("div");
     relatedContainer.classList = `related-words`;
     relatedContainer.innerHTML = '';
 
-    // 检索所有 proposers 里有该名字的词
+    // 检索所�?proposers 里有该名字的�?
     const relatedWords = window.allWords.filter(w => {
         if (w.id === focusedWord.id) return false;
         return Array.isArray(w.proposers) && w.proposers.some(p => p.name === name);
@@ -70,7 +76,7 @@ function filterProposer(name) {
         link.textContent = w.term;
         link.style.display = 'block';
 
-        // 点击跳转到这个单词
+        // 点击跳转到这个单�?
         link.addEventListener('click', (e) => {
             e.stopPropagation();
             const targetNodeId = link.id.replace('related-', '');
@@ -135,11 +141,11 @@ export function showFloatingPanel() {
 
     ensureExpandButton();
     
-    // 同时渲染两个panel的内容
+    // 同时渲染两个panel的内�?
     renderPanelSections();
     renderCommentSection();
 
-    // 重置 tab 按钮状态和panel状态
+    // 重置 tab 按钮状态和panel状�?
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => btn.classList.remove('active'));
     const entryTabs = queryAllFloating('.panel-tabs button[data-tab="entry"]');
@@ -239,12 +245,12 @@ function ensureExpandButton() {
             togglePanelWidth();
         });
 
-        // 将按钮添加到 panel 中
+        // 将按钮添加到 panel �?
         const panel = getFloatingPanel();
         if (!panel) return;
         panel.appendChild(expandBtn);
 
-        // 添加动画样式到页面
+        // 添加动画样式到页�?
         if (!document.getElementById('expand-btn-styles')) {
             const style = document.createElement('style');
             style.id = 'expand-btn-styles';
@@ -326,7 +332,7 @@ export function hideFloatingPanel() {
         expandBtn.remove();
     }
 
-    // 重置tabs显示（显示所有panel的tabs）
+    // 重置tabs显示（显示所有panel的tabs�?
     const allTabs = queryAllFloating('.panel-tabs');
     allTabs.forEach(tabs => {
         if (tabs) tabs.style.display = 'flex';
@@ -356,7 +362,7 @@ export function hideFloatingPanel() {
 
 }
 
-// 定义标题中英文映射
+// 定义标题中英文映�?
 const sectionTitles = {
     brief: { zh: "简要释义", en: "Brief Definition" },
     example: { zh: "例句", en: "Example Sentences" },
@@ -423,7 +429,7 @@ export function renderPanelSections() {
     const contributorsSec = document.getElementById("section-contributors");
     const editorsSec = document.getElementById("section-editors");
 
-    const briefText = currentWord.brief_definition?.[lang] || "\u6682\u65e0\u7b80\u8981\u91ca\u4e49";
+    const briefText = applyHashItalics(currentWord.brief_definition?.[lang] || "\u6682\u65e0\u7b80\u8981\u91ca\u4e49");
     briefSec.innerHTML = `<p class="left-title">${sectionTitles.brief[lang]}</p>
                        <div>
                            <h3>${briefText}</h3>
@@ -436,13 +442,13 @@ export function renderPanelSections() {
         : (extendedValue ? [extendedValue] : ["\u6682\u65e0\u8be6\u7ec6\u91ca\u4e49"]);
     extendedSec.innerHTML = `<p class="left-title">${extendedTitle}</p>
                         <div>
-                            ${extendedParts.map(p => `<p>${p}</p>`).join("")}
+                            ${extendedParts.map(p => `<p>${applyHashItalics(p)}</p>`).join("")}
                         </div>`;
 
     const exampleValue = currentWord.example_sentence?.[lang];
     const exampleHtml = Array.isArray(exampleValue)
-        ? exampleValue.map(p => `<p>${p}</p>`).join("")
-        : `<p>${exampleValue || '暂无例句'}</p>`;
+        ? exampleValue.map(p => `<p>${applyHashItalics(p)}</p>`).join("")
+        : `<p>${applyHashItalics(exampleValue || '暂无例句')}</p>`;
     exampleSec.innerHTML = `<p class="left-title">${sectionTitles.example[lang]}</p>
                         <div class="example-text">
                             ${exampleHtml}
@@ -455,7 +461,7 @@ export function renderPanelSections() {
             const block = document.createElement("div");
             block.innerHTML = `
       <img src="${resolveImagePath(diagram.src)}" alt="diagram image" loading="lazy" decoding="async">
-      <p class="diagram-caption">${diagram.caption?.[lang]}</p>
+      <p class="diagram-caption">${applyHashItalics(diagram.caption?.[lang])}</p>
     `;
             diagramContainer.appendChild(block);
         });
@@ -483,12 +489,12 @@ export function renderPanelSections() {
 
     sourceSec.innerHTML = `<p class="left-title">${sectionTitles.source[lang]}</p>
                         <div>
-                            <p>${currentWord.source?.[lang] || '暂无出处'}</p>
+                            <p>${applyHashItalics(currentWord.source?.[lang] || '暂无出处')}</p>
                         </div>`;
 
     relatedSec.innerHTML = `<p class="left-title">${sectionTitles.relatedWorks[lang]}</p>
                         <div id="related-works-container">
-                        ${currentWord.related_works.map(work => `<p>${work?.[lang]}</p>`).join('')}
+                        ${currentWord.related_works.map(work => `<p>${applyHashItalics(work?.[lang])}</p>`).join('')}
                         </div>`;
 
     const contributors = Array.isArray(currentWord.contributors) ? currentWord.contributors : [];
@@ -503,7 +509,7 @@ export function renderPanelSections() {
 
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>
                         <div id="editors-container">
-                        ${currentWord.editors.map(editor => `<p>${editor?.[lang]}</p>`).join('')}
+                        ${currentWord.editors.map(editor => `<p>${applyHashItalics(editor?.[lang])}</p>`).join('')}
                         </div>`
     setupLazyImages(entryPanel);
     renderScrollMarkers('entry');
@@ -542,7 +548,7 @@ function renderCommentSection() {
             const titleLabel = (roleLabel || nameLabel)
                 ? `${roleLabel}${roleLabel && nameLabel ? "<br>" : ""}${nameLabel}`
                 : fallbackLabel;
-            const content = c?.content?.[lang] || "";
+            const content = applyHashItalics(c?.content?.[lang] || "");
             return `<section>
                 <p class="left-title">${titleLabel}</p>
                 <div class="note-body"><br><br><br><br>${content}</div>
@@ -561,14 +567,14 @@ function renderCommentSection() {
         ? `本期词条的贡献者是${contributorsInComment.map(c => {
             const name = c?.name?.[lang] || "";
             const role = c?.role?.[lang] || "";
-            return name ? `${name}${role ? `，${role}` : ""}` : "";
-        }).filter(Boolean).join("；")}。`
+            return name ? `${name}${role ? `,${role}` : ""}` : "";
+        }).filter(Boolean).join(";")}。`
         : "暂无贡献者信息";
-    contributorsSec.innerHTML = `<p>${contributorTextInComment}</p>`;
+    contributorsSec.innerHTML = `<p>${applyHashItalics(contributorTextInComment)}</p>`;
 
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>
                         <div id="editors-container">
-                        ${currentWord.editors.map(editor => `<p>${editor?.[lang]}</p>`).join('')}
+                        ${currentWord.editors.map(editor => `<p>${applyHashItalics(editor?.[lang])}</p>`).join('')}
                         </div>`
 
     // 为每个note section添加折叠/展开功能
@@ -618,7 +624,7 @@ function initTabs() {
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); // 防止触发panel的点击事件
+            e.stopPropagation(); // 防止触发panel的点击事�?
             const tabName = btn.dataset.tab;
             switchTab(tabName);
         });
@@ -630,19 +636,19 @@ initTabs();
 
 // === Tab 边缘切换逻辑 ===
 
-// 阈值（像素），表示一次 scroll 或 touchmove 的力度
+// 阈值（像素），表示一�?scroll �?touchmove 的力�?
 const SWITCH_THRESHOLD = 180;
 
-// 当前 tab 状态
-let currentTab = "entry"; // 默认是 entry
+// 当前 tab 状�?
+let currentTab = "entry"; // 默认�?entry
 
-// 监听 tab 按钮，保证 currentTab 同步（已在initTabs中处理）
+// 监听 tab 按钮，保�?currentTab 同步（已在initTabs中处理）
 
 function switchTab(tabName) {
     const entryPanel = queryFloating('.panel-entry');
     const commentPanel = queryFloating('.panel-comment');
     
-    // 更新所有panel的tab按钮状态
+    // 更新所有panel的tab按钮状�?
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => {
         btn.classList.remove('active');
@@ -651,7 +657,7 @@ function switchTab(tabName) {
         }
     });
     
-    // 切换panel的active状态
+    // 切换panel的active状�?
     if (tabName === "entry") {
         if (entryPanel) entryPanel.classList.add('active');
         if (commentPanel) commentPanel.classList.remove('active');
@@ -666,7 +672,7 @@ function switchTab(tabName) {
     updateScrollHandlers();
 }
 
-// 在showFloatingPanel中初始化滚动处理器
+// 在showFloatingPanel中初始化滚动处理�?
 
 // 获取当前激活的panel-main
 function getActivePanelMain() {
@@ -674,12 +680,12 @@ function getActivePanelMain() {
     return activePanel ? activePanel.querySelector('.panel-main') : null;
 }
 
-// PC 端滚轮 - 需要绑定到当前激活的panel
+// PC 端滚�?- 需要绑定到当前激活的panel
 function setupWheelHandler() {
     const panelMain = getActivePanelMain();
     if (!panelMain) return;
     
-    // 移除旧的监听器（如果存在）
+    // 移除旧的监听器（如果存在�?
     panelMain.removeEventListener("wheel", handleWheel);
     panelMain.addEventListener("wheel", handleWheel);
 }
@@ -698,7 +704,7 @@ function handleWheel(e) {
     }
 }
 
-// 移动端触摸
+// 移动端触�?
 let touchStartY = 0;
 
 function setupTouchHandlers() {
@@ -733,7 +739,7 @@ function handleTouchEnd(e) {
 
 
 
-// 滚动到最顶端（panel-top位置）
+// 滚动到最顶端（panel-top位置�?
 export function scrollToTop(panelType = 'entry') {
     const panel = panelType === 'entry' 
         ? queryFloating('.panel-entry')
@@ -750,7 +756,7 @@ export function scrollToTop(panelType = 'entry') {
     });
 }
 
-// 滚动到对应 section
+// 滚动到对�?section
 function updateTabContent(tabType = "brief") {
     const panel = getFloatingPanel();
     if (!panel) return;
@@ -758,7 +764,7 @@ function updateTabContent(tabType = "brief") {
 
     if (!panelMain) return;
 
-    // tabType -> section 的映射
+    // tabType -> section 的映�?
     const sectionMap = {
         contributors: "section-contributors",
         related: "section-related-works",
@@ -796,9 +802,9 @@ function updateScrollHandlers() {
     
     if (!panelMain || !scrollThumb || !scrollTrack) return;
     
-    // 移除旧的滚动监听器
+    // 移除旧的滚动监听�?
     panelMain.removeEventListener("scroll", handleScroll);
-    // 添加新的滚动监听器
+    // 添加新的滚动监听�?
     panelMain.addEventListener("scroll", handleScroll);
     
     // 初始化滚动条位置
@@ -850,7 +856,7 @@ let currentScrollThumb = null;
 let currentPanelMain = null;
 
 function setupScrollDrag(scrollThumb, panelMain) {
-    // 移除旧的监听器
+    // 移除旧的监听�?
     if (currentScrollThumb) {
         currentScrollThumb.removeEventListener('mousedown', handleThumbMouseDown);
     }
@@ -989,20 +995,20 @@ function renderScrollMarkers(panelType = 'entry') {
         let scrollTarget;
 
         if (sec.isTop) {
-            // 顶部 marker 固定在 thumb 活动范围的最上方
+            // 顶部 marker 固定�?thumb 活动范围的最上方
             markerTop = SCROLL_CONFIG.thumbMargin;
             scrollTarget = 0;
         } else {
             const el = document.getElementById(sec.id);
             if (!el) return;
 
-            // 相对 panelMain 内容顶部的位置
+            // 相对 panelMain 内容顶部的位�?
             const sectionTop = el.offsetTop;
 
-            // 计算滚动比例（section 到达 panel 顶部时的比例）
+            // 计算滚动比例（section 到达 panel 顶部时的比例�?
             const scrollRatio = Math.min(sectionTop / contentScrollableRange, 1);
 
-            // 映射到 thumb 活动范围
+            // 映射�?thumb 活动范围
             markerTop = SCROLL_CONFIG.thumbMargin + (scrollRatio * thumbActiveRange);
             scrollTarget = sectionTop;
         }
@@ -1069,14 +1075,14 @@ function renderCommentMarkers(panelType = 'comment') {
     const trackHeight = scrollTrack.clientHeight;
     const thumbActiveRange = trackHeight - (SCROLL_CONFIG.thumbMargin * 2) - SCROLL_CONFIG.thumbSize;
 
-    // 如果评论数量过少，不需要滚动
+    // 如果评论数量过少，不需要滚�?
     if (contentHeight <= visibleHeight) return;
 
     comments.forEach((c, idx) => {
         const sectionEl = panelMain.querySelectorAll("section")[idx];
         if (!sectionEl) return;
 
-        // 相对 panelMain 内容顶部的位置
+        // 相对 panelMain 内容顶部的位�?
         const sectionTop = sectionEl.offsetTop;
         const scrollRatio = Math.min(sectionTop / contentScrollableRange, 1);
 
@@ -1136,14 +1142,14 @@ const imageDiv = document.getElementById("image");
 
 
 
-// 点击「词条/标题」- 滚动到最顶端
+// 点击「词�?标题�? 滚动到最顶端
 // termDiv.addEventListener("click", (e) => {
 //     e.stopPropagation();
 //     showFloatingPanel();
-//     scrollToTop(); // 使用新的滚动到顶端函数
+//     scrollToTop(); // 使用新的滚动到顶端函�?
 // });
 
-// 点击「评论」
+// 点击「评论�?
 commentDiv.addEventListener("click", (e) => {
     e.stopPropagation();
     showFloatingPanel();
@@ -1152,14 +1158,14 @@ commentDiv.addEventListener("click", (e) => {
     scrollToTop("comment");
 });
 
-// 点击「相关著作 / 提出者」
+// 点击「相关著�?/ 提出者�?
 proposerDiv.addEventListener("click", (e) => {
     e.stopPropagation();
     showFloatingPanel();
     updateTabContent("proposers");
 });
 
-// 点击「图片」
+// 点击「图片�?
 imageDiv.addEventListener("click", (e) => {
     e.stopPropagation();
     showFloatingPanel();
@@ -1175,7 +1181,7 @@ function initPanelClickHandlers() {
     // 点击entry panel的可见边缘切换到entry
     if (entryPanel) {
         entryPanel.addEventListener('click', (e) => {
-            // 只在未激活状态下点击时切换
+            // 只在未激活状态下点击时切�?
             if (!entryPanel.classList.contains('active')) {
                 // 检查点击位置是否在可见的边缘区域（左侧50px内）
                 const rect = entryPanel.getBoundingClientRect();
@@ -1190,7 +1196,7 @@ function initPanelClickHandlers() {
     // 点击comment panel的可见边缘切换到comment
     if (commentPanel) {
         commentPanel.addEventListener('click', (e) => {
-            // 只在未激活状态下点击时切换
+            // 只在未激活状态下点击时切�?
             if (!commentPanel.classList.contains('active')) {
                 // 检查点击位置是否在可见的边缘区域（左侧50px内）
                 const rect = commentPanel.getBoundingClientRect();
@@ -1203,7 +1209,7 @@ function initPanelClickHandlers() {
     }
 }
 
-// 初始化浮窗功能
+// 初始化浮窗功�?
 initClickOutsideHandler();
 initPanelClickHandlers();
 document.addEventListener('about-panel:show', () => {
@@ -1213,7 +1219,7 @@ document.addEventListener('about-panel:show', () => {
 });
 
 
-// 显示About页面的浮窗
+// 显示About页面的浮�?
 export function showAboutPanel() {
     const panel = document.getElementById('floating-panel');
     panel.classList.remove('hidden');
@@ -1222,7 +1228,7 @@ export function showAboutPanel() {
     ensureExpandButton();
     renderAboutContent();
 
-    // 隐藏tabs（隐藏所有panel的tabs）
+    // 隐藏tabs（隐藏所有panel的tabs�?
     const allTabs = document.querySelectorAll('.panel-tabs');
     allTabs.forEach(tabs => {
         if (tabs) tabs.style.display = 'none';

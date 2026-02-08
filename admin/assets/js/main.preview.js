@@ -10,6 +10,7 @@ import {
     updateWordDetails,
     updateWordFocus
 } from "./wordFocus.js";
+import { applyStintFallbackToElement } from "./fontFallback.js";
 import { logEvent, startWordView, endWordView } from "/analytics.js";
 
 import { yearPeriods } from "./menu.js";
@@ -395,6 +396,7 @@ function renderWordUniverse(wordsData) {
                 <div class="term-ori">${word.termOri || ''}</div>
             </div>
             `;
+            applyStintFallbackToElement(node.querySelector('.term-ori'));
             node.style.left = `${leftPercent}%`;
             node.style.top = `${topPercent}%`;
             node.style.transform = `translate(-50%, -50%)`;
@@ -476,6 +478,7 @@ function renderWordUniverse(wordsData) {
                 <div class="term-ori">${word.termOri || ''}</div>
             </div>
             `;
+            applyStintFallbackToElement(node.querySelector('.term-ori'));
             node.style.left = `${leftPercent}%`;
             node.style.top = `${topPercent}%`;
             node.style.transform = `translate(-50%, -50%)`;
