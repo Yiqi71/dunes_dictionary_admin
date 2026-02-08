@@ -75,6 +75,18 @@ function getCenterPosition(element) {
     };
 }
 
+function getRelationLabel(relation, lang) {
+    const isEn = lang === "en";
+    switch (relation) {
+        case "概念相关":
+            return isEn ? "Conceptually Related" : "概念相关";
+        case "共同提出者":
+            return isEn ? "Same Proponent" : "同一提出者";
+        default:
+            return relation || "";
+    }
+}
+
 // 创建直线路径（hover时使用）
 function createStraightPath(pos1, pos2) {
     return `M ${pos1.x} ${pos1.y} L ${pos2.x} ${pos2.y}`;
@@ -251,7 +263,8 @@ function addLineInteractions(hitbox, visualLine, word1, word2, relation, targetI
         
         // 显示tooltip
         const wordLabel = getLangText(word2?.term, state.currentLang) || String(targetId || "");
-        tooltipDiv.textContent = `${relation}： ${wordLabel}`;
+        const relationLabel = getRelationLabel(relation, state.currentLang);
+        tooltipDiv.textContent = `${relationLabel}: ${wordLabel}`;
         tooltipDiv.style.position = 'fixed';
         tooltipDiv.style.background = 'rgba(0, 0, 0, 0.85)';
         tooltipDiv.style.color = '#FFE135';
@@ -371,14 +384,19 @@ export function updateRelations() {
     // 2. 绘制共同提出者的关系
     if (Array.isArray(thisWord.proposers)) {
         // 当前词的 proposer 名称列表
-        const proposerNames = thisWord.proposers.map(p => p.name);
+        const proposerNames = thisWord.proposers
+            .map(p => p?.name?.zh)
+            .filter(Boolean);
 
         window.allWords.forEach(otherWord => {
             if (otherWord.id === thisWord.id) return; // 跳过自己
             if (!Array.isArray(otherWord.proposers)) return;
 
             // 判断是否有共同 proposer
-            const hasCommon = otherWord.proposers.some(p => proposerNames.includes(p.name));
+            const hasCommon = otherWord.proposers.some(p => {
+                const otherName = p?.name?.zh;
+                return otherName && proposerNames.includes(otherName);
+            });
             if (hasCommon) {
                 drawLine(thisWord.id, otherWord.id, "共同提出者");
             }
