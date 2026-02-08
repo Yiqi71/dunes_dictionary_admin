@@ -180,9 +180,9 @@ h1.English {
 
 /* scale=1 → 纯色矩形 */
 body[data-scale="1"] .word-node {
-    min-width: 12px;
+    min-width: 36px;
     width: auto;
-    height: 12px;
+    height: 24px;
     border-radius: 2px;
     box-shadow: #403b2c58 0px 0px 2px 2px;
 }

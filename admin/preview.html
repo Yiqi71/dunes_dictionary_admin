@@ -113,13 +113,15 @@
                 <div class="small-icon">
                     <img id="shuffle-icon" alt="shuffle" src="assets/images/shuffle.svg">
                 </div>
-                <div class="small-icon">
+                <div id="menu-search" class="menu-search small-icon" aria-expanded="false">
                     <img id="search-icon" alt="search" src="assets/images/search.svg">
+                    <input id="search-input" type="text" placeholder="Search..." autocomplete="off" aria-label="Search">
                 </div>
                 <div id="about-button">
                     <p>About</p>
                 </div>
             </div>
+            <div id="search-results" class="menu-search-results hidden"></div>
 
         </div>
 
@@ -198,14 +200,6 @@
     </div>
 
     <div id="overlay" class="hidden"></div>
-
-    <!-- Search Modal -->
-    <div id="search-modal" class="search-modal hidden">
-        <div class="search-modal-content">
-            <input type="text" id="search-input" placeholder="Search terms..." autocomplete="off">
-            <div id="search-results" class="search-results"></div>
-        </div>
-    </div>
 
     <div id="tooltipDiv"></div>
 </body>

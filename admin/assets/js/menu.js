@@ -169,6 +169,10 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 let searchIcon = document.getElementById("search-icon");
+let menuButtons = document.getElementById("buttons");
+let menuSearch = document.getElementById("menu-search");
+let searchInput = document.getElementById("search-input");
+let searchResults = document.getElementById("search-results");
 
 
 
@@ -382,50 +386,73 @@ window.addEventListener('DOMContentLoaded', () => {
     // 新增：Search按钮点击事件
     const searchIcon = document.getElementById('search-icon');
     if (searchIcon) {
-        searchIcon.addEventListener('click', () => {
-            showSearchModal("icon");
+        searchIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isMenuSearchOpen) {
+                closeMenuSearch("toggle");
+            } else {
+                openMenuSearch("icon");
+            }
+        });
+    }
+
+    const menuSearch = document.getElementById('menu-search');
+    if (menuSearch) {
+        menuSearch.addEventListener('click', (e) => {
+            if (isMenuSearchOpen) return;
+            e.stopPropagation();
+            openMenuSearch("pill");
         });
     }
 });
 
-// Search Modal functionality
-let isSearchModalOpen = false;
+// Menu Search functionality
+let isMenuSearchOpen = false;
 
-function showSearchModal(source = "icon") {
-    const modal = document.getElementById('search-modal');
-    const input = document.getElementById('search-input');
-    
-    if (!modal || !input) return;
-    
-    modal.classList.remove('hidden');
-    isSearchModalOpen = true;
-    logEvent("search_click", { source });
-    
-    // Focus the input after a short delay to ensure the modal is visible
-    setTimeout(() => {
-        input.focus();
-    }, 100);
-    
-    // Initialize with all words
-    displaySearchResults(window.allWords || []);
+function resolveMenuSearchRefs() {
+    menuButtons = document.getElementById("buttons");
+    menuSearch = document.getElementById("menu-search");
+    searchInput = document.getElementById("search-input");
+    searchResults = document.getElementById("search-results");
 }
 
-function hideSearchModal() {
-    const modal = document.getElementById('search-modal');
-    const input = document.getElementById('search-input');
-    
-    if (!modal || !input) return;
-    
-    modal.classList.add('hidden');
-    isSearchModalOpen = false;
-    input.value = '';
-    logEvent("search_close", {});
-    
-    // Clear results
-    const resultsContainer = document.getElementById('search-results');
-    if (resultsContainer) {
-        resultsContainer.innerHTML = '';
+function setMenuSearchLock(enabled) {
+    const sideMenu = document.getElementById("side-menu");
+    if (!sideMenu) return;
+    const shouldEnable = Boolean(enabled);
+    sideMenu.classList.toggle("menu-search-lock", shouldEnable);
+    if (shouldEnable) {
+        sideMenu.classList.remove("menu-compact");
     }
+}
+
+function openMenuSearch(source = "icon") {
+    resolveMenuSearchRefs();
+    if (!menuButtons || !menuSearch || !searchInput) return;
+    menuButtons.classList.add('search-expanded');
+    menuSearch.setAttribute('aria-expanded', 'true');
+    isMenuSearchOpen = true;
+    setMenuSearchLock(true);
+    logEvent("search_click", { source });
+    setTimeout(() => {
+        searchInput.focus();
+    }, 50);
+    displaySearchResults(searchWords(searchInput.value));
+}
+
+function closeMenuSearch(reason = "close") {
+    resolveMenuSearchRefs();
+    if (!menuButtons || !menuSearch || !searchInput) return;
+    menuButtons.classList.remove('search-expanded');
+    menuSearch.setAttribute('aria-expanded', 'false');
+    isMenuSearchOpen = false;
+    searchInput.value = '';
+    setMenuSearchLock(false);
+    if (searchResults) {
+        searchResults.innerHTML = '';
+        searchResults.classList.add('hidden');
+    }
+    logEvent("search_close", { reason });
 }
 
 function searchWords(query) {
@@ -456,6 +483,7 @@ function displaySearchResults(words) {
     const lang = normalizeLang(document.documentElement.lang || "zh");
     if (!resultsContainer) return;
     
+    resultsContainer.classList.remove('hidden');
     if (words.length === 0) {
         resultsContainer.innerHTML = '<div class="search-no-results">No results found</div>';
         return;
@@ -475,7 +503,7 @@ function displaySearchResults(words) {
     resultsContainer.querySelectorAll('.search-result-item').forEach(item => {
         item.addEventListener('click', () => {
             const wordId = parseInt(item.dataset.wordId);
-            hideSearchModal();
+            closeMenuSearch("select");
             endWordView("switch");
             startWordView(wordId);
             zoomToWord(wordId, state.scaleThreshold);
@@ -487,7 +515,6 @@ function displaySearchResults(words) {
 // Event listeners for search modal
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
-    const searchModal = document.getElementById('search-modal');
     
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -495,20 +522,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const results = searchWords(query);
             displaySearchResults(results);
         });
+
+        searchInput.addEventListener('focus', () => {
+            setMenuSearchLock(true);
+        });
+
+        searchInput.addEventListener('blur', () => {
+            if (!isMenuSearchOpen) {
+                setMenuSearchLock(false);
+            }
+        });
         
         // Handle keyboard navigation
         searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                hideSearchModal();
-            }
-        });
-    }
-    
-    if (searchModal) {
-        searchModal.addEventListener('click', (e) => {
-            // Close modal when clicking on the backdrop (not the content)
-            if (e.target === searchModal) {
-                hideSearchModal();
+                closeMenuSearch("escape");
             }
         });
     }
@@ -518,11 +546,22 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        if (isSearchModalOpen) {
-            hideSearchModal();
+        if (isMenuSearchOpen) {
+            closeMenuSearch("shortcut");
         } else {
-            showSearchModal("shortcut");
+            openMenuSearch("shortcut");
         }
+    }
+});
+
+document.addEventListener('mousedown', (e) => {
+    if (!isMenuSearchOpen) return;
+    resolveMenuSearchRefs();
+    const target = e.target;
+    const inButtons = menuButtons && menuButtons.contains(target);
+    const inResults = searchResults && searchResults.contains(target);
+    if (!inButtons && !inResults) {
+        closeMenuSearch("outside");
     }
 });
 

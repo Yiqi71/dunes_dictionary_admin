@@ -28,6 +28,9 @@ const noteAuthor = {
 function setMenuCompact(enabled) {
     const sideMenu = document.getElementById("side-menu");
     if (!sideMenu) return;
+    if (enabled && sideMenu.classList.contains("menu-search-lock")) {
+        return;
+    }
     sideMenu.classList.toggle(MENU_COMPACT_CLASS, Boolean(enabled));
 }
 

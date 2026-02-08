@@ -144,7 +144,7 @@ function parseContributeDate(contributeDate) {
 // nodes
 let wordsOnGrid = {};
 let usedPositions = new Set(); // 记录已使用的位置
-let minGrid = 0.8;
+let minGrid = 2;
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
