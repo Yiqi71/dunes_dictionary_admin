@@ -169,6 +169,10 @@ h1.English {
     letter-spacing: -1.287px;
 }
 
+html:lang(en) .word-node .terms .term-main {
+    font-family: "Stint Ultra Condensed";
+}
+
 .term-ori {
     color: #544011;
     font-family: "Stint Ultra Condensed";
@@ -303,6 +307,43 @@ body[data-scale="5"] .word-node .terms .term-ori {
     font-size: 61.06px;
     font-style: normal;
     font-weight: 400;
+}
+
+html:lang(en) body[data-scale="2"] .word-node .terms .term-main {
+    color: #544011;
+    font-family: "Barlow Condensed", "ChillDIN";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+html:lang(en) body[data-scale="2"] .word-node {
+    justify-content: flex-end;
+    padding-bottom: 4px;
+}
+
+html:lang(en) body[data-scale="3"] .word-node .terms .term-main,
+html:lang(en) body[data-scale="4"] .word-node .terms .term-main {
+    color: #392F17;
+    font-family: "Stint Ultra Condensed";
+    font-size: 33.428px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+}
+
+html:lang(en) body[data-scale="5"] .word-node .terms .term-main {
+    color: #392F17;
+    font-family: "Stint Ultra Condensed";
+    font-size: 61.06px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+}
+
+html:lang(en) .word-node .terms .term-ori {
+    display: none;
 }
 
 body[data-scale="5"] .detail-title {
