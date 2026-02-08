@@ -2,11 +2,12 @@
 import { state } from "./state.js";
 import { draw, updateWordNodeTransforms, updateScaleForNodes } from "./uni-canvas.js";
 import { updateRelations } from "./relationManager.js";
-import { renderPanelSections , showFloatingPanel, scrollToTop} from "./detail.js";
+import { renderPanelSections , showFloatingPanel, scrollToTop, resetFloatingPanelState } from "./detail.js";
 import { moveIndicator } from "./menu.js";
 
 
 let focusedWord = null;
+let lastFocusedNodeId = null;
 const MENU_COMPACT_CLASS = "menu-compact";
 function prepareLazyImage(img) {
     if (!img) return;
@@ -194,6 +195,7 @@ export function updateWordFocus() {
         focusedWord.classList.remove('focused');
         focusedWord = null;
         state.focusedNodeId = null;
+        lastFocusedNodeId = null;
         restoreAllNodes();
         resetPositions();
         const detailDiv = document.getElementById("word-details");
@@ -242,6 +244,10 @@ export function updateWordFocus() {
             focusedWord = closestWord;
             state.focusedNodeId = closestWord.id;
             setMenuCompact(true);
+            if (lastFocusedNodeId !== closestWord.id) {
+                resetFloatingPanelState();
+                lastFocusedNodeId = closestWord.id;
+            }
 
             updateRelations();
             hideNearbyNodes(closestWord);

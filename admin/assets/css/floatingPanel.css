@@ -86,6 +86,16 @@
     transform: translateX(-88px);
 }
 
+/* Inactive panel should not allow inner interactions (tabs stay clickable) */
+.panel-entry:not(.active) .panel-main,
+.panel-entry:not(.active) .panel-bottom,
+.panel-entry:not(.active) .panel-slide,
+.panel-comment:not(.active) .panel-main,
+.panel-comment:not(.active) .panel-bottom,
+.panel-comment:not(.active) .panel-slide {
+    pointer-events: none;
+}
+
 /* 主内容区域 - 包含top和bottom，可整体滚动 */
 .panel-main {
     flex: 1;
@@ -272,6 +282,7 @@
     cursor: pointer;
     position: relative;
     transform: translateY(0);
+    background-color: #EEE9DB;
 }
 /* 仅前三个comment section显示上边阴影 */
 .panel-comment .panel-bottom section:not(#section-contributors):not(#section-editors):nth-of-type(-n+3) {
@@ -347,7 +358,7 @@ html:lang(en) #floating-panel .panel-comment {
 }
 
 /* 折叠状态 hover 时向上位移，露出更多内容（不影响其他元素布局） */
-.panel-comment .panel-bottom section:not(.note-expanded):not(#section-contributors):not(#section-editors):hover {
+.panel-comment.active .panel-bottom section:not(.note-expanded):not(#section-contributors):not(#section-editors):hover {
     transform: translateY(-20px);
 }
 

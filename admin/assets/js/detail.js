@@ -505,7 +505,7 @@ export function renderPanelSections() {
     const contributorNames = contributors.map(c => {
         const name = c?.name?.[lang] || "";
         const role = c?.role?.[lang] || "";
-        return name ? `${name}${role ? ` ，${role}` : ""}` : "";
+        return name ? `${name}${role ? ` �?{role}` : ""}` : "";
     }).filter(Boolean);
     const contributorText = contributorNames.length
         ? (lang === "en"
@@ -781,6 +781,35 @@ export function scrollToTop(panelType = 'entry') {
     panelMain.scrollTo({
         top: 0,
         behavior: "smooth"
+    });
+}
+
+// Reset panels to default state (top + comments collapsed)
+export function resetFloatingPanelState() {
+    const entryPanel = queryFloating('.panel-entry');
+    if (entryPanel) {
+        const entryMain = entryPanel.querySelector('.panel-main');
+        if (entryMain) {
+            entryMain.scrollTo({ top: 0, behavior: "auto" });
+        }
+    }
+
+    const commentPanel = queryFloating('.panel-comment');
+    if (!commentPanel) return;
+
+    const commentMain = commentPanel.querySelector('.panel-main');
+    if (commentMain) {
+        commentMain.scrollTo({ top: 0, behavior: "auto" });
+        commentMain.classList.remove('notes-fixed');
+    }
+
+    const contentScroll = commentPanel.querySelector('.panel-bottom');
+    if (!contentScroll) return;
+
+    contentScroll.classList.remove('notes-mode');
+    const noteSections = contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-editors)');
+    noteSections.forEach((sec) => {
+        sec.classList.remove('note-expanded', 'note-above', 'note-below', 'note-below-first');
     });
 }
 
@@ -1215,6 +1244,7 @@ function initPanelClickHandlers() {
                 const rect = entryPanel.getBoundingClientRect();
                 const clickX = e.clientX - rect.left;
                 if (clickX < 100) { // 允许点击左侧100px区域
+                    e.stopPropagation();
                     switchTab('entry');
                 }
             }
@@ -1230,6 +1260,7 @@ function initPanelClickHandlers() {
                 const rect = commentPanel.getBoundingClientRect();
                 const clickX = e.clientX - rect.left;
                 if (clickX < 100) { // 允许点击左侧100px区域
+                    e.stopPropagation();
                     switchTab('comment');
                 }
             }
