@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-02-09T05:33:43.051Z",
-    "source": "83d390267ef61fdc9f688b0191ee8418",
+    "generated_at": "2026-02-09T06:35:30.591Z",
+    "source": "764f35d66544b339597dc325bff94b34",
     "home_node_id": 13
   },
   "words": [
@@ -78,7 +78,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "一种基于成本收益计算的、合乎逻辑的无知选择",
-        "en": "logical choice of remaining uninformed based on cost-benefit calculation"
+        "en": "logical choice of remaining uninformed based on cost-benefit calculation."
       },
       "extended_definition": {
         "zh": [
@@ -252,7 +252,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "一种环境或物品所提供的行动可能性",
-        "en": "The action possibilities offered by an environment or an object"
+        "en": "The action possibilities offered by an environment or an object."
       },
       "extended_definition": {
         "zh": [
@@ -434,7 +434,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "在交往中生成的体验性现实",
-        "en": "An experiential reality co-created through engagement"
+        "en": "An experiential reality co-created through engagement."
       },
       "extended_definition": {
         "zh": [
@@ -462,6 +462,10 @@
       "related_terms": [
         {
           "id": 18,
+          "relation": "概念相关"
+        },
+        {
+          "id": 15,
           "relation": "概念相关"
         }
       ],
@@ -608,7 +612,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "不具归属感、关系性和历史性的空间",
-        "en": "A space devoid of identity, relations, and history"
+        "en": "A space devoid of identity, relations, and history."
       },
       "extended_definition": {
         "zh": [
@@ -789,6 +793,10 @@
         {
           "id": 7,
           "relation": "概念相关"
+        },
+        {
+          "id": 21,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -839,7 +847,7 @@
         "en": "Institution"
       },
       "termOri": "Institution",
-      "concept_image": "No concept image yet.",
+      "concept_image": "images/机构_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典 丨 （一）为了能说同一门语言",
         "en": "social title"
@@ -909,7 +917,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "确立正统规范、实施规训并被人们长期普遍接受的社会机制与空间",
-        "en": "Social mechanisms and spaces that establish orthodox norms, implement discipline, and achieve long-term universal acceptance"
+        "en": "Social mechanisms and spaces that establish orthodox norms, implement discipline, and achieve long-term universal acceptance."
       },
       "extended_definition": {
         "zh": [
@@ -935,6 +943,10 @@
         },
         {
           "id": 13,
+          "relation": "概念相关"
+        },
+        {
+          "id": 21,
           "relation": "概念相关"
         },
         {
@@ -1066,7 +1078,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "真实存在却运行着另类规则的社会空间",
-        "en": "A real space that operates under alternative rules"
+        "en": "A real space that operates under alternative rules."
       },
       "extended_definition": {
         "zh": [
@@ -1100,6 +1112,10 @@
         },
         {
           "id": 17,
+          "relation": "概念相关"
+        },
+        {
+          "id": 21,
           "relation": "概念相关"
         }
       ],
@@ -1341,7 +1357,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "基于反馈机制的调节原理",
-        "en": "Feedback-based regulatory principle"
+        "en": "Feedback-based regulatory principle."
       },
       "extended_definition": {
         "zh": [
@@ -1973,7 +1989,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "一种对记忆进行记录与保存的强烈欲望，以及与之共生的、潜在于归档行为中的对记忆的破坏与摧毁",
-        "en": "A compulsive desire to record and preserve memory, with the inherent, latent destruction of that memory"
+        "en": "A compulsive desire to record and preserve memory, with the inherent, latent destruction of that memory."
       },
       "extended_definition": {
         "zh": [
@@ -2090,7 +2106,7 @@
         "en": "Surface Reading"
       },
       "termOri": "Surface Reading",
-      "concept_image": "No concept image yet.",
+      "concept_image": "images/表层阅读_aigc.jpg",
       "sm_title": {
         "zh": "做多了阅读理解，我们都需要一点“表层阅读”",
         "en": "social title"
@@ -2156,7 +2172,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "提倡关注文本表面含义的诠释方法",
-        "en": "An interpretive method that advocates for focusing on the literal meaning of the text"
+        "en": "An interpretive method that advocates for focusing on the literal meaning of the text."
       },
       "extended_definition": {
         "zh": [
@@ -2293,7 +2309,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "对他人的关怀行为经常因为不被视作“正式劳动”而被忽视的劳动者群体",
-        "en": "A group of laborers whose acts of care for others are frequently overlooked because they are not recognized as \"formal labor\""
+        "en": "A group of laborers whose acts of care for others are frequently overlooked because they are not recognized as \"formal labor.\""
       },
       "extended_definition": {
         "zh": [
@@ -2313,6 +2329,14 @@
       },
       "diagrams": [],
       "related_terms": [
+        {
+          "id": 29,
+          "relation": "概念相关"
+        },
+        {
+          "id": 3,
+          "relation": "概念相关"
+        },
         {
           "id": 18,
           "relation": "概念相关"
@@ -2448,6 +2472,10 @@
         {
           "id": 44,
           "relation": "概念相关"
+        },
+        {
+          "id": 42,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -2535,7 +2563,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "处于过渡状态、模糊不清、缺乏具体功能或稳定身份的场域",
-        "en": "A transitional, ambiguous state, lacking specific function or a stable identity"
+        "en": "A transitional, ambiguous state, lacking specific function or a stable identity."
       },
       "extended_definition": {
         "zh": [
@@ -2717,7 +2745,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "心理学概念，强调个体应厘清哪些人生课题的选择权、决策权、责任属于自己，哪些超出了自己的控制应由他人负责",
-        "en": "A psychological concept emphasizing that individuals should clarify which life tasks—including the right of choice, decision-making power, and responsibility—belong to themselves, and which tasks lie beyond their control and must be left to others"
+        "en": "A psychological concept emphasizing that individuals should clarify which life tasks—including the right of choice, decision-making power, and responsibility—belong to themselves, and which tasks lie beyond their control and must be left to others."
       },
       "extended_definition": {
         "zh": [
@@ -2872,7 +2900,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "通过摄像机去捕捉现实世界的观看与理解方式",
-        "en": "A way of viewing and understanding the world through the lens of a camera"
+        "en": "A way of viewing and understanding the world through the lens of a camera."
       },
       "extended_definition": {
         "zh": [
@@ -3025,7 +3053,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "一种新生命形式，指在生物中植入或装配人造部分或人工科技，以此恢复或增强其原有生物体的能力",
-        "en": "A new form of life that refers to the implantation or integration of artificial components or technology into a biological organism to restore or enhance its original capabilities"
+        "en": "A new form of life that refers to the implantation or integration of artificial components or technology into a biological organism to restore or enhance its original capabilities."
       },
       "extended_definition": {
         "zh": [
@@ -3048,14 +3076,14 @@
           "src": "images/赛博格_diagram_1.jpg",
           "caption": {
             "zh": "电影《攻壳机动队2：无罪》中致敬唐娜·哈拉维的角色。",
-            "en": "diagram caption"
+            "en": "The character in the film #Ghost in the Shell 2: Innocence# pays homage to Donna Haraway."
           }
         },
         {
           "src": "images/赛博格_diagram_2.jpg",
           "caption": {
             "zh": "电影《攻壳机动队》中创造赛博格的场景。",
-            "en": "diagram caption"
+            "en": "The scene depicting the creation of a cyborg in the film #Ghost in the Shell#."
           }
         }
       ],
@@ -3243,7 +3271,20 @@
         "en": "In certain war-torn territories, families who have lost both their homes and their refugee status exist in a Homo Sacer-like condition: they perish in the crossfire like blades of grass, yet their names are never recorded on any official casualty list."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 6,
+          "relation": "概念相关"
+        },
+        {
+          "id": 7,
+          "relation": "概念相关"
+        },
+        {
+          "id": 5,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "阿甘本认为主权便是创造出“牲人”（仅拥有赤裸生命的人）的权力。",
@@ -3536,7 +3577,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "借助互联网平台匹配供需的临时工作组成的经济领域，时间短、灵活但也缺乏福利和保障",
-        "en": "An economic sector composed of temporary work matched through online platforms, characterized by short duration and flexibility but also lacking benefits and protections"
+        "en": "An economic sector composed of temporary work matched through online platforms, characterized by short duration and flexibility but also lacking benefits and protections."
       },
       "extended_definition": {
         "zh": [
@@ -3556,6 +3597,10 @@
       "related_terms": [
         {
           "id": 30,
+          "relation": "概念相关"
+        },
+        {
+          "id": 29,
           "relation": "概念相关"
         }
       ],
@@ -3607,7 +3652,7 @@
         "en": "Khora"
       },
       "termOri": "χώρα",
-      "concept_image": "No concept image yet.",
+      "concept_image": "images/廓落_aigc.jpg",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
@@ -3677,7 +3722,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "一种不可界定、介于理型与感官之间的母体，它提供了空间产生的可能性",
-        "en": "An indefinable matrix situated between the Forms and the sensible, providing the very possibility for space to emerge"
+        "en": "An indefinable matrix situated between the Forms and the sensible, providing the very possibility for space to emerge."
       },
       "extended_definition": {
         "zh": [
@@ -3791,7 +3836,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "包含有两个相反意思的词或者字",
-        "en": "A word that encompass two contradictory meanings"
+        "en": "A word that encompass two contradictory meanings."
       },
       "extended_definition": {
         "zh": [
@@ -3812,11 +3857,11 @@
       "diagrams": [],
       "related_terms": [
         {
-          "id": 2,
+          "id": 26,
           "relation": "概念相关"
         },
         {
-          "id": 26,
+          "id": 2,
           "relation": "概念相关"
         }
       ],
@@ -3963,7 +4008,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "一对单音反义词结合起来构成的一个新词",
-        "en": "A word formed by the combination of a pair of monosyllabic antonyms"
+        "en": "A word formed by the combination of a pair of monosyllabic antonyms."
       },
       "extended_definition": {
         "zh": [
@@ -4030,7 +4075,7 @@
         "en": "Event Horizon"
       },
       "termOri": "Ereignishorizont",
-      "concept_image": "No concept image yet.",
+      "concept_image": "images/事件视界_aigc.jpg",
       "sm_title": {
         "zh": "宇宙中有些事物，是我们永远看不见的",
         "en": "social title"
@@ -4113,28 +4158,28 @@
           "src": "images/事件视界_diagram_1.jpg",
           "caption": {
             "zh": "事件视界望远镜观测的M87黑洞",
-            "en": "diagram caption"
+            "en": "The M87 black hole as observed by the #Event Horizon Telescope#."
           }
         },
         {
           "src": "images/事件视界_diagram_2.jpg",
           "caption": {
             "zh": "事件视界望远镜",
-            "en": "diagram caption"
+            "en": "#Event Horizon Telescope# (EHT)"
           }
         },
         {
           "src": "images/事件视界_diagram_3.jpg",
           "caption": {
             "zh": "在星球表面，观察者的视野会被“地平线”限制，地平线之外的部分在“视界之外。”",
-            "en": "diagram caption"
+            "en": "On a planetary surface, an observer's field of vision is restricted by the #horizon#; anything beyond this boundary is considered to be \"beyond the horizon.\""
           }
         },
         {
           "src": "images/事件视界_diagram_4.jpg",
           "caption": {
             "zh": "在黑洞的抽象几何模型中，可以看到“事件视界”的范围。\n图像来源：astronomysource.com/category/cosmos/black-holes/",
-            "en": "diagram caption"
+            "en": "In an abstract geometric model of a black hole, the extent of the #event horizon# is clearly visible. Image Source: #astronomysource.com/category/cosmos/black-holes/#"
           }
         }
       ],
@@ -4249,7 +4294,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "指源自潜意识层面的，由于压抑某些冲动和意图造成的，在言语、记忆或肢体动作上出现的失误行为",
-        "en": "Faulty actions in speech, memory, or physical movement that originate from the unconscious level and are caused by the repression of certain impulses and intentions"
+        "en": "Faulty actions in speech, memory, or physical movement that originate from the unconscious level and are caused by the repression of certain impulses and intentions."
       },
       "extended_definition": {
         "zh": [
@@ -4395,7 +4440,20 @@
         "en": "In the era of social media, many young people have become \"new poor\" - although they have stable incomes, they are unable to afford marriage or home purchases due to high education loans and rising prices, and are often ridiculed as \"losers\"."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 30,
+          "relation": "概念相关"
+        },
+        {
+          "id": 23,
+          "relation": "概念相关"
+        },
+        {
+          "id": 15,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "新穷人的困境一定程度上源自和植根于“沉默”。这是一种系统性的难以发声、难以被理解的沉默。",
@@ -4527,6 +4585,10 @@
         },
         {
           "id": 4,
+          "relation": "概念相关"
+        },
+        {
+          "id": 29,
           "relation": "概念相关"
         },
         {
@@ -4862,7 +4924,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "源自同一原始语种并由共同词根演变而来的亲属词汇",
-        "en": "Kin terms derived from the same proto-language and evolved from a common root"
+        "en": "Kin terms derived from the same proto-language and evolved from a common root."
       },
       "extended_definition": {
         "zh": [
@@ -4883,7 +4945,20 @@
         "en": "For English speakers, learning Spanish is often intuitive because the two languages share a vast number of Cognates, such as \"Family\" and \"Familia.\""
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 33,
+          "relation": "概念相关"
+        },
+        {
+          "id": 34,
+          "relation": "概念相关"
+        },
+        {
+          "id": 35,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "暂无导读",
@@ -4988,7 +5063,12 @@
         "en": "This luxurious Hotel was, in fact, once a humble Hostel."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 32,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "暂无导读",
@@ -5070,7 +5150,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "将外来词以字面意思分部翻译，且参照原有构词原理组装的词",
-        "en": "A form of translation in which a foreign word is translated part-by-part according to its literal meaning and reassembled based on its original morphological principles"
+        "en": "A form of translation in which a foreign word is translated part-by-part according to its literal meaning and reassembled based on its original morphological principles."
       },
       "extended_definition": {
         "zh": [
@@ -5087,7 +5167,12 @@
         "en": "The English word \"brainwash\" is a calque of the Chinese term xinao (洗脑).\nThe English phrase \"long time no see\" is a calque of the Chinese greeting haojiu bujian (好久不见).\nThe Chinese word chaoren (超人) is a calque of the English \"superman,\" which itself is a calque of the German \"Übermensch,\" meaning a \"super-human\" or a person who has transcended."
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 32,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "蓝莓（blueberry），黑莓（black berry）和草莓（strawberry），straw就是稻草",
@@ -5231,7 +5316,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "将外来词以原来国家的当地语言读音为依据翻译的形式",
-        "en": "A form of translation in which loanwords are rendered based on their original pronunciation in the source language"
+        "en": "A form of translation in which loanwords are rendered based on their original pronunciation in the source language."
       },
       "extended_definition": {
         "zh": [
@@ -5252,7 +5337,12 @@
         "en": "The Chinese word xiuke (休克) is a transliteration of the English word \"shock.\"\nThe English word \"tea\" is a transliteration of the Chinese word for tea, cha (茶), specifically from the Minnan (Hokkien) dialect, where its pronunciation is close to \"te.\"\nIn Northeast Mandarin, the word mahulu (马葫芦) is a transliteration of the Japanese \"manhōru\" (マンホール), which in turn was transliterated from the English word \"manhole.\"\nThe Chinese word xiesidili (歇斯底里) is a transliteration of the English word \"hysteria.\"\nThe Chinese word yinqing (引擎) is a transliteration of the English word \"engine.\""
       },
       "diagrams": [],
-      "related_terms": [],
+      "related_terms": [
+        {
+          "id": 32,
+          "relation": "概念相关"
+        }
+      ],
       "commentAbs": {
         "content": {
           "zh": "大连-Дальний（达里尼）“远方”；\n水门汀（水泥）-cement；\n康拜因（联合收割机）- combine",
@@ -5400,7 +5490,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "强调人的行为、情绪等主观感受的城市空间理解方式",
-        "en": "An urban spatial understanding emphasizing subjective experiences, such as human act and emotions"
+        "en": "An urban spatial understanding emphasizing subjective experiences, such as human act and emotions."
       },
       "extended_definition": {
         "zh": [
@@ -5409,7 +5499,7 @@
         ],
         "en": [
           "Imagine wandering through a city without GPS. The space you experience won’t unfold neatly like a traditional map. Streets you rush through might vanish from your memory, while two adjacent blocks could feel miles apart simply because of their different architectural styles or lighting. If you were to draw a map based truly on this lived experience, some parts would remain blank, while other spaces would be dense with detail.",
-          "This \"subjective recording\" of space is at the heart of psychogeography. Moving away from the physical measurements of traditional geography, it seeks to capture the unique atmospheres felt by individuals and the emotional impression of the environment. The same city can manifest as a completely different \"geography\" in the minds of different people. Influenced by Walter Benjamin’s concept of the flâneur, Guy Debord and his collaborator Asger Jorn sought more graphic ways to document this subjective urban experience. In 1958, they created The Naked City, a psychogeographic map of Paris where they used cut-outs, collages, and directional arrows to map the sensory experience of drifting through different sectors of the city."
+          "This \"subjective recording\" of space is at the heart of psychogeography. Moving away from the physical measurements of traditional geography, it seeks to capture the unique atmospheres felt by individuals and the emotional impression of the environment. The same city can manifest as a completely different \"geography\" in the minds of different people. Influenced by Walter Benjamin’s concept of the flâneur, Guy Debord and his collaborator Asger Jorn sought more graphic ways to document this subjective urban experience. In 1958, they created #The Naked City, a psychogeographic map of Paris# where they used cut-outs, collages, and directional arrows to map the sensory experience of drifting through different sectors of the city."
         ]
       },
       "example_sentence": {
@@ -5421,7 +5511,7 @@
           "src": "images/心理地理学_diagram_1.jpg",
           "caption": {
             "zh": "《巴黎心理地理学地图》局部。",
-            "en": "diagram caption"
+            "en": "Guy Debord and Asger Jorn #The Naked City, a psychogeographic map of Paris#, 1958."
           }
         }
       ],
@@ -5544,7 +5634,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "为建立并维系专业权威的形象而持续进行的行动与表演",
-        "en": "A continuous performance of actions and behaviors aimed at establishing and maintaining professional authority"
+        "en": "A continuous performance of actions and behaviors aimed at establishing and maintaining professional authority."
       },
       "extended_definition": {
         "zh": [
@@ -5584,12 +5674,12 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "暂无导读",
-          "en": "No abstract info yet."
+          "zh": "即便是有真才实学的人，也得持续地 enact （做、操演）这个专家形象，其专业性才对于社会大众“可见”。",
+          "en": "...even those with genuine mastery must continuously enact the persona of an \"expert\" for their professionalism to become \"visible\" to the public."
         },
         "author": {
-          "zh": "暂无作者信息",
-          "en": "No author info yet."
+          "zh": "飞樾",
+          "en": "Feiyue"
         }
       },
       "comments": [
@@ -5718,12 +5808,12 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "暂无导读",
-          "en": "No abstract info yet."
+          "zh": "在技术尚未充分进入日常之前，我们是否已经在心理上为它预留了位置？",
+          "en": "Before the technology has even fully entered our daily lives, have we already reserved a place for it in our psyche?"
         },
         "author": {
-          "zh": "暂无作者信息",
-          "en": "No author info yet."
+          "zh": "李若竹",
+          "en": "Li Ruozhu"
         }
       },
       "comments": [
@@ -6100,7 +6190,7 @@
         "en": "term"
       },
       "termOri": "termOri",
-      "concept_image": "No concept image yet.",
+      "concept_image": "images/活人感_aigc.jpg",
       "sm_title": {
         "zh": "沙丘词典｜不要永远正确的机械运行，要「活人感」",
         "en": "social title"
@@ -6366,6 +6456,10 @@
         {
           "id": 43,
           "relation": "概念相关"
+        },
+        {
+          "id": 16,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -6517,21 +6611,21 @@
           "src": "images/诺利地图_diagram_2.jpg",
           "caption": {
             "zh": "诺利地图局部",
-            "en": "diagram caption"
+            "en": "Detail of Nolli Map"
           }
         },
         {
           "src": "images/诺利地图_diagram_3.jpg",
           "caption": {
             "zh": "以诺利地图为底图，由12位建筑师于1978年创作的《被打断的罗马》（Roma Interrotta）\n此局部与图2对应，由柯林·罗（Colin Rowe）创作",
-            "en": "diagram caption"
+            "en": "#Roma Interrotta# (1978), a collaborative work by twelve architects based on the #Nolli Map#. This detail corresponds to Figure 2 and was created by Colin Rowe."
           }
         },
         {
           "src": "images/诺利地图_diagram_4.jpg",
           "caption": {
             "zh": "《向拉斯维加斯学习》中拉斯维加斯大道及其沿街赌场酒店的诺利地图",
-            "en": "diagram caption"
+            "en": "A #Nolli Map# of the Las Vegas Strip and its roadside casino-hotels from #Learning from Las Vegas#."
           }
         }
       ],
@@ -6568,7 +6662,7 @@
         "en": "Supermodernity"
       },
       "termOri": "Surmodernité",
-      "concept_image": "No concept image yet.",
+      "concept_image": "images/超现代性_aigc.jpg",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
