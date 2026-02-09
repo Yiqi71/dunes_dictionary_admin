@@ -348,7 +348,13 @@ html:lang(en) .word-node .terms .term-ori {
 
 body[data-scale="5"] .detail-title {
     margin: 24px;
-    font-size: 17.3px;
+    
+    color: #43403B;
+    font-family: "Barlow Condensed";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19.835px; /* 123.967% */
 }
 
 
@@ -399,12 +405,17 @@ body[data-scale="5"] .detail-title {
 }
 
 .detail-title {
-    font-family: "ChillDIN";
-    font-weight: 700;
+    color: #43403B;
+    font-family: "Barlow Condensed";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19.835px; /* 123.967% */
+
+    
     margin: 10px 40px;
     display: flex;
     align-items: center;
-    font-size: 12px;
     letter-spacing: 0;
     gap: 6px;
     position: relative;
@@ -518,6 +529,7 @@ body[data-scale="5"] .detail-title {
     object-fit: contain;
     border-radius: 4px;
     opacity: 0.7;
+    filter: saturate(0.1);
     mix-blend-mode: plus-darker;
     padding: 0 12px 15px 12px;
     margin: 16px auto 0;
@@ -551,6 +563,7 @@ body[data-scale="5"] .detail-title {
     border-radius: 4px;
     /* margin: 10px; */
     opacity: 0.7;
+    filter: saturate(0.1);
     mix-blend-mode: darken;
     padding: 0 12px 15px 12px;
     margin: 16px 12px 15px;
@@ -580,6 +593,16 @@ body[data-scale="5"] .detail-title {
     line-height: 5px; 
     letter-spacing: 1.2px;
 }
+html:lang(en) #proposer .proposer-text .proposer-primary {
+    color: #E6D9D0;
+    text-align: center;
+    font-family: "Stint Ultra Condensed";
+    font-size: 39.48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 70px;
+    letter-spacing: 0;
+}
 
 #proposer .proposer-ori {
     color: #E6D9D0;
@@ -592,6 +615,10 @@ body[data-scale="5"] .detail-title {
 }
 
 #proposer .proposer-ori:empty {
+    display: none;
+}
+
+html:lang(en) #proposer .proposer-ori {
     display: none;
 }
 
@@ -619,6 +646,16 @@ body[data-scale="5"] .detail-title {
     font-size: 17.3px;
     font-style: normal;
     font-weight: 700;
+}
+
+#comment .comment-abs-content {
+    color: #43403B;
+    font-family: "Barlow Condensed";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: -0.72px;
 }
 
 
