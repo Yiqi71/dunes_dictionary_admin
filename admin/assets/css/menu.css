@@ -560,7 +560,7 @@
 /* Year indicator */
 .year-indicator {
     position: absolute;
-    top: 50%;
+    top: 70%;
     width: 13px;
     height: 13px;
     background-color: #392F17;
