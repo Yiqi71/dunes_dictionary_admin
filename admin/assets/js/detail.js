@@ -55,6 +55,20 @@ function applyHashItalics(text) {
     return String(text).replace(/#([^#]+)#/g, "<i>$1</i>");
 }
 
+function ensureTerminalPunctuation(text, lang) {
+    if (text === null || text === undefined) return "";
+    const raw = String(text);
+    const trimmed = raw.trim();
+    if (!trimmed) return raw;
+    const lastChar = trimmed[trimmed.length - 1];
+    const zhPunct = /[。！？；…]/;
+    const enPunct = /[.!?;:]/;
+    const needs = lang === "zh" ? !zhPunct.test(lastChar) : !enPunct.test(lastChar);
+    if (!needs) return raw;
+    const suffix = lang === "zh" ? "。" : ".";
+    return raw + suffix;
+}
+
 function filterProposer(name) {
     const focusedWord = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!focusedWord) return [];
@@ -516,7 +530,8 @@ export function renderPanelSections() {
     const contactSec = entryPanel.querySelector("#section-contact");
     const editorsSec = entryPanel.querySelector("#section-editors");
 
-    const briefText = applyHashItalics(currentWord.brief_definition?.[lang] || "\u6682\u65e0\u7b80\u8981\u91ca\u4e49");
+    const briefRaw = currentWord.brief_definition?.[lang] || "\u6682\u65e0\u7b80\u8981\u91ca\u4e49";
+    const briefText = applyHashItalics(ensureTerminalPunctuation(briefRaw, lang));
     briefSec.innerHTML = `<p class="left-title">${sectionTitles.brief[lang]}</p>
                        <div>
                            <h3>${briefText}</h3>
