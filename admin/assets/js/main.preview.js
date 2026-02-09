@@ -31,6 +31,35 @@ function endSession(reason = "unknown") {
 }
 
 const langBtn = document.getElementById("language-icon");
+function updateTabLabels() {
+    const currentLang = normalizeLang(state.currentLang);
+    document.querySelectorAll('button').forEach(button => {
+        if (!button) return;
+
+        // Wrap text in a span so we can rotate text without affecting SVGs
+        let span = button.querySelector('span');
+        if (!span) {
+            const text = button.innerHTML;
+            button.innerHTML = `<span>${text}</span>`;
+            span = button.querySelector('span');
+        }
+
+        const htmlText = button.innerHTML;
+        if (htmlText.includes("词条") || htmlText.includes("ENTRY") || htmlText.includes("ENTRY")) {
+            span.textContent = currentLang === "en" ? "ENTRY" : "词条";
+        }
+        if (htmlText.includes("笔记") || htmlText.includes("NOTES") || htmlText.includes("NOTES")) {
+            span.textContent = currentLang === "en" ? "NOTES" : "笔记";
+        }
+
+        if (currentLang === "en") {
+            span.style.display = "inline-block";
+            span.style.transform = "translateX(-10px) rotate(-90deg)";
+        } else {
+            span.style.transform = "rotate(0deg) translateY(0)";
+        }
+    });
+}
 // 点击按钮切换语言
 langBtn.addEventListener("click", () => {
     const html = document.documentElement; 
@@ -60,33 +89,7 @@ langBtn.addEventListener("click", () => {
     });
 
     // 重新渲染tab上的文字
-    document.querySelectorAll('button').forEach(button => {
-        if(!button) return;
-    
-        // 包一�?span，只旋转文字，不影响 SVG
-        let span = button.querySelector('span');
-        if (!span) {
-            const text = button.innerHTML;
-            button.innerHTML = `<span>${text}</span>`;
-            span = button.querySelector('span');
-        }
-
-        // 切换文字
-        if (button.innerHTML.includes("词条") || button.innerHTML.includes("ENTRY")) {
-            button.querySelector('span').textContent = normalizeLang(state.currentLang) === "en" ? "ENTRY" : "词条";
-        }
-        if (button.innerHTML.includes("笔记") || button.innerHTML.includes("NOTES")) {
-            button.querySelector('span').textContent = normalizeLang(state.currentLang) === "en" ? "NOTES" : "笔记";
-        }
-
-        // 设置旋转和偏�?
-        if (normalizeLang(state.currentLang) === "en") {
-            span.style.display = "inline-block"; // 必须�?inline-block 才能旋转
-            span.style.transform = "translateX(-10px) rotate(-90deg)";
-        } else {
-            span.style.transform = "rotate(0deg) translateY(0)";
-        }
-    });
+    updateTabLabels();
 
 
     // 如果需要更新浮�?
@@ -549,6 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.lang = initialLang;
     state.currentLang = initialLang;
     langBtn.textContent = initialLang;
+    updateTabLabels();
     logEvent("page_loaded", { lang: initialLang });
     fetch('/content/draft/data.json')
         .then(response => {

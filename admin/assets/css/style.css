@@ -623,7 +623,7 @@ html:lang(en) #proposer .proposer-ori {
 }
 
 #comment {
-    width: 400px;
+    max-width: 450px;
     min-height: 240px;
     background-color: #B4B596;
 }
