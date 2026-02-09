@@ -1170,6 +1170,9 @@ line-height: 40px;
 :lang(en) .panel-entry .panel-tabs button[data-tab="entry"] {
     color: #FAF4E5;
 }
+:lang(en) #about-panel .panel-entry .panel-tabs button {
+    color: #FAF4E5;
+}
 
 :lang(en) .panel-entry .panel-bottom .left-title {
     color: #FAF4E5;

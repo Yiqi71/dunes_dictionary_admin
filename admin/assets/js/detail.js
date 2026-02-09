@@ -1420,10 +1420,10 @@ export function showAboutPanel() {
     renderAboutContent();
 
     // 隐藏tabs（隐藏所有panel的tabs�?
-    const allTabs = document.querySelectorAll('.panel-tabs');
-    allTabs.forEach(tabs => {
-        if (tabs) tabs.style.display = 'none';
-    });
+    // const allTabs = document.querySelectorAll('.panel-tabs');
+    // allTabs.forEach(tabs => {
+    //     if (tabs) tabs.style.display = 'none';
+    // });
 
     // 隐藏scroll markers
     const entryPanel = document.querySelector('.panel-entry');
