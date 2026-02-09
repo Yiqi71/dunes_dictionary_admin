@@ -617,10 +617,11 @@ async function importExcelToDraft(xlsxPath) {
           cell(zhRow, cfg.img) ||
           (enRow ? cell(enRow, cfg.img) : "");
         if (!img) return;
-        const cap = cell(zhRow, cfg.cap) || (enRow ? cell(enRow, cfg.cap) : "");
+        const capZh = cell(zhRow, cfg.cap);
+        const capEn = enRow ? cell(enRow, cfg.cap) : "";
         noteImgs.push({
           src: img,
-          caption: { zh: cap, en: cap }
+          caption: { zh: capZh, en: capEn }
         });
       });
       if (noteImgs.length) note1.images = noteImgs;

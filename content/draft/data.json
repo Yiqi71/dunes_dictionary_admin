@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-02-08T23:09:27.804Z",
-    "source": "088c9b56a70c544af0eb33917b50881a",
+    "generated_at": "2026-02-09T00:07:04.555Z",
+    "source": "540d3e42550eb1fcca48c6d10d089170",
     "home_node_id": 13
   },
   "words": [
@@ -810,7 +810,7 @@
               "src": "images/隔都_note1_1.jpg",
               "caption": {
                 "zh": "博洛尼亚隔都的地图",
-                "en": "博洛尼亚隔都的地图"
+                "en": "Map of the Bologna Ghetto."
               }
             }
           ]
@@ -1223,21 +1223,21 @@
               "src": "images/全景敞视_note1_1.jpg",
               "caption": {
                 "zh": "沙丘研究所自绘。",
-                "en": "沙丘研究所自绘。"
+                "en": "Illustrated by Dunes Workshop."
               }
             },
             {
               "src": "images/全景敞视_note1_2.jpg",
               "caption": {
                 "zh": "左上：法国奥顿（Autun）监狱，20世纪末停用；\n右上：美国斯泰特维尔惩教中心（State Ville Correctional center），2016年停用；\n左下：古巴新赫罗纳监狱（Presidio Modelo），1967年停用；\n右下：荷兰阿纳姆德伯格监狱（Koepelgevangenis 'De Berg'），2016年停用。",
-                "en": "左上：法国奥顿（Autun）监狱，20世纪末停用；\n右上：美国斯泰特维尔惩教中心（State Ville Correctional center），2016年停用；\n左下：古巴新赫罗纳监狱（Presidio Modelo），1967年停用；\n右下：荷兰阿纳姆德伯格监狱（Koepelgevangenis 'De Berg'），2016年停用。"
+                "en": "Top left: #Autun Prison#, France, decommissioned at the end of the 20th century; Top right: #Stateville Correctional Center#, USA, decommissioned in 2016; Bottom left: #Presidio Modelo#, Nueva Gerona, Cuba, decommissioned in 1967; Bottom right: #Koepelgevangenis 'De Berg'#, Arnhem, Netherlands, decommissioned in 2016."
               }
             },
             {
               "src": "images/全景敞视_note1_3.jpg",
               "caption": {
                 "zh": "徐冰，由监控摄影剪辑而成的电影《蜻蜓之眼》片段。",
-                "en": "徐冰，由监控摄影剪辑而成的电影《蜻蜓之眼》片段。"
+                "en": "Xu Bing, an excerpt from the film #Dragonfly Eyes#, edited from surveillance footage."
               }
             }
           ]
@@ -1846,14 +1846,14 @@
               "src": "images/叙事内镜_note1_1.jpg",
               "caption": {
                 "zh": "莫里茨·科内利斯·埃舍尔，《画廊》，1956",
-                "en": "莫里茨·科内利斯·埃舍尔，《画廊》，1956"
+                "en": "M.C.Escher, #Print Gallery#, 1956"
               }
             },
             {
               "src": "images/叙事内镜_note1_2.jpg",
               "caption": {
                 "zh": "阿伦·雷乃，《去年在马里昂巴德》，1961",
-                "en": "阿伦·雷乃，《去年在马里昂巴德》，1961"
+                "en": "Alain Resnais, #Last Year at Marienbad#, 1961"
               }
             }
           ]
@@ -3055,21 +3055,21 @@
               "src": "images/赛博格_note1_1.jpg",
               "caption": {
                 "zh": "《攻壳机动队》中狙击手斋藤的义眼。",
-                "en": "《攻壳机动队》中狙击手斋藤的义眼。"
+                "en": "Saito’s prosthetic eye in #Ghost in the Shell#."
               }
             },
             {
               "src": "images/赛博格_note1_2.jpg",
               "caption": {
                 "zh": "《攻壳机动队》中适用于打字的义肢。",
-                "en": "《攻壳机动队》中适用于打字的义肢。"
+                "en": "The specialized prosthetic hands for typing in #Ghost in the Shell#."
               }
             },
             {
               "src": "images/赛博格_note1_3.jpg",
               "caption": {
                 "zh": "《攻壳机动队》中带有武器的义肢。",
-                "en": "《攻壳机动队》中带有武器的义肢。"
+                "en": "Weaponized prosthetics in #Ghost in the Shell#."
               }
             }
           ]
@@ -3524,7 +3524,7 @@
               "src": "images/零工经济_note1_1.jpg",
               "caption": {
                 "zh": "Getty Image \"pauperism\"",
-                "en": "Getty Image \"pauperism\""
+                "en": ""
               }
             }
           ]
@@ -5760,14 +5760,14 @@
               "src": "images/游荡者_note1_1.jpg",
               "caption": {
                 "zh": "爱德华·霍普，夜游者，1942",
-                "en": "爱德华·霍普，夜游者，1942"
+                "en": "Edward Hopper, Nighthawks, 1942"
               }
             },
             {
               "src": "images/游荡者_note1_2.jpg",
               "caption": {
                 "zh": "伯纳德·奎桑，沉睡的人，1974",
-                "en": "伯纳德·奎桑，沉睡的人，1974"
+                "en": "Bernard Queysanne, Un Homme Qui Dort, 1974"
               }
             }
           ]
@@ -6058,7 +6058,7 @@
               "src": "images/活人感_note1_1.jpg",
               "caption": {
                 "zh": "surrogate humanity 代理人类 （一本相关STS书）的封面",
-                "en": "surrogate humanity 代理人类 （一本相关STS书）的封面"
+                "en": ""
               }
             }
           ]
