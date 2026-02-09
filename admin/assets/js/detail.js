@@ -787,7 +787,7 @@ initTabs();
 // === Tab 边缘切换逻辑 ===
 
 // 阈值（像素），表示scroll touchmove 的力�?
-const SWITCH_THRESHOLD = 180;
+const SWITCH_THRESHOLD = 280;
 
 // 当前 tab 状�?
 let currentTab = "entry"; // 默认entry
