@@ -362,7 +362,7 @@ export function hideFloatingPanel() {
 
 }
 
-// 定义标题中英文映射
+// 定义标题中英文映�?
 const sectionTitles = {
     brief: { zh: "简要释义", en: "Definition" },
     example: { zh: "例句", en: "e.g." },
@@ -502,6 +502,7 @@ export function renderPanelSections() {
         <section id="section-source"> </section>
         <section id="section-related-works"> </section>
         <section id="section-contributors"> </section>
+        <section id="section-contact"> </section>
         <section id="section-editors"> </section>
     `;
 
@@ -511,8 +512,9 @@ export function renderPanelSections() {
     const proposerSec = document.getElementById("section-proposers");
     const sourceSec = document.getElementById("section-source");
     const relatedSec = document.getElementById("section-related-works");
-    const contributorsSec = document.getElementById("section-contributors");
-    const editorsSec = document.getElementById("section-editors");
+    const contributorsSec = entryPanel.querySelector("#section-contributors");
+    const contactSec = entryPanel.querySelector("#section-contact");
+    const editorsSec = entryPanel.querySelector("#section-editors");
 
     const briefText = applyHashItalics(currentWord.brief_definition?.[lang] || "\u6682\u65e0\u7b80\u8981\u91ca\u4e49");
     briefSec.innerHTML = `<p class="left-title">${sectionTitles.brief[lang]}</p>
@@ -594,6 +596,16 @@ export function renderPanelSections() {
         : (lang === "en" ? "No contributor information yet." : "暂无贡献者信息");
     contributorsSec.innerHTML = `<p>${contributorText}</p>`;
 
+    const contactPrimaryText = lang === "en" ? "Please feel free to email us at the address below to report any errors or inaccuracies in our content; you are also welcome to submit entries for terms you are interested in. " : "欢迎邮件以下邮箱，告知我们内容上的讹误或不准确的地方，您也可以邮件投稿您感兴趣的词条。";
+    const contactSecondaryText = "hello@dunesworkshop.org";
+    if (contactSec) {
+        contactSec.innerHTML = `
+                            <div>
+                                <p>${contactPrimaryText}</p>
+                                <p>${contactSecondaryText}</p>
+                            </div>`;
+    }
+
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>
                         <div id="editors-container">
                         ${currentWord.editors.map(editor => `<p>${applyHashItalics(editor?.[lang])}</p>`).join('')}
@@ -664,24 +676,36 @@ function renderCommentSection() {
         }).join('') : emptyCommentsLabel}
 
         <section id="section-contributors"> </section>
+        <section id="section-contact"> </section>
         <section id="section-editors"> </section>        
     `;
 
     const contributorsSec = document.getElementById("section-contributors");
+    const contactSec = document.getElementById("section-contact");
     const editorsSec = document.getElementById("section-editors");
 
     const contributorsInComment = Array.isArray(currentWord.contributors) ? currentWord.contributors : [];
     const contributorNamesInComment = contributorsInComment.map(c => {
         const name = c?.name?.[lang] || "";
         const role = c?.role?.[lang] || "";
-        return name ? `${name}${role ? `, ${role}` : ""}` : "";
+        return name ? `${name}${role ? ` (${role})` : ""}` : "";
     }).filter(Boolean);
     const contributorTextInComment = contributorNamesInComment.length
         ? (lang === "en"
             ? `The contributor for this entry is ${contributorNamesInComment.join(", ")}.`
-            : `本期词条的贡献者是${contributorNamesInComment.join("、")}。`)
+            : `本期词条的贡献者是${contributorNamesInComment.join(", ")}。`)
         : (lang === "en" ? "No contributor information yet." : "暂无贡献者信息");
-    contributorsSec.innerHTML = `<p>${applyHashItalics(contributorTextInComment)}</p>`;
+    contributorsSec.innerHTML = `<p>${contributorTextInComment}</p>`;
+
+    const contactPrimaryTextInComment = lang === "en" ? "Please feel free to email us at the address below to report any errors or inaccuracies in our content; you are also welcome to submit entries for terms you are interested in. " : "欢迎邮件以下邮箱，告知我们内容上的讹误或不准确的地方，您也可以邮件投稿您感兴趣的词条。";
+    const contactSecondaryTextInComment = "hello@dunesworkshop.org";
+    if (contactSec) {
+        contactSec.innerHTML = `
+                            <div>
+                                <p>${contactPrimaryTextInComment}</p>
+                                <p>${contactSecondaryTextInComment}</p>
+                            </div>`;
+    }
 
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>
                         <div id="editors-container">
@@ -705,7 +729,7 @@ function renderCommentSection() {
 
     // 为每个note section添加折叠/展开功能
     const noteSections = Array.from(
-        contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-editors)')
+        contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-contact):not(#section-editors)')
     );
 
     const clearNoteLayout = () => {
@@ -750,7 +774,7 @@ function initTabs() {
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); // 防止触发panel的点击事件
+            e.stopPropagation(); // 防止触发panel的点击事�?
             const tabName = btn.dataset.tab;
             switchTab(tabName);
         });
@@ -762,10 +786,10 @@ initTabs();
 
 // === Tab 边缘切换逻辑 ===
 
-// 阈值（像素），表示scroll touchmove 的力度
+// 阈值（像素），表示scroll touchmove 的力�?
 const SWITCH_THRESHOLD = 180;
 
-// 当前 tab 状态
+// 当前 tab 状�?
 let currentTab = "entry"; // 默认entry
 
 // 监听 tab 按钮，保 currentTab 同步（已在initTabs中处理）
@@ -774,7 +798,7 @@ function switchTab(tabName) {
     const entryPanel = queryFloating('.panel-entry');
     const commentPanel = queryFloating('.panel-comment');
     
-    // 更新所有panel的tab按钮状态
+    // 更新所有panel的tab按钮状�?
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => {
         btn.classList.remove('active');
@@ -783,7 +807,7 @@ function switchTab(tabName) {
         }
     });
     
-    // 切换panel的active状态
+    // 切换panel的active状�?
     if (tabName === "entry") {
         if (entryPanel) entryPanel.classList.add('active');
         if (commentPanel) commentPanel.classList.remove('active');
@@ -905,7 +929,7 @@ export function resetFloatingPanelState() {
     if (!contentScroll) return;
 
     contentScroll.classList.remove('notes-mode');
-    const noteSections = contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-editors)');
+    const noteSections = contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-contact):not(#section-editors)');
     noteSections.forEach((sec) => {
         sec.classList.remove('note-expanded', 'note-above', 'note-below', 'note-below-first');
     });
@@ -1128,6 +1152,10 @@ function renderScrollMarkers(panelType = 'entry') {
         {
             id: "section-contributors",
             label: sectionTitles.contributors
+        },
+        {
+            id: "section-contact",
+            label: sectionTitles.contact
         },
         {
             id: "section-editors",

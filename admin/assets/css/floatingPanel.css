@@ -309,7 +309,7 @@
     background-color: #EEE9DB;
 }
 /* 仅前三个comment section显示上边阴影 */
-.panel-comment .panel-bottom section:not(#section-contributors):not(#section-editors) {
+.panel-comment .panel-bottom section:not(#section-contributors):not(#section-contact):not(#section-editors) {
     box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.10);
 }
 
@@ -329,11 +329,11 @@
     box-shadow: none;
 }
 
-#about-panel .panel-comment .panel-bottom section:not(#section-contributors):not(#section-editors) {
+#about-panel .panel-comment .panel-bottom section:not(#section-contributors):not(#section-contact):not(#section-editors) {
     box-shadow: none !important;
 }
 
-#about-panel .panel-comment.active .panel-bottom section:not(.note-expanded):not(#section-contributors):not(#section-editors):hover {
+#about-panel .panel-comment.active .panel-bottom section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors):hover {
     transform: none;
     box-shadow: none;
 }
@@ -378,8 +378,9 @@
     margin-top: auto;
 }
 
-/* Hide contributors/editors when a note is expanded */
+/* Keep footer sections visible in notes-mode */
 #floating-panel .panel-comment .panel-bottom.notes-mode #section-contributors,
+#floating-panel .panel-comment .panel-bottom.notes-mode #section-contact,
 #floating-panel .panel-comment .panel-bottom.notes-mode #section-editors {
     display: none;
 }
@@ -396,32 +397,38 @@ html:lang(en) #floating-panel .panel-comment {
     --note-title-pad: 16px;
 }
 
-#floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded) {
+#floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors) {
     align-items: center;
     height: calc((var(--note-title-line-height) * var(--note-title-lines)) + (var(--note-title-pad) * 2));
     padding: var(--note-title-pad) 64px var(--note-title-pad) 32px;
     overflow: hidden;
 }
 
-#floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded) .note-body {
+#floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors) .note-body {
     display: none;
 }
 
-#floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded) .left-title {
+#floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors) .left-title {
     line-height: var(--note-title-line-height);
     padding: 0;
 }
 
 /* 折叠状态 hover 时向上位移，露出更多内容（不影响其他元素布局） */
-.panel-comment.active .panel-bottom section:not(.note-expanded):not(#section-contributors):not(#section-editors):hover {
+.panel-comment.active .panel-bottom section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors):hover {
     transform: translateY(-20px);
 }
 
 /* 排除contributors和editors section，它们不需要折叠 */
 .panel-comment .panel-bottom section#section-contributors,
+.panel-comment .panel-bottom section#section-contact,
 .panel-comment .panel-bottom section#section-editors {
     max-height: none;
+    overflow: visible;
     cursor: default;
+    background-color: transparent;
+    box-shadow: none;
+    transform: none;
+    transition: none;
 }
 .panel-comment .panel-bottom .note-body,
 .panel-comment .panel-bottom .note-body * {
