@@ -1,0 +1,124 @@
+{
+  "logs": [
+    {
+      "zh": "沙丘词典起始于2019年，最初的发布形式是公众号的推送。飞樾做这个栏目最早的动力来自于对“建筑学黑话”的不满——建筑师和建筑学生把一些（往往挪用自其他学科的）名词挂在嘴边，但很多时候存在滥用、误用，望文生义的问题。这些词语筑高了建筑学小圈子的边界，也变成了某种显示身份的时尚单品。其实，真想要把这些词的含义搞清楚，并不困难。如果愿意花时间，专业术语或者学科黑话，都是可被理解的。这是做沙丘词典的初衷。",
+      "en": "Dunes Dictionary began in 2019, initially launched as a series of posts on WeChat. The earliest motivation for Feiyue to create this column stemmed from a frustration with \"architectural jargon\"—architects and students would constantly drop terms (often appropriated from other disciplines), but these were frequently subject to abuse, misuse, or literal misinterpretations. These words fortified the boundaries of the architectural clique, turning into fashionable accessories used to signal status. In reality, clarifying the meaning of these terms is not difficult. Given the time, professional terminology or disciplinary jargon is entirely comprehensible. This was the original intent behind Dunes Dictionary."
+    },
+    {
+      "zh": "如何把我们做沙丘词典的初衷，做的过程中变化的想法，对于学术的理解，对于语言的理解，以及对于网页端的设计和开发的想法，一并呈现出来？淇森提到了“开发者日志”这个主意，团队都很喜欢。这也就是你正在读到的东西。",
+      "en": "How could we present our initial vision, the evolving ideas during the process, our understanding of academia and language, and our thoughts on the design and development of the web version all at once? Qisen suggested the idea of a \"Developer’s Log,\" which the team loved. That is precisely what you are reading now."
+    },
+    {
+      "zh": "在网页端的设计和开发中，雅伦提及，有没有可能把词条放置在一个地图上？这个点子很快被大家接受被喜爱，最终也成为了网页主空间的基础。",
+      "en": "During the design and development of the website, Yalun asked: is it possible to place the entries on a map? This idea was quickly embraced and eventually became the foundation of the website’s main interface."
+    },
+    {
+      "zh": "在一个注意力完全被平台瓜分的年代，我们为什么还要做网页？自建的、独立的网页还是有许多无法替代的自由度，特别是交互和设计上。",
+      "en": "In an era where attention is completely carved up by platforms, why bother building a website? A self-built, independent site still offers an irreplaceable degree of freedom, particularly in terms of interaction and design."
+    },
+    {
+      "zh": "因为AI的兴起（要查明白一个词是什么意思太容易了），以及小红书上越来越多做“xx词条”的账号，沙丘词典必须要想清楚自身的独特性在哪里——我们不是为了去做一个大而全的词典，而是想要把每个词条作为“楔子”，去撬动跨学科的联想、讨论和互动。这是一个社群，一种智识生活，一个高度“活人感”的共创行动。",
+      "en": "With the rise of AI (making it all too easy to look up a definition) and the proliferation of \"Glossary\" accounts on Xiaohongshu, Dunes Dictionary had to clarify its own uniqueness. We are not aiming to create an all-encompassing encyclopedia; instead, we want each entry to act as a \"wedge\" to pry open interdisciplinary associations, discussions, and interactions. This is a community, a form of intellectual life, and a co-creative act with a profound \"human presence.\""
+    },
+    {
+      "zh": "我们讨厌故弄玄虚、故作高深，但也讨厌过于绝对地否认晦涩和高深的词汇。我们不故意增加阅读门槛，但也不把充满复杂性的概念强行化为大白话，在过度简化中损失其原有的丰度。",
+      "en": "We despise mystification and pseudo-profundity, yet we also loathe the absolute dismissal of obscure or sophisticated vocabulary. We do not intentionally raise the barrier to entry, but we refuse to force complex concepts into oversimplified \"plain language\" at the cost of their original richness."
+    },
+    {
+      "zh": "为了赶第一期内测上线，我们得准备好五十个词。这五十个词是什么样的词，需要进一步分类吗？首先，我们会把之前发在公众号上的词重新梳理一下，发到网页端。这里面可能有学术词汇，也有一些网络热词。我们最终决定不对其进行“区别对待”。这些词之间的区别可能没有我们想象中的巨大。",
+      "en": "To meet the deadline for the first internal beta launch, we need to prepare fifty terms. What kind of words are these, and do they need further categorization? First, we will re-evaluate the terms previously published on WeChat and upload them to the website. These may include academic terms as well as internet slang. Ultimately, we decided not to treat them differently. The gap between these words might not be as vast as we imagine."
+    },
+    {
+      "zh": "避免用更多的专业术语来阐述专业术语。有些时候，谈论某个概念，无法绕过另一个与之相随或者相反的概念，这时我们可以在笔记中谈及它。",
+      "en": "Avoid explaining professional terminology with even more professional terminology. Occasionally, when discussing a concept, it is impossible to bypass another accompanying or opposing idea; in such cases, we can address it within the notes."
+    },
+    {
+      "zh": "作为组织者和协调者，要兼顾设计、开发、社群运营以及词条的编写和审阅，难免有时出现讹误。此处还需读者指正。",
+      "en": "As organizers and coordinators, juggling design, development, community operations, as well as the writing and reviewing of entries, errors are inevitable. Here, we invite our readers to provide corrections."
+    },
+    {
+      "zh": "好的学术性写作也应当是 entertaining 的，因为它构成了思想的灵光和火花。这并不意味着语言必须是严肃的或者必须是诙谐的。",
+      "en": "Good academic writing should also be entertaining, as it constitutes the aura and sparks of thought. This does not mean the language must be strictly solemn or intentionally witty."
+    },
+    {
+      "zh": "有一些词条，因其处于某个思想领域的深水区，难以在数百字的篇幅内，用简练、无专有名词的语言进行完整的阐释。这种矛盾总是难以化解，专业度和公众可达性的平衡还需编写者在此处艰难地平衡。",
+      "en": "Some entries, situated in the deep waters of a particular intellectual field, are difficult to explain fully in a concise manner without specialized terms within a few hundred words. This contradiction is perennial; the balance between professional rigor and public accessibility requires the writer to maintain a difficult equilibrium."
+    },
+    {
+      "zh": "学术性和娱乐性并不互斥。精准和严谨的写作并不必须以严肃或沉闷作为前提。呈现一个明晰的阐释，或者抛出一个充满挑战性的问题意识，它们都可以对思想产生奇妙的刺激，这种刺激很多时候能够带来entertaining的感受。",
+      "en": "Academism and entertainment are not mutually exclusive. Precise and rigorous writing does not necessitate a prerequisite of solemnity or dullness. Presenting a lucid explanation or posing a challenging problem-consciousness can both provide a marvelous stimulation to thought—a stimulation that often brings about an entertaining sensation."
+    },
+    {
+      "zh": "词条的阐释和笔记，应该能让一个有好奇心、有阅读能力、有文化体力，但没有太多专业知识储备的大一学生看懂。",
+      "en": "The explanations and notes of the entries should be understandable to a college freshman who possesses curiosity, reading comprehension, and \"cultural stamina,\" even if they lack a significant reserve of specialized knowledge."
+    },
+    {
+      "zh": "词条的本体在于其紧凑和明晰，但沙丘词典的笔记构成它启发性和创造力的部分。我们希望读者更期待读到的是笔记的部分。",
+      "en": "The core of an entry lies in its conciseness and clarity, but the notes of Dunes Dictionary constitute its heuristic and creative dimension. We hope our readers look forward to the notes most of all."
+    },
+    {
+      "zh": "沙丘词典的词条部分可以有AI参与资料收集、编写和润色，但笔记的部分应保证无AI参与。",
+      "en": "While AI may participate in the data collection, drafting, and polishing of the entry descriptions, the notes must remain entirely AI-free."
+    },
+    {
+      "zh": "在笔记中，我们应看到理论如何与生活着的人发生了关联。也就是说，沙丘词典应该让人感到那些词条不再是悬在空中、高高在上的理论知识，而是能看到它们与自己的生活，乃至集体的、时代的情绪的联系。不管是选词、编写还是笔记的撰写，这些内容需要与当下时代的公共生活有关。当然，有什么理论与之完全无关呢？",
+      "en": "In the notes, we should see how theory intersects with living people. That is to say, Dunes Dictionary should make those terms feel no longer like lofty, suspended theoretical knowledge, but rather reveal their connection to one's own life, and even to collective and epochal sentiments. Whether it is the selection of words, the drafting, or the writing of notes, the content must relate to contemporary public life. Though, in truth, what theory is entirely irrelevant to it?"
+    },
+    {
+      "zh": "除了地图之外，档案（archive）和沙丘（dunes）是另外两个网站设计的重要参考锚点。我们在设计词条展开页（点击词条以后右侧展开的页面）时参考了档案资料的格式造型。在整个网站的背景微动画上，我们使用了浮动的沙粒作为美学概念。",
+      "en": "Beyond the map, the \"archive\" and \"dunes\" serve as two other vital reference anchors for the website's design. When designing the expanded view for entries (the panel that slides out from the right upon clicking), we drew inspiration from the formatting and styling of archival records. For the subtle background animations across the site, we utilized floating grains of sand as our aesthetic concept."
+    },
+    {
+      "zh": "沙丘研究所叫这个名字并不是因为科幻小说或后来的电影《沙丘》，我们取这个名字主要是因为喜欢博尔赫斯的短篇小说《沙之书》。沙丘比喻了不断流动和变化，正像是互联网，正像是我们的语言使用。",
+      "en": "Dunes Workshop did not take its name from the science fiction novel or the subsequent film #Dune#; we chose this name primarily out of our fondness for Jorge Luis Borges’ short story #The Book of Sand#. Dunes are a metaphor for constant flux and transformation—much like the internet, and much like our usage of language."
+    },
+    {
+      "zh": "读完沙丘词典的词条+笔记之后的感觉应当是产生了更多的联想和思考，而不是仅仅获得了事实，盖棺定论于是合上书本。我们追求一种“打开”而不是“关闭”。",
+      "en": "The feeling after reading an entry and its notes in Dunes Dictionary should be one of generating further associations and reflections, rather than merely acquiring facts, reaching a final verdict, and closing the book. We pursue an \"opening up\" rather than a \"closing down.\""
+    },
+    {
+      "zh": "沙丘词典并不声称自己客观中立，我们的选词都出于每个编写者对于自身学科的个体介入方式以及出自本心的热忱。",
+      "en": "Dunes Dictionary makes no claim to objectivity or neutrality; our selection of terms stems from each writer’s individual engagement with their discipline and their heartfelt passion."
+    },
+    {
+      "zh": "沙丘词典并不追求成为最全最大的词典。被收录的词都经过了编写者的主观挑选。最终，这些词条落在这张世界地图上，确有“欧洲中心主义”的样貌，很多词集中在欧洲区域，而南美洲、非洲几乎一个词条都没有收录——这提示我们未来在收录词条时更在意文化多元性。不过，这似乎也起到了mapping the words（把词条放在一张地图上）的作用：它把这种知识生产的集中化更视觉化地表达给了我们自己看。",
+      "en": "Dunes Dictionary does not strive to be the most comprehensive or largest encyclopedia. The terms included have all undergone subjective selection by our writers. Ultimately, as these entries landed on this world map, a semblance of \"Eurocentrism\" indeed emerged: many terms are concentrated in Europe, while South America and Africa have almost no entries at all. This serves as a reminder for us to prioritize cultural diversity in future selections. However, this also fulfills a function of \"mapping the words\": it visualizes the centralization of knowledge production for us to see."
+    },
+    {
+      "zh": "我们尽量在解释某个专有词汇的时候不去使用更多的专有词汇。但在一个 meta level，用词语解释词语必然最终指向一个悲剧性的徒劳。",
+      "en": "We try our best to avoid using more specialized vocabulary when explaining a specific term. Yet, on a meta level, using words to explain words inevitably points toward a tragic futility."
+    },
+    {
+      "zh": "本雅明、德里达、拉康……给我们做不完的词。",
+      "en": "Walter Benjamin, Jacques Derrida, Jacques Lacan... they provide us with an endless supply of entries."
+    },
+    {
+      "zh": "邀请回了孟汀作为沙丘词典的 core team 的一员。2025年暑期即告知了孟汀做网页的想法，中间搁置良久，再找她加入的时候十分汗颜。好在她还是二话不说开心加入了。至此第一阶段的 core team 齐整了：飞樾、雅伦、若竹、淇森、孟汀。当然还有开发同学一齐。",
+      "en": "We invited Mengting back as a member of the Dunes Dictionary core team. I first mentioned the idea of building a website to Mengting in the summer of 2025, but it was shelved for a long time. I felt quite embarrassed when I reached out to her again to join, but luckily, she joined happily without hesitation. With that, the first-stage core team was complete: Feiyue, Yalun, Ruozhu, Qisen, and Mengting—along with our developer, Yiqi."
+    },
+    {
+      "zh": "内测想要做好五十个词，最终做好了四十余个。虽然大多数词条是来自于从前发过的推送，但整个编辑、润色、整合工作还是大到可怕。",
+      "en": "We wanted to complete fifty words for the internal beta but ended up with over forty. Although most entries originated from previously published posts, the overall workload of editing, polishing, and integration was still terrifyingly massive."
+    },
+    {
+      "zh": "移动端还是得完成设计，在第一轮内测时，沙丘词典网页的传播很大依赖微信。用户如果非要把链接粘贴到电脑端再打开，我们会流失掉很多访客。",
+      "en": "The mobile design must still be finalized. During the first round of internal beta, the dissemination of the Dunes Dictionary website relied heavily on WeChat. If users are forced to copy and paste the link into a desktop browser to open it, we will lose a significant number of visitors."
+    },
+    {
+      "zh": "决定以“档案热”作为第一个首页词条。它指向了做词典这件事半身。",
+      "en": "We decided to use \"Archive Fever\" as the first homepage entry. It points toward the very essence of creating a dictionary."
+    },
+    {
+      "zh": "第一个版本的网页搭建，我们使用飞书多维表格作为后台数据汇总的地方。总体很好用，但文本输入暂时没找到办法弄斜体。暂时办法是在需要斜体的字符前后加#，自建后台系统解析CSV文件的时候，自动把两个#之间的字符转换为斜体。等下一个版本，还是要自建一个专属的后台，方便编辑、归档、上传网页、修改等。",
+      "en": "For the construction of the first version of the website, we used Lark Base (Bitalable) as our backend data hub. Overall, it's very useful, but we haven't found a way to input italics for text yet. Our temporary solution is to add # before and after characters that need to be italicized; when our self-built backend system parses the CSV files, it automatically converts the characters between two # symbols into italics. For the next version, we will still need to build a dedicated proprietary backend to facilitate editing, archiving, uploading, and modifying the site."
+    },
+    {
+      "zh": "完成了沙丘词典中台（Dunes Dictionary Dashboard）网页，能够监看前端网页的访问数据情况。",
+      "en": "The Dunes Dictionary Dashboard was completed, allowing us to monitor the traffic data of the frontend website."
+    },
+    {
+      "zh": "AI工具立大功，帮到了developer一齐很多。",
+      "en": "AI tools played a major role, helping our developer Yiqi immensely."
+    }
+  ]
+}

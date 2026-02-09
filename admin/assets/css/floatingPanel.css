@@ -86,6 +86,7 @@
     transform: translateX(-88px);
 }
 
+
 /* Inactive panel should not allow inner interactions (tabs stay clickable) */
 .panel-entry:not(.active) .panel-main,
 .panel-entry:not(.active) .panel-bottom,
@@ -274,6 +275,24 @@
     flex-direction: row;
 }
 
+#about-panel .devlog-list {
+    margin: 0;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    list-style: decimal;
+    list-style-position: outside;
+}
+
+#about-panel .devlog-list li {
+    padding-left: 8px;
+}
+
+#about-panel .devlog-list p {
+    margin: 0;
+}
+
 /* 笔记panel的section默认折叠 */
 .panel-comment .panel-bottom section {
     max-height: 260px;
@@ -287,6 +306,31 @@
 /* 仅前三个comment section显示上边阴影 */
 .panel-comment .panel-bottom section:not(#section-contributors):not(#section-editors) {
     box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.10);
+}
+
+/* About panel devlog should be plain text without comment behaviors */
+#about-panel .panel-comment .panel-bottom section {
+    max-height: none;
+    overflow: visible;
+    cursor: default;
+    background-color: transparent;
+    box-shadow: none;
+    transform: none;
+    transition: none;
+}
+
+#about-panel .panel-comment .panel-bottom section:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+#about-panel .panel-comment .panel-bottom section:not(#section-contributors):not(#section-editors) {
+    box-shadow: none !important;
+}
+
+#about-panel .panel-comment.active .panel-bottom section:not(.note-expanded):not(#section-contributors):not(#section-editors):hover {
+    transform: none;
+    box-shadow: none;
 }
 
 /* 展开状态 */

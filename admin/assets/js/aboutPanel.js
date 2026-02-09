@@ -39,6 +39,71 @@ function getAboutText(value, lang) {
     return "";
 }
 
+const DEVLOG_URL = "/content/draft/devlog.json";
+let devlogData = {
+    logs: []
+};
+let devlogLoaded = false;
+let devlogLoading = null;
+
+function normalizeDevlogPayload(payload) {
+    if (!payload) return { logs: [] };
+    const candidate = payload.devlog || payload;
+    if (Array.isArray(candidate)) {
+        return { logs: candidate };
+    }
+    if (typeof candidate === "object") {
+        if (Array.isArray(candidate.logs)) {
+            return { logs: candidate.logs };
+        }
+        if (candidate.zh || candidate.en) {
+            return { logs: [candidate] };
+        }
+    }
+    return { logs: [] };
+}
+
+function loadDevlogData() {
+    if (devlogLoaded) return Promise.resolve(devlogData);
+    if (devlogLoading) return devlogLoading;
+    devlogLoading = fetch(DEVLOG_URL)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Failed to load devlog.");
+            }
+            return response.json();
+        })
+        .then((payload) => {
+            devlogData = normalizeDevlogPayload(payload);
+            devlogLoaded = true;
+            return devlogData;
+        })
+        .catch((error) => {
+            console.warn("Devlog load failed:", error);
+            devlogLoaded = true;
+            return devlogData;
+        });
+    return devlogLoading;
+}
+
+function escapeHtml(value) {
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function resolveDevlogContent(lang) {
+    if (!devlogData.logs || devlogData.logs.length === 0) return "";
+    const items = devlogData.logs.map((entry) => {
+        const text = entry ? (entry[lang] || "") : "";
+        return `<li><p>${escapeHtml(text)}</p></li>`;
+    }).join("");
+    return `<ol class="devlog-list">${items}</ol>`;
+}
+
 
 function renderAboutContent() {
     const lang = normalizeLang(state.currentLang || "zh");
@@ -52,6 +117,7 @@ function renderAboutContent() {
 
     const devlogTitle = devlogPanel.querySelector('.panel-top');
     const devlogBottom = devlogPanel.querySelector('.panel-bottom');
+    const devlogContent = resolveDevlogContent(lang);
 
 
     if (lang === "en") {
@@ -113,7 +179,7 @@ function renderAboutContent() {
         devlogBottom.innerHTML = `
         <section>
             <div>
-               
+                ${devlogContent}
             </div>
         </section>
         `;
@@ -178,7 +244,7 @@ function renderAboutContent() {
         devlogBottom.innerHTML = `
         <section>
             <div>
-                
+                ${devlogContent}
             </div>
         </section>
         `;
@@ -420,6 +486,11 @@ export function showAboutPanel() {
     document.dispatchEvent(new CustomEvent('about-panel:show'));
 
     renderAboutContent();
+    loadDevlogData().then(() => {
+        if (isAboutVisible) {
+            renderAboutContent();
+        }
+    });
     switchAboutTab("about");
 
     const view = document.getElementById("universe-view");
