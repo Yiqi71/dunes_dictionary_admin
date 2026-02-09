@@ -39,17 +39,6 @@ function getAboutText(value, lang) {
     return "";
 }
 
-function resolveAboutContent(lang) {
-    const about = window.about || {};
-    const aboutContent = about.about || about.content || "";
-    return getAboutText(aboutContent, lang);
-}
-
-function resolveDevlogContent(lang) {
-    const about = window.about || {};
-    const devlogContent = about.devlog || about.developer_log || about.log || about.logs || about.journal || about.content || "";
-    return getAboutText(devlogContent, lang);
-}
 
 function renderAboutContent() {
     const lang = normalizeLang(state.currentLang || "zh");
@@ -64,8 +53,6 @@ function renderAboutContent() {
     const devlogTitle = devlogPanel.querySelector('.panel-top');
     const devlogBottom = devlogPanel.querySelector('.panel-bottom');
 
-    const aboutContent = resolveAboutContent(lang);
-    const devlogContent = resolveDevlogContent(lang);
 
     if (lang === "en") {
         aboutTitle.innerHTML = `
@@ -77,30 +64,36 @@ function renderAboutContent() {
         aboutBottom.innerHTML = `
         <section>
             <div>
-                <p class="about-intro">Dunes Dictionary is a living index of concepts and terminologies central to different disciplines. We consider those selected concepts and terms as incisions to the vast academic terrain —opening up a constellation of ideas and further inquiries. By offering clear and accessible explanations, we aim to dismantle academic barriers and reveal the rich connections among fields.
-<br><br>Founded in 2019 as a series of social-media posts by Dunes Workshop?an artist-researcher collective with an architectural background?the project has grown through co-creation workshops with early-career scholars across disciplines. In 2025, it moved to this carefully structured website, now a growing repository of concepts, definitions, and related commentaries.
-<br><br>If you are interested in participating in our co-creation workshops, please read the Guide. We also welcome commentary essays on existing terms and proposals for new terms.
-<br><br>Embracing the internet?s fluid and relational landscape, we strive to give just enough structure to wander and enough openness to inspire.</p>
-                ${aboutContent}
+                <p class="about-intro">Dunes Dictionary is a living index of concepts and terminologies, comprising keyword explanations and notes from diverse contributors. We view "words" as "incisions" into the vast terrain. By offering clear, accessible explanations, these words become entry points that open up a constellation of ideas and further inquiries. Whether a personal perspective, a story, a field visit, a dialogue, a correspondence, or a translation, these notes—stemming from "words"—provide an openness and depth that dismantles barriers and reveals the rich interconnectedness of different fields.
+<br><br>In an era where jargon and buzzwords run rampant, Dunes Dictionary does not aim to establish authority; rather, it is an invitation to examine how words can help us navigate contemporary life. Started in 2019 as a series of social media posts to introduce architectural jargon, the project has expanded with contributions from young scholars across the humanities and sciences, evolving into this website launched in 2026. A biannual publication on themed topics is also part of the Dunes Dictionary project.
+<br><br>We invite you to be part of this growing repository of concepts, definitions, and critical notes. If you are interested in participating in our workshops and/or contributing your notes, please contact us.
+<br><br>Precise and lucid, intersecting and illuminating, focused and diverse. Dunes Dictionary strives to provide just enough structure to inspire, and enough openness to wander.
+                </p>
             </div>
         </section>
         <section>
             <p class="left-title">Staff Team</p>
             <div>
-                <p>Feiyue Chen, Yalun Li, Ruozhu Li, Qisen Song, Mengting Lu, Yiqi Chen</p>
+                <p>Feiyue Chen, Yalun Li, Ruozhu Li, Qisen Song, Mengting Lü, Yiqi Chen</p>
             </div>
         </section>
         <section>
             <p class="left-title">Content Contributors</p>
             <div>
-                <p>2024 Co-creation Workshop participants:</p>
-                <p>Chloe (张路尧), Huiran (易慧然), Yorkson (刘楚彬), Xiao Wang (小王), Shelley, Yunxi (蕴溪), Haoran (夏浩然), Hydrogen (黄河清), Xinran (欣然), 汪义, 吕孟汀, Sandy (张三折), Alex Jin (金炜东), William (梁慧琳/小蓝), Yuanlong (朱元龙), Diane (筱闻), Brook (太白), Lin (魏莞琳), Yaqi (雅淇), Sati</p>
+                <p>2024 Workshop participants: </p>
+                <p>Chloe Zhang, Huiran Yi, Yorkson Liu, Xiao Wang, Shelley, Yunxi, Haoran Xia, Hydrogen Huang, Xinran, Yi Wang, Mengting Lü, Sandy Zhang, Alex Jin, William Liang, Yuanlong Zhu, Diane, Brook, WanLin Wei,  Yaqi, Sati</p>
             </div>
         </section>
         <section>
             <p class="left-title">Web Design & Development</p>
             <div>
-                <p>Dunes Creative (Feiyue Chen, Yalun Li, Ruozhu Li, Yiqi Chen)</p>
+                <p>Dunes Creative</p>
+            </div>
+        </section>
+        <section>
+            <p class="left-title">Special Thanks</p>
+            <div>
+                <p>Shanshan Duan, Tairan An, Xuan Luo, Sibo Zhu, Jin Gao, Zi Meng, Yiran Zhang, (Daisy) Ziyan Zhang, Chang Liu</p>
             </div>
         </section>
         <section>
@@ -120,7 +113,7 @@ function renderAboutContent() {
         devlogBottom.innerHTML = `
         <section>
             <div>
-                ${devlogContent}
+               
             </div>
         </section>
         `;
@@ -134,43 +127,42 @@ function renderAboutContent() {
         aboutBottom.innerHTML = `
         <section>
             <div>
-                <p class="about-intro">《沙丘词典》是一部持续生长的思想索引，收录了跨学科领域的关键概念与术语。
-
-<br><br>我们将这些遴选出的概念与术语，视为剖开广袤学术疆域的一道道切口——由此开启一片由思想构成的星丛，并激发更深远的追问。我们旨在通过清晰晓畅的阐释，消融学术的藩篱，展现不同学科之间丰厚的内在联结。
-<br><br>自2019年起，沙丘研究所（一个由具建筑学背景的艺术家与研究者组成的团体）在社交媒体上分享建筑和城市学相关的专业术语。在后续的五年时间里，沙丘词典通过工作坊的形式邀请了各学科的青年学者进行共创，将词典延展至更多的学科。在2025 年，我们将此前分散在社交媒体上的内容迁移至网站。这个精心架构的网站便于读者跟随词条之间的联系进行探索。
-<br><br>若您有兴趣参与我们的共创工作坊，请阅读“参与指南”。我们也欢迎您针对现有词条撰写评注，或举荐新的词条。
-<br><br>沙丘词典仍在持续的生长，我们拥抱互联网流动且联结的状态，希望提供足够结构以便漫游。</p>
-                ${aboutContent}
+                <p class="about-intro">沙丘词典编写词条的释义，并收录多元贡献者们对它们的笔记。这是一个跨学科的、持续生长的思想索引。
+<br><br>我们将“词条”视为剖开广袤学术疆域的“切口”。通过提供明白晓畅的阐释，词条开启一片由思想构成的星丛，并激发更深远的追问。无论是个人视角、故事、田野考察、对话、书信还是翻译，这些围绕“词条”的“笔记”提供了一种开放性与深度，消融学术的藩篱，并展现不同学科之间丰厚的内在联结。
+<br><br>在行业黑话、缩写词、网络用语横行的当下，沙丘词典并不想要树立权威；而是为了发起一场关于“如何解释并定义当下”的思考运动。最早在2019年，沙丘研究所在微信公众平台发布了“沙丘词典”这个推送栏目，其初衷是解释建筑术语。此后，通过不同学科的青年学者的贡献，项目得以不断扩展，演变为这个于 2026 年上线的网站。同时，半年刊出版物也是项目的一部分。
+<br><br>若您有兴趣参与我们的共创工作坊或贡献你的笔记，请联系我们。我们诚邀你加入这个不断生长的档案库。
+<br><br>直白而精准，交织而启发，聚焦而多元。我们希望赋予词典恰如其分的结构，能够提供让思想漫游、灵感涌现的开放空间。
+                </p>
             </div>
         </section>
         
         <section>
-            <p class="left-title">Staff Team</p>
+            <p class="left-title">工作人员</p>
             <div>
-                <p>Feiyue Chen, Yalun Li, Ruozhu Li, Qisen Song, Mengting Lu, Yiqi Chen</p>
+                <p>陈飞樾、李雅伦、李若竹、宋淇森、吕孟汀、陈一齐</p>
             </div>
         </section>
         <section>
-            <p class="left-title">Content Contributors</p>
+            <p class="left-title">内容贡献者</p>
             <div>
-                <p>2024 Co-creation Workshop participants:</p>
-                <p>Chloe (张路尧), Huiran (易慧然), Yorkson (刘楚彬), Xiao Wang (小王), Shelley, Yunxi (蕴溪), Haoran (夏浩然), Hydrogen (黄河清), Xinran (欣然), 汪义, 吕孟汀, Sandy (张三折), Alex Jin (金炜东), William (梁慧琳/小蓝), Yuanlong (朱元龙), Diane (筱闻), Brook (太白), Lin (魏莞琳), Yaqi (雅淇), Sati</p>
+                <p>2024 共创会成员:</p>
+                <p>张路尧、易慧然、刘楚彬、小王、Shelley、蕴溪、夏浩然、黄河清、欣然、汪义、吕孟汀、张三折、金炜东、梁慧琳、朱元龙、筱闻、太白、魏莞琳、雅淇、Sati</p>
             </div>
         </section>
         <section>
-            <p class="left-title">Web Design & Development</p>
+            <p class="left-title">网页设计与开发</p>
             <div>
-                <p>Dunes Creative (Feiyue Chen, Yalun Li, Ruozhu Li, Yiqi Chen)</p>
+                <p>沙丘创意</p>
             </div>
         </section>
         <section>
-            <p class="left-title">Special Thanks</p>
+            <p class="left-title">特别感谢</p>
             <div>
-                <p>Shanshan Duan, Tairan An, Sibo Zhu, Jin Gao, Xuan Luo</p>
+                <p>段珊珊、安太然、罗璇、朱思博、高金、孟子、张一然、张子彦、刘唱</p>
             </div>
         </section>
-<section>
-            <p class="left-title">联系方式</p>
+        <section>
+            <p class="left-title">联系我们</p>
                 <div>
                     <p>hello@dunesworkshop.org</p>
                 </div>
@@ -186,7 +178,7 @@ function renderAboutContent() {
         devlogBottom.innerHTML = `
         <section>
             <div>
-                ${devlogContent}
+                
             </div>
         </section>
         `;

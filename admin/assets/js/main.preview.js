@@ -99,7 +99,6 @@ langBtn.addEventListener("click", () => {
 });
 
 window.allWords = [];
-window.about = {};
 
 const yearPeriodColors = [
     "#F9D67A", // 空白/-2000
@@ -559,7 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            window.about = data.about;
             window.allWords = data.words;
             const homeIdRaw = data?.meta?.home_node_id;
             const homeIdNum = Number(homeIdRaw);
