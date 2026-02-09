@@ -188,7 +188,7 @@ function ensureExpandButton() {
         // 添加样式
         expandBtn.style.cssText = `
             position: absolute;
-            left: -6.5vw;
+            left: calc(-1vw - 68px - 40px);
             top: 20px;
             background: none;
             border: none;
