@@ -393,6 +393,11 @@ body[data-scale="5"] .detail-title {
     margin: 15px 12px;
 }
 
+.detail i {
+    font-style: italic;
+    margin: 0;
+}
+
 .detail-title {
     font-family: "ChillDIN";
     font-weight: 700;

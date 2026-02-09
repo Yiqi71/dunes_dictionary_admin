@@ -366,7 +366,7 @@ export function updateWordDetails() {
     }
     if (word.commentAbs) {
         const comment = word.commentAbs;
-        const content = comment.content?.[lang] || "";
+        const content = applyHashItalics(comment.content?.[lang] || "");
         const author = comment.author?.[lang] || "";
         const authorBlock = author ? ` <p>${author}</p>` : "";
         commentContent.innerHTML = `<div class="comment-abs-content">${content}</div>${authorBlock}`;
