@@ -680,9 +680,9 @@ function renderCommentSection() {
         <section id="section-editors"> </section>        
     `;
 
-    const contributorsSec = document.getElementById("section-contributors");
-    const contactSec = document.getElementById("section-contact");
-    const editorsSec = document.getElementById("section-editors");
+    const contributorsSec = commentPanel.querySelector("#section-contributors");
+    const contactSec = commentPanel.querySelector("#section-contact");
+    const editorsSec = commentPanel.querySelector("#section-editors");
 
     const contributorsInComment = Array.isArray(currentWord.contributors) ? currentWord.contributors : [];
     const contributorNamesInComment = contributorsInComment.map(c => {
@@ -697,7 +697,7 @@ function renderCommentSection() {
         : (lang === "en" ? "No contributor information yet." : "暂无贡献者信息");
     contributorsSec.innerHTML = `<p>${contributorTextInComment}</p>`;
 
-    const contactPrimaryTextInComment = lang === "en" ? "Please feel free to email us at the address below to report any errors or inaccuracies in our content; you are also welcome to submit entries for terms you are interested in. " : "欢迎邮件以下邮箱，告知我们内容上的讹误或不准确的地方，您也可以邮件投稿您感兴趣的词条。";
+    const contactPrimaryTextInComment = lang === "en" ? "If you have any historical anecdotes or extended reflections regarding this entry, or if you have experienced a direct connection between this theoretical concept and daily life, we welcome you to submit your notes to the following email address: " : "如果您知道关于这个词条的历史趣闻，延展思考或者能感受到过这个理论概念与生活的直接联系，欢迎将你的笔记投稿至以下邮箱。";
     const contactSecondaryTextInComment = "hello@dunesworkshop.org";
     if (contactSec) {
         contactSec.innerHTML = `

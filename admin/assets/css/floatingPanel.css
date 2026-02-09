@@ -382,7 +382,13 @@
 #floating-panel .panel-comment .panel-bottom.notes-mode #section-contributors,
 #floating-panel .panel-comment .panel-bottom.notes-mode #section-contact,
 #floating-panel .panel-comment .panel-bottom.notes-mode #section-editors {
-    display: none;
+    display: none !important;
+}
+
+#floating-panel .panel-comment .panel-bottom #section-contributors,
+#floating-panel .panel-comment .panel-bottom #section-contact,
+#floating-panel .panel-comment .panel-bottom #section-editors {
+    display: block;
 }
 
 /* Collapsed notes stick to top/bottom and only show left title height */
@@ -429,6 +435,14 @@ html:lang(en) #floating-panel .panel-comment {
     box-shadow: none;
     transform: none;
     transition: none;
+}
+
+/* Comment panel: keep editors title in the left column */
+.panel-comment .panel-bottom #section-editors {
+    display: grid !important;
+    grid-template-columns: 82px 1fr;
+    /* column-gap: 20px; */
+    align-items: start;
 }
 .panel-comment .panel-bottom .note-body,
 .panel-comment .panel-bottom .note-body * {
@@ -791,6 +805,7 @@ line-height: 40px;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
+    width: 82px !important;
 }
 
 /* 笔记面板的left-title颜色 */
@@ -802,8 +817,8 @@ line-height: 40px;
     font-family: "Barlow Condensed";
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
+    font-weight: 600;
+    line-height: 20px; 
 }
 
 .panel-bottom .diagram-caption {
