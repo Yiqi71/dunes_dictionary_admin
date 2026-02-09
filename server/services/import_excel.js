@@ -88,7 +88,10 @@ const COLS = {
   NOTE2_BG: "\u7b14\u8bb0\u8d21\u732e\u8005\u5b66\u79d12",
   NOTE3_CONTENT: "\u7b14\u8bb0\u5185\u5bb93",
   NOTE3_AUTHOR: "\u7b14\u8bb0\u8d21\u732e\u80053",
-  NOTE3_BG: "\u7b14\u8bb0\u8d21\u732e\u8005\u5b66\u79d13"
+  NOTE3_BG: "\u7b14\u8bb0\u8d21\u732e\u8005\u5b66\u79d13",
+  NOTE4_CONTENT: "\u7b14\u8bb0\u5185\u5bb94",
+  NOTE4_AUTHOR: "\u7b14\u8bb0\u8d21\u732e\u80054",
+  NOTE4_BG: "\u7b14\u8bb0\u8d21\u732e\u8005\u5b66\u79d14"
 };
 
 // Image compression rules by column header
@@ -645,6 +648,16 @@ async function importExcelToDraft(xlsxPath) {
       enRow ? cell(enRow, COLS.NOTE3_AUTHOR) : "",
       cell(zhRow, COLS.NOTE3_BG),
       enRow ? cell(enRow, COLS.NOTE3_BG) : "",
+      w.contribute_date
+    );
+    pushComment(
+      w,
+      cell(zhRow, COLS.NOTE4_CONTENT),
+      enRow ? cell(enRow, COLS.NOTE4_CONTENT) : "",
+      cell(zhRow, COLS.NOTE4_AUTHOR),
+      enRow ? cell(enRow, COLS.NOTE4_AUTHOR) : "",
+      cell(zhRow, COLS.NOTE4_BG),
+      enRow ? cell(enRow, COLS.NOTE4_BG) : "",
       w.contribute_date
     );
 

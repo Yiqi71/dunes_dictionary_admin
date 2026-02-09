@@ -285,7 +285,7 @@
     background-color: #EEE9DB;
 }
 /* 仅前三个comment section显示上边阴影 */
-.panel-comment .panel-bottom section:not(#section-contributors):not(#section-editors):nth-of-type(-n+3) {
+.panel-comment .panel-bottom section:not(#section-contributors):not(#section-editors) {
     box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.10);
 }
 
