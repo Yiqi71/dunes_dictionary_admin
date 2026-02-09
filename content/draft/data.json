@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-02-09T00:47:02.212Z",
-    "source": "cc453a5cbd3645190761c459e7c5f9ab",
+    "generated_at": "2026-02-09T05:33:43.051Z",
+    "source": "83d390267ef61fdc9f688b0191ee8418",
     "home_node_id": 13
   },
   "words": [
@@ -24,7 +24,10 @@
             "en": "Anthony Downs",
             "ori": "Anthony Downs"
           },
-          "year": "1930—2021",
+          "year": {
+            "zh": "1930—2021",
+            "en": "1930—2021"
+          },
           "role": {
             "zh": "经济学家",
             "en": "economist"
@@ -195,7 +198,10 @@
             "en": "James J. Gibson",
             "ori": "James J. Gibson"
           },
-          "year": "1904—1979",
+          "year": {
+            "zh": "1904—1979",
+            "en": "1904—1979"
+          },
           "role": {
             "zh": "心理学家",
             "en": "psychologist"
@@ -374,7 +380,10 @@
             "en": "George E. Atwood",
             "ori": "George E. Atwood"
           },
-          "year": "1944—",
+          "year": {
+            "zh": "1944—",
+            "en": "1944—"
+          },
           "role": {
             "zh": "临床心理学家",
             "en": "clinical psychologist"
@@ -545,7 +554,10 @@
             "en": "Marc Augé",
             "ori": "Marc Augé"
           },
-          "year": "1935-2023",
+          "year": {
+            "zh": "1935-2023",
+            "en": "1935-2023"
+          },
           "role": {
             "zh": "人类学家",
             "en": "anthropologist"
@@ -686,7 +698,10 @@
             "en": "Leonardo Loredan",
             "ori": "Leonardo Loredan"
           },
-          "year": "1436-1521",
+          "year": {
+            "zh": "1436-1521",
+            "en": "1436-1521"
+          },
           "role": {
             "zh": "总督",
             "en": "Doge of Venice"
@@ -836,7 +851,10 @@
             "en": "Michel Foucault",
             "ori": "Michel Foucault"
           },
-          "year": "1926-1984",
+          "year": {
+            "zh": "1926-1984",
+            "en": "1926-1984"
+          },
           "role": {
             "zh": "哲学家、社会理论家",
             "en": "philosopher and social theorist"
@@ -994,7 +1012,10 @@
             "en": "Michel Foucault",
             "ori": "Michel Foucault"
           },
-          "year": "1926-1984",
+          "year": {
+            "zh": "1926-1984",
+            "en": "1926-1984"
+          },
           "role": {
             "zh": "哲学家、社会理论家",
             "en": "philosopher and social theorist"
@@ -1113,7 +1134,10 @@
             "en": "Michel Foucault",
             "ori": "Michel Foucault"
           },
-          "year": "1926-1984",
+          "year": {
+            "zh": "1926-1984",
+            "en": "1926-1984"
+          },
           "role": {
             "zh": "哲学家、社会理论家",
             "en": "philosopher and social theorist"
@@ -1263,7 +1287,10 @@
             "en": "Norbert Wiener",
             "ori": "Norbert Wiener"
           },
-          "year": "1894-1964",
+          "year": {
+            "zh": "1894-1964",
+            "en": "1894-1964"
+          },
           "role": {
             "zh": "数学家、哲学家",
             "en": "mathematician and philosopher"
@@ -1406,7 +1433,10 @@
             "en": "Georg Simmel",
             "ori": "Georg Simmel"
           },
-          "year": "1858-1918",
+          "year": {
+            "zh": "1858-1918",
+            "en": "1858-1918"
+          },
           "role": {
             "zh": "社会学家",
             "en": "sociologist"
@@ -1545,7 +1575,10 @@
             "en": "Walter Benjamin",
             "ori": "Walter Benjamin"
           },
-          "year": "1892-1940",
+          "year": {
+            "zh": "1892-1940",
+            "en": "1892-1940"
+          },
           "role": {
             "zh": "哲学家",
             "en": "philosopher"
@@ -1687,7 +1720,10 @@
             "en": "André Gide",
             "ori": "André Gide"
           },
-          "year": "1869-1951",
+          "year": {
+            "zh": "1869-1951",
+            "en": "1869-1951"
+          },
           "role": {
             "zh": "作家",
             "en": "writer"
@@ -1879,7 +1915,10 @@
             "en": "Jacques Derrida",
             "ori": "Jacques Derrida"
           },
-          "year": "1930-2004",
+          "year": {
+            "zh": "1930-2004",
+            "en": "1930-2004"
+          },
           "role": {
             "zh": "哲学家",
             "en": "philosopher"
@@ -2063,7 +2102,10 @@
             "en": "Stephen Best\nSharon Marcus",
             "ori": "Stephen Best\nSharon Marcus"
           },
-          "year": "1965—\n1966—",
+          "year": {
+            "zh": "1965—\n1966—",
+            "en": "1965—\n1966—"
+          },
           "role": {
             "zh": "文学理论家\n文学学者",
             "en": "literary theorist\nliterary scholar"
@@ -2193,7 +2235,10 @@
             "en": "David Graeber",
             "ori": "David Graeber"
           },
-          "year": "1961-2020",
+          "year": {
+            "zh": "1961-2020",
+            "en": "1961-2020"
+          },
           "role": {
             "zh": "人类学家",
             "en": "anthropologist"
@@ -2324,7 +2369,10 @@
             "en": "Chang Kyung-sup",
             "ori": "장경섭"
           },
-          "year": "1962-",
+          "year": {
+            "zh": "1962-",
+            "en": "1962-"
+          },
           "role": {
             "zh": "社会学家",
             "en": "sociologist"
@@ -2433,7 +2481,10 @@
             "en": "Arnold van Gennep",
             "ori": "Arnold van Gennep"
           },
-          "year": "1873-1957",
+          "year": {
+            "zh": "1873-1957",
+            "en": "1873-1957"
+          },
           "role": {
             "zh": "民族志学家、民俗学家",
             "en": "ethnographer and folklorist"
@@ -2612,7 +2663,10 @@
             "en": "Alfred Adler",
             "ori": "Alfred Adler"
           },
-          "year": "1870-1937",
+          "year": {
+            "zh": "1870-1937",
+            "en": "1870-1937"
+          },
           "role": {
             "zh": "心理学家",
             "en": "psychologist"
@@ -2760,7 +2814,10 @@
             "en": "Dziga Vertov",
             "ori": "Dziga Vertov"
           },
-          "year": "1896-1954",
+          "year": {
+            "zh": "1896-1954",
+            "en": "1896-1954"
+          },
           "role": {
             "zh": "导演、电影理论家",
             "en": "director and film theorist"
@@ -2918,7 +2975,10 @@
             "en": "Donna Haraway",
             "ori": "Donna Haraway"
           },
-          "year": "1944-",
+          "year": {
+            "zh": "1944-",
+            "en": "1944-"
+          },
           "role": {
             "zh": "哲学家",
             "en": "philosopher"
@@ -3114,7 +3174,10 @@
             "en": "Giorgio Agamben",
             "ori": "Giorgio Agamben"
           },
-          "year": "1942-",
+          "year": {
+            "zh": "1942-",
+            "en": "1942-"
+          },
           "role": {
             "zh": "哲学家",
             "en": "philosopher"
@@ -3270,7 +3333,10 @@
             "en": "Rudolf Clausius",
             "ori": "Rudolf Clausius"
           },
-          "year": "1822—1888",
+          "year": {
+            "zh": "1822—1888",
+            "en": "1822—1888"
+          },
           "role": {
             "zh": "物理学家、数学家",
             "en": "physicist and mathematician"
@@ -3416,7 +3482,10 @@
             "en": "Tina Brown",
             "ori": "Tina Brown"
           },
-          "year": "1953—至今",
+          "year": {
+            "zh": "1953—至今",
+            "en": "1953—Now"
+          },
           "role": {
             "zh": "编辑和作家",
             "en": "editor and author"
@@ -3550,7 +3619,10 @@
             "en": "Jacques Derrida",
             "ori": "Jacques Derrida"
           },
-          "year": "1930-2004",
+          "year": {
+            "zh": "1930-2004",
+            "en": "1930-2004"
+          },
           "role": {
             "zh": "哲学家",
             "en": "philosopher"
@@ -3665,7 +3737,10 @@
             "en": "Joseph T. Shipley",
             "ori": "Joseph T. Shipley"
           },
-          "year": "1893—1988",
+          "year": {
+            "zh": "1893—1988",
+            "en": "1893—1988"
+          },
           "role": {
             "zh": "戏剧评论家、词源学家",
             "en": "drama critic and etymologist"
@@ -3834,7 +3909,10 @@
             "en": "Yuen Ren Chao",
             "ori": "Yuen Ren Chao"
           },
-          "year": "1892—1982",
+          "year": {
+            "zh": "1892—1982",
+            "en": "1892—1982"
+          },
           "role": {
             "zh": "语言学家",
             "en": "linguist"
@@ -3964,7 +4042,10 @@
             "en": "Karl Schwarzschild",
             "ori": "Karl Schwarzschild"
           },
-          "year": "1873–1916",
+          "year": {
+            "zh": "1873–1916",
+            "en": "1873–1916"
+          },
           "role": {
             "zh": "物理学家、天文学家",
             "en": "physicist, astronomer"
@@ -4114,7 +4195,10 @@
             "en": "Sigmund Freud",
             "ori": "Sigmund Freud"
           },
-          "year": "1856–1939",
+          "year": {
+            "zh": "1856–1939",
+            "en": "1856–1939"
+          },
           "role": {
             "zh": "心理学家",
             "en": "psychologist"
@@ -4238,7 +4322,10 @@
             "en": "Zygmunt Bauman",
             "ori": "Zygmunt Bauman"
           },
-          "year": "1925—2017",
+          "year": {
+            "zh": "1925—2017",
+            "en": "1925—2017"
+          },
           "role": {
             "zh": "社会学家",
             "en": "sociologist"
@@ -4360,7 +4447,10 @@
             "en": "Xiang Biao",
             "ori": "项飙"
           },
-          "year": "1972—至今",
+          "year": {
+            "zh": "1972—至今",
+            "en": "1972—Now"
+          },
           "role": {
             "zh": "人类学家",
             "en": "Anthropologist"
@@ -4552,7 +4642,10 @@
             "en": "Rita Astuti",
             "ori": "Rita Astuti"
           },
-          "year": "1960—",
+          "year": {
+            "zh": "1960—",
+            "en": "1960—"
+          },
           "role": {
             "zh": "人类学家",
             "en": "Anthropologist"
@@ -4715,7 +4808,10 @@
             "en": "Sir William Jones",
             "ori": "Sir William Jones"
           },
-          "year": "1746—1794",
+          "year": {
+            "zh": "1746—1794",
+            "en": "1746—1794"
+          },
           "role": {
             "zh": "语言学家、法学家",
             "en": "Philologist and Jurist"
@@ -4819,7 +4915,10 @@
             "en": "Auguste Brachet",
             "ori": "Auguste Brachet"
           },
-          "year": "1844—1898",
+          "year": {
+            "zh": "1844—1898",
+            "en": "1844—1898"
+          },
           "role": {
             "zh": "罗曼语语文学家",
             "en": "role"
@@ -4921,7 +5020,10 @@
             "en": "Wang Li",
             "ori": "王力"
           },
-          "year": "1900–1986",
+          "year": {
+            "zh": "1900–1986",
+            "en": "1900–1986"
+          },
           "role": {
             "zh": "语言学家",
             "en": "linguist"
@@ -5075,7 +5177,10 @@
             "en": "Wang Li",
             "ori": "王力"
           },
-          "year": "1900–1986",
+          "year": {
+            "zh": "1900–1986",
+            "en": "1900–1986"
+          },
           "role": {
             "zh": "语言学家",
             "en": "linguist"
@@ -5237,7 +5342,10 @@
             "en": "Guy Debord",
             "ori": "Guy Debord"
           },
-          "year": "1931—1994",
+          "year": {
+            "zh": "1931—1994",
+            "en": "1931—1994"
+          },
           "role": {
             "zh": "思想家、电影导演",
             "en": "thinker and film director"
@@ -5382,7 +5490,10 @@
             "en": "E. Summerson Carr",
             "ori": "E. Summerson Carr"
           },
-          "year": "Circa 1970-",
+          "year": {
+            "zh": "Circa 1970-",
+            "en": "Circa 1970-"
+          },
           "role": {
             "zh": "社会文化人类学家",
             "en": "social and cultural anthropologist"
@@ -5522,7 +5633,10 @@
             "en": "Anne Allison",
             "ori": "Anne Allison"
           },
-          "year": "1950—",
+          "year": {
+            "zh": "1950—",
+            "en": "1950—"
+          },
           "role": {
             "zh": "文化人类学家",
             "en": "cultural anthropologist"
@@ -5653,7 +5767,10 @@
             "en": "Charles Baudelaire",
             "ori": "Charles Baudelaire"
           },
-          "year": "1821—1867",
+          "year": {
+            "zh": "1821—1867",
+            "en": "1821—1867"
+          },
           "role": {
             "zh": "诗人、评论家",
             "en": "poet and critic"
@@ -5869,7 +5986,10 @@
             "en": "Julian Kücklich",
             "ori": "Julian Kücklich"
           },
-          "year": "1973—至今",
+          "year": {
+            "zh": "1973—至今",
+            "en": "1973–present"
+          },
           "role": {
             "zh": "媒体科学家",
             "en": "media scientist"
@@ -5992,7 +6112,10 @@
             "en": "proposer",
             "ori": "proposerOri"
           },
-          "year": "TODO: year",
+          "year": {
+            "zh": "No year info yet.",
+            "en": "No year info yet."
+          },
           "role": {
             "zh": "身份",
             "en": "role"
@@ -6160,7 +6283,10 @@
             "en": "Minan Wang",
             "ori": "汪民安"
           },
-          "year": "1969—至今",
+          "year": {
+            "zh": "1969—至今",
+            "en": "1969—present"
+          },
           "role": {
             "zh": "中国哲学家、编译者",
             "en": "philosopher"
@@ -6312,7 +6438,10 @@
             "en": "Giambattista Nolli",
             "ori": "Giambattista Nolli"
           },
-          "year": "1701—1756",
+          "year": {
+            "zh": "1701—1756",
+            "en": "1701—1756"
+          },
           "role": {
             "zh": "意大利建筑师",
             "en": "architect"
@@ -6451,7 +6580,10 @@
             "en": "Marc Augé",
             "ori": "Marc Augé"
           },
-          "year": "1935-2023",
+          "year": {
+            "zh": "1935-2023",
+            "en": "1935-2023"
+          },
           "role": {
             "zh": "人类学家",
             "en": "anthropologist"

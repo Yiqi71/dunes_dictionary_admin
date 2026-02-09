@@ -560,7 +560,7 @@ export function renderPanelSections() {
         <img alt="proposer's img" src=${resolveImagePath(proposer.image)} loading="lazy" decoding="async"></img>
         <div>
             <p class="proposer-name">${proposer.name?.[lang]}</p>
-            <p class="proposer-year">${proposer.year}</p>
+            <p class="proposer-year">${proposer.year?.[lang] || proposer.year?.zh || proposer.year?.en || proposer.year || ""}</p>
             <p class="proposer-year">${proposer.role?.[lang]}</p>
         </div>
     `;

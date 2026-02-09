@@ -159,7 +159,7 @@ function toWordTemplate() {
 
     proposers: [{
       name: { zh: placeholderZH("暂无提出者"), en: placeholderEN("No proponent info yet."), ori: placeholderEN("No proponent info yet.") },
-      year: "No year info yet.",
+      year: { zh: "No year info yet.", en: "No year info yet." },
       role: { zh: placeholderZH("暂无身份"), en: placeholderEN("No role info yet.") },
       image: "No proponent image yet."
     }],
@@ -476,7 +476,11 @@ async function importExcelToDraft(xlsxPath) {
     w.proposers[0].name.en = proposerEn || placeholderEN("proposer");
     w.proposers[0].name.ori = proposerOri || placeholderEN("proposerOri");
 
-    w.proposers[0].year = cell(zhRow, COLS.PROPOSER_YEAR) || (enRow ? cell(enRow, COLS.PROPOSER_YEAR) : "") || "TODO: year";
+    const proposerYearZh = cell(zhRow, COLS.PROPOSER_YEAR);
+    const proposerYearEn = enRow ? cell(enRow, COLS.PROPOSER_YEAR) : "";
+    const yearZh = proposerYearZh || proposerYearEn || "No year info yet.";
+    const yearEn = proposerYearEn || proposerYearZh || yearZh;
+    w.proposers[0].year = { zh: yearZh, en: yearEn };
     w.proposers[0].role.zh = cell(zhRow, COLS.PROPOSER_ROLE) || placeholderZH("\u8eab\u4efd");
     w.proposers[0].role.en = (enRow ? cell(enRow, COLS.PROPOSER_ROLE) : "") || placeholderEN("role");
 
