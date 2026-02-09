@@ -779,6 +779,24 @@ line-height: 40px;
 /* Entry panel: brief definition body (en) */
 :lang(en) .panel-entry #section-brief h3 {
     text-align: left;
+    color: #FAF4E5;
+    font-family: "Barlow Condensed";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px; /* 111.111% */
+    letter-spacing: 0;
+}
+
+:lang(en) .panel-entry section div p {
+    color: #FAF4E5;
+    /* body */
+    font-family: "Barlow Condensed";
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 26px; /* 123.81% */
+    letter-spacing: 0.42px;
 }
 
 /* Entry panel body text (Chinese) */
@@ -903,6 +921,15 @@ line-height: 40px;
     padding: 0;
 }
 
+:lang(en) .panel-entry .panel-bottom #editors-container p {
+    color: #FAF4E5;
+    font-family: "Barlow Condensed";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
 /* 笔记面板的editors-container p颜色 */
 .panel-comment .panel-bottom #editors-container p {
     color: #43403B;
@@ -915,9 +942,9 @@ line-height: 40px;
 :lang(en) .panel-comment .panel-bottom #editors-container p {
     color: #43403B;
     font-family: "Barlow Condensed";
-    font-size: 16px;
+    font-size: 15px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 20px;
 }
 
@@ -1015,57 +1042,6 @@ line-height: 40px;
     width: 33vw !important; /* 比默认的406px更大 */
     height: 33vh !important; /* 比默认的270px更大 */
     object-fit: cover !important;
-}
-
-/* 展开状态下字体 */
-#floating-panel.expanded .panel-bottom p,
-#about-panel.expanded .panel-bottom p {
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 450;
-    line-height: 28px;
-    letter-spacing: 1.2px;
-}
-
-#floating-panel.expanded .panel-bottom .left-title,
-#about-panel.expanded .panel-bottom .left-title {
-    color: #FAF4E5;
-    font-family: "ChillDINGothic", "ChillDIN";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-}
-
-#floating-panel.expanded .panel-bottom h2,
-#about-panel.expanded .panel-bottom h2 {
-    font-size: 45px; 
-    font-weight: 600;
-    letter-spacing: 2.25px;
-}
-
-#floating-panel.expanded .panel-bottom h3,
-#about-panel.expanded .panel-bottom h3 {
-    font-family: "ChillDIN";
-    font-size: 28px; 
-    line-height: 35px; 
-    font-weight: 400;
-    letter-spacing: 1.4px;
-}
-#floating-panel.expanded .panel-bottom .diagram-caption,
-#about-panel.expanded .panel-bottom .diagram-caption {
-    font-size: 20px;
-    letter-spacing: 1px;
-}
-#floating-panel.expanded .panel-bottom .proposer-name,
-#about-panel.expanded .panel-bottom .proposer-name {
-    font-size: 28px;
-    letter-spacing: 1.4px;
-}
-#floating-panel.expanded .panel-bottom .proposer-year p,
-#about-panel.expanded .panel-bottom .proposer-year p {
-    font-size: 24px;
-    line-height: 28px;
-    letter-spacing: 1.2px;
 }
 
 /* 展开状态下笔记面板的颜色 */

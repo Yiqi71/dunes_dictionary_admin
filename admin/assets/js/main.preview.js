@@ -22,6 +22,59 @@ function normalizeLang(code) {
     return v.startsWith("en") ? "en" : "zh";
 }
 
+function attachImageVisibility(img) {
+    if (!img || img.dataset.imgVisibilityBound === "1") return;
+    img.dataset.imgVisibilityBound = "1";
+    const update = () => {
+        const src = img.getAttribute("src");
+        if (!src) {
+            img.style.display = "none";
+        } else {
+            img.style.display = "";
+        }
+    };
+    img.addEventListener("error", () => {
+        img.style.display = "none";
+    });
+    img.addEventListener("load", () => {
+        if (img.getAttribute("src")) {
+            img.style.display = "";
+        }
+    });
+    update();
+}
+
+function setupImageVisibilityWatcher() {
+    document.querySelectorAll("img").forEach(attachImageVisibility);
+    const observer = new MutationObserver((mutations) => {
+        for (const m of mutations) {
+            if (m.type === "childList") {
+                m.addedNodes.forEach((node) => {
+                    if (node.nodeType !== 1) return;
+                    if (node.tagName === "IMG") {
+                        attachImageVisibility(node);
+                    } else {
+                        node.querySelectorAll?.("img").forEach(attachImageVisibility);
+                    }
+                });
+            } else if (m.type === "attributes" && m.attributeName === "src") {
+                const target = m.target;
+                if (target && target.tagName === "IMG") {
+                    attachImageVisibility(target);
+                }
+            }
+        }
+    });
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["src"]
+    });
+}
+
+document.addEventListener("DOMContentLoaded", setupImageVisibilityWatcher, { once: true });
+
 
 function endSession(reason = "unknown") {
     if (sessionStartTs === null) return;
