@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-02-09T06:35:30.591Z",
-    "source": "764f35d66544b339597dc325bff94b34",
+    "generated_at": "2026-02-09T07:15:57.934Z",
+    "source": "63d82b3a4afea276ee30e5a44a558e3e",
     "home_node_id": 13
   },
   "words": [
@@ -2069,12 +2069,12 @@
             "en": "Contributor"
           },
           "author": {
-            "zh": "",
-            "en": ""
-          },
-          "background": {
             "zh": "Sati",
             "en": "Sati"
+          },
+          "background": {
+            "zh": "比较文学",
+            "en": "Comparative Literature"
           },
           "date": "2024/06/10"
         },
@@ -2126,7 +2126,7 @@
             "zh": "文学理论家\n文学学者",
             "en": "literary theorist\nliterary scholar"
           },
-          "image": "No proponent image yet."
+          "image": "images/表层阅读_proposer.jpg"
         }
       ],
       "source": {
@@ -2207,7 +2207,7 @@
         },
         "author": {
           "zh": "孟汀",
-          "en": "TODO"
+          "en": "Mengting"
         }
       },
       "comments": [
@@ -2222,11 +2222,11 @@
           },
           "author": {
             "zh": "孟汀",
-            "en": ""
+            "en": "Mengting"
           },
           "background": {
             "zh": "人类学",
-            "en": ""
+            "en": "Anthropology"
           },
           "date": "2023/12/25"
         }
@@ -2349,7 +2349,7 @@
         },
         "author": {
           "zh": "孟汀",
-          "en": "TODO"
+          "en": "Mengting"
         }
       },
       "comments": [
@@ -2364,11 +2364,11 @@
           },
           "author": {
             "zh": "孟汀",
-            "en": ""
+            "en": "Mengting"
           },
           "background": {
             "zh": "人类学",
-            "en": ""
+            "en": "Anthropology"
           },
           "date": "2023/12/06"
         }
@@ -2643,11 +2643,11 @@
           },
           "author": {
             "zh": "飞樾",
-            "en": ""
+            "en": "Feiyue"
           },
           "background": {
             "zh": "城市学",
-            "en": ""
+            "en": "Urbanism"
           },
           "date": "2024/07/22"
         },
@@ -3455,19 +3455,19 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "暂无导读",
-          "en": "No abstract info yet."
+          "zh": "克劳修斯于1865年将其用希腊语命名为en-tropie（意为intrinsic direction，即内在方向）",
+          "en": "...in 1865, Clausius named it \"en-tropie\" using Greek roots (meaning \"intrinsic direction\")."
         },
         "author": {
-          "zh": "暂无作者信息",
-          "en": "No author info yet."
+          "zh": "黄河清",
+          "en": "Heqing Huang"
         }
       },
       "comments": [
         {
           "content": {
-            "zh": "这是词条贡献者黄河清原始的扩展释义，因为篇幅较长，在网站的扩展释义部分，我们把它缩写了。这里是原有的文本：\n在热力学中，熵和温度、内能等类似，是描述物体热力学状态的一个物理量。在可逆过程中，物体的熵增等于其吸收的热量与温度之比的累积变化。对于孤立系统的自发过程，熵的变化总是朝着增大的方向。\n克劳修斯(Rudolf Clausius)基于卡诺(Carnot)等人对热机做功效率的深入研究，总结出了热力学第二定律，即热量不会自发从低温物体向高温物体传递，并提出了熵(entropy)的定义。熵体现了热力学自发过程的一种不可逆方向，因此克劳修斯于1865年将其用希腊语命名为en-tropie(意为intrinsic direction，即内在方向)。中文名称\"熵\"来源于\"热温商\"，即\"热量除以温度\"的含义。\n以两个恒温物体间的热传递为例，低温物体吸收热量，熵增大；高温物体放出热量，熵减小。由于二者温度不同，低温物体的熵增比高温物体的熵减绝对值更大，因此总体的熵是增大的。\n熵增定律和热力学第二定律，是人类首次发现的不等式形式的物理规律。它们给出了热量转化为有用功的效率的理论上限，为第一次工业革命以来的热机等热力学装置的研究提供了重要的理论指导，终结了第二类永动机等\"免费能源\"的幻想。\n \n在统计物理学中，熵描述系统的无序程度，是熵的热力学定义的延展。玻尔兹曼(LudwigBoltzmann)于1872年提出了熵的统计物理学定义，即熵正比于系统在给定宏观状态下可取的微观状态数的对数，这种定义称为玻尔兹曼熵。宏观状态指系统的内能、体积、粒子数等热力学状态，微观状态则指系统中每个分子的位置、动量等力学状态。\n以两种溶液的混合导致的熵增过程为例，假设容器中左半部分为红墨水，右半部分为蓝墨水，中间由隔板分隔开;撤去隔板，经过足够长的时间后二者均匀混合。混合前，红墨水的分子位置仅限于左半部分，蓝墨水的分子仅限于右半部分，二者构成的系统相对有序;混合后，两种分子不再受限于左右分隔，可取的微观位置状态变多，系统的无序程度升高，熵增大。\n玻尔兹曼熵的理论给出了熵增定律的微观统计解释，即熵增过程发生的概率是最大的。吉布斯(JosiahGibbs)于1878年将玻尔兹曼熵的定义推广至微观状态不等概率的体系，即吉布斯熵。冯诺依曼(JohnvonNeumann)于1927年将这一定义进一步推广至量子混合态体系，即冯诺依曼熵。遗憾的是，在玻尔兹曼提出理论时，尚未有实验证明分子的存在，因而他的学说在当时未获广泛认可。但玻尔兹曼的先驱性理论不仅首次在宏观和微观世界间构建了桥梁，而且对概率和信息的认识产生了深远的影响。\n \n在信息论中，熵是随机变量所含的不确定度或信息的度量。由香农(ClaudeShannon)在其1948年的论文<<通信的数学理论>> (A Mathematical Theory ofCommunication)中首次提出，又称为信息熵(Information entropy)。与吉布斯熵的定义类似，一个随机变量的信息熵等于其概率分布的负对数的平均值。随机变量中，出现概率越小的事件蕴含的信息熵越大。\n以数据压缩为例，假设一段数据序列由{A,B,C,D}四种字符构成，四者出现的频率均为1/4，则每个字符的信息熵为2比特，平均需要至少两个二进制位对其编码，如可将其对应编码为{00,01,10,11}。假设四种字符出现的频率不均等，依次为{1/2,1/4,1/8,1/8}，则每个字符的信息熵为1.75比特，平均只需要1.75个二进制位对其编码，如可将其对应编码为{0,10,110,111}，其中频率越高的字符采用的编码越短。\n第三次工业革命以来，香农开创的信息论成为通信、编码、计算机科学等众多信息技术的重要理论基石。",
-            "en": "This is the original #description# provided by our contributor, Huang Heqing. Due to its length, we have condensed it for the #description# section on our website. The original, full-length text is as follows:\nIn thermodynamics, entropy, similar to temperature and internal energy, is a physical quantity that describes the thermodynamic state of an object. In a reversible process, the increase in an object's entropy is equal to the cumulative change of the ratio of the heat it absorbs to its temperature. For spontaneous processes within an isolated system, the change in entropy always moves in an increasing direction.\nBased on the in-depth research of #Carnot# and others on the efficiency of heat engines, #Rudolf Clausius# summarized the #Second Law of Thermodynamics#—stating that heat does not spontaneously transfer from a low-temperature object to a high-temperature object—and proposed the definition of \"entropy.\" Entropy embodies an irreversible direction of spontaneous thermodynamic processes; thus, in 1865, Clausius named it \"en-tropie\" using Greek roots (meaning \"intrinsic direction\"). The Chinese name \"熵\" (shāng) originates from \"热温商\" (rè wēn shāng), literally the \"heat-temperature quotient,\" meaning heat divided by temperature.\nTaking heat transfer between two constant-temperature objects as an example: the low-temperature object absorbs heat and its entropy increases, while the high-temperature object releases heat and its entropy decreases. Because their temperatures differ, the absolute value of the entropy increase in the low-temperature object is greater than the entropy decrease in the high-temperature object; therefore, the total entropy increases.\nThe Law of Entropy Increase and the Second Law of Thermodynamics represent the first time humanity discovered physical laws in the form of inequalities. They provide the theoretical upper limit for the efficiency of converting heat into useful work, offering crucial theoretical guidance for the study of thermodynamic devices like heat engines since the First Industrial Revolution, and ending the fantasy of \"free energy\" such as perpetual motion machines of the second kind.\nIn statistical physics, entropy describes the degree of disorder in a system, serving as an extension of its thermodynamic definition. #Ludwig Boltzmann# proposed the statistical physics definition of entropy in 1872, stating that entropy is proportional to the logarithm of the number of microstates available to a system under a given macroscopic state—a definition known as #Boltzmann entropy#. The macroscopic state refers to thermodynamic properties like internal energy, volume, and particle count, while the microstate refers to the mechanical states of every molecule in the system, such as their positions and momenta.\nConsider the entropy increase process caused by the mixing of two solutions: suppose the left half of a container holds red ink and the right half holds blue ink, separated by a partition. Once the partition is removed and enough time passes, the two mix uniformly. Before mixing, the positions of the red ink molecules are restricted to the left half and the blue ink molecules to the right, making the system relatively ordered. After mixing, the molecules are no longer confined by the separation; the number of available microstates increases, the degree of disorder rises, and thus entropy grows.\nBoltzmann's theory provides a microscopic statistical explanation for the Law of Entropy Increase: that the entropy-increasing process is the most probable to occur. In 1878, #Josiah Gibbs# generalized this definition to systems with unequal probabilities of microstates, known as #Gibbs entropy#. #John von Neumann# further extended this in 1927 to quantum mixed-state systems, known as #von Neumann entropy#. Regrettably, when Boltzmann proposed his theory, the existence of molecules had not yet been experimentally proven, so his doctrine was not widely recognized at the time. However, Boltzmann’s pioneering theory not only built the first bridge between the macroscopic and microscopic worlds but also had a profound impact on our understanding of probability and information.\nIn information theory, entropy is a measure of the uncertainty or information content contained in a random variable. It was first proposed by #Claude Shannon# in his 1948 paper \"A Mathematical Theory of Communication\", and is also known as #information entropy#. Similar to the definition of Gibbs entropy, the information entropy of a random variable is equal to the average value of the negative logarithm of its probability distribution. Within a random variable, events with a lower probability of occurrence contain higher information entropy.\nTake data compression as an example: suppose a data sequence consists of four characters {A, B, C, D}, each appearing with a frequency of 1/4. In this case, the information entropy of each character is 2 bits, requiring at least two binary digits for encoding (e.g., {00, 01, 10, 11}). If the frequencies are unequal—say {1/2, 1/4, 1/8, 1/8}—the information entropy per character drops to 1.75 bits. On average, only 1.75 binary digits are needed for encoding (e.g., {0, 10, 110, 111}), where characters with higher frequencies use shorter codes.\nSince the Third Industrial Revolution, the information theory founded by Shannon has become a vital theoretical cornerstone for numerous information technologies, including communication, coding, and computer science."
+            "zh": "这是词条贡献者黄河清原始的扩展释义，因为篇幅较长，在网站的扩展释义部分，我们把它缩写了。这里是原有的文本：\n在热力学中，熵和温度、内能等类似，是描述物体热力学状态的一个物理量。在可逆过程中，物体的熵增等于其吸收的热量与温度之比的累积变化。对于孤立系统的自发过程，熵的变化总是朝着增大的方向。\n克劳修斯（Rudolf Clausius）基于卡诺（Carnot）等人对热机做功效率的深入研究，总结出了热力学第二定律，即热量不会自发从低温物体向高温物体传递，并提出了熵（entropy）的定义。熵体现了热力学自发过程的一种不可逆方向，因此克劳修斯于1865年将其用希腊语命名为en-tropie（意为intrinsic direction，即内在方向）。中文名称\"熵\"来源于\"热温商\"，即\"热量除以温度\"的含义。\n以两个恒温物体间的热传递为例，低温物体吸收热量，熵增大；高温物体放出热量，熵减小。由于二者温度不同，低温物体的熵增比高温物体的熵减绝对值更大，因此总体的熵是增大的。\n熵增定律和热力学第二定律，是人类首次发现的不等式形式的物理规律。它们给出了热量转化为有用功的效率的理论上限，为第一次工业革命以来的热机等热力学装置的研究提供了重要的理论指导，终结了第二类永动机等\"免费能源\"的幻想。\n \n在统计物理学中，熵描述系统的无序程度，是熵的热力学定义的延展。玻尔兹曼（Ludwig Boltzmann）于1872年提出了熵的统计物理学定义，即熵正比于系统在给定宏观状态下可取的微观状态数的对数，这种定义称为玻尔兹曼熵。宏观状态指系统的内能、体积、粒子数等热力学状态，微观状态则指系统中每个分子的位置、动量等力学状态。\n以两种溶液的混合导致的熵增过程为例，假设容器中左半部分为红墨水，右半部分为蓝墨水，中间由隔板分隔开;撤去隔板，经过足够长的时间后二者均匀混合。混合前，红墨水的分子位置仅限于左半部分，蓝墨水的分子仅限于右半部分，二者构成的系统相对有序;混合后，两种分子不再受限于左右分隔，可取的微观位置状态变多，系统的无序程度升高，熵增大。\n玻尔兹曼熵的理论给出了熵增定律的微观统计解释，即熵增过程发生的概率是最大的。吉布斯(JosiahGibbs)于1878年将玻尔兹曼熵的定义推广至微观状态不等概率的体系，即吉布斯熵。冯·诺依曼（Johnvon Neumann）于1927年将这一定义进一步推广至量子混合态体系，即冯诺依曼熵。遗憾的是，在玻尔兹曼提出理论时，尚未有实验证明分子的存在，因而他的学说在当时未获广泛认可。但玻尔兹曼的先驱性理论不仅首次在宏观和微观世界间构建了桥梁，而且对概率和信息的认识产生了深远的影响。\n \n在信息论中，熵是随机变量所含的不确定度或信息的度量。由香农（Claude Shannon）在其1948年的论文《通信的数学理论（“A Mathematical Theory ofCommunication”）》中首次提出，又称为信息熵（Information entropy）。与吉布斯熵的定义类似，一个随机变量的信息熵等于其概率分布的负对数的平均值。随机变量中，出现概率越小的事件蕴含的信息熵越大。\n以数据压缩为例，假设一段数据序列由{A,B,C,D}四种字符构成，四者出现的频率均为1/4，则每个字符的信息熵为2比特，平均需要至少两个二进制位对其编码，如可将其对应编码为{00,01,10,11}。假设四种字符出现的频率不均等，依次为{1/2,1/4,1/8,1/8}，则每个字符的信息熵为1.75比特，平均只需要1.75个二进制位对其编码，如可将其对应编码为{0,10,110,111}，其中频率越高的字符采用的编码越短。\n第三次工业革命以来，香农开创的信息论成为通信、编码、计算机科学等众多信息技术的重要理论基石。",
+            "en": "This is the original #description# provided by our contributor, Heqing Huang. Due to its length, we have condensed it for the #description# section on our website. The original, full-length text is as follows:\nIn thermodynamics, entropy, similar to temperature and internal energy, is a physical quantity that describes the thermodynamic state of an object. In a reversible process, the increase in an object's entropy is equal to the cumulative change of the ratio of the heat it absorbs to its temperature. For spontaneous processes within an isolated system, the change in entropy always moves in an increasing direction.\nBased on the in-depth research of #Carnot# and others on the efficiency of heat engines, #Rudolf Clausius# summarized the #Second Law of Thermodynamics#—stating that heat does not spontaneously transfer from a low-temperature object to a high-temperature object—and proposed the definition of \"entropy.\" Entropy embodies an irreversible direction of spontaneous thermodynamic processes; thus, in 1865, Clausius named it \"en-tropie\" using Greek roots (meaning \"intrinsic direction\"). The Chinese name \"熵\" (shāng) originates from \"热温商\" (rè wēn shāng), literally the \"heat-temperature quotient,\" meaning heat divided by temperature.\nTaking heat transfer between two constant-temperature objects as an example: the low-temperature object absorbs heat and its entropy increases, while the high-temperature object releases heat and its entropy decreases. Because their temperatures differ, the absolute value of the entropy increase in the low-temperature object is greater than the entropy decrease in the high-temperature object; therefore, the total entropy increases.\nThe Law of Entropy Increase and the Second Law of Thermodynamics represent the first time humanity discovered physical laws in the form of inequalities. They provide the theoretical upper limit for the efficiency of converting heat into useful work, offering crucial theoretical guidance for the study of thermodynamic devices like heat engines since the First Industrial Revolution, and ending the fantasy of \"free energy\" such as perpetual motion machines of the second kind.\nIn statistical physics, entropy describes the degree of disorder in a system, serving as an extension of its thermodynamic definition. #Ludwig Boltzmann# proposed the statistical physics definition of entropy in 1872, stating that entropy is proportional to the logarithm of the number of microstates available to a system under a given macroscopic state—a definition known as #Boltzmann entropy#. The macroscopic state refers to thermodynamic properties like internal energy, volume, and particle count, while the microstate refers to the mechanical states of every molecule in the system, such as their positions and momenta.\nConsider the entropy increase process caused by the mixing of two solutions: suppose the left half of a container holds red ink and the right half holds blue ink, separated by a partition. Once the partition is removed and enough time passes, the two mix uniformly. Before mixing, the positions of the red ink molecules are restricted to the left half and the blue ink molecules to the right, making the system relatively ordered. After mixing, the molecules are no longer confined by the separation; the number of available microstates increases, the degree of disorder rises, and thus entropy grows.\nBoltzmann's theory provides a microscopic statistical explanation for the Law of Entropy Increase: that the entropy-increasing process is the most probable to occur. In 1878, #Josiah Gibbs# generalized this definition to systems with unequal probabilities of microstates, known as #Gibbs entropy#. #John von Neumann# further extended this in 1927 to quantum mixed-state systems, known as #von Neumann entropy#. Regrettably, when Boltzmann proposed his theory, the existence of molecules had not yet been experimentally proven, so his doctrine was not widely recognized at the time. However, Boltzmann’s pioneering theory not only built the first bridge between the macroscopic and microscopic worlds but also had a profound impact on our understanding of probability and information.\nIn information theory, entropy is a measure of the uncertainty or information content contained in a random variable. It was first proposed by #Claude Shannon# in his 1948 paper \"A Mathematical Theory of Communication\", and is also known as #information entropy#. Similar to the definition of Gibbs entropy, the information entropy of a random variable is equal to the average value of the negative logarithm of its probability distribution. Within a random variable, events with a lower probability of occurrence contain higher information entropy.\nTake data compression as an example: suppose a data sequence consists of four characters {A, B, C, D}, each appearing with a frequency of 1/4. In this case, the information entropy of each character is 2 bits, requiring at least two binary digits for encoding (e.g., {00, 01, 10, 11}). If the frequencies are unequal—say {1/2, 1/4, 1/8, 1/8}—the information entropy per character drops to 1.75 bits. On average, only 1.75 binary digits are needed for encoding (e.g., {0, 10, 110, 111}), where characters with higher frequencies use shorter codes.\nSince the Third Industrial Revolution, the information theory founded by Shannon has become a vital theoretical cornerstone for numerous information technologies, including communication, coding, and computer science."
           },
           "role": {
             "zh": "贡献者",
@@ -3626,11 +3626,11 @@
           },
           "author": {
             "zh": "孟汀",
-            "en": ""
+            "en": "Mengting"
           },
           "background": {
             "zh": "人类学",
-            "en": ""
+            "en": "Anthropology"
           },
           "date": "2023/09/24",
           "images": [
@@ -3676,7 +3676,7 @@
         }
       ],
       "source": {
-        "zh": "《廓落》（Khôra），1993年，雅克·德里达（Jacques Derrida）著，上海人民出版社（中文译本多见于论文集或《他者的单语主义》；台版译名为《柯拉》，由桂冠图书出版）",
+        "zh": "雅克·德里达，《廓落》（#Khôra#），1993年，著，上海人民出版社（中文译本多见于论文集或《他者的单语主义》；台版译名为《柯拉》，由桂冠图书出版）",
         "en": "Derrida, Jacques. #Khôra#. Translated by Ian McLeod. In On the Name, edited by Thomas Dutoit, 88–130. Stanford: Stanford University Press, 1995."
       },
       "source_image": "images/廓落_source_cover.jpg",
@@ -3737,8 +3737,8 @@
         ]
       },
       "example_sentence": {
-        "zh": "例句",
-        "en": "example"
+        "zh": "建筑师试图在密集的城市中心保留一块不设任何功能标牌的广场，将其视为城市的“廓落”，等待着市民自发的活动去填补这片意义的留白。",
+        "en": "Architects attempt to preserve a plaza in the heart of a dense city without any functional signage, treating it as the city’s #Khora#—waiting for the spontaneous activities of the citizens to fill this semantic void."
       },
       "diagrams": [],
       "related_terms": [
@@ -3794,8 +3794,8 @@
         }
       ],
       "source": {
-        "zh": "赵元任，《中国话的文法 (#A Grammar of Spoken Chinese#)》，伯克利：加州大学出版社 (University of California Press), 1968。中国大陆已出版，商务印书馆。",
-        "en": "Chao, Yuen Ren. #A Grammar of Spoken Chinese#. Berkeley: University of California Press, 1968."
+        "zh": "约瑟夫·T·希普利，《文字游戏》（#Playing with Words#），新泽西州：普伦蒂斯·霍尔出版社 (Prentice-Hall)，1960。中文尚无出版物。",
+        "en": "Shipley, Joseph T. 1960. #Playing with Words#. Englewood Cliffs, NJ: Prentice-Hall."
       },
       "source_image": "images/反训词_source_cover.jpg",
       "related_works": [
@@ -3966,8 +3966,8 @@
         }
       ],
       "source": {
-        "zh": "出处",
-        "en": "source"
+        "zh": "赵元任，《中国话的文法 (#A Grammar of Spoken Chinese#)》，伯克利：加州大学出版社 (University of California Press), 1968。中国大陆已出版，商务印书馆。",
+        "en": "Chao, Yuen Ren. #A Grammar of Spoken Chinese#. Berkeley: University of California Press, 1968."
       },
       "source_image": "images/反义复词_source_cover.jpg",
       "related_works": [
@@ -4038,19 +4038,19 @@
       ],
       "commentAbs": {
         "content": {
-          "zh": "暂无导读",
-          "en": "No abstract info yet."
+          "zh": "“东西”一词可能是最常用的反义复词了——两个相反方位的并置，居然可以用来笼统代指大千世界的万事万物。",
+          "en": "The word \"Dōng-xī\" (literally \"East-West\") is perhaps the most ubiquitous antithetical compound in the Chinese language."
         },
         "author": {
-          "zh": "暂无作者信息",
-          "en": "No author info yet."
+          "zh": "飞樾",
+          "en": "Feiyue"
         }
       },
       "comments": [
         {
           "content": {
-            "zh": "“东西”一词可能是最常用的反义复词了——两个相反方位的并置，居然可以用来笼统代指大千世界的万事万物。一个比较常见的解释是说，唐朝的长安城内有两个主要的集市：东市和西市。当人们要获取、交换、购置商品，就要“上东市、上西市”，可能慢慢地，这在口语里就演化为了“买东西”，而这里的“东西”再从商品泛化到更广阔的的事物。\n借着考究这个词，再看看其他语言中的情况。英语中的 Thing 和德语中的 Ding 都是来自在古诺斯语（þing）。它原本指的并不是物体，而是事件，是“集会、议事、讨论”，是有待裁决的议题。所以当一个日耳曼先民指着某个物件叫“Thing”时，他的潜台词其实是——“这是我们要开会讨论的那件事”。\n法语中的Chose 和西班牙语 Cosa 也与之有相似性。它们来自拉丁语的 Causa，英语中的cause 是其后代。这个拉丁词原本的意思是“诉讼、案件、法律程序”。从这个意味上来说，拉丁语系的“东西”起始于那些需要在法庭上被争论的事物。",
-            "en": "The word \"Dōng-xī\" (literally \"East-West\") is perhaps the most ubiquitous antithetical compound in the Chinese language. It is a fascinating linguistic phenomenon where the juxtaposition of two cardinal directions serves as a catch-all term for the myriad \"things\" of the world. A common explanation traces this back to the Tang Dynasty, specifically to the two primary marketplaces in the capital of Chang’an: the East Market and the West Market. When people needed to acquire, exchange, or purchase goods, they had to \"visit the East Market\" or \"visit the West Market.\" Over time, this likely evolved into the colloquialism \"buying things\" (mǎi dōng-xī), eventually generalizing from physical commodities to encompass all objects and affairs.\nBy using this etymological lens to examine other languages, we find similar patterns. The English word \"Thing\" and the German \"Ding\" both derive from the Old Norse þing. Originally, the word did not refer to a physical object, but to an event—a \"meeting, assembly, or council\"—an issue awaiting a verdict. Thus, when a Germanic ancestor pointed at an object and called it a \"thing,\" the subtext was essentially: \"This is the matter we are meeting to discuss.\"\nThe French Chose and Spanish Cosa share a similar lineage. They stem from the Latin Causa (the root of the English word \"cause\"). This Latin term originally signified a \"lawsuit, a case, or a legal proceeding.\" In this sense, \"things\" in the Romance languages originated from matters that required debate within a court of law."
+            "zh": "“东西”一词可能是最常用的反义复词了——两个相反方位的并置，居然可以用来笼统代指大千世界的万事万物。一个比较常见的解释是说，唐朝的长安城内有两个主要的集市：东市和西市。当人们要获取、交换、购置商品，就要“上东市、上西市”，可能慢慢地，这在口语里就演化为了“买东西”，而这里的“东西”再从商品泛化到更广阔的的事物。\n借着考究这个词，再看看其他语言中的情况。英语中的 Thing 和德语中的 #Ding# 都是来自在古诺斯语（#þing#）。它原本指的并不是物体，而是事件，是“集会、议事、讨论”，是有待裁决的议题。所以当一个日耳曼先民指着某个物件叫“Thing”时，他的潜台词其实是——“这是我们要开会讨论的那件事”。\n法语中的 #Chose# 和西班牙语 #Cosa# 也与之有相似性。它们来自拉丁语的 #Causa#，英语中的 #cause# 是其后代。这个拉丁词原本的意思是“诉讼、案件、法律程序”。从这个意味上来说，拉丁语系的“东西”起始于那些需要在法庭上被争论的事物。",
+            "en": "The word \"Dōng-xī\" (literally \"East-West\") is perhaps the most ubiquitous antithetical compound in the Chinese language. It is a fascinating linguistic phenomenon where the juxtaposition of two cardinal directions serves as a catch-all term for the myriad \"things\" of the world. A common explanation traces this back to the Tang Dynasty, specifically to the two primary marketplaces in the capital of Chang’an: the East Market and the West Market. When people needed to acquire, exchange, or purchase goods, they had to \"visit the East Market\" or \"visit the West Market.\" Over time, this likely evolved into the colloquialism \"buying things\" (mǎi dōng-xī), eventually generalizing from physical commodities to encompass all objects and affairs.\nBy using this etymological lens to examine other languages, we find similar patterns. The English word \"Thing\" and the German \"Ding\" both derive from the Old Norse þing. Originally, the word did not refer to a physical object, but to an event—a \"meeting, assembly, or council\"—an issue awaiting a verdict. Thus, when a Germanic ancestor pointed at an object and called it a \"thing,\" the subtext was essentially: \"This is the matter we are meeting to discuss.\"\nThe French #Chose# and Spanish #Cosa# share a similar lineage. They stem from the Latin #Causa# (the root of the English word \"cause\"). This Latin term originally signified a \"lawsuit, a case, or a legal proceeding.\" In this sense, \"things\" in the Romance languages originated from matters that required debate within a court of law."
           },
           "role": {
             "zh": "贡献者",
@@ -4211,11 +4211,11 @@
           },
           "author": {
             "zh": "孟汀",
-            "en": ""
+            "en": "Mengting"
           },
           "background": {
             "zh": "人类学",
-            "en": ""
+            "en": "Anthropology"
           },
           "date": "2024/10/21"
         }
@@ -4822,11 +4822,11 @@
           },
           "author": {
             "zh": "太白",
-            "en": ""
+            "en": "Brook"
           },
           "background": {
             "zh": "人类学",
-            "en": ""
+            "en": "Anthropology"
           },
           "date": "2024/04/18"
         },
@@ -5777,7 +5777,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "将技术与泛灵论相结合的思想，主张技术和物质中同样存在精神特征",
-        "en": "An ideology that combines technology with animism, asserting that spiritual characteristics exist within technology and matter alike"
+        "en": "An ideology that combines technology with animism, asserting that spiritual characteristics exist within technology and matter alike."
       },
       "extended_definition": {
         "zh": [
@@ -6126,7 +6126,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "玩家与劳工的混合体，一面进行休闲娱乐的活动，一面也为娱乐供应商提供了有生产意义的劳动",
-        "en": "A player-laborer hybrid that performs recreational activities while generating productive labor for entertainment providers.​"
+        "en": "A player-laborer hybrid that performs recreational activities while generating productive labor for entertainment providers."
       },
       "extended_definition": {
         "zh": [
@@ -6427,7 +6427,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "指既非封闭也非完全敞开，拥有不断折叠的层次，公共性与私密性共存的城市",
-        "en": "A city that is neither enclosed nor fully open, characterized by continuously folding strata where publicity and privacy coexist.​"
+        "en": "A city that is neither enclosed nor fully open, characterized by continuously folding strata where publicity and privacy coexist."
       },
       "extended_definition": {
         "zh": [
@@ -6582,7 +6582,7 @@
       "edit_date": "No edit date yet.",
       "brief_definition": {
         "zh": "把私密空间作为黑色图，而公共空间作为白色底来区分表达的平面地图",
-        "en": "A planimetric map that delineates private spaces as black figures against public spaces rendered as a white ground.​"
+        "en": "A planimetric map that delineates private spaces as black figures against public spaces rendered as a white ground."
       },
       "extended_definition": {
         "zh": [
