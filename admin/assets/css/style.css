@@ -600,8 +600,9 @@ html:lang(en) #proposer .proposer-text .proposer-primary {
     font-size: 39.48px;
     font-style: normal;
     font-weight: 400;
-    line-height: 70px;
+    line-height: 36px;
     letter-spacing: 0;
+    padding-bottom:20px
 }
 
 #proposer .proposer-ori {
