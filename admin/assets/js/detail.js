@@ -732,12 +732,16 @@ function renderCommentSection() {
         contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-contact):not(#section-editors)')
     );
 
-    const clearNoteLayout = () => {
+    const clearNoteLayout = ({ scrollToTop = false } = {}) => {
         contentScroll.classList.remove('notes-mode');
         if (panelMain) panelMain.classList.remove('notes-fixed');
         noteSections.forEach(sec => {
             sec.classList.remove('note-expanded', 'note-above', 'note-below', 'note-below-first');
+            sec.scrollTop = 0;
         });
+        if (scrollToTop && panelMain) {
+            panelMain.scrollTo({ top: 0, behavior: "smooth" });
+        }
     };
 
     const applyNoteLayout = (activeSection) => {
@@ -759,7 +763,7 @@ function renderCommentSection() {
         section.addEventListener('click', (e) => {
             e.stopPropagation();
             if (section.classList.contains('note-expanded')) {
-                clearNoteLayout();
+                clearNoteLayout({ scrollToTop: true });
                 return;
             }
             applyNoteLayout(section);
@@ -809,6 +813,7 @@ function switchTab(tabName) {
     
     // 切换panel的active状�?
     if (tabName === "entry") {
+        resetFloatingPanelState();
         if (entryPanel) entryPanel.classList.add('active');
         if (commentPanel) commentPanel.classList.remove('active');
     } else if (tabName === "comment") {
@@ -932,6 +937,7 @@ export function resetFloatingPanelState() {
     const noteSections = contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-contact):not(#section-editors)');
     noteSections.forEach((sec) => {
         sec.classList.remove('note-expanded', 'note-above', 'note-below', 'note-below-first');
+        sec.scrollTop = 0;
     });
 }
 
