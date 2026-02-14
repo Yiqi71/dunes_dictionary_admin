@@ -1,23 +1,22 @@
 #upper-menu .Chinese {
-    color: #EEE9DB;
-    font-family: "ChillDINGothic";
+    color: #FAF4E5;
+    font-family: "ChillDINGothic Regular";
     font-size: 29.538px;
     font-style: normal;
-    font-weight: 400;
-    letter-spacing: -1.477px;
+    font-weight: 600;
+    letter-spacing: -1.1px;
     margin: 0;
 
     /* font-family: FZJunHeiS-B-GB; */
 }
 
 #upper-menu .English {
-    color: #EEE9DB;
+    color: #FAF4E5;
     font-family: "Barlow Condensed";
     font-size: 21.846px;
     font-style: normal;
     font-weight: 600;
-    /* 253.521% */
-    letter-spacing: -0.437px;
+    letter-spacing: -0.1px;
     margin: 0;
 }
 
@@ -173,8 +172,14 @@
 }
 
 #dunes-icon {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    column-gap: 10px;
+    align-items: baseline;
+}
+
+#dunes-icon > h2 {
+    display: contents;
 }
 
 

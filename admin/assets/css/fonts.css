@@ -7,6 +7,16 @@
   font-display: block;
 }
 
+
+@font-face {
+  font-family: "ChillDINGothic Regular";
+  src: url("../fonts/Chilldin/ChillDINGothic_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+
 /* ChillDINGothic - Local font for consistent loading */
 @font-face {
   font-family: "ChillDINGothic";
@@ -58,6 +68,13 @@
   font-family: "Barlow Condensed";
   src: url("../fonts/Barlow_Condensed/BarlowCondensed-Medium.ttf") format("truetype");
   font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("../fonts/Barlow_Condensed/BarlowCondensed-SemiBold.ttf") format("truetype");
+  font-weight: 600;
   font-style: normal;
   font-display: block;
 }
