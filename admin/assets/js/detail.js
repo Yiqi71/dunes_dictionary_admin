@@ -69,6 +69,594 @@ function ensureTerminalPunctuation(text, lang) {
     return raw + suffix;
 }
 
+const ENTRY_VOTE_COUNTS_KEY = "dd_entry_understanding_vote_counts_v1";
+const ENTRY_USER_VOTES_KEY = "dd_entry_understanding_user_votes_v1";
+const ENTRY_VOTE_SYNC_QUEUE_KEY = "dd_entry_understanding_vote_sync_queue_v1";
+const ENTRY_VOTE_SYNC_INTERVAL_MS = 15000;
+const COMMENT_LIKE_SYNC_QUEUE_KEY = "dd_comment_like_sync_queue_v1";
+const COMMENT_LIKE_SNAPSHOT_SESSION_KEY = "dd_comment_like_snapshot_sent_v1";
+const ENTRY_VOTE_LOCAL_KEYS = [
+    ENTRY_VOTE_COUNTS_KEY,
+    ENTRY_USER_VOTES_KEY,
+    ENTRY_VOTE_SYNC_QUEUE_KEY
+];
+let voteSyncState = navigator.onLine ? "checking" : "disconnected";
+let voteSyncInFlight = false;
+let voteSyncInitialized = false;
+let commentLikeSyncInFlight = false;
+let commentLikeSnapshotQueued = false;
+let voteResetHotkeyInitialized = false;
+const voteHotkeysPressed = new Set();
+let voteResetComboTriggered = false;
+
+function safeParseStorage(key, fallback = {}) {
+    try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+    } catch (_) {
+        return fallback;
+    }
+}
+
+function safeWriteStorage(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch (_) {
+        // ignore storage failures
+    }
+}
+
+const COMMENT_LIKES_KEY = "dd_comment_likes_v1";
+const COMMENT_LIKE_EVENT_NAME = "comment_like_toggle";
+const COMMENT_LIKE_COUNTS_CACHE_TTL_MS = 30000;
+const COMMENT_LIKE_EVENTS_LIMIT = 2000;
+const commentLikeCountsCache = new Map();
+
+function getCommentLikeStorage() {
+    const parsed = safeParseStorage(COMMENT_LIKES_KEY, {});
+    return parsed && typeof parsed === "object" ? parsed : {};
+}
+
+function setCommentLikeStorage(value) {
+    safeWriteStorage(COMMENT_LIKES_KEY, value && typeof value === "object" ? value : {});
+}
+
+function getCommentLikeKey(wordId, commentIndex) {
+    return `${String(wordId)}:${Number(commentIndex)}`;
+}
+
+function isCommentLiked(wordId, commentIndex) {
+    const likes = getCommentLikeStorage();
+    return Boolean(likes[getCommentLikeKey(wordId, commentIndex)]);
+}
+
+function toggleCommentLiked(wordId, commentIndex) {
+    const likes = getCommentLikeStorage();
+    const key = getCommentLikeKey(wordId, commentIndex);
+    const next = !Boolean(likes[key]);
+    if (next) {
+        likes[key] = true;
+    } else {
+        delete likes[key];
+    }
+    setCommentLikeStorage(likes);
+    return next;
+}
+
+function normalizeEventsPayload(payload) {
+    if (Array.isArray(payload)) return payload;
+    if (!payload || typeof payload !== "object") return [];
+    if (Array.isArray(payload.events)) return payload.events;
+    if (Array.isArray(payload.items)) return payload.items;
+    if (Array.isArray(payload.data)) return payload.data;
+    return [];
+}
+
+function buildCommentLikeCounts(events, wordId) {
+    const latestByUserAndComment = new Map();
+    const targetWordId = String(wordId);
+
+    events.forEach((event) => {
+        if (!event || event.name !== COMMENT_LIKE_EVENT_NAME) return;
+        const data = event.data || {};
+        if (String(data.wordId) !== targetWordId) return;
+
+        const sessionId = String(event.sessionId || "");
+        const commentIndex = Number(data.commentIndex);
+        if (!sessionId || !Number.isFinite(commentIndex)) return;
+
+        const key = `${commentIndex}::${sessionId}`;
+        const ts = Number(event.ts) || 0;
+        const liked = Boolean(data.liked);
+        const prev = latestByUserAndComment.get(key);
+        if (!prev || ts >= prev.ts) {
+            latestByUserAndComment.set(key, { ts, liked, commentIndex });
+        }
+    });
+
+    const counts = {};
+    latestByUserAndComment.forEach((entry) => {
+        if (!entry.liked) return;
+        const idx = String(entry.commentIndex);
+        counts[idx] = (counts[idx] || 0) + 1;
+    });
+    return counts;
+}
+
+async function fetchCommentLikeCounts(wordId, { force = false } = {}) {
+    const cacheKey = String(wordId);
+    const now = Date.now();
+    const cached = commentLikeCountsCache.get(cacheKey);
+    if (!force && cached && now - cached.ts < COMMENT_LIKE_COUNTS_CACHE_TTL_MS) {
+        return cached.counts;
+    }
+
+    const response = await fetch(`/events?limit=${COMMENT_LIKE_EVENTS_LIMIT}`, { cache: "no-store" });
+    if (!response.ok) {
+        throw new Error(`failed_to_fetch_comment_like_counts_${response.status}`);
+    }
+
+    const payload = await response.json();
+    const events = normalizeEventsPayload(payload);
+    const counts = buildCommentLikeCounts(events, wordId);
+    commentLikeCountsCache.set(cacheKey, { ts: now, counts });
+    return counts;
+}
+
+function setCommentLikeBadge(buttonEl, count, shouldShow) {
+    const countEl = buttonEl?.querySelector(".note-like-count");
+    if (!countEl) return;
+    if (!shouldShow) {
+        countEl.textContent = "";
+        countEl.style.display = "none";
+        return;
+    }
+    countEl.textContent = String(Math.max(0, Number(count) || 0));
+    countEl.style.display = "block";
+}
+
+async function refreshCommentLikeBadges(contentScroll, wordId, { force = false } = {}) {
+    if (!contentScroll) return;
+    const buttons = Array.from(contentScroll.querySelectorAll(".note-like-toggle"));
+    if (!buttons.length) return;
+
+    const connected = isVoteSyncConnected();
+    const anyLiked = buttons.some((btn) => btn.classList.contains("is-liked"));
+
+    if (!connected || !anyLiked) {
+        buttons.forEach((btn) => setCommentLikeBadge(btn, 0, false));
+        return;
+    }
+
+    try {
+        const counts = await fetchCommentLikeCounts(wordId, { force });
+        buttons.forEach((btn) => {
+            const idx = String(Number(btn.dataset.commentIndex));
+            const liked = btn.classList.contains("is-liked");
+            const count = counts[idx] || 0;
+            setCommentLikeBadge(btn, count, connected && liked);
+        });
+    } catch (_) {
+        buttons.forEach((btn) => setCommentLikeBadge(btn, 0, false));
+    }
+}
+
+function getVoteSessionId() {
+    const key = "dd_session_id";
+    let id = sessionStorage.getItem(key);
+    if (!id) {
+        id = `s_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+        sessionStorage.setItem(key, id);
+    }
+    return id;
+}
+
+function isVoteSyncConnected() {
+    return voteSyncState === "connected";
+}
+
+function refreshVisibleVoteNote() {
+    const noteEl = queryFloating(".panel-entry #section-understanding-vote .entry-vote-note");
+    if (!noteEl) return;
+    noteEl.style.display = isVoteSyncConnected() ? "none" : "block";
+}
+
+function setVoteSyncState(next) {
+    if (voteSyncState === next) return;
+    const prev = voteSyncState;
+    voteSyncState = next;
+    refreshVisibleVoteNote();
+    if (next === "connected" && prev !== "connected") {
+        queueCommentLikeSnapshotFromLocal({ force: true });
+        syncCommentLikeQueue();
+    }
+    const commentPanel = queryFloating(".panel-comment");
+    const contentScroll = commentPanel?.querySelector(".panel-bottom");
+    if (contentScroll && state.focusedNodeId !== null && state.focusedNodeId !== undefined) {
+        refreshCommentLikeBadges(contentScroll, state.focusedNodeId, { force: next === "connected" });
+    }
+}
+
+function getVoteSyncQueue() {
+    const parsed = safeParseStorage(ENTRY_VOTE_SYNC_QUEUE_KEY, []);
+    return Array.isArray(parsed) ? parsed : [];
+}
+
+function setVoteSyncQueue(queue) {
+    safeWriteStorage(ENTRY_VOTE_SYNC_QUEUE_KEY, Array.isArray(queue) ? queue : []);
+}
+
+function getCommentLikeSyncQueue() {
+    const parsed = safeParseStorage(COMMENT_LIKE_SYNC_QUEUE_KEY, []);
+    return Array.isArray(parsed) ? parsed : [];
+}
+
+function setCommentLikeSyncQueue(queue) {
+    safeWriteStorage(COMMENT_LIKE_SYNC_QUEUE_KEY, Array.isArray(queue) ? queue : []);
+}
+
+function clearLocalVoteData() {
+    ENTRY_VOTE_LOCAL_KEYS.forEach((key) => {
+        try {
+            localStorage.removeItem(key);
+        } catch (_) {
+            // ignore
+        }
+    });
+}
+
+function initVoteResetHotkey() {
+    if (voteResetHotkeyInitialized) return;
+    voteResetHotkeyInitialized = true;
+
+    document.addEventListener("keydown", (e) => {
+        const key = (e.key || "").toLowerCase();
+        if (key !== "a" && key !== "t") return;
+        voteHotkeysPressed.add(key);
+        if (e.repeat) return;
+
+        if (voteHotkeysPressed.has("a") && voteHotkeysPressed.has("t") && !voteResetComboTriggered) {
+            voteResetComboTriggered = true;
+            const panel = getFloatingPanel();
+            const voteSection = queryFloating(".panel-entry #section-understanding-vote");
+            if (!panel || panel.classList.contains("hidden") || !voteSection) return;
+
+            const lang = normalizeLang(document.documentElement.lang || state.currentLang || "zh");
+            const message = lang === "en"
+                ? "Clear local vote data on this browser?"
+                : "清空当前浏览器的本地投票数据？";
+            if (!window.confirm(message)) return;
+
+            clearLocalVoteData();
+            renderPanelSections();
+            syncVoteQueue();
+        }
+    });
+
+    document.addEventListener("keyup", (e) => {
+        const key = (e.key || "").toLowerCase();
+        if (key !== "a" && key !== "t") return;
+        voteHotkeysPressed.delete(key);
+        if (!voteHotkeysPressed.has("a") || !voteHotkeysPressed.has("t")) {
+            voteResetComboTriggered = false;
+        }
+    });
+}
+
+function buildVoteSyncEvent(wordId, choice) {
+    return {
+        id: `e_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        name: "entry_understanding_vote",
+        ts: Date.now(),
+        sessionId: getVoteSessionId(),
+        data: {
+            wordId,
+            choice,
+            lang: normalizeLang(document.documentElement.lang || state.currentLang || "zh")
+        }
+    };
+}
+
+function buildCommentLikeSyncEvent(wordId, commentIndex, liked, langOverride) {
+    return {
+        id: `e_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        name: COMMENT_LIKE_EVENT_NAME,
+        ts: Date.now(),
+        sessionId: getVoteSessionId(),
+        data: {
+            wordId,
+            commentIndex,
+            liked: Boolean(liked),
+            lang: normalizeLang(langOverride || document.documentElement.lang || state.currentLang || "zh")
+        }
+    };
+}
+
+function enqueueVoteSync(wordId, choice) {
+    const queue = getVoteSyncQueue();
+    queue.push(buildVoteSyncEvent(wordId, choice));
+    setVoteSyncQueue(queue);
+}
+
+function enqueueCommentLikeSync(wordId, commentIndex, liked, langOverride) {
+    const queue = getCommentLikeSyncQueue();
+    queue.push(buildCommentLikeSyncEvent(wordId, commentIndex, liked, langOverride));
+    setCommentLikeSyncQueue(queue);
+}
+
+function queueCommentLikeSnapshotFromLocal({ force = false } = {}) {
+    if (!force && commentLikeSnapshotQueued) return;
+    if (!force && sessionStorage.getItem(COMMENT_LIKE_SNAPSHOT_SESSION_KEY) === "1") return;
+    commentLikeSnapshotQueued = true;
+
+    const likes = getCommentLikeStorage();
+    const entries = Object.entries(likes);
+    if (!entries.length) {
+        sessionStorage.setItem(COMMENT_LIKE_SNAPSHOT_SESSION_KEY, "1");
+        return;
+    }
+
+    const lang = normalizeLang(document.documentElement.lang || state.currentLang || "zh");
+    entries.forEach(([key, liked]) => {
+        if (!liked) return;
+        const parts = String(key).split(":");
+        if (parts.length !== 2) return;
+        const wordId = parts[0];
+        const commentIndex = Number(parts[1]);
+        if (!wordId || !Number.isFinite(commentIndex)) return;
+        enqueueCommentLikeSync(wordId, commentIndex, true, lang);
+    });
+    if (!force) {
+        sessionStorage.setItem(COMMENT_LIKE_SNAPSHOT_SESSION_KEY, "1");
+    }
+}
+
+async function probeVoteSyncConnection() {
+    if (!navigator.onLine) {
+        setVoteSyncState("disconnected");
+        return false;
+    }
+    try {
+        const response = await fetch("/events", { method: "HEAD", cache: "no-store" });
+        if (response.ok) {
+            setVoteSyncState("connected");
+            return true;
+        }
+        setVoteSyncState("disconnected");
+        return false;
+    } catch (_) {
+        setVoteSyncState("disconnected");
+        return false;
+    }
+}
+
+async function syncVoteQueue() {
+    if (voteSyncInFlight) return;
+    if (!navigator.onLine) {
+        setVoteSyncState("disconnected");
+        return;
+    }
+
+    let queue = getVoteSyncQueue();
+    if (queue.length === 0) {
+        await probeVoteSyncConnection();
+        await syncCommentLikeQueue();
+        return;
+    }
+
+    voteSyncInFlight = true;
+    try {
+        while (queue.length > 0) {
+            const eventPayload = queue[0];
+            try {
+                const response = await fetch("/events", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(eventPayload),
+                    keepalive: true
+                });
+
+                if (response.ok) {
+                    setVoteSyncState("connected");
+                    queue.shift();
+                    setVoteSyncQueue(queue);
+                    continue;
+                }
+                setVoteSyncState("disconnected");
+                break;
+            } catch (_) {
+                setVoteSyncState("disconnected");
+                break;
+            }
+        }
+    } finally {
+        voteSyncInFlight = false;
+    }
+
+    await syncCommentLikeQueue();
+}
+
+async function syncCommentLikeQueue() {
+    if (commentLikeSyncInFlight) return;
+    if (!navigator.onLine) return;
+
+    let queue = getCommentLikeSyncQueue();
+    if (queue.length === 0) return;
+
+    commentLikeSyncInFlight = true;
+    try {
+        while (queue.length > 0) {
+            const eventPayload = queue[0];
+            try {
+                const response = await fetch("/events", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(eventPayload),
+                    keepalive: true
+                });
+                if (!response.ok) break;
+                queue.shift();
+                setCommentLikeSyncQueue(queue);
+            } catch (_) {
+                break;
+            }
+        }
+    } finally {
+        commentLikeSyncInFlight = false;
+    }
+}
+
+function initVoteSync() {
+    if (voteSyncInitialized) return;
+    voteSyncInitialized = true;
+    queueCommentLikeSnapshotFromLocal();
+
+    window.addEventListener("online", () => {
+        setVoteSyncState("checking");
+        syncVoteQueue();
+    });
+    window.addEventListener("offline", () => {
+        setVoteSyncState("disconnected");
+    });
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
+            syncVoteQueue();
+        }
+    });
+
+    setTimeout(() => {
+        syncVoteQueue();
+    }, 800);
+    setInterval(syncVoteQueue, ENTRY_VOTE_SYNC_INTERVAL_MS);
+}
+
+function getWordVoteStats(wordId) {
+    const counts = safeParseStorage(ENTRY_VOTE_COUNTS_KEY, {});
+    const id = String(wordId);
+    const current = counts[id] || {};
+    const clear = Math.max(0, Number(current.clear) || 0);
+    const unclear = Math.max(0, Number(current.unclear) || 0);
+    const total = clear + unclear;
+    const clearPct = total > 0 ? Math.round((clear / total) * 100) : 0;
+    const unclearPct = total > 0 ? 100 - clearPct : 0;
+    return { clear, unclear, total, clearPct, unclearPct };
+}
+
+function getUserVote(wordId) {
+    const votes = safeParseStorage(ENTRY_USER_VOTES_KEY, {});
+    const choice = votes[String(wordId)];
+    return choice === "clear" || choice === "unclear" ? choice : null;
+}
+
+function submitWordVote(wordId, choice) {
+    if (choice !== "clear" && choice !== "unclear") return null;
+
+    const id = String(wordId);
+    const counts = safeParseStorage(ENTRY_VOTE_COUNTS_KEY, {});
+    const current = counts[id] || { clear: 0, unclear: 0 };
+
+    current.clear = Math.max(0, Number(current.clear) || 0);
+    current.unclear = Math.max(0, Number(current.unclear) || 0);
+    current[choice] += 1;
+
+    counts[id] = current;
+    safeWriteStorage(ENTRY_VOTE_COUNTS_KEY, counts);
+
+    const userVotes = safeParseStorage(ENTRY_USER_VOTES_KEY, {});
+    userVotes[id] = choice;
+    safeWriteStorage(ENTRY_USER_VOTES_KEY, userVotes);
+
+    return getWordVoteStats(id);
+}
+
+function renderUnderstandingVoteSection(sectionEl, currentWord, lang) {
+    if (!sectionEl || !currentWord) return;
+
+    const term = currentWord.term?.[lang] || currentWord.term?.zh || currentWord.term?.en || "";
+    const labels = lang === "en"
+        ? {
+            question: `Do you think "${term}" is easy to understand?`,
+            clear: "Understood",
+            unclear: "Not clear",
+            submit: "Vote",
+            syncNote: "Note: server connection is unavailable. Your vote will sync after recovery."
+        }
+        : {
+            question: `你觉得“${term}”这个词条好理解吗？`,
+            clear: "看明白了",
+            unclear: "没看明白",
+            submit: "投票",
+            syncNote: "注：当前与服务器连接异常，投票会暂存并在恢复后同步。"
+        };
+
+    sectionEl.innerHTML = `
+        <div class="entry-vote-wrap">
+            <p class="entry-vote-question">${labels.question}</p>
+            <div class="entry-vote-options">
+                <button type="button" class="entry-vote-option" data-vote="clear">${labels.clear}</button>
+                <button type="button" class="entry-vote-option" data-vote="unclear">${labels.unclear}</button>
+            </div>
+            <button type="button" class="entry-vote-submit">${labels.submit}</button>
+            <p class="entry-vote-note">${labels.syncNote}</p>
+        </div>
+    `;
+
+    const clearBtn = sectionEl.querySelector('[data-vote="clear"]');
+    const unclearBtn = sectionEl.querySelector('[data-vote="unclear"]');
+    const submitBtn = sectionEl.querySelector(".entry-vote-submit");
+    const noteEl = sectionEl.querySelector(".entry-vote-note");
+    if (!clearBtn || !unclearBtn || !submitBtn || !noteEl) return;
+
+    noteEl.style.display = isVoteSyncConnected() ? "none" : "block";
+
+    let selectedChoice = null;
+
+    const setSelected = () => {
+        clearBtn.classList.toggle("is-selected", selectedChoice === "clear");
+        unclearBtn.classList.toggle("is-selected", selectedChoice === "unclear");
+    };
+
+    const renderPercentages = (stats) => {
+        clearBtn.textContent = `${labels.clear} ${stats.clearPct}%`;
+        unclearBtn.textContent = `${labels.unclear} ${stats.unclearPct}%`;
+        clearBtn.classList.remove("is-selected");
+        unclearBtn.classList.remove("is-selected");
+        clearBtn.classList.add("is-voted");
+        unclearBtn.classList.add("is-voted");
+    };
+
+    const existingVote = getUserVote(currentWord.id);
+    if (existingVote) {
+        renderPercentages(getWordVoteStats(currentWord.id));
+        submitBtn.style.display = "none";
+        return;
+    }
+
+    clearBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        selectedChoice = "clear";
+        setSelected();
+    });
+
+    unclearBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        selectedChoice = "unclear";
+        setSelected();
+    });
+
+    submitBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!selectedChoice) return;
+        const stats = submitWordVote(currentWord.id, selectedChoice);
+        if (!stats) return;
+
+        submitBtn.style.display = "none";
+        renderPercentages(stats);
+        enqueueVoteSync(currentWord.id, selectedChoice);
+        syncVoteQueue();
+    });
+}
+
 function filterProposer(name) {
     const focusedWord = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!focusedWord) return [];
@@ -515,6 +1103,7 @@ export function renderPanelSections() {
         <section id="section-proposers"> </section>
         <section id="section-source"> </section>
         <section id="section-related-works"> </section>
+        <section id="section-understanding-vote"> </section>
         <section id="section-contributors"> </section>
         <section id="section-contact"> </section>
         <section id="section-editors"> </section>
@@ -526,6 +1115,7 @@ export function renderPanelSections() {
     const proposerSec = document.getElementById("section-proposers");
     const sourceSec = document.getElementById("section-source");
     const relatedSec = document.getElementById("section-related-works");
+    const voteSec = entryPanel.querySelector("#section-understanding-vote");
     const contributorsSec = entryPanel.querySelector("#section-contributors");
     const contactSec = entryPanel.querySelector("#section-contact");
     const editorsSec = entryPanel.querySelector("#section-editors");
@@ -597,6 +1187,7 @@ export function renderPanelSections() {
                         <div id="related-works-container">
                         ${relatedHtml}
                         </div>`;
+    renderUnderstandingVoteSection(voteSec, currentWord, lang);
 
     const contributors = Array.isArray(currentWord.contributors) ? currentWord.contributors : [];
     const contributorNames = contributors.map(c => {
@@ -655,6 +1246,8 @@ function renderCommentSection() {
     const contentScroll = commentPanel.querySelector('.panel-bottom');
     const comments = Array.isArray(currentWord.comments) ? currentWord.comments : [];
     const emptyCommentsLabel = lang === "en" ? "No comments" : "暂无评论";
+    const likedAriaLabel = lang === "en" ? "Unlike this comment" : "取消喜欢这条评论";
+    const unlikedAriaLabel = lang === "en" ? "Like this comment" : "喜欢这条评论";
     contentScroll.innerHTML = `
         ${comments.length ? comments.map((c, idx) => {
             const roleLabel = c?.role?.[lang] || "";
@@ -684,7 +1277,16 @@ function renderCommentSection() {
                         }).join("")}
                       </div>`)
                 : "";
+            const liked = isCommentLiked(currentWord.id, idx);
+            const ariaLabel = liked ? likedAriaLabel : unlikedAriaLabel;
             return `<section>
+                <button
+                    type="button"
+                    class="note-like-toggle${liked ? " is-liked" : ""}"
+                    data-comment-index="${idx}"
+                    aria-pressed="${liked ? "true" : "false"}"
+                    aria-label="${ariaLabel}"
+                ><span class="note-like-count" aria-hidden="true"></span></button>
                 <p class="left-title">${titleLabel}</p>
                 <div class="note-body"><br><br><br><br>${content}${imagesHtml}</div>
             </section>`;
@@ -743,6 +1345,27 @@ function renderCommentSection() {
     }
 
     // 为每个note section添加折叠/展开功能
+    const likeButtons = contentScroll.querySelectorAll(".note-like-toggle");
+    likeButtons.forEach((btn) => {
+        btn.addEventListener("mousedown", (e) => {
+            e.stopPropagation();
+        });
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const commentIndex = Number(btn.dataset.commentIndex);
+            if (!Number.isFinite(commentIndex)) return;
+            const liked = toggleCommentLiked(currentWord.id, commentIndex);
+            btn.classList.toggle("is-liked", liked);
+            btn.setAttribute("aria-pressed", liked ? "true" : "false");
+            btn.setAttribute("aria-label", liked ? likedAriaLabel : unlikedAriaLabel);
+            enqueueCommentLikeSync(currentWord.id, commentIndex, liked, lang);
+            syncVoteQueue();
+            refreshCommentLikeBadges(contentScroll, currentWord.id, { force: true });
+        });
+    });
+    refreshCommentLikeBadges(contentScroll, currentWord.id);
+
     const noteSections = Array.from(
         contentScroll.querySelectorAll('section:not(#section-contributors):not(#section-contact):not(#section-editors)')
     );
@@ -1171,6 +1794,10 @@ function renderScrollMarkers(panelType = 'entry') {
             label: sectionTitles.relatedWorks
         },
         {
+            id: "section-understanding-vote",
+            label: { zh: "理解投票", en: "Vote" }
+        },
+        {
             id: "section-contributors",
             label: sectionTitles.contributors
         },
@@ -1416,6 +2043,8 @@ function initPanelClickHandlers() {
 }
 
 // 初始化浮窗功�?
+initVoteSync();
+initVoteResetHotkey();
 initClickOutsideHandler();
 initPanelClickHandlers();
 document.addEventListener('about-panel:show', () => {

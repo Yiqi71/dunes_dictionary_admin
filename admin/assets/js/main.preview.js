@@ -11,15 +11,28 @@ import {
     updateWordFocus
 } from "./wordFocus.js";
 import { applyStintFallbackToElement } from "./fontFallback.js";
+import {
+    readSavedWordIdSet,
+    applySavedStateToNode,
+    bindSaveIndicatorInteraction,
+    initSavedWordStorageSync
+} from "./saved.js";
 import { logEvent, startWordView, endWordView } from "/analytics.js";
 
 import { yearPeriods } from "./menu.js";
 
 let sessionStartTs = null;
+initSavedWordStorageSync();
 
 function normalizeLang(code) {
     const v = (code || "").toLowerCase();
-    return v.startsWith("en") ? "en" : "zh";
+    return v.startsWith("zh") ? "zh" : "en";
+}
+
+function resolveInitialLang() {
+    const browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || "";
+    if (browserLang) return normalizeLang(browserLang);
+    return normalizeLang(document.documentElement.lang || state.currentLang || "en");
 }
 
 function attachImageVisibility(img) {
@@ -392,6 +405,7 @@ function allocatePositionsForCountries(wordsByCountry) {
 function renderWordUniverse(wordsData) {
     const lang = normalizeLang(state.currentLang || "zh");
     console.log(lang);
+    const savedWordIds = readSavedWordIdSet();
     const wordNodesContainer = document.getElementById('word-nodes-container');
     wordNodesContainer.innerHTML = '';
     wordsOnGrid = {};
@@ -445,6 +459,7 @@ function renderWordUniverse(wordsData) {
             node.className = 'word-node';
             node.dataset.nodeFormat = "word";
             node.innerHTML = `
+            <span class="save-indicator" aria-hidden="true"></span>
             <div class="detail-title">${String(word.id).padStart(4, '0')}</div>
             <div class="terms">
                 <div class="term-main">${word.term?.[lang] || '未知单词'}</div>
@@ -469,6 +484,8 @@ function renderWordUniverse(wordsData) {
             node.dataset.x = leftPercent / 100;
             node.dataset.y = topPercent / 100;
             node.id = word.id;
+            applySavedStateToNode(node, savedWordIds);
+            bindSaveIndicatorInteraction(node);
             
             // �?关键：用 "x,y" 作为 key 存储
             const key = `${Math.round(leftPercent)},${Math.round(topPercent)}`;
@@ -527,6 +544,7 @@ function renderWordUniverse(wordsData) {
             node.className = 'word-node';
             node.dataset.nodeFormat = "word";
             node.innerHTML = `
+            <span class="save-indicator" aria-hidden="true"></span>
             <div class="detail-title">${String(word.id).padStart(4, '0')}</div>
             <div class="terms">
                 <div class="term-main">${word.term?.[lang] || '\u672a\u77e5\u5355\u8bcd'}</div>
@@ -549,6 +567,8 @@ function renderWordUniverse(wordsData) {
             node.dataset.x = leftPercent / 100;
             node.dataset.y = topPercent / 100;
             node.id = word.id;
+            applySavedStateToNode(node, savedWordIds);
+            bindSaveIndicatorInteraction(node);
 
             const key = `${Math.round(leftPercent)},${Math.round(topPercent)}`;
             wordsOnGrid[key] = node.id;
@@ -601,7 +621,7 @@ function renderWordUniverse(wordsData) {
 document.addEventListener('DOMContentLoaded', () => {
     sessionStartTs = Date.now();
     logEvent("session_start", {});
-    const initialLang = normalizeLang(document.documentElement.lang || "zh");
+    const initialLang = resolveInitialLang();
     document.documentElement.lang = initialLang;
     state.currentLang = initialLang;
     langBtn.textContent = initialLang;
