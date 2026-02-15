@@ -19,6 +19,19 @@ import { logEvent, startWordView, endWordView } from "/analytics.js";
 // Floating panel UI state
 let isPanelVisible = false;
 let isExpanded = false;
+
+const API_BASE = (() => {
+    const injected = (typeof window !== "undefined" && window.DD_API_BASE) ? String(window.DD_API_BASE).trim() : "";
+    if (injected) return injected.replace(/\/+$/, "");
+    const host = (typeof location !== "undefined" && location.hostname) ? location.hostname : "";
+    if (host === "localhost" || host === "127.0.0.1") return "http://localhost:3000";
+    return "https://api.dunes-dictionary.com";
+})();
+
+function buildApiUrl(path) {
+    return `${API_BASE}${path}`;
+}
+
 function getFloatingPanel() {
     return document.getElementById('floating-panel');
 }
@@ -194,7 +207,7 @@ async function fetchCommentLikeCounts(wordId, { force = false } = {}) {
         return cached.counts;
     }
 
-    const response = await fetch(`/events?limit=${COMMENT_LIKE_EVENTS_LIMIT}`, { cache: "no-store" });
+    const response = await fetch(buildApiUrl(`/events?limit=${COMMENT_LIKE_EVENTS_LIMIT}`), { cache: "no-store" });
     if (!response.ok) {
         throw new Error(`failed_to_fetch_comment_like_counts_${response.status}`);
     }
@@ -477,7 +490,7 @@ async function probeVoteSyncConnection() {
         return false;
     }
     try {
-        const response = await fetch("/events", { method: "HEAD", cache: "no-store" });
+        const response = await fetch(buildApiUrl("/events"), { method: "HEAD", cache: "no-store" });
         if (response.ok) {
             setVoteSyncState("connected");
             return true;
@@ -509,7 +522,7 @@ async function syncVoteQueue() {
         while (queue.length > 0) {
             const eventPayload = queue[0];
             try {
-                const response = await fetch("/events", {
+                const response = await fetch(buildApiUrl("/events"), {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(eventPayload),
@@ -548,7 +561,7 @@ async function syncCommentLikeQueue() {
         while (queue.length > 0) {
             const eventPayload = queue[0];
             try {
-                const response = await fetch("/events", {
+                const response = await fetch(buildApiUrl("/events"), {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(eventPayload),
@@ -605,7 +618,7 @@ async function fetchServerWordVoteStats(wordId, { force = false } = {}) {
         return cached.stats;
     }
 
-    const response = await fetch(`/api/votes/understanding?wordId=${encodeURIComponent(cacheKey)}`, {
+    const response = await fetch(buildApiUrl(`/api/votes/understanding?wordId=${encodeURIComponent(cacheKey)}`), {
         cache: "no-store"
     });
     if (!response.ok) {

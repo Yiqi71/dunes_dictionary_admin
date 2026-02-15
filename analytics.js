@@ -1,6 +1,17 @@
 const STORAGE_KEY = "dd_events";
 const MAX_EVENTS = 500;
 let currentWordView = null;
+const API_BASE = (() => {
+  const injected = (typeof window !== "undefined" && window.DD_API_BASE) ? String(window.DD_API_BASE).trim() : "";
+  if (injected) return injected.replace(/\/+$/, "");
+  const host = (typeof location !== "undefined" && location.hostname) ? location.hostname : "";
+  if (host === "localhost" || host === "127.0.0.1") return "http://localhost:3000";
+  return "https://api.dunes-dictionary.com";
+})();
+
+function buildApiUrl(path) {
+  return `${API_BASE}${path}`;
+}
 
 function getDocLang() {
   try {
@@ -47,7 +58,7 @@ export function logEvent(name, data = {}) {
     // 2) 同时上报到后端
     // - keepalive: 页面关闭/跳转时也尽量发出去
     // - 不阻塞 UI：不 await
-    fetch("/events", {
+    fetch(buildApiUrl("/events"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(event),
