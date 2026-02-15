@@ -83,15 +83,22 @@
 
   <div class="max-w-7xl mx-auto space-y-8">
     <!-- Row 1: Overview -->
-    <div class="flex items-center gap-2 mb-3 mt-6">
-      <div class="w-1 h-4 bg-amber-600 rounded-full"></div>
-      <h2 class="text-lg font-bold text-stone-800">总览 Overview</h2>
+    <div class="flex items-center justify-between gap-3 mb-3 mt-6">
+      <div class="flex items-center gap-2">
+        <div class="w-1 h-4 bg-amber-600 rounded-full"></div>
+        <h2 class="text-lg font-bold text-stone-800">总览 Overview</h2>
+      </div>
+      <div class="flex bg-stone-100 p-1 rounded-md">
+        <button id="overview24h" class="px-3 py-1 text-xs font-medium rounded bg-white shadow text-stone-900 transition-all">24h</button>
+        <button id="overview7d" class="px-3 py-1 text-xs font-medium rounded text-stone-500 hover:text-stone-700 transition-all">7天</button>
+        <button id="overview30d" class="px-3 py-1 text-xs font-medium rounded text-stone-500 hover:text-stone-700 transition-all">30天</button>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <div class="bg-white border border-stone-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
         <div class="flex justify-between items-start mb-4">
-          <h3 class="text-stone-500 text-sm font-bold uppercase tracking-wider">访问用户 Total UV (24h)</h3>
+          <h3 class="text-stone-500 text-sm font-bold uppercase tracking-wider">访问用户 Total UV</h3>
           <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border bg-green-100 text-green-800 border-green-200">
             <i data-lucide="activity" class="w-2.5 h-2.5 mr-1 animate-pulse"></i> 实时
           </span>
@@ -104,7 +111,7 @@
 
       <div class="bg-white border border-stone-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
         <div class="flex justify-between items-start mb-4">
-          <h3 class="text-stone-500 text-sm font-bold uppercase tracking-wider">平均停留 Avg Stay (24h)</h3>
+          <h3 class="text-stone-500 text-sm font-bold uppercase tracking-wider">平均停留 Avg Stay</h3>
           <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border bg-green-100 text-green-800 border-green-200">
             <i data-lucide="activity" class="w-2.5 h-2.5 mr-1 animate-pulse"></i> 实时
           </span>
@@ -117,7 +124,7 @@
 
       <div class="bg-white border border-stone-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
         <div class="flex justify-between items-start mb-4">
-          <h3 class="text-stone-500 text-sm font-bold uppercase tracking-wider">活跃词条 Active Terms (24h)</h3>
+          <h3 class="text-stone-500 text-sm font-bold uppercase tracking-wider">活跃词条 Active Terms</h3>
           <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border bg-green-100 text-green-800 border-green-200">
             <i data-lucide="activity" class="w-2.5 h-2.5 mr-1 animate-pulse"></i> 实时
           </span>
@@ -130,7 +137,7 @@
 
       <div class="bg-white border border-stone-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
         <div class="flex justify-between items-start mb-4">
-          <h3 class="text-stone-500 text-sm font-bold uppercase tracking-wider">会话数 Sessions (24h)</h3>
+          <h3 class="text-stone-500 text-sm font-bold uppercase tracking-wider">会话数 Sessions</h3>
           <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border bg-green-100 text-green-800 border-green-200">
             <i data-lucide="activity" class="w-2.5 h-2.5 mr-1 animate-pulse"></i> 实时
           </span>
@@ -467,6 +474,7 @@
     let detailChart = null;
     let currentRange = "7d";
     let currentTrendRange = "7d";
+    let currentOverviewRange = "24h";
     let currentTermPage = 1;
     let lastEventsCache = [];
 
@@ -741,6 +749,34 @@
       return buildInteractionMetrics(recent24h, sessions);
     }
 
+    function normalizeOverviewStats(stats) {
+      return {
+        visits: stats?.visits24h ?? 0,
+        avgStay: stats?.avgStay ?? "0s",
+        activeTerms: stats?.activeTerms ?? 0,
+        sessions: stats?.sessions ?? 0
+      };
+    }
+
+    function buildOverviewStats(events, range) {
+      if (!Array.isArray(events) || !events.length) return null;
+      const rangeMs = rangeToMs(range);
+      const recent = events.filter(e => inLast(e.ts, rangeMs));
+
+      const visits = countUniqueUsers(recent.filter(e => e.name === "word_view_start"));
+      const sessions = new Set(recent.map(e => e.sessionId).filter(Boolean)).size;
+      const viewEnds = recent.filter(e => e.name === "word_view_end" && e.data && typeof e.data.durationMs === "number");
+      const avgMs = viewEnds.length ? Math.round(viewEnds.reduce((s, e) => s + e.data.durationMs, 0) / viewEnds.length) : 0;
+      const activeTerms = buildTermAgg(recent).length;
+
+      return {
+        visits,
+        avgStay: fmtMs(avgMs),
+        activeTerms,
+        sessions
+      };
+    }
+
     async function tryFetchJson(url) {
       const r = await fetch(url, { cache: "no-store" });
       if (!r.ok) throw new Error(`${url} ${r.status}`);
@@ -794,11 +830,11 @@
 
       return { mode: "events", dash, terms, events };
     }
-    function renderStats(dash) {
-      $("statVisits").innerText = (dash.stats.visits24h ?? 0).toLocaleString();
-      $("statAvgStay").innerText = dash.stats.avgStay ?? "-";
-      $("statActiveTerms").innerText = (dash.stats.activeTerms ?? 0).toLocaleString();
-      $("statSessions").innerText = (dash.stats.sessions ?? 0).toLocaleString();
+    function renderStats(stats) {
+      $("statVisits").innerText = (stats?.visits ?? 0).toLocaleString();
+      $("statAvgStay").innerText = stats?.avgStay ?? "-";
+      $("statActiveTerms").innerText = (stats?.activeTerms ?? 0).toLocaleString();
+      $("statSessions").innerText = (stats?.sessions ?? 0).toLocaleString();
     }
 
     function normalizeTrendData(dash, range) {
@@ -1068,12 +1104,37 @@
       }
     }
 
+    function setOverviewRange(range) {
+      currentOverviewRange = range;
+      const btns = [
+        ["24h", "overview24h"],
+        ["7d", "overview7d"],
+        ["30d", "overview30d"]
+      ];
+      const activeClasses = ["bg-white", "shadow", "text-stone-900"];
+      const inactiveClasses = ["text-stone-500", "hover:text-stone-700"];
+      for (const [r, id] of btns) {
+        const b = $(id);
+        if (!b) continue;
+        if (r === range) {
+          b.classList.add(...activeClasses);
+          b.classList.remove(...inactiveClasses);
+        } else {
+          b.classList.remove(...activeClasses);
+          b.classList.add(...inactiveClasses);
+        }
+      }
+    }
+
     $("range7d").addEventListener("click", () => { setRange("7d"); refreshAll(); });
     $("range24h").addEventListener("click", () => { setRange("24h"); refreshAll(); });
     $("range30d").addEventListener("click", () => { setRange("30d"); refreshAll(); });
 
     $("tab7d").addEventListener("click", () => { setTrendRange("7d"); refreshAll(); });
     $("tab30d").addEventListener("click", () => { setTrendRange("30d"); refreshAll(); });
+    $("overview24h").addEventListener("click", () => { setOverviewRange("24h"); refreshAll(); });
+    $("overview7d").addEventListener("click", () => { setOverviewRange("7d"); refreshAll(); });
+    $("overview30d").addEventListener("click", () => { setOverviewRange("30d"); refreshAll(); });
 
     $("refreshBtn").addEventListener("click", () => refreshAll());
 
@@ -1099,7 +1160,6 @@
 
         if (mode === "events" && events) lastEventsCache = events;
 
-        renderStats(dash);
         renderTrend(dash);
         let eventsForYesterday = lastEventsCache;
         if (!eventsForYesterday.length) {
@@ -1111,6 +1171,8 @@
           }
         }
         if (eventsForYesterday.length) lastEventsCache = eventsForYesterday;
+        const overviewStats = buildOverviewStats(eventsForYesterday, currentOverviewRange) || normalizeOverviewStats(dash.stats);
+        renderStats(overviewStats);
         const featureFromEvents = buildFeatureFromEvents(eventsForYesterday);
         renderFeature(featureFromEvents ? { feature: featureFromEvents } : dash);
         const langMetrics = buildLangMetrics(eventsForYesterday);
@@ -1127,6 +1189,7 @@
 
     setRange("7d");
     setTrendRange("7d");
+    setOverviewRange("24h");
     refreshAll();
     setInterval(refreshAll, POLL_MS);
   </script>
