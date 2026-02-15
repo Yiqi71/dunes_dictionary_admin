@@ -272,6 +272,58 @@ function aggregateUnderstandingVotes(events, targetWordId = null) {
   return statsByWordId;
 }
 
+function aggregateCommentLikeVotes(events, targetWordId = null) {
+  const target = targetWordId === null || targetWordId === undefined
+    ? null
+    : String(targetWordId);
+  const latestByWordCommentAndDevice = new Map();
+
+  for (const e of events) {
+    if (!e || e.name !== "comment_like_toggle") continue;
+    const d = e.data || {};
+    const wordId = String(d.wordId || "").trim();
+    if (!wordId) continue;
+    if (target !== null && wordId !== target) continue;
+
+    const commentIndex = Number(d.commentIndex);
+    if (!Number.isFinite(commentIndex)) continue;
+
+    const deviceId = String(d.deviceId || "").trim();
+    const fallbackSessionId = String(e.sessionId || "").trim();
+    const dedupeId = deviceId || fallbackSessionId;
+    if (!dedupeId) continue;
+
+    const ts = Number(e.ts) || 0;
+    const liked = Boolean(d.liked);
+    const key = `${wordId}::${commentIndex}::${dedupeId}`;
+    const prev = latestByWordCommentAndDevice.get(key);
+    if (!prev || ts >= prev.ts) {
+      latestByWordCommentAndDevice.set(key, { wordId, commentIndex, liked, ts });
+    }
+  }
+
+  const countsByWord = new Map();
+  latestByWordCommentAndDevice.forEach((entry) => {
+    if (!entry.liked) return;
+    if (!countsByWord.has(entry.wordId)) {
+      countsByWord.set(entry.wordId, {});
+    }
+    const item = countsByWord.get(entry.wordId);
+    const idx = String(entry.commentIndex);
+    item[idx] = (item[idx] || 0) + 1;
+  });
+
+  if (target !== null) {
+    return countsByWord.get(target) || {};
+  }
+
+  const countsByWordId = {};
+  countsByWord.forEach((item, wordId) => {
+    countsByWordId[wordId] = item;
+  });
+  return countsByWordId;
+}
+
 app.post("/events", async (req, res) => {
   const e = req.body;
 
@@ -428,6 +480,33 @@ app.get("/api/votes/understanding", async (req, res) => {
 
   const statsByWordId = aggregateUnderstandingVotes(events);
   return res.json({ ok: true, statsByWordId });
+});
+
+app.get("/api/votes/comment-likes", async (req, res) => {
+  const wordId = req.query.wordId;
+  let events = [];
+  try {
+    const rows = await dbAll(
+      "SELECT * FROM events WHERE name = ? ORDER BY ts ASC",
+      ["comment_like_toggle"]
+    );
+    events = rows.map(rowToEvent);
+  } catch (err) {
+    console.error("Comment like query failed", err);
+    return res.status(500).json({ ok: false, error: "DB query failed" });
+  }
+
+  if (wordId !== undefined) {
+    const countsByCommentIndex = aggregateCommentLikeVotes(events, wordId);
+    return res.json({
+      ok: true,
+      wordId: String(wordId),
+      countsByCommentIndex
+    });
+  }
+
+  const countsByWordId = aggregateCommentLikeVotes(events);
+  return res.json({ ok: true, countsByWordId });
 });
 
 

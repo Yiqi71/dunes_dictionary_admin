@@ -125,7 +125,6 @@ function safeWriteStorage(key, value) {
 const COMMENT_LIKES_KEY = "dd_comment_likes_v1";
 const COMMENT_LIKE_EVENT_NAME = "comment_like_toggle";
 const COMMENT_LIKE_COUNTS_CACHE_TTL_MS = 30000;
-const COMMENT_LIKE_EVENTS_LIMIT = 2000;
 const commentLikeCountsCache = new Map();
 
 function getCommentLikeStorage() {
@@ -159,46 +158,6 @@ function toggleCommentLiked(wordId, commentIndex) {
     return next;
 }
 
-function normalizeEventsPayload(payload) {
-    if (Array.isArray(payload)) return payload;
-    if (!payload || typeof payload !== "object") return [];
-    if (Array.isArray(payload.events)) return payload.events;
-    if (Array.isArray(payload.items)) return payload.items;
-    if (Array.isArray(payload.data)) return payload.data;
-    return [];
-}
-
-function buildCommentLikeCounts(events, wordId) {
-    const latestByUserAndComment = new Map();
-    const targetWordId = String(wordId);
-
-    events.forEach((event) => {
-        if (!event || event.name !== COMMENT_LIKE_EVENT_NAME) return;
-        const data = event.data || {};
-        if (String(data.wordId) !== targetWordId) return;
-
-        const sessionId = String(event.sessionId || "");
-        const commentIndex = Number(data.commentIndex);
-        if (!sessionId || !Number.isFinite(commentIndex)) return;
-
-        const key = `${commentIndex}::${sessionId}`;
-        const ts = Number(event.ts) || 0;
-        const liked = Boolean(data.liked);
-        const prev = latestByUserAndComment.get(key);
-        if (!prev || ts >= prev.ts) {
-            latestByUserAndComment.set(key, { ts, liked, commentIndex });
-        }
-    });
-
-    const counts = {};
-    latestByUserAndComment.forEach((entry) => {
-        if (!entry.liked) return;
-        const idx = String(entry.commentIndex);
-        counts[idx] = (counts[idx] || 0) + 1;
-    });
-    return counts;
-}
-
 async function fetchCommentLikeCounts(wordId, { force = false } = {}) {
     const cacheKey = String(wordId);
     const now = Date.now();
@@ -207,14 +166,16 @@ async function fetchCommentLikeCounts(wordId, { force = false } = {}) {
         return cached.counts;
     }
 
-    const response = await fetch(buildApiUrl(`/events?limit=${COMMENT_LIKE_EVENTS_LIMIT}`), { cache: "no-store" });
+    const response = await fetch(buildApiUrl(`/api/votes/comment-likes?wordId=${encodeURIComponent(cacheKey)}`), {
+        cache: "no-store"
+    });
     if (!response.ok) {
         throw new Error(`failed_to_fetch_comment_like_counts_${response.status}`);
     }
 
     const payload = await response.json();
-    const events = normalizeEventsPayload(payload);
-    const counts = buildCommentLikeCounts(events, wordId);
+    const rawCounts = payload?.countsByCommentIndex;
+    const counts = rawCounts && typeof rawCounts === "object" ? rawCounts : {};
     commentLikeCountsCache.set(cacheKey, { ts: now, counts });
     return counts;
 }
@@ -440,6 +401,7 @@ function buildCommentLikeSyncEvent(wordId, commentIndex, liked, langOverride) {
             wordId,
             commentIndex,
             liked: Boolean(liked),
+            deviceId: getVoteDeviceId(),
             lang: normalizeLang(langOverride || document.documentElement.lang || state.currentLang || "zh")
         }
     };
