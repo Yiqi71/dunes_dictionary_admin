@@ -99,7 +99,7 @@
         <div class="flex items-baseline gap-2">
           <span id="statVisits" class="text-4xl font-bold text-stone-900">-</span>
         </div>
-        <p class="text-stone-400 text-xs mt-2">基于 word_view_start</p>
+        <p class="text-stone-400 text-xs mt-2">deviceId（localStorage）去重</p>
       </div>
 
       <div class="bg-white border border-stone-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
@@ -540,8 +540,8 @@
       const langEvents = recent24h.filter(e => e.name === "lang_toggle");
       const enEvents = langEvents.filter(e => (e.data?.to || "").startsWith("en"));
       const zhEvents = langEvents.filter(e => (e.data?.to || "").startsWith("zh"));
-      const totalUsers = new Set(recent24h.map(e => e.sessionId).filter(Boolean)).size;
-      const enUsers = new Set(enEvents.map(e => e.sessionId).filter(Boolean)).size;
+      const totalUsers = countUniqueUsers(recent24h);
+      const enUsers = countUniqueUsers(enEvents);
 
       let enDurationMs = 0;
       let zhDurationMs = 0;
@@ -594,6 +594,17 @@
       if (raw.startsWith("en")) return "en";
       if (raw.startsWith("zh") || raw.includes("cn")) return "cn";
       return null;
+    }
+
+    function getEventDedupeId(e) {
+      const d = e?.data || {};
+      const deviceId = String(d.deviceId || "").trim();
+      if (deviceId) return deviceId;
+      return String(e?.sessionId || "").trim();
+    }
+
+    function countUniqueUsers(events) {
+      return new Set((events || []).map(getEventDedupeId).filter(Boolean)).size;
     }
 
     function buildTrendNd(events, daysCount) {
@@ -700,7 +711,7 @@
       defs.forEach(def => {
         const matched = events.filter(e => def.names.includes(e.name));
         const count = matched.length;
-        const users = new Set(matched.map(e => e.sessionId).filter(Boolean)).size;
+        const users = countUniqueUsers(matched);
         const pct = denom ? Math.round((users / denom) * 100) : 0;
         interactions[def.key] = { count, users, pct };
       });
@@ -750,9 +761,8 @@
       const rangeMs = rangeToMs("24h");
       const recent24h = events.filter(e => inLast(e.ts, rangeMs));
 
-      const visits24h = recent24h.filter(e => e.name === "word_view_start").length;
-      const sessionsSet = new Set(recent24h.map(e => e.sessionId).filter(Boolean));
-      const sessions = sessionsSet.size;
+      const visits24h = countUniqueUsers(recent24h.filter(e => e.name === "word_view_start"));
+      const sessions = new Set(recent24h.map(e => e.sessionId).filter(Boolean)).size;
 
       const viewEnds = recent24h.filter(e => e.name === "word_view_end" && e.data && typeof e.data.durationMs === "number");
       const avgMs = viewEnds.length ? Math.round(viewEnds.reduce((s, e) => s + e.data.durationMs, 0) / viewEnds.length) : 0;

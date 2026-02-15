@@ -112,6 +112,18 @@ function getEventLangKey(e) {
   return null;
 }
 
+function getEventDedupeId(e) {
+  const d = (e && e.data) || {};
+  const deviceId = String(d.deviceId || "").trim();
+  if (deviceId) return deviceId;
+  const fallbackSessionId = String((e && e.sessionId) || "").trim();
+  return fallbackSessionId;
+}
+
+function countUniqueUsers(events) {
+  return new Set((events || []).map(getEventDedupeId).filter(Boolean)).size;
+}
+
 function buildTermAgg(events) {
   const terms = new Map();
   for (const e of events) {
@@ -180,12 +192,12 @@ function buildTrendNdByLang(events, daysCount) {
 }
 
 function buildFeature(events) {
-  const totalUsers = new Set(events.map(e => e.sessionId).filter(Boolean)).size;
+  const totalUsers = countUniqueUsers(events);
   const denom = totalUsers || 0;
   const buildStat = (names) => {
     const matched = events.filter(e => names.includes(e.name));
     const count = matched.length;
-    const users = new Set(matched.map(e => e.sessionId).filter(Boolean)).size;
+    const users = countUniqueUsers(matched);
     const pct = denom ? Math.round((users / denom) * 100) : 0;
     return { count, users, pct };
   };
@@ -374,6 +386,7 @@ app.get("/metrics/summary", async (req, res) => {
   }
 
   const sessions = new Set(recent.map(e => e.sessionId).filter(Boolean));
+  const users = countUniqueUsers(recent);
 
   const viewEnds = recent.filter(e => e.name === "word_view_end" && e.data && typeof e.data.durationMs === "number");
   const avgViewMs = viewEnds.length
@@ -385,6 +398,7 @@ app.get("/metrics/summary", async (req, res) => {
     range,
     events: recent.length,
     sessions: sessions.size,
+    users,
     avgWordViewMs: avgViewMs
   });
 });
@@ -420,7 +434,7 @@ app.get("/api/dashboard", async (req, res) => {
   res.json({
     ok: true,
     stats: {
-      visits24h: recent.filter(e => e.name === "word_view_start").length,
+      visits24h: countUniqueUsers(recent.filter(e => e.name === "word_view_start")),
       avgStay: fmtMs(avgViewMs),
       activeTerms,
       sessions
