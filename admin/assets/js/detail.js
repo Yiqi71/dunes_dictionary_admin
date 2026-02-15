@@ -16,7 +16,7 @@ import {
 import { applyStintFallbackIn } from "./fontFallback.js";
 
 import { logEvent, startWordView, endWordView } from "/analytics.js";
-// 浮窗相关变量
+// Floating panel UI state
 let isPanelVisible = false;
 let isExpanded = false;
 function getFloatingPanel() {
@@ -73,6 +73,8 @@ const ENTRY_VOTE_COUNTS_KEY = "dd_entry_understanding_vote_counts_v1";
 const ENTRY_USER_VOTES_KEY = "dd_entry_understanding_user_votes_v1";
 const ENTRY_VOTE_SYNC_QUEUE_KEY = "dd_entry_understanding_vote_sync_queue_v1";
 const ENTRY_VOTE_SYNC_INTERVAL_MS = 15000;
+const ENTRY_VOTE_STATS_CACHE_TTL_MS = 30000;
+const ENTRY_VOTE_DEVICE_ID_KEY = "dd_vote_device_id_v1";
 const COMMENT_LIKE_SYNC_QUEUE_KEY = "dd_comment_like_sync_queue_v1";
 const COMMENT_LIKE_SNAPSHOT_SESSION_KEY = "dd_comment_like_snapshot_sent_v1";
 const ENTRY_VOTE_LOCAL_KEYS = [
@@ -83,6 +85,7 @@ const ENTRY_VOTE_LOCAL_KEYS = [
 let voteSyncState = navigator.onLine ? "checking" : "disconnected";
 let voteSyncInFlight = false;
 let voteSyncInitialized = false;
+const entryVoteStatsCache = new Map();
 let commentLikeSyncInFlight = false;
 let commentLikeSnapshotQueued = false;
 let voteResetHotkeyInitialized = false;
@@ -251,6 +254,19 @@ function getVoteSessionId() {
     return id;
 }
 
+function getVoteDeviceId() {
+    try {
+        let id = localStorage.getItem(ENTRY_VOTE_DEVICE_ID_KEY);
+        if (!id) {
+            id = `d_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+            localStorage.setItem(ENTRY_VOTE_DEVICE_ID_KEY, id);
+        }
+        return id;
+    } catch (_) {
+        return "";
+    }
+}
+
 function isVoteSyncConnected() {
     return voteSyncState === "connected";
 }
@@ -280,6 +296,49 @@ function setVoteSyncState(next) {
 function getVoteSyncQueue() {
     const parsed = safeParseStorage(ENTRY_VOTE_SYNC_QUEUE_KEY, []);
     return Array.isArray(parsed) ? parsed : [];
+}
+
+function normalizeVoteChoice(choice) {
+    const v = String(choice || "").toLowerCase();
+    return v === "clear" || v === "unclear" ? v : null;
+}
+
+function toVoteStats(clear, unclear) {
+    const safeClear = Math.max(0, Number(clear) || 0);
+    const safeUnclear = Math.max(0, Number(unclear) || 0);
+    const total = safeClear + safeUnclear;
+    const clearPct = total > 0 ? Math.round((safeClear / total) * 100) : 0;
+    const unclearPct = total > 0 ? 100 - clearPct : 0;
+    return { clear: safeClear, unclear: safeUnclear, total, clearPct, unclearPct };
+}
+
+function normalizeVoteStats(stats) {
+    if (!stats || typeof stats !== "object") return toVoteStats(0, 0);
+    return toVoteStats(stats.clear, stats.unclear);
+}
+
+function applyVoteChoiceToStats(stats, choice) {
+    const next = normalizeVoteStats(stats);
+    const normalizedChoice = normalizeVoteChoice(choice);
+    if (!normalizedChoice) return next;
+    return toVoteStats(
+        next.clear + (normalizedChoice === "clear" ? 1 : 0),
+        next.unclear + (normalizedChoice === "unclear" ? 1 : 0)
+    );
+}
+
+function getPendingVoteChoice(wordId) {
+    const targetWordId = String(wordId);
+    const queue = getVoteSyncQueue();
+    for (let i = queue.length - 1; i >= 0; i--) {
+        const eventPayload = queue[i];
+        if (!eventPayload || eventPayload.name !== "entry_understanding_vote") continue;
+        const data = eventPayload.data || {};
+        if (String(data.wordId) !== targetWordId) continue;
+        const choice = normalizeVoteChoice(data.choice);
+        if (choice) return choice;
+    }
+    return null;
 }
 
 function setVoteSyncQueue(queue) {
@@ -352,6 +411,7 @@ function buildVoteSyncEvent(wordId, choice) {
         data: {
             wordId,
             choice,
+            deviceId: getVoteDeviceId(),
             lang: normalizeLang(document.documentElement.lang || state.currentLang || "zh")
         }
     };
@@ -534,12 +594,28 @@ function getWordVoteStats(wordId) {
     const counts = safeParseStorage(ENTRY_VOTE_COUNTS_KEY, {});
     const id = String(wordId);
     const current = counts[id] || {};
-    const clear = Math.max(0, Number(current.clear) || 0);
-    const unclear = Math.max(0, Number(current.unclear) || 0);
-    const total = clear + unclear;
-    const clearPct = total > 0 ? Math.round((clear / total) * 100) : 0;
-    const unclearPct = total > 0 ? 100 - clearPct : 0;
-    return { clear, unclear, total, clearPct, unclearPct };
+    return toVoteStats(current.clear, current.unclear);
+}
+
+async function fetchServerWordVoteStats(wordId, { force = false } = {}) {
+    const cacheKey = String(wordId);
+    const now = Date.now();
+    const cached = entryVoteStatsCache.get(cacheKey);
+    if (!force && cached && now - cached.ts < ENTRY_VOTE_STATS_CACHE_TTL_MS) {
+        return cached.stats;
+    }
+
+    const response = await fetch(`/api/votes/understanding?wordId=${encodeURIComponent(cacheKey)}`, {
+        cache: "no-store"
+    });
+    if (!response.ok) {
+        throw new Error(`failed_to_fetch_vote_stats_${response.status}`);
+    }
+
+    const payload = await response.json();
+    const stats = normalizeVoteStats(payload?.stats);
+    entryVoteStatsCache.set(cacheKey, { ts: now, stats });
+    return stats;
 }
 
 function getUserVote(wordId) {
@@ -610,27 +686,49 @@ function renderUnderstandingVoteSection(sectionEl, currentWord, lang) {
     noteEl.style.display = isVoteSyncConnected() ? "none" : "block";
 
     let selectedChoice = null;
+    const existingVote = getUserVote(currentWord.id);
+    let hasVoted = Boolean(existingVote);
+    let displayedStats = hasVoted ? getWordVoteStats(currentWord.id) : toVoteStats(0, 0);
 
     const setSelected = () => {
         clearBtn.classList.toggle("is-selected", selectedChoice === "clear");
         unclearBtn.classList.toggle("is-selected", selectedChoice === "unclear");
     };
 
-    const renderPercentages = (stats) => {
-        clearBtn.textContent = `${labels.clear} ${stats.clearPct}%`;
-        unclearBtn.textContent = `${labels.unclear} ${stats.unclearPct}%`;
-        clearBtn.classList.remove("is-selected");
-        unclearBtn.classList.remove("is-selected");
-        clearBtn.classList.add("is-voted");
-        unclearBtn.classList.add("is-voted");
+    const renderVoteState = (stats, voted) => {
+        const normalizedStats = normalizeVoteStats(stats);
+        displayedStats = normalizedStats;
+        clearBtn.textContent = `${labels.clear} ${normalizedStats.clearPct}%`;
+        unclearBtn.textContent = `${labels.unclear} ${normalizedStats.unclearPct}%`;
+        clearBtn.classList.toggle("is-voted", voted);
+        unclearBtn.classList.toggle("is-voted", voted);
+        if (voted) {
+            clearBtn.classList.remove("is-selected");
+            unclearBtn.classList.remove("is-selected");
+            submitBtn.style.display = "none";
+        } else {
+            submitBtn.style.display = "";
+        }
     };
 
-    const existingVote = getUserVote(currentWord.id);
-    if (existingVote) {
-        renderPercentages(getWordVoteStats(currentWord.id));
-        submitBtn.style.display = "none";
-        return;
-    }
+    renderVoteState(displayedStats, hasVoted);
+
+    const loadServerStats = async () => {
+        try {
+            let serverStats = await fetchServerWordVoteStats(currentWord.id);
+            const pendingChoice = getPendingVoteChoice(currentWord.id);
+            if (pendingChoice) {
+                serverStats = applyVoteChoiceToStats(serverStats, pendingChoice);
+            }
+            renderVoteState(serverStats, hasVoted);
+        } catch (_) {
+            renderVoteState(hasVoted ? getWordVoteStats(currentWord.id) : displayedStats, hasVoted);
+        }
+    };
+
+    loadServerStats();
+    if (hasVoted) return;
+    
 
     clearBtn.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -650,8 +748,8 @@ function renderUnderstandingVoteSection(sectionEl, currentWord, lang) {
         const stats = submitWordVote(currentWord.id, selectedChoice);
         if (!stats) return;
 
-        submitBtn.style.display = "none";
-        renderPercentages(stats);
+        hasVoted = true;
+        renderVoteState(applyVoteChoiceToStats(displayedStats, selectedChoice), true);
         enqueueVoteSync(currentWord.id, selectedChoice);
         syncVoteQueue();
     });
@@ -661,12 +759,12 @@ function filterProposer(name) {
     const focusedWord = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!focusedWord) return [];
 
-    // 先渲�?proposer 相关的词
+    // Build container for words of same proposer.
     const relatedContainer = document.createElement("div");
     relatedContainer.classList = `related-words`;
     relatedContainer.innerHTML = '';
 
-    // 检索所�?proposers 里有该名字的�?
+    // Find words with save proposer
     const relatedWords = window.allWords.filter(w => {
         if (w.id === focusedWord.id) return false;
         return Array.isArray(w.proposers) && w.proposers.some(p => p.name === name);
@@ -678,7 +776,7 @@ function filterProposer(name) {
         link.textContent = w.term;
         link.style.display = 'block';
 
-        // 点击跳转到这个单�?
+        // Navigate to the clicked related word.
         link.addEventListener('click', (e) => {
             e.stopPropagation();
             const targetNodeId = link.id.replace('related-', '');
@@ -687,7 +785,7 @@ function filterProposer(name) {
             startWordView(targetNodeId);
             logEvent("link_click", { fromWordId, toWordId: targetNodeId });
             zoomToWord(targetNodeId, state.currentScale);
-            updateWordFocus();
+            updateWordFocus(targetNodeId);
 
             renderPanelSections();
             updateTabContent("book");
@@ -698,42 +796,8 @@ function filterProposer(name) {
     return relatedContainer;
 }
 
-// function togglePanelWidth() {
-//     const panel = getFloatingPanel();
-//     const expandBtn = document.getElementById('expand-btn');
 
-//     if (!panel || !expandBtn) return;
-
-//     isExpanded = !isExpanded;
-
-//     if (isExpanded) {
-//         panel.classList.add('expanded');
-//         expandBtn.innerHTML = `
-//             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-//                 <polyline points="4,14 10,14 10,20"></polyline>
-//                 <polyline points="20,10 14,10 14,4"></polyline>
-//                 <line x1="14" y1="10" x2="21" y2="3"></line>
-//                 <line x1="3" y1="21" x2="10" y2="14"></line>
-//             </svg>
-//         `;
-//         const overlay = document.getElementById("overlay");
-//         overlay.classList.remove("hidden");
-//     } else {
-//         panel.classList.remove('expanded');
-//         expandBtn.innerHTML = `
-//             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-//                 <polyline points="15,3 21,3 21,9"></polyline>
-//                 <polyline points="9,21 3,21 3,15"></polyline>
-//                 <line x1="21" y1="3" x2="14" y2="10"></line>
-//                 <line x1="3" y1="21" x2="10" y2="14"></line>
-//             </svg>
-//         `;
-//         const overlay = document.getElementById("overlay");
-//         overlay.classList.add("hidden");
-//     }
-// }
-
-// 浮窗功能函数
+// Floating panel visibility and layout
 export function showFloatingPanel() {
     const panel = getFloatingPanel();
     if (!panel) return;
@@ -743,17 +807,17 @@ export function showFloatingPanel() {
 
     ensureExpandButton();
     
-    // 同时渲染两个panel的内�?
+    // Render both panels
     renderPanelSections();
     renderCommentSection();
 
-    // 重置 tab 按钮状态和panel状�?
+    // Reset tab button state and active panels.
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => btn.classList.remove('active'));
     const entryTabs = queryAllFloating('.panel-tabs button[data-tab="entry"]');
     entryTabs.forEach(tab => tab.classList.add('active'));
 
-    // 设置默认选中entry panel
+    // Default to the entry panel.
     const entryPanel = queryFloating('.panel-entry');
     const commentPanel = queryFloating('.panel-comment');
     if (entryPanel) entryPanel.classList.add('active');
@@ -773,7 +837,7 @@ export function showFloatingPanel() {
     setTimeout(updateRelations, 300);
     setTimeout(updateRelations, 600);
     
-    // 初始化滚动处理器
+    // Bind scroll-related handlers after panel content is rendered.
     setTimeout(() => {
         updateScrollHandlers();
     }, 100);
@@ -783,11 +847,10 @@ function ensureExpandButton() {
     let expandBtn = document.getElementById('expand-btn');
 
     if (!expandBtn) {
-        // 创建按钮
+        // expand/collapse button.
         expandBtn = document.createElement('button');
         expandBtn.id = 'expand-btn';
 
-        // 添加样式
         expandBtn.style.cssText = `
             position: absolute;
             left: calc(-1vw - 68px - 40px);
@@ -804,7 +867,7 @@ function ensureExpandButton() {
             z-index: 1000;
         `;
 
-        // 创建箭头和竖线的HTML结构
+        // Build button markup (edge line + arrow icon).
         expandBtn.innerHTML = `
             <div class="expand-btn-content" style="
                 display: flex;
@@ -814,7 +877,7 @@ function ensureExpandButton() {
                 height: 100%;
                 position: relative;
             ">
-                <!-- 竖线 -->
+                <!-- vertical line -->
                 <div class="edge-line" style="
                     width: 2px;
                     height: 20px;
@@ -823,7 +886,7 @@ function ensureExpandButton() {
                     margin-right: 1px;
                 "></div>
 
-                <!-- 箭头 -->
+                <!-- arrow -->
                 <div class="arrow-container" style="
                     transition: transform 0.3s ease;
                     display: flex;
@@ -831,9 +894,9 @@ function ensureExpandButton() {
                     justify-content: center;
                 ">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFCF4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <!-- 箭头竖线部分 -->
+                        <!-- arrow stroke -->
                         <polyline points="11,18 5,12 11,6"></polyline>
-                        <!-- 箭头横线，x2拉长 -->
+                        <!-- horizontal arrow line -->
                         <line x1="5" y1="12" x2="20" y2="12"></line>
                     </svg>
                 </div>
@@ -841,18 +904,18 @@ function ensureExpandButton() {
         `;
 
 
-        // 添加点击事件
+        // Toggle panel width on click.
         expandBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             togglePanelWidth();
         });
 
-        // 将按钮添加到 panel �?
+        // Attach button to the floating panel.
         const panel = getFloatingPanel();
         if (!panel) return;
         panel.appendChild(expandBtn);
 
-        // 添加动画样式到页�?
+        // Inject animation styles once.
         if (!document.getElementById('expand-btn-styles')) {
             const style = document.createElement('style');
             style.id = 'expand-btn-styles';
@@ -928,19 +991,19 @@ export function hideFloatingPanel() {
     isPanelVisible = false;
     isExpanded = false;
 
-    // 重置按钮图标
+    // Remove expand button and reset expanded state.
     let expandBtn = document.getElementById('expand-btn');
     if (expandBtn) {
         expandBtn.remove();
     }
 
-    // 重置tabs显示（显示所有panel的tabs�?
+    // Restore all tab strips.
     const allTabs = queryAllFloating('.panel-tabs');
     allTabs.forEach(tabs => {
         if (tabs) tabs.style.display = 'flex';
     });
 
-    // 重置scroll markers显示
+    // Restore scroll markers.
     const scrollTrack = queryFloating('.scroll-track');
     if (scrollTrack) {
         const scrollMarkers = scrollTrack.querySelectorAll('.scroll-marker');
@@ -964,7 +1027,7 @@ export function hideFloatingPanel() {
 
 }
 
-// 定义标题中英文映�?
+// Section title labels (zh/en)
 const sectionTitles = {
     brief: { zh: "简要释义", en: "Definition" },
     example: { zh: "例句", en: "e.g." },
@@ -1242,7 +1305,6 @@ function renderCommentSection() {
     <div class = "term-ori"> ${currentWord.termOri || '无'} </div></div>
     `
 
-    // FIXED: Don't wrap in additional tags since JSON already contains HTML
     const contentScroll = commentPanel.querySelector('.panel-bottom');
     const comments = Array.isArray(currentWord.comments) ? currentWord.comments : [];
     const emptyCommentsLabel = lang === "en" ? "No comments" : "暂无评论";
@@ -1344,7 +1406,7 @@ function renderCommentSection() {
         }
     }
 
-    // 为每个note section添加折叠/展开功能
+    // Add collapse/expand behavior for each note section.
     const likeButtons = contentScroll.querySelectorAll(".note-like-toggle");
     likeButtons.forEach((btn) => {
         btn.addEventListener("mousedown", (e) => {
@@ -1410,37 +1472,34 @@ function renderCommentSection() {
 }
 
 
-// tab 切换逻辑
+// Tab switching
 function initTabs() {
-    // 为所有panel的tab按钮添加事件监听
+    // Bind click handlers to tab buttons across both panels.
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.stopPropagation(); // 防止触发panel的点击事�?
+            e.stopPropagation(); // Prevent panel-level click handlers from firing.
             const tabName = btn.dataset.tab;
             switchTab(tabName);
         });
     });
 }
 
-// 初始化时调用
-initTabs();
+// Tab edge-switch behavior
 
-// === Tab 边缘切换逻辑 ===
-
-// 阈值（像素），表示scroll touchmove 的力�?
+// Gesture threshold in pixels for tab switching.
 const SWITCH_THRESHOLD = 280;
 
-// 当前 tab 状�?
-let currentTab = "entry"; // 默认entry
+// Track the currently active tab.
+let currentTab = "entry";
 
-// 监听 tab 按钮，保 currentTab 同步（已在initTabs中处理）
+// currentTab is synchronized via tab click handlers.
 
 function switchTab(tabName) {
     const entryPanel = queryFloating('.panel-entry');
     const commentPanel = queryFloating('.panel-comment');
     
-    // 更新所有panel的tab按钮状�?
+    // Update active state on tab buttons.
     const allTabs = queryAllFloating('.panel-tabs button');
     allTabs.forEach(btn => {
         btn.classList.remove('active');
@@ -1449,7 +1508,7 @@ function switchTab(tabName) {
         }
     });
     
-    // 切换panel的active状�?
+    // Toggle active panel.
     if (tabName === "entry") {
         resetFloatingPanelState();
         if (entryPanel) entryPanel.classList.add('active');
@@ -1461,24 +1520,27 @@ function switchTab(tabName) {
     
     currentTab = tabName;
     
-    // 更新滚动条和markers绑定
+    // Rebind scroll handlers for the active panel.
     updateScrollHandlers();
 }
 
-// 在showFloatingPanel中初始化滚动处理�?
+// Initialize tab interactions after tab helpers are defined.
+initTabs();
 
-// 获取当前激活的panel-main
+// Scroll handlers are initialized from showFloatingPanel.
+
+// Return the active panel's scroll container.
 function getActivePanelMain() {
     const activePanel = queryFloating('.panel-entry.active, .panel-comment.active');
     return activePanel ? activePanel.querySelector('.panel-main') : null;
 }
 
-// PC 端滚�?- 需要绑定到当前激活的panel
+// Bind wheel behavior to the active panel.
 function setupWheelHandler() {
     const panelMain = getActivePanelMain();
     if (!panelMain) return;
     
-    // 移除旧的监听器（如果存在�?
+    // Remove stale listeners before rebinding.
     panelMain.removeEventListener("wheel", handleWheel);
     panelMain.addEventListener("wheel", handleWheel);
 }
@@ -1497,7 +1559,7 @@ function handleWheel(e) {
     }
 }
 
-// 移动端触�?
+// Touch state for mobile swipe switching.
 let touchStartY = 0;
 
 function setupTouchHandlers() {
@@ -1532,7 +1594,7 @@ function handleTouchEnd(e) {
 
 
 
-// 滚动到最顶端（panel-top位置�?
+// Scroll to the top of the selected panel.
 export function scrollToTop(panelType = 'entry') {
     const panel = panelType === 'entry' 
         ? queryFloating('.panel-entry')
@@ -1579,7 +1641,7 @@ export function resetFloatingPanelState() {
     });
 }
 
-// 滚动到对�?section
+// Scroll panel content to the section mapped from a detail shortcut.
 function updateTabContent(tabType = "brief") {
     const panel = getFloatingPanel();
     if (!panel) return;
@@ -1587,7 +1649,7 @@ function updateTabContent(tabType = "brief") {
 
     if (!panelMain) return;
 
-    // tabType -> section 的映�?
+    // Map detail shortcut type to section id.
     const sectionMap = {
         contributors: "section-contributors",
         related: "section-related-works",
@@ -1608,13 +1670,13 @@ function updateTabContent(tabType = "brief") {
     }
 }
 
-// 滑轨配置参数
+// Scroll marker/thumb configuration.
 const SCROLL_CONFIG = {
-    thumbMargin: 0, // thumb上下边距，可调整参数
-    thumbSize: 14 // thumb大小
+    thumbMargin: 0, // Top/bottom margin for thumb movement.
+    thumbSize: 14 // Visual size of the thumb.
 };
 
-// 更新滚动条和markers绑定到当前激活的panel
+// Rebind scroll handlers and marker interactions to the active panel.
 function updateScrollHandlers() {
     const activePanel = queryFloating('.panel-entry.active, .panel-comment.active');
     if (!activePanel) return;
@@ -1625,23 +1687,23 @@ function updateScrollHandlers() {
     
     if (!panelMain || !scrollThumb || !scrollTrack) return;
     
-    // 移除旧的滚动监听�?
+    // Remove old listener first.
     panelMain.removeEventListener("scroll", handleScroll);
-    // 添加新的滚动监听�?
+    // Attach listener for current panel.
     panelMain.addEventListener("scroll", handleScroll);
     
-    // 初始化滚动条位置
+    // Sync thumb position immediately.
     handleScroll();
     
-    // 更新拖动功能
+    // Rebind drag behavior.
     setupScrollDrag(scrollThumb, panelMain);
     
-    // 更新wheel和touch事件
+    // Rebind wheel and touch switching.
     setupWheelHandler();
     setupTouchHandlers();
 }
 
-// 滚动处理函数
+// Update thumb position based on content scroll.
 function handleScroll() {
     const activePanel = queryFloating('.panel-entry.active, .panel-comment.active');
     if (!activePanel) return;
@@ -1672,14 +1734,14 @@ function handleScroll() {
 }
 
 
-// 拖动功能
+// Thumb drag state
 let isDragging = false;
 let startY, startTop;
 let currentScrollThumb = null;
 let currentPanelMain = null;
 
 function setupScrollDrag(scrollThumb, panelMain) {
-    // 移除旧的监听�?
+    // Remove previous thumb binding if present.
     if (currentScrollThumb) {
         currentScrollThumb.removeEventListener('mousedown', handleThumbMouseDown);
     }
@@ -1706,7 +1768,7 @@ document.addEventListener('mousemove', (e) => {
     const trackHeight = currentPanelMain.clientHeight;
     const thumbActiveRange = trackHeight - (SCROLL_CONFIG.thumbMargin * 2);
 
-    // 计算新的thumb位置（限制在活动范围内）
+    // Clamp thumb position to its active range.
     let newTop = Math.min(
         Math.max(startTop + deltaY, SCROLL_CONFIG.thumbMargin),
         SCROLL_CONFIG.thumbMargin + thumbActiveRange
@@ -1714,7 +1776,7 @@ document.addEventListener('mousemove', (e) => {
 
     currentScrollThumb.style.top = `${newTop}px`;
 
-    // 根据thumb位置计算内容滚动比例
+    // Derive content scroll from thumb position.
     const thumbRatio = (newTop - SCROLL_CONFIG.thumbMargin) / thumbActiveRange;
     currentPanelMain.scrollTop = thumbRatio * (currentPanelMain.scrollHeight - currentPanelMain.clientHeight);
 });
@@ -1765,7 +1827,7 @@ function renderScrollMarkers(panelType = 'entry') {
     
     if (!panelMain || !scrollTrack) return;
 
-    // 清空旧的 marker
+    // Remove previous markers.
     scrollTrack.querySelectorAll(".scroll-marker").forEach(el => el.remove());
 
     const sections = [{
@@ -1818,7 +1880,7 @@ function renderScrollMarkers(panelType = 'entry') {
     const trackHeight = scrollTrack.clientHeight;
     const thumbActiveRange = trackHeight - (SCROLL_CONFIG.thumbMargin * 2) - SCROLL_CONFIG.thumbSize;
 
-    // 如果内容不需要滚动，不显示markers
+    // Skip markers when content does not overflow.
     if (contentHeight <= visibleHeight) return;
 
     sections.forEach(sec => {
@@ -1826,25 +1888,25 @@ function renderScrollMarkers(panelType = 'entry') {
         let scrollTarget;
 
         if (sec.isTop) {
-            // 顶部 marker 固定�?thumb 活动范围的最上方
+            // Keep top marker pinned to the top of thumb range.
             markerTop = SCROLL_CONFIG.thumbMargin;
             scrollTarget = 0;
         } else {
             const el = document.getElementById(sec.id);
             if (!el) return;
 
-            // 相对 panelMain 内容顶部的位�?
+            // Section offset in panel content coordinates.
             const sectionTop = el.offsetTop;
 
-            // 计算滚动比例（section 到达 panel 顶部时的比例�?
+            // Ratio when section reaches panel top.
             const scrollRatio = Math.min(sectionTop / contentScrollableRange, 1);
 
-            // 映射�?thumb 活动范围
+            // Map ratio into thumb active range.
             markerTop = SCROLL_CONFIG.thumbMargin + (scrollRatio * thumbActiveRange);
             scrollTarget = sectionTop;
         }
 
-        // 生成 marker
+        // Create marker with tooltip and click target.
         const marker = document.createElement("div");
         marker.className = "scroll-marker";
         marker.style.top = `${markerTop}px`;
@@ -1891,7 +1953,7 @@ function renderCommentMarkers(panelType = 'comment') {
     
     if (!panelMain || !scrollTrack) return;
 
-    // 清空旧的 marker
+    // Remove previous markers.
     scrollTrack.querySelectorAll(".scroll-marker").forEach(el => el.remove());
 
     let currentWord = window.allWords.find(w => w.id == state.focusedNodeId);
@@ -1906,14 +1968,14 @@ function renderCommentMarkers(panelType = 'comment') {
     const trackHeight = scrollTrack.clientHeight;
     const thumbActiveRange = trackHeight - (SCROLL_CONFIG.thumbMargin * 2) - SCROLL_CONFIG.thumbSize;
 
-    // 如果评论数量过少，不需要滚�?
+    // Skip markers when comments do not overflow.
     if (contentHeight <= visibleHeight) return;
 
     comments.forEach((c, idx) => {
         const sectionEl = panelMain.querySelectorAll("section")[idx];
         if (!sectionEl) return;
 
-        // 相对 panelMain 内容顶部的位�?
+        // Section offset in panel content coordinates.
         const sectionTop = sectionEl.offsetTop;
         const scrollRatio = Math.min(sectionTop / contentScrollableRange, 1);
 
@@ -1954,7 +2016,7 @@ function renderCommentMarkers(panelType = 'comment') {
 }
 
 
-// 点击外部关闭浮窗
+// Close floating panel when clicking outside.
 function initClickOutsideHandler() {
     document.addEventListener('click', (e) => {
         const panel = getFloatingPanel();
@@ -1965,22 +2027,12 @@ function initClickOutsideHandler() {
     });
 }
 
-// click detail - scroll to according section
-// const termDiv = document.getElementById("term");
+// Detail shortcuts -> scroll to corresponding sections
 const commentDiv = document.getElementById("comment");
 const proposerDiv = document.getElementById("proposer");
 const imageDiv = document.getElementById("image");
 
-
-
-// 点击「词�?标题�? 滚动到最顶端
-// termDiv.addEventListener("click", (e) => {
-//     e.stopPropagation();
-//     showFloatingPanel();
-//     scrollToTop(); // 使用新的滚动到顶端函�?
-// });
-
-// 点击「评论�?
+// Click "Comment".
 commentDiv.addEventListener("click", (e) => {
     e.stopPropagation();
     showFloatingPanel();
@@ -1989,14 +2041,14 @@ commentDiv.addEventListener("click", (e) => {
     scrollToTop("comment");
 });
 
-// 点击「相关著�?/ 提出者�?
+// Click "Related works / Proposers".
 proposerDiv.addEventListener("click", (e) => {
     e.stopPropagation();
     showFloatingPanel();
     updateTabContent("proposers");
 });
 
-// 点击「图片�?
+// Click "Image".
 imageDiv.addEventListener("click", (e) => {
     e.stopPropagation();
     showFloatingPanel();
@@ -2004,20 +2056,20 @@ imageDiv.addEventListener("click", (e) => {
     updateTabContent("source");
 });
 
-// 添加下层panel边缘点击事件
+// Enable edge click to switch between entry/comment panels.
 function initPanelClickHandlers() {
     const entryPanel = queryFloating('.panel-entry');
     const commentPanel = queryFloating('.panel-comment');
     
-    // 点击entry panel的可见边缘切换到entry
+    // Click visible edge of entry panel to activate it.
     if (entryPanel) {
         entryPanel.addEventListener('click', (e) => {
-            // 只在未激活状态下点击时切�?
+            // Only handle edge click while this panel is inactive.
             if (!entryPanel.classList.contains('active')) {
-                // 检查点击位置是否在可见的边缘区域（左侧50px内）
+                // Allow only clicks in the left visible edge area.
                 const rect = entryPanel.getBoundingClientRect();
                 const clickX = e.clientX - rect.left;
-                if (clickX < 100) { // 允许点击左侧100px区域
+                if (clickX < 100) { // Allow clicks within the left 100px edge.
                     e.stopPropagation();
                     switchTab('entry');
                 }
@@ -2025,15 +2077,15 @@ function initPanelClickHandlers() {
         });
     }
     
-    // 点击comment panel的可见边缘切换到comment
+    // Click visible edge of comment panel to activate it.
     if (commentPanel) {
         commentPanel.addEventListener('click', (e) => {
-            // 只在未激活状态下点击时切�?
+            // Only handle edge click while this panel is inactive.
             if (!commentPanel.classList.contains('active')) {
-                // 检查点击位置是否在可见的边缘区域（左侧50px内）
+                // Allow only clicks in the left visible edge area.
                 const rect = commentPanel.getBoundingClientRect();
                 const clickX = e.clientX - rect.left;
-                if (clickX < 100) { // 允许点击左侧100px区域
+                if (clickX < 100) { // Allow clicks within the left 100px edge.
                     e.stopPropagation();
                     switchTab('comment');
                 }
@@ -2042,19 +2094,7 @@ function initPanelClickHandlers() {
     }
 }
 
-// 初始化浮窗功�?
-initVoteSync();
-initVoteResetHotkey();
-initClickOutsideHandler();
-initPanelClickHandlers();
-document.addEventListener('about-panel:show', () => {
-    if (isPanelVisible) {
-        hideFloatingPanel();
-    }
-});
-
-
-// 显示About页面的浮�?
+// Show the floating About view.
 export function showAboutPanel() {
     const panel = document.getElementById('floating-panel');
     panel.classList.remove('hidden');
@@ -2063,13 +2103,7 @@ export function showAboutPanel() {
     ensureExpandButton();
     renderAboutContent();
 
-    // 隐藏tabs（隐藏所有panel的tabs�?
-    // const allTabs = document.querySelectorAll('.panel-tabs');
-    // allTabs.forEach(tabs => {
-    //     if (tabs) tabs.style.display = 'none';
-    // });
-
-    // 隐藏scroll markers
+    // Hide scroll markers while About view is displayed.
     const entryPanel = document.querySelector('.panel-entry');
     if (entryPanel) {
         const scrollTrack = entryPanel.querySelector('.scroll-track');
@@ -2079,3 +2113,14 @@ export function showAboutPanel() {
         }
     }
 }
+
+// Initialize floating panel behaviors.
+initVoteSync();
+initVoteResetHotkey();
+initClickOutsideHandler();
+initPanelClickHandlers();
+document.addEventListener('about-panel:show', () => {
+    if (isPanelVisible) {
+        hideFloatingPanel();
+    }
+});

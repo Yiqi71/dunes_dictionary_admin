@@ -203,6 +203,75 @@ function buildFeature(events) {
   };
 }
 
+function normalizeVoteChoice(choice) {
+  const v = String(choice || "").toLowerCase();
+  if (v === "clear" || v === "unclear") return v;
+  return null;
+}
+
+function toVoteStats(clear, unclear) {
+  const safeClear = Math.max(0, Number(clear) || 0);
+  const safeUnclear = Math.max(0, Number(unclear) || 0);
+  const total = safeClear + safeUnclear;
+  const clearPct = total > 0 ? Math.round((safeClear / total) * 100) : 0;
+  const unclearPct = total > 0 ? 100 - clearPct : 0;
+  return {
+    clear: safeClear,
+    unclear: safeUnclear,
+    total,
+    clearPct,
+    unclearPct
+  };
+}
+
+function aggregateUnderstandingVotes(events, targetWordId = null) {
+  const target = targetWordId === null || targetWordId === undefined
+    ? null
+    : String(targetWordId);
+  const latestByWordAndDevice = new Map();
+
+  for (const e of events) {
+    if (!e || e.name !== "entry_understanding_vote") continue;
+    const d = e.data || {};
+    const wordId = String(d.wordId || "");
+    if (!wordId) continue;
+    if (target !== null && wordId !== target) continue;
+
+    const deviceId = String(d.deviceId || "").trim();
+    const fallbackSessionId = String(e.sessionId || "").trim();
+    const dedupeId = deviceId || fallbackSessionId;
+    const choice = normalizeVoteChoice(d.choice);
+    if (!dedupeId || !choice) continue;
+
+    const key = `${wordId}::${dedupeId}`;
+    const ts = Number(e.ts) || 0;
+    const prev = latestByWordAndDevice.get(key);
+    if (!prev || ts >= prev.ts) {
+      latestByWordAndDevice.set(key, { wordId, choice, ts });
+    }
+  }
+
+  const countsByWord = new Map();
+  latestByWordAndDevice.forEach((entry) => {
+    if (!countsByWord.has(entry.wordId)) {
+      countsByWord.set(entry.wordId, { clear: 0, unclear: 0 });
+    }
+    const item = countsByWord.get(entry.wordId);
+    item[entry.choice] += 1;
+  });
+
+  if (target !== null) {
+    const item = countsByWord.get(target) || { clear: 0, unclear: 0 };
+    return toVoteStats(item.clear, item.unclear);
+  }
+
+  const statsByWordId = {};
+  countsByWord.forEach((item, wordId) => {
+    statsByWordId[wordId] = toVoteStats(item.clear, item.unclear);
+  });
+  return statsByWordId;
+}
+
 app.post("/events", async (req, res) => {
   const e = req.body;
 
@@ -332,6 +401,33 @@ app.get("/api/terms", async (req, res) => {
     .slice(0, 50);
 
   res.json({ ok: true, terms: rows });
+});
+
+app.get("/api/votes/understanding", async (req, res) => {
+  const wordId = req.query.wordId;
+  let events = [];
+  try {
+    const rows = await dbAll(
+      "SELECT * FROM events WHERE name = ? ORDER BY ts ASC",
+      ["entry_understanding_vote"]
+    );
+    events = rows.map(rowToEvent);
+  } catch (err) {
+    console.error("Understanding vote query failed", err);
+    return res.status(500).json({ ok: false, error: "DB query failed" });
+  }
+
+  if (wordId !== undefined) {
+    const stats = aggregateUnderstandingVotes(events, wordId);
+    return res.json({
+      ok: true,
+      wordId: String(wordId),
+      stats
+    });
+  }
+
+  const statsByWordId = aggregateUnderstandingVotes(events);
+  return res.json({ ok: true, statsByWordId });
 });
 
 
