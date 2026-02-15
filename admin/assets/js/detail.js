@@ -125,7 +125,10 @@ function safeWriteStorage(key, value) {
 const COMMENT_LIKES_KEY = "dd_comment_likes_v1";
 const COMMENT_LIKE_EVENT_NAME = "comment_like_toggle";
 const COMMENT_LIKE_COUNTS_CACHE_TTL_MS = 30000;
+const COMMENT_LIKE_EVENTS_LIMIT = 2000;
 const commentLikeCountsCache = new Map();
+const voteStatsSessionRefreshedWordIds = new Set();
+const commentLikeSessionRefreshedWordIds = new Set();
 
 function getCommentLikeStorage() {
     const parsed = safeParseStorage(COMMENT_LIKES_KEY, {});
@@ -158,6 +161,66 @@ function toggleCommentLiked(wordId, commentIndex) {
     return next;
 }
 
+function getPendingCommentLikeState(wordId, commentIndex) {
+    const targetWordId = String(wordId);
+    const targetCommentIndex = Number(commentIndex);
+    if (!Number.isFinite(targetCommentIndex)) return null;
+    const queue = getCommentLikeSyncQueue();
+    for (let i = queue.length - 1; i >= 0; i--) {
+        const eventPayload = queue[i];
+        if (!eventPayload || eventPayload.name !== COMMENT_LIKE_EVENT_NAME) continue;
+        const data = eventPayload.data || {};
+        if (String(data.wordId) !== targetWordId) continue;
+        if (Number(data.commentIndex) !== targetCommentIndex) continue;
+        return Boolean(data.liked);
+    }
+    return null;
+}
+
+function normalizeEventsPayload(payload) {
+    if (Array.isArray(payload)) return payload;
+    if (!payload || typeof payload !== "object") return [];
+    if (Array.isArray(payload.events)) return payload.events;
+    if (Array.isArray(payload.items)) return payload.items;
+    if (Array.isArray(payload.data)) return payload.data;
+    return [];
+}
+
+function buildCommentLikeCountsFromEvents(events, wordId) {
+    const latestByUserAndComment = new Map();
+    const targetWordId = String(wordId);
+
+    events.forEach((event) => {
+        if (!event || event.name !== COMMENT_LIKE_EVENT_NAME) return;
+        const data = event.data || {};
+        if (String(data.wordId) !== targetWordId) return;
+
+        const commentIndex = Number(data.commentIndex);
+        if (!Number.isFinite(commentIndex)) return;
+
+        const deviceId = String(data.deviceId || "").trim();
+        const sessionId = String(event.sessionId || "").trim();
+        const dedupeId = deviceId || sessionId;
+        if (!dedupeId) return;
+
+        const key = `${commentIndex}::${dedupeId}`;
+        const ts = Number(event.ts) || 0;
+        const liked = Boolean(data.liked);
+        const prev = latestByUserAndComment.get(key);
+        if (!prev || ts >= prev.ts) {
+            latestByUserAndComment.set(key, { ts, liked, commentIndex });
+        }
+    });
+
+    const counts = {};
+    latestByUserAndComment.forEach((entry) => {
+        if (!entry.liked) return;
+        const idx = String(entry.commentIndex);
+        counts[idx] = (counts[idx] || 0) + 1;
+    });
+    return counts;
+}
+
 async function fetchCommentLikeCounts(wordId, { force = false } = {}) {
     const cacheKey = String(wordId);
     const now = Date.now();
@@ -166,18 +229,32 @@ async function fetchCommentLikeCounts(wordId, { force = false } = {}) {
         return cached.counts;
     }
 
-    const response = await fetch(buildApiUrl(`/api/votes/comment-likes?wordId=${encodeURIComponent(cacheKey)}`), {
-        cache: "no-store"
-    });
-    if (!response.ok) {
-        throw new Error(`failed_to_fetch_comment_like_counts_${response.status}`);
-    }
+    try {
+        const response = await fetch(buildApiUrl(`/api/votes/comment-likes?wordId=${encodeURIComponent(cacheKey)}`), {
+            cache: "no-store"
+        });
+        if (!response.ok) {
+            throw new Error(`failed_to_fetch_comment_like_counts_${response.status}`);
+        }
 
-    const payload = await response.json();
-    const rawCounts = payload?.countsByCommentIndex;
-    const counts = rawCounts && typeof rawCounts === "object" ? rawCounts : {};
-    commentLikeCountsCache.set(cacheKey, { ts: now, counts });
-    return counts;
+        const payload = await response.json();
+        const rawCounts = payload?.countsByCommentIndex;
+        const counts = rawCounts && typeof rawCounts === "object" ? rawCounts : {};
+        commentLikeCountsCache.set(cacheKey, { ts: now, counts });
+        return counts;
+    } catch (_) {
+        // Fallback for servers that have not deployed /api/votes/comment-likes yet.
+        const legacyResp = await fetch(buildApiUrl(`/events?limit=${COMMENT_LIKE_EVENTS_LIMIT}`), {
+            cache: "no-store"
+        });
+        if (!legacyResp.ok) {
+            throw new Error(`failed_to_fetch_comment_like_counts_legacy_${legacyResp.status}`);
+        }
+        const payload = await legacyResp.json();
+        const counts = buildCommentLikeCountsFromEvents(normalizeEventsPayload(payload), cacheKey);
+        commentLikeCountsCache.set(cacheKey, { ts: now, counts });
+        return counts;
+    }
 }
 
 function setCommentLikeBadge(buttonEl, count, shouldShow) {
@@ -197,24 +274,38 @@ async function refreshCommentLikeBadges(contentScroll, wordId, { force = false }
     const buttons = Array.from(contentScroll.querySelectorAll(".note-like-toggle"));
     if (!buttons.length) return;
 
-    const connected = isVoteSyncConnected();
     const anyLiked = buttons.some((btn) => btn.classList.contains("is-liked"));
 
-    if (!connected || !anyLiked) {
+    if (!anyLiked) {
         buttons.forEach((btn) => setCommentLikeBadge(btn, 0, false));
         return;
     }
 
+    const wordKey = String(wordId);
+    const shouldForceSessionRefresh = !commentLikeSessionRefreshedWordIds.has(wordKey);
+
     try {
-        const counts = await fetchCommentLikeCounts(wordId, { force });
+        const counts = await fetchCommentLikeCounts(wordId, { force: force || shouldForceSessionRefresh });
+        commentLikeSessionRefreshedWordIds.add(wordKey);
         buttons.forEach((btn) => {
             const idx = String(Number(btn.dataset.commentIndex));
+            const commentIndex = Number(btn.dataset.commentIndex);
             const liked = btn.classList.contains("is-liked");
-            const count = counts[idx] || 0;
-            setCommentLikeBadge(btn, count, connected && liked);
+            const rawCount = Math.max(0, Number(counts[idx]) || 0);
+            const pendingState = getPendingCommentLikeState(wordId, commentIndex);
+            let displayCount = rawCount;
+            if (pendingState === true) {
+                displayCount = rawCount + 1;
+            } else if (pendingState === false) {
+                displayCount = Math.max(0, rawCount - 1);
+            }
+            setCommentLikeBadge(btn, displayCount, liked);
         });
     } catch (_) {
-        buttons.forEach((btn) => setCommentLikeBadge(btn, 0, false));
+        buttons.forEach((btn) => {
+            const liked = btn.classList.contains("is-liked");
+            setCommentLikeBadge(btn, liked ? 1 : 0, liked);
+        });
     }
 }
 
@@ -644,8 +735,8 @@ function renderUnderstandingVoteSection(sectionEl, currentWord, lang) {
         <div class="entry-vote-wrap">
             <p class="entry-vote-question">${labels.question}</p>
             <div class="entry-vote-options">
-                <button type="button" class="entry-vote-option" data-vote="clear">${labels.clear}</button>
-                <button type="button" class="entry-vote-option" data-vote="unclear">${labels.unclear}</button>
+                <button type="button" class="entry-vote-option" data-vote="clear"><span class="entry-vote-text">${labels.clear}</span></button>
+                <button type="button" class="entry-vote-option" data-vote="unclear"><span class="entry-vote-text">${labels.unclear}</span></button>
             </div>
             <button type="button" class="entry-vote-submit">${labels.submit}</button>
             <p class="entry-vote-note">${labels.syncNote}</p>
@@ -654,32 +745,99 @@ function renderUnderstandingVoteSection(sectionEl, currentWord, lang) {
 
     const clearBtn = sectionEl.querySelector('[data-vote="clear"]');
     const unclearBtn = sectionEl.querySelector('[data-vote="unclear"]');
+    const clearText = clearBtn?.querySelector(".entry-vote-text");
+    const unclearText = unclearBtn?.querySelector(".entry-vote-text");
     const submitBtn = sectionEl.querySelector(".entry-vote-submit");
     const noteEl = sectionEl.querySelector(".entry-vote-note");
-    if (!clearBtn || !unclearBtn || !submitBtn || !noteEl) return;
+    if (!clearBtn || !unclearBtn || !clearText || !unclearText || !submitBtn || !noteEl) return;
+
+    const setVoteButtonBaseStyle = (btn) => {
+        btn.style.position = "relative";
+        btn.style.overflow = "hidden";
+    };
+
+    const ensureVoteBar = (btn) => {
+        let bar = btn.querySelector(".entry-vote-bar");
+        if (!bar) {
+            bar = document.createElement("span");
+            bar.className = "entry-vote-bar";
+            bar.setAttribute("aria-hidden", "true");
+            btn.insertBefore(bar, btn.firstChild);
+        }
+        bar.style.position = "absolute";
+        bar.style.left = "0";
+        bar.style.top = "0";
+        bar.style.height = "100%";
+        bar.style.width = "0%";
+        bar.style.background = "rgba(249, 214, 122, 0.30)";
+        bar.style.pointerEvents = "none";
+        bar.style.display = "none";
+        bar.style.zIndex = "0";
+        return bar;
+    };
+
+    const renderChosenIcon = () => {
+        clearBtn.querySelectorAll(".entry-vote-chosen-icon").forEach((el) => el.remove());
+        unclearBtn.querySelectorAll(".entry-vote-chosen-icon").forEach((el) => el.remove());
+
+        if (!hasVoted) return;
+        if (selectedChoice !== "clear" && selectedChoice !== "unclear") return;
+
+        const targetBtn = selectedChoice === "clear" ? clearBtn : unclearBtn;
+        const icon = document.createElement("img");
+        icon.className = "entry-vote-chosen-icon";
+        icon.src = "assets/images/chosen.svg";
+        icon.alt = "";
+        icon.setAttribute("aria-hidden", "true");
+        icon.style.position = "absolute";
+        icon.style.left = "10px";
+        icon.style.top = "50%";
+        icon.style.transform = "translateY(-2px)";
+        icon.style.width = "7px";
+        icon.style.height = "6px";
+        icon.style.pointerEvents = "none";
+        icon.style.display = "block";
+        icon.style.zIndex = "2";
+        targetBtn.appendChild(icon);
+    };
+
+    setVoteButtonBaseStyle(clearBtn);
+    setVoteButtonBaseStyle(unclearBtn);
+    const clearBar = ensureVoteBar(clearBtn);
+    const unclearBar = ensureVoteBar(unclearBtn);
+    clearText.style.position = "relative";
+    clearText.style.zIndex = "1";
+    unclearText.style.position = "relative";
+    unclearText.style.zIndex = "1";
 
     noteEl.style.display = isVoteSyncConnected() ? "none" : "block";
 
-    let selectedChoice = null;
     const existingVote = getUserVote(currentWord.id);
+    let selectedChoice = existingVote || null;
     let hasVoted = Boolean(existingVote);
     let displayedStats = hasVoted ? getWordVoteStats(currentWord.id) : toVoteStats(0, 0);
 
     const setSelected = () => {
         clearBtn.classList.toggle("is-selected", selectedChoice === "clear");
         unclearBtn.classList.toggle("is-selected", selectedChoice === "unclear");
+        clearBtn.style.borderColor = selectedChoice === "clear" ? "#F9D67A" : "";
+        unclearBtn.style.borderColor = selectedChoice === "unclear" ? "#F9D67A" : "";
+        renderChosenIcon();
     };
 
     const renderVoteState = (stats, voted) => {
         const normalizedStats = normalizeVoteStats(stats);
         displayedStats = normalizedStats;
-        clearBtn.textContent = `${labels.clear} ${normalizedStats.clearPct}%`;
-        unclearBtn.textContent = `${labels.unclear} ${normalizedStats.unclearPct}%`;
+        clearText.textContent = voted ? `${labels.clear} ${normalizedStats.clearPct}%` : labels.clear;
+        unclearText.textContent = voted ? `${labels.unclear} ${normalizedStats.unclearPct}%` : labels.unclear;
+        clearBar.style.display = voted ? "block" : "none";
+        unclearBar.style.display = voted ? "block" : "none";
+        clearBar.style.width = voted ? `${normalizedStats.clearPct}%` : "0%";
+        unclearBar.style.width = voted ? `${normalizedStats.unclearPct}%` : "0%";
         clearBtn.classList.toggle("is-voted", voted);
         unclearBtn.classList.toggle("is-voted", voted);
+        setSelected();
         if (voted) {
-            clearBtn.classList.remove("is-selected");
-            unclearBtn.classList.remove("is-selected");
             submitBtn.style.display = "none";
         } else {
             submitBtn.style.display = "";
@@ -690,7 +848,10 @@ function renderUnderstandingVoteSection(sectionEl, currentWord, lang) {
 
     const loadServerStats = async () => {
         try {
-            let serverStats = await fetchServerWordVoteStats(currentWord.id);
+            const wordKey = String(currentWord.id);
+            const shouldForceSessionRefresh = !voteStatsSessionRefreshedWordIds.has(wordKey);
+            let serverStats = await fetchServerWordVoteStats(currentWord.id, { force: shouldForceSessionRefresh });
+            voteStatsSessionRefreshedWordIds.add(wordKey);
             const pendingChoice = getPendingVoteChoice(currentWord.id);
             if (pendingChoice) {
                 serverStats = applyVoteChoiceToStats(serverStats, pendingChoice);
