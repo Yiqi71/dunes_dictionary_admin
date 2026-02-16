@@ -151,7 +151,7 @@
     <!-- Row 2: Language Stats -->
     <div class="flex items-center gap-2 mb-3 mt-6">
       <div class="w-1 h-4 bg-amber-600 rounded-full"></div>
-      <h2 class="text-lg font-bold text-stone-800">语言分布 Language <span class="text-xs text-stone-400">（未实现）</span></h2>
+      <h2 class="text-lg font-bold text-stone-800">语言分布 Language</h2>
     </div>
 
     <div class="grid grid-cols-1 gap-6">
@@ -176,14 +176,14 @@
           </div>
           <div class="flex flex-col justify-center px-4">
             <div class="text-stone-500 text-xs uppercase mb-1">有效时长比 (英 vs 中)</div>
-            <div class="text-3xl font-bold text-stone-900">-</div>
+            <div id="langDurationRatio" class="text-3xl font-bold text-stone-900">-</div>
             <div class="w-full h-1.5 bg-stone-100 rounded-full mt-3 overflow-hidden flex">
               <div id="langBarEn" class="bg-stone-300 h-full w-[50%]"></div>
               <div id="langBarZh" class="bg-stone-200 h-full w-[50%]"></div>
             </div>
             <div class="flex justify-between text-[10px] text-stone-400 mt-1">
-              <span>英文 EN</span>
-              <span>中文 CN</span>
+              <span id="langEnPctLabel">英文 EN</span>
+              <span id="langZhPctLabel">中文 CN</span>
             </div>
           </div>
         </div>
@@ -577,8 +577,11 @@
       if (!metrics) {
         $("langEnClicks").innerText = "-";
         $("langPenetration").innerText = "-";
+        $("langDurationRatio").innerText = "-";
         $("langBarEn").style.width = "50%";
         $("langBarZh").style.width = "50%";
+        $("langEnPctLabel").innerText = "英文 EN 50%";
+        $("langZhPctLabel").innerText = "中文 CN 50%";
         return;
       }
       const enClicks = metrics.enClicks ?? 0;
@@ -594,6 +597,9 @@
       $("langPenetration").innerText = `${penetration}%`;
       $("langBarEn").style.width = `${enPct}%`;
       $("langBarZh").style.width = `${zhPct}%`;
+      $("langDurationRatio").innerText = `${enPct}% / ${zhPct}%`;
+      $("langEnPctLabel").innerText = `英文 EN ${enPct}%`;
+      $("langZhPctLabel").innerText = `中文 CN ${zhPct}%`;
     }
 
     function getEventLangKey(e) {
