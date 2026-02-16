@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
@@ -124,7 +125,29 @@ function countUniqueUsers(events) {
   return new Set((events || []).map(getEventDedupeId).filter(Boolean)).size;
 }
 
-function buildTermAgg(events) {
+function loadWordTermMap() {
+  const draftPath = path.join(contentDir, "draft", "data.json");
+  const map = new Map();
+  try {
+    const raw = fs.readFileSync(draftPath, "utf8");
+    const parsed = JSON.parse(raw);
+    const words = Array.isArray(parsed && parsed.words) ? parsed.words : [];
+    for (const word of words) {
+      const id = Number(word && word.id);
+      if (!Number.isFinite(id)) continue;
+      const term = word && word.term ? word.term : {};
+      const zh = typeof term.zh === "string" ? term.zh.trim() : "";
+      const en = typeof term.en === "string" ? term.en.trim() : "";
+      const label = zh || en;
+      if (label) map.set(id, label);
+    }
+  } catch (err) {
+    console.warn("Failed to read draft words for term labels:", err.message);
+  }
+  return map;
+}
+
+function buildTermAgg(events, wordTermMap = null) {
   const terms = new Map();
   for (const e of events) {
     if (e.name === "word_view_start" && e.data && e.data.wordId !== undefined) {
@@ -147,7 +170,7 @@ function buildTermAgg(events) {
 
   return Array.from(terms.values()).map(t => ({
     id: t.wordId,
-    term: `Term #${t.wordId}`,
+    term: (wordTermMap && wordTermMap.get(t.wordId)) || `Term #${t.wordId}`,
     category: "Unknown",
     visits: t.visits,
     durationMs: t.durationMs,
@@ -462,7 +485,8 @@ app.get("/api/terms", async (req, res) => {
     return res.status(500).json({ ok: false, error: "DB query failed" });
   }
 
-  const rows = buildTermAgg(recent)
+  const wordTermMap = loadWordTermMap();
+  const rows = buildTermAgg(recent, wordTermMap)
     .sort((a, b) => b.visits - a.visits)
     .slice(0, 50);
 

@@ -477,6 +477,8 @@
     let currentOverviewRange = "24h";
     let currentTermPage = 1;
     let lastEventsCache = [];
+    let termNameMap = new Map();
+    let termNameMapLoaded = false;
 
     const $ = (id) => document.getElementById(id);
 
@@ -509,6 +511,37 @@
       return 7 * 24 * 3600_000;
     }
 
+    async function ensureTermNameMap() {
+      if (termNameMapLoaded) return;
+      try {
+        const payload = await tryFetchJson("/content/draft/data.json");
+        const words = Array.isArray(payload?.words) ? payload.words : [];
+        const map = new Map();
+        words.forEach((w) => {
+          const id = Number(w?.id);
+          if (!Number.isFinite(id)) return;
+          const zh = typeof w?.term?.zh === "string" ? w.term.zh.trim() : "";
+          const en = typeof w?.term?.en === "string" ? w.term.en.trim() : "";
+          const label = zh || en;
+          if (label) map.set(id, label);
+        });
+        termNameMap = map;
+      } catch (_) {
+        termNameMap = new Map();
+      } finally {
+        termNameMapLoaded = true;
+      }
+    }
+
+    function resolveTermLabel(id, fallback = "") {
+      const numId = Number(id);
+      const mapped = termNameMap.get(numId);
+      if (mapped) return mapped;
+      const raw = typeof fallback === "string" ? fallback.trim() : "";
+      if (raw && !/^term\s*#\d+$/i.test(raw) && !/^词条\s*#\d+$/i.test(raw)) return raw;
+      return Number.isFinite(numId) ? `词条 #${numId}` : (raw || "词条");
+    }
+
     function buildTermAgg(events) {
       const m = new Map();
       for (const e of events) {
@@ -533,7 +566,7 @@
 
       return Array.from(m.values()).map(t => ({
         id: t.wordId,
-        term: `词条 #${t.wordId}`,
+        term: resolveTermLabel(t.wordId, `词条 #${t.wordId}`),
         category: "Unknown",
         visits: t.visits,
         durationMs: t.durationMs,
@@ -992,13 +1025,13 @@
 
       pageData.forEach(item => {
         const yestVisits = hasYesterday ? (yesterdayMap.get(item.id) || 0) : "-";
+        const displayTerm = resolveTermLabel(item.id, item.term);
         const row = document.createElement("tr");
         row.className = "hover:bg-amber-50/30 transition-colors group cursor-pointer";
         row.addEventListener("click", () => openModal(item.id));
         row.innerHTML = `
           <td class="px-6 py-4">
-            <div class="font-bold text-stone-900">${item.term}</div>
-            <div class="text-xs text-stone-500">分类: ${item.category || "Unknown"}</div>
+            <div class="font-bold text-stone-900">${displayTerm}</div>
             <div class="text-[10px] text-stone-300 mt-1 font-mono">ID: ${item.id}</div>
           </td>
           <td class="px-6 py-4 text-stone-600 font-medium">${(item.activeDays ?? 0).toLocaleString()}</td>
@@ -1022,7 +1055,7 @@
       const item = terms.find(t => t.id === id);
       if (!item) return;
 
-      $("modalTitle").innerText = `词条详情: ${item.term}`;
+      $("modalTitle").innerText = `词条详情: ${resolveTermLabel(item.id, item.term)}`;
       $("modalVisits").innerText = (item.visits ?? 0).toLocaleString();
       $("modalDuration").innerText = item.durationText ?? "0s";
       $("modalActiveDays").innerText = (item.activeDays ?? 0).toLocaleString();
@@ -1155,6 +1188,7 @@
 
     async function refreshAll() {
       try {
+        await ensureTermNameMap();
         const { dash, terms, mode, events } = await (async () => {
           try {
             const api = await loadFromApi();
