@@ -171,19 +171,19 @@
           </div>
           <div class="flex flex-col justify-center px-4">
             <div class="text-stone-500 text-xs uppercase mb-1">渗透率 Penetration Rate</div>
-            <div id="langPenetration" class="text-3xl font-bold text-amber-600">-</div>
+            <div id="langPenetration" class="text-3xl font-bold text-stone-900">-</div>
             <div class="text-xs text-stone-400 mt-1">点击占比 Clicks / Total</div>
           </div>
           <div class="flex flex-col justify-center px-4">
             <div class="text-stone-500 text-xs uppercase mb-1">有效时长比 (英 vs 中)</div>
             <div id="langDurationRatio" class="text-3xl font-bold text-stone-900">-</div>
             <div class="w-full h-1.5 bg-stone-100 rounded-full mt-3 overflow-hidden flex">
-              <div id="langBarEn" class="bg-stone-300 h-full w-[50%]"></div>
-              <div id="langBarZh" class="bg-stone-200 h-full w-[50%]"></div>
+              <div id="langBarEn" class="h-full w-[50%]" style="background-color:#f97316"></div>
+              <div id="langBarZh" class="h-full w-[50%]" style="background-color:#1c1917"></div>
             </div>
-            <div class="flex justify-between text-[10px] text-stone-400 mt-1">
-              <span id="langEnPctLabel">英文 EN</span>
-              <span id="langZhPctLabel">中文 CN</span>
+            <div class="flex justify-between text-[10px] mt-1">
+              <span id="langEnPctLabel" style="color:#f97316">英文 EN</span>
+              <span id="langZhPctLabel" style="color:#1c1917">中文 CN</span>
             </div>
           </div>
         </div>
@@ -610,7 +610,7 @@
       if (!metrics) {
         $("langEnClicks").innerText = "-";
         $("langPenetration").innerText = "-";
-        $("langDurationRatio").innerText = "-";
+        $("langDurationRatio").innerHTML = `<span style="color:#f97316">-</span> / <span style="color:#1c1917">-</span>`;
         $("langBarEn").style.width = "50%";
         $("langBarZh").style.width = "50%";
         $("langEnPctLabel").innerText = "英文 EN 50%";
@@ -630,7 +630,7 @@
       $("langPenetration").innerText = `${penetration}%`;
       $("langBarEn").style.width = `${enPct}%`;
       $("langBarZh").style.width = `${zhPct}%`;
-      $("langDurationRatio").innerText = `${enPct}% / ${zhPct}%`;
+      $("langDurationRatio").innerHTML = `<span style="color:#f97316">${enPct}%</span> / <span style="color:#1c1917">${zhPct}%</span>`;
       $("langEnPctLabel").innerText = `英文 EN ${enPct}%`;
       $("langZhPctLabel").innerText = `中文 CN ${zhPct}%`;
     }
