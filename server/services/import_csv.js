@@ -54,6 +54,72 @@ function splitLinesToArray(text) {
   return t.split(/\r?\n/).map(x => x.trim()).filter(Boolean);
 }
 
+function normalizeTermKey(v) {
+  return s(v).replace(/\s+/g, "").toLowerCase();
+}
+
+function formatLocalDate(date = new Date()) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}/${m}/${d}`;
+}
+
+function readExistingOnlineDateIndex() {
+  const byId = new Map();
+  const byTermKey = new Map();
+  const today = formatLocalDate();
+
+  if (!fs.existsSync(DRAFT_JSON_PATH)) {
+    return { byId, byTermKey, today };
+  }
+
+  try {
+    const raw = fs.readFileSync(DRAFT_JSON_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    const words = Array.isArray(parsed?.words) ? parsed.words : [];
+
+    for (const word of words) {
+      const onlineDate = s(word?.online_date);
+      if (!onlineDate) continue;
+
+      const id = Number(word?.id);
+      if (Number.isFinite(id)) byId.set(id, onlineDate);
+
+      const zhKey = normalizeTermKey(word?.term?.zh);
+      if (zhKey && !byTermKey.has(zhKey)) byTermKey.set(zhKey, onlineDate);
+
+      const enKey = normalizeTermKey(word?.term?.en);
+      if (enKey && !byTermKey.has(enKey)) byTermKey.set(enKey, onlineDate);
+    }
+  } catch (_) {
+    // Keep empty index on parse/read errors and fallback to today's date.
+  }
+
+  return { byId, byTermKey, today };
+}
+
+function resolveOnlineDate(index, word) {
+  if (!index || !word) return formatLocalDate();
+
+  const id = Number(word.id);
+  if (Number.isFinite(id) && index.byId.has(id)) {
+    return index.byId.get(id);
+  }
+
+  const zhKey = normalizeTermKey(word?.term?.zh);
+  if (zhKey && index.byTermKey.has(zhKey)) {
+    return index.byTermKey.get(zhKey);
+  }
+
+  const enKey = normalizeTermKey(word?.term?.en);
+  if (enKey && index.byTermKey.has(enKey)) {
+    return index.byTermKey.get(enKey);
+  }
+
+  return index.today || formatLocalDate();
+}
+
 function placeholderZh(label) {
   return `TODO: ${label}`;
 }
@@ -244,6 +310,7 @@ function pickEnValue(zhRow, enRow, colEn, colBase) {
 async function importCsvToDraft(csvPath) {
   ensureDir(DRAFT_DIR);
   ensureDir(DRAFT_IMG_DIR);
+  const existingOnlineDateIndex = readExistingOnlineDateIndex();
 
   const raw = fs.readFileSync(csvPath, "utf-8");
   const rows = parseCsv(raw);
@@ -286,6 +353,7 @@ async function importCsvToDraft(csvPath) {
     w.term.zh = zhTerm;
     const enTerm = pickEnValue(zhRow, enRow, cols.term_en, cols.term);
     w.term.en = enTerm || placeholderEn("term");
+    w.online_date = resolveOnlineDate(existingOnlineDateIndex, w);
 
     const termOri = getCell(zhRow, cols.term_ori) || (enRow ? getCell(enRow, cols.term_ori) : "");
     w.termOri = termOri || placeholderEn("termOri");

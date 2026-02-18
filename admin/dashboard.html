@@ -479,6 +479,7 @@
     let currentTermPage = 1;
     let lastEventsCache = [];
     let termNameMap = new Map();
+    let termOnlineDateMap = new Map();
     let termNameMapLoaded = false;
 
     const $ = (id) => document.getElementById(id);
@@ -512,23 +513,58 @@
       return 7 * 24 * 3600_000;
     }
 
+    function parseOnlineDateStartTs(rawDate) {
+      const raw = typeof rawDate === "string" ? rawDate.trim() : "";
+      if (!raw) return null;
+
+      const m = raw.match(/^(\d{4})[/-](\d{1,2})[/-](\d{1,2})$/);
+      if (m) {
+        const y = Number(m[1]);
+        const mon = Number(m[2]);
+        const day = Number(m[3]);
+        const dt = new Date(y, mon - 1, day);
+        if (Number.isFinite(dt.getTime())) {
+          dt.setHours(0, 0, 0, 0);
+          return dt.getTime();
+        }
+      }
+
+      const parsed = new Date(raw);
+      if (!Number.isFinite(parsed.getTime())) return null;
+      parsed.setHours(0, 0, 0, 0);
+      return parsed.getTime();
+    }
+
+    function calcActiveDaysFromOnlineDate(rawDate) {
+      const onlineStart = parseOnlineDateStartTs(rawDate);
+      if (!Number.isFinite(onlineStart)) return null;
+      const todayStart = startOfDay(Date.now());
+      if (onlineStart > todayStart) return 0;
+      return Math.floor((todayStart - onlineStart) / (24 * 3600_000)) + 1;
+    }
+
     async function ensureTermNameMap() {
       if (termNameMapLoaded) return;
       try {
         const payload = await tryFetchJson("/content/draft/data.json");
         const words = Array.isArray(payload?.words) ? payload.words : [];
-        const map = new Map();
+        const nameMap = new Map();
+        const onlineDateMap = new Map();
         words.forEach((w) => {
           const id = Number(w?.id);
           if (!Number.isFinite(id)) return;
           const zh = typeof w?.term?.zh === "string" ? w.term.zh.trim() : "";
           const en = typeof w?.term?.en === "string" ? w.term.en.trim() : "";
           const label = zh || en;
-          if (label) map.set(id, label);
+          if (label) nameMap.set(id, label);
+          const onlineDate = typeof w?.online_date === "string" ? w.online_date.trim() : "";
+          if (onlineDate) onlineDateMap.set(id, onlineDate);
         });
-        termNameMap = map;
+        termNameMap = nameMap;
+        termOnlineDateMap = onlineDateMap;
       } catch (_) {
         termNameMap = new Map();
+        termOnlineDateMap = new Map();
       } finally {
         termNameMapLoaded = true;
       }
@@ -541,6 +577,14 @@
       const raw = typeof fallback === "string" ? fallback.trim() : "";
       if (raw && !/^term\s*#\d+$/i.test(raw) && !/^词条\s*#\d+$/i.test(raw)) return raw;
       return Number.isFinite(numId) ? `词条 #${numId}` : (raw || "词条");
+    }
+
+    function resolveActiveDays(wordId, fallbackDays = 0) {
+      const id = Number(wordId);
+      const onlineDate = termOnlineDateMap.get(id);
+      const fromOnlineDate = calcActiveDaysFromOnlineDate(onlineDate);
+      if (fromOnlineDate !== null) return fromOnlineDate;
+      return fallbackDays;
     }
 
     function buildTermAgg(events, langFilter = null) {
@@ -574,7 +618,7 @@
         visits: t.visits,
         durationMs: t.durationMs,
         durationText: fmtMs(t.durationMs),
-        activeDays: t.days.size
+        activeDays: resolveActiveDays(t.wordId, t.days.size)
       })).sort((a, b) => b.visits - a.visits);
     }
 

@@ -141,6 +141,68 @@ function normalizeTermKey(v) {
   return normalizeTermName(v).toLowerCase();
 }
 
+function formatLocalDate(date = new Date()) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}/${m}/${d}`;
+}
+
+function readExistingOnlineDateIndex() {
+  const byId = new Map();
+  const byTermKey = new Map();
+  const today = formatLocalDate();
+
+  if (!fs.existsSync(DRAFT_JSON_PATH)) {
+    return { byId, byTermKey, today };
+  }
+
+  try {
+    const raw = fs.readFileSync(DRAFT_JSON_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    const words = Array.isArray(parsed?.words) ? parsed.words : [];
+
+    for (const word of words) {
+      const onlineDate = s(word?.online_date);
+      if (!onlineDate) continue;
+
+      const id = Number(word?.id);
+      if (Number.isFinite(id)) byId.set(id, onlineDate);
+
+      const zhKey = normalizeTermKey(word?.term?.zh);
+      if (zhKey && !byTermKey.has(zhKey)) byTermKey.set(zhKey, onlineDate);
+
+      const enKey = normalizeTermKey(word?.term?.en);
+      if (enKey && !byTermKey.has(enKey)) byTermKey.set(enKey, onlineDate);
+    }
+  } catch (_) {
+    // Keep empty index on parse/read errors and fallback to today's date.
+  }
+
+  return { byId, byTermKey, today };
+}
+
+function resolveOnlineDate(index, word) {
+  if (!index || !word) return formatLocalDate();
+
+  const id = Number(word.id);
+  if (Number.isFinite(id) && index.byId.has(id)) {
+    return index.byId.get(id);
+  }
+
+  const zhKey = normalizeTermKey(word?.term?.zh);
+  if (zhKey && index.byTermKey.has(zhKey)) {
+    return index.byTermKey.get(zhKey);
+  }
+
+  const enKey = normalizeTermKey(word?.term?.en);
+  if (enKey && index.byTermKey.has(enKey)) {
+    return index.byTermKey.get(enKey);
+  }
+
+  return index.today || formatLocalDate();
+}
+
 function placeholderZH(label) {
   return label;
 }
@@ -237,6 +299,7 @@ async function compressImageBuffer(buffer, rule) {
 async function importExcelToDraft(xlsxPath) {
   ensureDir(DRAFT_DIR);
   ensureDir(DRAFT_IMG_DIR);
+  const existingOnlineDateIndex = readExistingOnlineDateIndex();
 
   const wb = new ExcelJS.Workbook();
   await wb.xlsx.readFile(xlsxPath);
@@ -431,6 +494,7 @@ async function importExcelToDraft(xlsxPath) {
     // term
     w.term.zh = zhTerm;
     w.term.en = enRow ? (cell(enRow, COLS.TERM) || placeholderEN("term")) : placeholderEN("term");
+    w.online_date = resolveOnlineDate(existingOnlineDateIndex, w);
 
     // termOri / domain
     w.termOri = cell(zhRow, COLS.ORI) || (enRow ? cell(enRow, COLS.ORI) : "") || placeholderEN("termOri");

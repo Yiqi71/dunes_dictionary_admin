@@ -12,7 +12,7 @@ git clean -fd
 
 /重置 dunes_dictionary_public
 cd ~/apps/dunes_dictionary_public
-git fetch --all
+git fetch --all --prune
 git reset --hard origin/main
 git clean -fd
 
