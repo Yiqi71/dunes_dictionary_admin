@@ -227,10 +227,10 @@
         <div class="flex flex-wrap gap-3 items-center">
           <h3 class="text-stone-500 text-sm font-bold uppercase tracking-wider">词条列表 Entries List</h3>
           <div class="flex bg-stone-200 p-0.5 rounded text-[10px] font-medium">
-            <button class="px-2 py-0.5 rounded transition-all bg-white text-stone-900 shadow-sm">中文 CN</button>
-            <button class="px-2 py-0.5 rounded transition-all text-stone-500 hover:text-stone-700">英文 EN</button>
+            <button id="termLangCn" class="px-2 py-0.5 rounded transition-all bg-white text-stone-900 shadow-sm">中文 CN</button>
+            <button id="termLangEn" class="px-2 py-0.5 rounded transition-all text-stone-500 hover:text-stone-700">英文 EN</button>
           </div>
-          <span class="bg-stone-200 text-stone-600 text-[10px] px-2 py-0.5 rounded-full">语言切换（未实现）</span>
+          <span id="termLangTag" class="bg-stone-200 text-stone-600 text-[10px] px-2 py-0.5 rounded-full">当前：中文 CN</span>
         </div>
         <div class="flex flex-wrap gap-2 items-center">
           <div class="flex gap-2">
@@ -475,6 +475,7 @@
     let currentRange = "7d";
     let currentTrendRange = "7d";
     let currentOverviewRange = "24h";
+    let currentTermLang = "cn";
     let currentTermPage = 1;
     let lastEventsCache = [];
     let termNameMap = new Map();
@@ -542,10 +543,12 @@
       return Number.isFinite(numId) ? `词条 #${numId}` : (raw || "词条");
     }
 
-    function buildTermAgg(events) {
+    function buildTermAgg(events, langFilter = null) {
       const m = new Map();
       for (const e of events) {
         const d = e && e.data ? e.data : {};
+        const eventLang = getEventLangKey(e) || "cn";
+        if (langFilter && eventLang !== langFilter) continue;
         if (e.name === "word_view_start" && d.wordId !== undefined) {
           const id = Number(d.wordId);
           if (!Number.isFinite(id)) continue;
@@ -765,7 +768,7 @@
       return { totalUsers, interactions };
     }
 
-    function buildYesterdayVisitsMap(events) {
+    function buildYesterdayVisitsMap(events, langFilter = null) {
       const map = new Map();
       if (!Array.isArray(events) || !events.length) return map;
       const todayStart = startOfDay(Date.now());
@@ -774,11 +777,27 @@
         if (e.name !== "word_view_start") return;
         if (e.ts < yestStart || e.ts >= todayStart) return;
         const d = e.data || {};
+        const eventLang = getEventLangKey(e) || "cn";
+        if (langFilter && eventLang !== langFilter) return;
         const id = Number(d.wordId);
         if (!Number.isFinite(id)) return;
         map.set(id, (map.get(id) || 0) + 1);
       });
       return map;
+    }
+
+    function buildTermsByLang(events) {
+      if (!Array.isArray(events) || !events.length) {
+        return { cn: { ok: true, terms: [] }, en: { ok: true, terms: [] } };
+      }
+      const rangeMs = rangeToMs(currentRange);
+      const recentRange = events.filter(e => inLast(e.ts, rangeMs));
+      const cnTerms = buildTermAgg(recentRange, "cn").sort((a, b) => b.visits - a.visits).slice(0, 50);
+      const enTerms = buildTermAgg(recentRange, "en").sort((a, b) => b.visits - a.visits).slice(0, 50);
+      return {
+        cn: { ok: true, terms: cnTerms },
+        en: { ok: true, terms: enTerms }
+      };
     }
 
     function buildFeatureFromEvents(events) {
@@ -1009,7 +1028,7 @@
           const page = Number(btn.dataset.page);
           if (!Number.isFinite(page)) return;
           currentTermPage = page;
-          renderTable(termsPayload, window.__yesterdayMap);
+          renderTable(window.__currentTermsPayload || { terms: [] }, window.__currentYesterdayMap || new Map());
         });
       });
     }
@@ -1044,10 +1063,30 @@
 
       window.__terms = terms;
       window.__yesterdayMap = yesterdayMap;
+      window.__currentTermsPayload = termsPayload;
+      window.__currentYesterdayMap = yesterdayMap;
       renderPagination(terms.length);
       if (window.lucide && typeof window.lucide.createIcons === "function") {
         lucide.createIcons();
       }
+    }
+
+    function setTermLang(lang) {
+      currentTermLang = lang === "en" ? "en" : "cn";
+      const isCn = currentTermLang === "cn";
+
+      $("termLangCn").className = isCn
+        ? "px-2 py-0.5 rounded transition-all bg-white text-stone-900 shadow-sm"
+        : "px-2 py-0.5 rounded transition-all text-stone-500 hover:text-stone-700";
+      $("termLangEn").className = isCn
+        ? "px-2 py-0.5 rounded transition-all text-stone-500 hover:text-stone-700"
+        : "px-2 py-0.5 rounded transition-all bg-white text-stone-900 shadow-sm";
+      $("termLangTag").innerText = isCn ? "当前：中文 CN" : "当前：英文 EN";
+
+      currentTermPage = 1;
+      const termsPayload = (window.__termsByLang && window.__termsByLang[currentTermLang]) || { ok: true, terms: [] };
+      const yesterdayMap = (window.__yesterdayByLang && window.__yesterdayByLang[currentTermLang]) || new Map();
+      renderTable(termsPayload, yesterdayMap);
     }
 
     function openModal(id) {
@@ -1174,6 +1213,8 @@
     $("overview24h").addEventListener("click", () => { setOverviewRange("24h"); refreshAll(); });
     $("overview7d").addEventListener("click", () => { setOverviewRange("7d"); refreshAll(); });
     $("overview30d").addEventListener("click", () => { setOverviewRange("30d"); refreshAll(); });
+    $("termLangCn").addEventListener("click", () => setTermLang("cn"));
+    $("termLangEn").addEventListener("click", () => setTermLang("en"));
 
     $("refreshBtn").addEventListener("click", () => refreshAll());
 
@@ -1217,8 +1258,24 @@
         renderFeature(featureFromEvents ? { feature: featureFromEvents } : dash);
         const langMetrics = buildLangMetrics(eventsForYesterday);
         renderLang(langMetrics);
-        const yesterdayMap = buildYesterdayVisitsMap(eventsForYesterday);
-        renderTable(terms, yesterdayMap);
+        const hasEvents = Array.isArray(eventsForYesterday) && eventsForYesterday.length > 0;
+        const termsByLang = hasEvents
+          ? buildTermsByLang(eventsForYesterday)
+          : { cn: terms, en: terms };
+        const fallbackYesterday = buildYesterdayVisitsMap(eventsForYesterday);
+        const yesterdayByLang = hasEvents
+          ? {
+            cn: buildYesterdayVisitsMap(eventsForYesterday, "cn"),
+            en: buildYesterdayVisitsMap(eventsForYesterday, "en")
+          }
+          : { cn: fallbackYesterday, en: fallbackYesterday };
+
+        window.__termsByLang = termsByLang;
+        window.__yesterdayByLang = yesterdayByLang;
+
+        const currentTermsPayload = termsByLang[currentTermLang] || terms;
+        const currentYesterdayMap = yesterdayByLang[currentTermLang] || fallbackYesterday;
+        renderTable(currentTermsPayload, currentYesterdayMap);
 
         setStatus(true, "已连接");
       } catch (err) {
