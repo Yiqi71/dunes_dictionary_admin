@@ -25,6 +25,14 @@ npm install
 pm2 restart dunes-admin
 pm2 status
 
+/迁移event.sqlite
+mkdir -p /home/ecs-user/apps/dunes_data
+cp -n /home/ecs-user/apps/dunes_dictionary_admin/tracking/events.sqlite /home/ecs-user/apps/dunes_data/events.sqlite
+EVENTS_DB_PATH=/home/ecs-user/apps/dunes_data/events.sqlite pm2 restart 0 --update-env
+pm2 env 0 | grep EVENTS_DB_PATH
+
+
+
 
 /localhoast
 cd server

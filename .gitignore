@@ -1,3 +1,6 @@
 tracking/events.sqlite
 server/content/sources
 content/sources
+tracking/*.sqlite
+tracking/*.sqlite-shm
+tracking/*.sqlite-wal
