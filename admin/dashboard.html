@@ -234,8 +234,8 @@
         </div>
         <div class="flex flex-wrap gap-2 items-center">
           <div class="flex gap-2">
-            <button id="range7d" class="px-3 py-1 rounded-md bg-stone-900 text-white text-xs">7d</button>
             <button id="range24h" class="px-3 py-1 rounded-md bg-white border border-stone-200 text-stone-700 text-xs">24h</button>
+            <button id="range7d" class="px-3 py-1 rounded-md bg-stone-900 text-white text-xs">7d</button>
             <button id="range30d" class="px-3 py-1 rounded-md bg-white border border-stone-200 text-stone-700 text-xs">30d</button>
           </div>
           <div class="flex gap-2 text-stone-400 items-center">
@@ -250,10 +250,10 @@
           <thead class="bg-white text-stone-500 font-medium border-b border-stone-100">
             <tr>
               <th class="px-6 py-4 font-normal">词条信息 Term Info</th>
-              <th class="px-6 py-4 font-normal">上站天数 Days Active</th>
-              <th class="px-6 py-4 font-normal">昨日访问 Visits (Yest.)</th>
               <th class="px-6 py-4 font-normal">总访问 Total Visits</th>
               <th class="px-6 py-4 font-normal">总时长 Total Duration</th>
+              <th class="px-6 py-4 font-normal">昨日访问 Visits (Yest.)</th>
+              <th class="px-6 py-4 font-normal">上站天数 Days Active</th>
             </tr>
           </thead>
           <tbody id="term-table-body" class="divide-y divide-stone-100">
@@ -1097,10 +1097,10 @@
             <div class="font-bold text-stone-900">${displayTerm}</div>
             <div class="text-[10px] text-stone-300 mt-1 font-mono">ID: ${item.id}</div>
           </td>
-          <td class="px-6 py-4 text-stone-600 font-medium">${(item.activeDays ?? 0).toLocaleString()}</td>
-          <td class="px-6 py-4 text-stone-600 font-medium">${typeof yestVisits === "number" ? yestVisits.toLocaleString() : yestVisits}</td>
           <td class="px-6 py-4 text-stone-600 font-medium">${(item.visits ?? 0).toLocaleString()}</td>
           <td class="px-6 py-4 text-stone-600 font-medium">${item.durationText ?? "0s"}</td>
+          <td class="px-6 py-4 text-stone-600 font-medium">${typeof yestVisits === "number" ? yestVisits.toLocaleString() : yestVisits}</td>
+          <td class="px-6 py-4 text-stone-600 font-medium">${(item.activeDays ?? 0).toLocaleString()}</td>
         `;
         tb.appendChild(row);
       });
@@ -1192,8 +1192,8 @@
       currentRange = range;
       currentTermPage = 1;
       const btns = [
-        ["7d", "range7d"],
         ["24h", "range24h"],
+        ["7d", "range7d"],
         ["30d", "range30d"]
       ];
       for (const [r, id] of btns) {
