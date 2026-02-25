@@ -1,13 +1,13 @@
-// 状态变�?
+// Imports
 import { state } from "./state.js";
-import { draw, updateWordNodeTransforms, updateScaleForNodes, handleZoomWheel } from "./uni-canvas.js";
+import { updateWordNodeTransforms, handleZoomWheel } from "./uni-canvas.js";
 import { country_bounding_boxes } from "./countryBoundingBoxes.js";
 import { resolveCountryCode } from "./countryMapping.js";
 import { renderPanelSections } from "./detail.js";
 import {updateRelations} from "./relationManager.js";
 import {
     zoomToWord,
-    updateWordDetails,
+    zoomInToWordOnSessionEntry,
     updateWordFocus
 } from "./wordFocus.js";
 import { applyStintFallbackToElement } from "./fontFallback.js";
@@ -18,77 +18,183 @@ import {
     initSavedWordStorageSync
 } from "./saved.js";
 import { logEvent, startWordView, endWordView } from "/analytics.js";
-
 import { yearPeriods } from "./menu.js";
 
+const BOOT_PROGRESS_EVENT = "dunes:boot-progress";
+const ENTRY_READY_EVENT = "dunes:entry-ready";
+
+function setBootProgress(value, label) {
+    window.dispatchEvent(new CustomEvent(BOOT_PROGRESS_EVENT, {
+        detail: { value, label }
+    }));
+}
+
+// Shared runtime state
 let sessionStartTs = null;
+window.allWords = [];
+
+const yearPeriodColors = [
+    "#F9D67A",
+    "#FADD91",
+    "#FAE2A5",
+    "#FAE8BA",
+    "#FAEED0",
+    "#F9F3E3"
+];
+
+let wordsOnGrid = {};
+let usedPositions = new Set();
+let minGrid = 2;
+let entryGateReady = false;
+let entryDataReady = false;
+let entryFlowStarted = false;
+
 initSavedWordStorageSync();
 
+function hasGateBeenDismissed() {
+    const gate = document.getElementById("invite-gate");
+    return !gate || gate.classList.contains("is-hidden");
+}
+
+function wait(ms) {
+    return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+async function tryRunEntryFlow() {
+    if (entryFlowStarted || !entryDataReady || !entryGateReady) return;
+    entryFlowStarted = true;
+
+    const targetId = state.focusedNodeId;
+    setBootProgress(100, "Loaded");
+    await wait(620);
+    if (targetId !== null && targetId !== undefined) {
+        await zoomInToWordOnSessionEntry(targetId, {
+            minScale: 1,
+            targetScale: state.scaleThreshold,
+            duration: 1850
+        });
+    }
+
+    updateWordFocus(targetId);
+    if (targetId !== null && targetId !== undefined) {
+        startWordView(targetId);
+    }
+    syncRouteFromState({ replace: true });
+}
+
+// Language helpers
 function normalizeLang(code) {
     const v = (code || "").toLowerCase();
     return v.startsWith("zh") ? "zh" : "en";
 }
 
-function resolveInitialLang() {
+function routeLangToStateLang(routeLang) {
+    const v = String(routeLang || "").toLowerCase();
+    if (v === "cn" || v === "zh") return "zh";
+    if (v === "en") return "en";
+    return null;
+}
+
+function stateLangToRouteLang(lang) {
+    return normalizeLang(lang) === "zh" ? "cn" : "en";
+}
+
+function slugifyTerm(value) {
+    const raw = String(value || "")
+        .trim()
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+    return raw
+        .replace(/[^a-z0-9\u4e00-\u9fff]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .replace(/-{2,}/g, "-");
+}
+
+function getWordSlug(word, lang = "en") {
+    if (!word) return "";
+    const preferred = word?.term?.[lang] || word?.term?.en || word?.term?.zh || word?.termOri || "";
+    return slugifyTerm(preferred);
+}
+
+function buildWordSlugCandidates(word) {
+    const candidates = new Set();
+    const add = (value) => {
+        const slug = slugifyTerm(value);
+        if (slug) candidates.add(slug);
+    };
+    add(word?.term?.en);
+    add(word?.term?.zh);
+    add(word?.termOri);
+    return candidates;
+}
+
+function findWordByRouteSlug(routeSlug, words = []) {
+    const normalized = slugifyTerm(decodeURIComponent(String(routeSlug || "")));
+    if (!normalized) return null;
+    for (const word of words) {
+        const candidates = buildWordSlugCandidates(word);
+        if (candidates.has(normalized)) return word;
+    }
+    return null;
+}
+
+function parseRouteState(pathname = window.location.pathname) {
+    const segments = String(pathname || "/")
+        .split("/")
+        .filter(Boolean)
+        .map((v) => decodeURIComponent(v));
+
+    if (!segments.length) return { routeLang: null, routeSlug: null };
+
+    const first = segments[0].toLowerCase();
+    const routeLang = routeLangToStateLang(first);
+    if (routeLang) {
+        return {
+            routeLang,
+            routeSlug: segments.slice(1).join("/")
+        };
+    }
+
+    return {
+        routeLang: null,
+        routeSlug: segments.join("/")
+    };
+}
+
+function resolveInitialLang(routeLang = null) {
+    if (routeLang) return normalizeLang(routeLang);
     const browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || "";
     if (browserLang) return normalizeLang(browserLang);
     return normalizeLang(document.documentElement.lang || state.currentLang || "en");
 }
 
-function attachImageVisibility(img) {
-    if (!img || img.dataset.imgVisibilityBound === "1") return;
-    img.dataset.imgVisibilityBound = "1";
-    const update = () => {
-        const src = img.getAttribute("src");
-        if (!src) {
-            img.style.display = "none";
-        } else {
-            img.style.display = "";
+let lastSyncedPath = null;
+
+function syncRouteFromState({ replace = true } = {}) {
+    const lang = normalizeLang(state.currentLang || document.documentElement.lang || "en");
+    const routeLang = stateLangToRouteLang(lang);
+    let nextPath = `/${routeLang}`;
+
+    if (state.focusedNodeId !== null && state.focusedNodeId !== undefined && window.allWords?.length) {
+        const word = window.allWords.find((w) => String(w.id) === String(state.focusedNodeId));
+        const slug = getWordSlug(word, lang);
+        if (slug) {
+            nextPath = `/${routeLang}/${encodeURIComponent(slug)}`;
         }
-    };
-    img.addEventListener("error", () => {
-        img.style.display = "none";
-    });
-    img.addEventListener("load", () => {
-        if (img.getAttribute("src")) {
-            img.style.display = "";
-        }
-    });
-    update();
+    }
+
+    if (window.location.pathname === nextPath || lastSyncedPath === nextPath) return;
+    const fn = replace ? window.history.replaceState : window.history.pushState;
+    fn.call(window.history, {}, "", nextPath);
+    lastSyncedPath = nextPath;
 }
 
-function setupImageVisibilityWatcher() {
-    document.querySelectorAll("img").forEach(attachImageVisibility);
-    const observer = new MutationObserver((mutations) => {
-        for (const m of mutations) {
-            if (m.type === "childList") {
-                m.addedNodes.forEach((node) => {
-                    if (node.nodeType !== 1) return;
-                    if (node.tagName === "IMG") {
-                        attachImageVisibility(node);
-                    } else {
-                        node.querySelectorAll?.("img").forEach(attachImageVisibility);
-                    }
-                });
-            } else if (m.type === "attributes" && m.attributeName === "src") {
-                const target = m.target;
-                if (target && target.tagName === "IMG") {
-                    attachImageVisibility(target);
-                }
-            }
-        }
-    });
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ["src"]
-    });
-}
+window.__DD_SYNC_ROUTE = () => {
+    syncRouteFromState({ replace: true });
+};
 
-document.addEventListener("DOMContentLoaded", setupImageVisibilityWatcher, { once: true });
-
-
+// Session analytics
 function endSession(reason = "unknown") {
     if (sessionStartTs === null) return;
     const durationMs = Date.now() - sessionStartTs;
@@ -96,13 +202,14 @@ function endSession(reason = "unknown") {
     sessionStartTs = null;
 }
 
+
+// Language UI
 const langBtn = document.getElementById("language-icon");
 function updateTabLabels() {
     const currentLang = normalizeLang(state.currentLang);
-    document.querySelectorAll('button').forEach(button => {
+    document.querySelectorAll('.panel-tabs button[data-tab]').forEach(button => {
         if (!button) return;
 
-        // Wrap text in a span so we can rotate text without affecting SVGs
         let span = button.querySelector('span');
         if (!span) {
             const text = button.innerHTML;
@@ -126,7 +233,6 @@ function updateTabLabels() {
         }
     });
 }
-// 点击按钮切换语言
 langBtn.addEventListener("click", () => {
     const html = document.documentElement; 
     const prevLang = normalizeLang(html.lang || state.currentLang);
@@ -135,15 +241,7 @@ langBtn.addEventListener("click", () => {
     state.currentLang = nextLang;
     langBtn.textContent = nextLang;
     logEvent("lang_toggle", { from: prevLang, to: nextLang });
-    // if (state.currentLang === "zh") {
-    //     state.currentLang = "en";
-    //     langBtn.textContent = "English";
-    // } else {
-    //     state.currentLang = "zh";
-    //     langBtn.textContent = "中文";
-    // }
 
-    // 重新渲染节点上的文字
     document.querySelectorAll('.word-node').forEach(node => {
         const wordId = node.id;
         const word = window.allWords.find(w => w.id == wordId);
@@ -154,37 +252,23 @@ langBtn.addEventListener("click", () => {
         if(termMain) termMain.textContent = word.term?.[lang] || '未知单词';
     });
 
-    // 重新渲染tab上的文字
     updateTabLabels();
 
 
-    // 如果需要更新浮�?
     if(state.focusedNodeId) {
         updateWordFocus();
         renderPanelSections();
     }else{
         updateWordFocus();
     }
+    syncRouteFromState({ replace: true });
 });
 
-window.allWords = [];
-
-const yearPeriodColors = [
-    "#F9D67A", // 空白/-2000
-    "#FADD91", // 1700
-    "#FAE2A5", // 1800
-    "#FAE8BA", // 1850
-    "#FAEED0", // 1900
-    "#F9F3E3" // 1950-now
-];
-
+// Color and date helpers
 function getWordColor(wordYear) {
-    // Handle invalid years
     if (isNaN(wordYear)) {
-        return yearPeriodColors[0]; // Default to first period color
+        return yearPeriodColors[0];
     }
-    
-    // Find which year period this word belongs to
     let periodIndex = 0;
     
     for (let i = yearPeriods.length - 2; i >= 0; i--) {
@@ -194,8 +278,6 @@ function getWordColor(wordYear) {
             break;
         }
     }
-    
-    // Ensure we don't go out of bounds
     if (periodIndex >= yearPeriodColors.length) {
         periodIndex = yearPeriodColors.length - 1;
     }
@@ -210,11 +292,7 @@ function parseContributeDate(contributeDate) {
     return year * 10000 + month * 100 + day;
 }
 
-// nodes
-let wordsOnGrid = {};
-let usedPositions = new Set(); // 记录已使用的位置
-let minGrid = 2;
-
+// Grid placement helpers
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -225,30 +303,27 @@ function shuffleArray(array) {
 function getCountryBoundary(countryCode) {
     const box = country_bounding_boxes[countryCode];
     if (!box) return [-180, -90, 180, 90];
-    return box[1]; // [minLon, minLat, maxLon, maxLat]
+    return box[1];
 }
 
 function getCountryCenter(countryCode) {
     const box = country_bounding_boxes[countryCode];
     if (!box) {
-        // 没有数据时，返回世界中心
         return { left: 50, top: 50 };
     }
 
     const [minLon, minLat, maxLon, maxLat] = box[1];
 
-    const centerLon = (minLon + maxLon) / 2; // 中心经度
-    const centerLat = (minLat + maxLat) / 2; // 中心纬度
+    const centerLon = (minLon + maxLon) / 2;
+    const centerLat = (minLat + maxLat) / 2;
 
-    // 把经纬度转成百分比坐标（和你�?renderWordUniverse 里一致）
-    const left = (centerLon + 180) / 3.6;   // -180~180 �?0~100
-    const top = (90 - centerLat) / 1.8;     // 90~-90 �?0~100
+    const left = (centerLon + 180) / 3.6;
+    const top = (90 - centerLat) / 1.8;
 
     return { left, top };
 }
 
 
-// 生成全地图网格（百分比坐标）
 function generateGridPoints(min = 4, max = 96) {
     const points = [];
     for (let top = min; top <= max; top += minGrid) {
@@ -284,22 +359,19 @@ function getCountryGridPoints(countryCode) {
         left,
         top
     }) => {
-        // 转换百分比到经纬�?
         const lon = left * 3.6 - 180;
         const lat = 90 - top * 1.8;
         return lon >= minLon && lon <= maxLon && lat >= minLat && lat <= maxLat;
     });
 
-    shuffleArray(availablePoints); // 只打乱国家内部格子顺�?
+    shuffleArray(availablePoints);
     return availablePoints;
 }
 
-// 新增：扩散算�?- 从国家中心向外扩散寻找可用位�?
 function findAvailablePositions(countryCode, wordCount) {
     const countryPoints = getCountryGridPoints(countryCode);
     const positions = [];
     
-    // 首先使用国家内部的格�?
     for (let i = 0; i < countryPoints.length && positions.length < wordCount; i++) {
         const point = countryPoints[i];
         const key = `${Math.round(point.left)},${Math.round(point.top)}`;
@@ -309,7 +381,6 @@ function findAvailablePositions(countryCode, wordCount) {
         }
     }
     
-    // 如果国家内部格点不够，向外扩�?
     if (positions.length < wordCount) {
         const countryCenter = getCountryCenter(countryCode);
         const additionalPositions = expandFromCenter(
@@ -323,7 +394,6 @@ function findAvailablePositions(countryCode, wordCount) {
     return positions;
 }
 
-// 从中心点向外螺旋扩散寻找可用位置
 function expandFromCenter(center, neededCount, excludePoints = []) {
     const positions = [];
     const excludeKeys = new Set(
@@ -331,17 +401,14 @@ function expandFromCenter(center, neededCount, excludePoints = []) {
     );
     
     let radius = minGrid;
-    const maxRadius = 50; // 最大扩散半�?
+    const maxRadius = 50;
     
     while (positions.length < neededCount && radius <= maxRadius) {
         const ringPositions = generateRingPositions(center, radius);
         
         for (const pos of ringPositions) {
             if (positions.length >= neededCount) break;
-            
             const key = `${Math.round(pos.left)},${Math.round(pos.top)}`;
-            
-            // 检查是否在地图范围内，未被使用，且不在排除列表�?
             if (isValidPosition(pos) && 
                 !usedPositions.has(key) && 
                 !excludeKeys.has(key)) {
@@ -349,24 +416,21 @@ function expandFromCenter(center, neededCount, excludePoints = []) {
                 usedPositions.add(key);
             }
         }
-        
         radius += minGrid;
     }
     
     return positions;
 }
 
-// 生成指定半径的环形位�?
 function generateRingPositions(center, radius) {
     const positions = [];
-    const steps = Math.max(8, Math.floor(2 * Math.PI * radius / minGrid)); // 根据半径调整密度
+    const steps = Math.max(8, Math.floor(2 * Math.PI * radius / minGrid));
     
     for (let i = 0; i < steps; i++) {
         const angle = (2 * Math.PI * i) / steps;
         const left = center.left + radius * Math.cos(angle);
         const top = center.top + radius * Math.sin(angle);
         
-        // 对齐到网�?
         const gridLeft = Math.round(left / minGrid) * minGrid;
         const gridTop = Math.round(top / minGrid) * minGrid;
         
@@ -376,18 +440,15 @@ function generateRingPositions(center, radius) {
     return positions;
 }
 
-// 检查位置是否有效（在地图范围内�?
 function isValidPosition(pos) {
     return pos.left >= 5 && pos.left <= 95 && 
            pos.top >= 5 && pos.top <= 95;
 }
 
-// 优化后的位置分配算法
 function allocatePositionsForCountries(wordsByCountry) {
-    usedPositions.clear(); // 重置已使用位�?
+    usedPositions.clear();
     const countryPositions = {};
-    
-    // 按单词数量排序，优先分配单词多的国家
+
     const sortedCountries = Object.keys(wordsByCountry).sort((a, b) => {
         return wordsByCountry[b].length - wordsByCountry[a].length;
     });
@@ -401,7 +462,7 @@ function allocatePositionsForCountries(wordsByCountry) {
 }
 
 
-// 优化后的渲染函数
+// Render
 function renderWordUniverse(wordsData) {
     const lang = normalizeLang(state.currentLang || "zh");
     console.log(lang);
@@ -410,7 +471,6 @@ function renderWordUniverse(wordsData) {
     wordNodesContainer.innerHTML = '';
     wordsOnGrid = {};
 
-    // 按国家分�?
     const wordsByCountry = {};
     const unknownWords = [];
     const unknownLabels = new Set();
@@ -434,7 +494,6 @@ function renderWordUniverse(wordsData) {
 
     const countryPositions = allocatePositionsForCountries(wordsByCountry);
 
-    // 渲染每个国家的节�?
     for (const country in wordsByCountry) {
         const words = wordsByCountry[country];
         const positions = countryPositions[country];
@@ -442,9 +501,8 @@ function renderWordUniverse(wordsData) {
         for (let i = 0; i < words.length; i++) {
             const word = words[i];
             
-            // 使用分配好的位置，如果位置不够就跳过
             if (i >= positions.length) {
-                console.warn(`国家 ${country} 的单词数量超过可分配位置，跳过单�? ${word.term}`);
+                console.warn(`国家 ${country} 的单词数量超过可分配位置，跳过单词 ${word.term}`);
                 continue;
             }
             
@@ -472,7 +530,6 @@ function renderWordUniverse(wordsData) {
             node.style.transform = `translate(-50%, -50%)`;
 
             
-            // Use yearPeriods-based coloring instead of equal distribution
             const year = parseInt(word.proposing_time);
             const nodeColor = getWordColor(year);
             node.style.backgroundColor = nodeColor;
@@ -487,7 +544,6 @@ function renderWordUniverse(wordsData) {
             applySavedStateToNode(node, savedWordIds);
             bindSaveIndicatorInteraction(node);
             
-            // �?关键：用 "x,y" 作为 key 存储
             const key = `${Math.round(leftPercent)},${Math.round(topPercent)}`;
             wordsOnGrid[key] = node.id;
 
@@ -496,21 +552,18 @@ function renderWordUniverse(wordsData) {
                 handleZoomWheel(e);
             }, { passive: false });
             
-            // 添加点击事件处理浮窗显示
-            // 修改单词节点的点击事�?
             node.addEventListener('mousedown', (e) => {
                 e.stopPropagation();
             });
 
             node.addEventListener('click', (e) => {
                 e.stopPropagation();
-                // 只有不是拖拽操作时才处理点击
                 if (!isDragging) {
                     if (node.classList.contains('focused')) {} else {
                         endWordView("switch");
                         startWordView(node.id);
                         zoomToWord(node.id, state.scaleThreshold);
-                        updateWordFocus();
+                        updateWordFocus(node.id);
                         renderPanelSections();
                         logEvent("word-node-click", { wordId: node.id });
                     }
@@ -589,7 +642,7 @@ function renderWordUniverse(wordsData) {
                         endWordView("switch");
                         startWordView(node.id);
                         zoomToWord(node.id, state.scaleThreshold);
-                        updateWordFocus();
+                        updateWordFocus(node.id);
                         renderPanelSections();
                         logEvent("word-node-click", { wordId: node.id });
                     }
@@ -600,7 +653,6 @@ function renderWordUniverse(wordsData) {
             updateWordNodeTransforms();
         }
     }
-    // drag
     let isDragging = false;
 
     let canvas = document.getElementById("universe-canvas");
@@ -609,24 +661,82 @@ function renderWordUniverse(wordsData) {
         updateRelations();
     });
     canvas.addEventListener('mouseup', () => {
-        updateWordFocus(); // 拖动结束后更�?
+        updateWordFocus();
         updateRelations();
     });
 
 }
 
+// Image visibility
+function attachImageVisibility(img) {
+    if (!img || img.dataset.imgVisibilityBound === "1") return;
+    img.dataset.imgVisibilityBound = "1";
+    const update = () => {
+        const src = img.getAttribute("src");
+        if (!src) {
+            img.style.display = "none";
+        } else {
+            img.style.display = "";
+        }
+    };
+    img.addEventListener("error", () => {
+        img.style.display = "none";
+    });
+    img.addEventListener("load", () => {
+        if (img.getAttribute("src")) {
+            img.style.display = "";
+        }
+    });
+    update();
+}
 
+function setupImageVisibilityWatcher() {
+    document.querySelectorAll("img").forEach(attachImageVisibility);
+    const observer = new MutationObserver((mutations) => {
+        for (const m of mutations) {
+            if (m.type === "childList") {
+                m.addedNodes.forEach((node) => {
+                    if (node.nodeType !== 1) return;
+                    if (node.tagName === "IMG") {
+                        attachImageVisibility(node);
+                    } else {
+                        node.querySelectorAll?.("img").forEach(attachImageVisibility);
+                    }
+                });
+            } else if (m.type === "attributes" && m.attributeName === "src") {
+                const target = m.target;
+                if (target && target.tagName === "IMG") {
+                    attachImageVisibility(target);
+                }
+            }
+        }
+    });
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["src"]
+    });
+}
 
-// 初始�?- 等待DOM加载完成后获取数�?
+// App lifecycle
 document.addEventListener('DOMContentLoaded', () => {
+    setBootProgress(30, "Loading app...");
+    entryGateReady = hasGateBeenDismissed();
+    window.addEventListener(ENTRY_READY_EVENT, () => {
+        entryGateReady = true;
+        tryRunEntryFlow();
+    }, { once: true });
     sessionStartTs = Date.now();
     logEvent("session_start", {});
-    const initialLang = resolveInitialLang();
+    const routeState = parseRouteState(window.location.pathname);
+    const initialLang = resolveInitialLang(routeState.routeLang);
     document.documentElement.lang = initialLang;
     state.currentLang = initialLang;
     langBtn.textContent = initialLang;
     updateTabLabels();
     logEvent("page_loaded", { lang: initialLang });
+    setBootProgress(42, "Loading data...");
     fetch('/content/draft/data.json')
         .then(response => {
             if (!response.ok) {
@@ -635,25 +745,27 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
+            setBootProgress(72, "Rendering words...");
             window.allWords = data.words;
+            const matchedWord = findWordByRouteSlug(routeState.routeSlug, data.words);
             const homeIdRaw = data?.meta?.home_node_id;
             const homeIdNum = Number(homeIdRaw);
-            if (Number.isFinite(homeIdNum)) {
+            if (matchedWord?.id !== null && matchedWord?.id !== undefined) {
+                state.focusedNodeId = matchedWord.id;
+            } else if (Number.isFinite(homeIdNum)) {
                 state.focusedNodeId = homeIdNum;
             }
             logEvent("data_loaded", { status: "success", count: data.words ? data.words.length : 0 });
-            // 调用渲染函数，传入words数组
+            // Render once data is loaded.
             renderWordUniverse(data.words);
-            zoomToWord(state.focusedNodeId,state.scaleThreshold);
-            updateWordFocus();
-            if (state.focusedNodeId !== null && state.focusedNodeId !== undefined) {
-                startWordView(state.focusedNodeId);
-            }
+            entryDataReady = true;
+            tryRunEntryFlow();
         })
         .catch(error => {
             logEvent("data_loaded", { status: "error" });
+            setBootProgress(100, "Load failed, please refresh");
             console.error('加载数据失败:', error);
-            // 可以在这里添加错误处理UI，比如显示错误信�?
+            // Optional UI error handling can be added here.
             document.getElementById('word-nodes-container').innerHTML =
                 '<p class="error">加载单词数据失败，请刷新重试</p>';
         });
@@ -670,6 +782,8 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+
+document.addEventListener("DOMContentLoaded", setupImageVisibilityWatcher, { once: true });
 
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {

@@ -4,6 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            var path = window.location.pathname || "/";
+            var baseHref = path.indexOf("/admin/") === 0 ? "/admin/" : "/";
+            document.write('<base href="' + baseHref + '">');
+        })();
+    </script>
     <title>沙丘词典</title>
     <!-- 
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&display=swap" rel="stylesheet"> -->
@@ -20,6 +27,7 @@
     <script type="module" src="assets/js/relationManager.js" defer></script>
     <script type="module" src="assets/js/state.js" defer></script>
     <script type="module" src="assets/js/countryBoundingBoxes.js" defer></script>
+    <script type="module" src="assets/js/boot-progress.js" defer></script>
     <script type="module" src="assets/js/main.preview.js"></script>
     
     <script type="module" src="assets/js/particles.js" defer></script>
@@ -27,7 +35,15 @@
     <!-- <script type="module" src="sandtest.js" defer></script> -->
 </head>
 
-<body>
+<body class="boot-pending">
+    <div id="boot-progress" role="status" aria-live="polite" aria-label="Page loading">
+        <div id="boot-progress-track">
+            <div id="boot-progress-indicator"></div>
+        </div>
+        <p id="boot-progress-text">Loading...</p>
+    </div>
+
+    <div id="app-root">
     <!-- <div id="center-dot"></div> -->
 
     <div id="floating-panel" class="hidden">
@@ -108,7 +124,6 @@
     </div>
 
     <menu id="side-menu">
-
         <div id="upper-menu">
             <div id="dunes-icon" class="menu-part menu-part--keep">
                 <h2 class="Chinese"><span>沙丘</span><span>词典</span></h2>
@@ -130,7 +145,6 @@
                 </div>
             </div>
             <div id="search-results" class="menu-search-results hidden"></div>
-
         </div>
 
         <div id="lower-menu" class="menu-part">
@@ -170,11 +184,12 @@
         </div>
     </menu>
 
-    <!-- 主视图 -->
+    <!-- main view -->
     <div id="universe-view" class="view">
         <canvas id="universe-canvas"><canvas id="sand-layer"></canvas></canvas>
         
         <svg id="connection-lines"></svg>
+
         <!-- details -->
         <div id="word-details" class="hidden">
             <div class="detail" id="image">
@@ -192,17 +207,8 @@
             </div>
             <div class="detail" id="comment">
                 <div class="detail-title"></div>
-                <div id="comment-content">
-
-                </div>
+                <div id="comment-content"></div>
             </div>
-            <!-- <div class="detail" id="term">
-                <div class="detail-title"></div>
-                <div class="terms">
-                    <div class="term-main Chinese"></div>
-                    <div class="term-ori English"></div>
-                </div>
-            </div> -->
         </div>
         <div id="word-nodes-container"></div>
     </div>
@@ -210,6 +216,7 @@
     <div id="overlay" class="hidden"></div>
 
     <div id="tooltipDiv"></div>
+    </div>
 </body>
 
 </html>

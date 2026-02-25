@@ -189,7 +189,7 @@ function resolveImagePath(src) {
     return src;
 }
 
-export function updateWordFocus() {
+export function updateWordFocus(targetNodeId = null) {
     // 清除之前聚焦的单词
     if (focusedWord) {
         focusedWord.classList.remove('focused');
@@ -216,27 +216,34 @@ export function updateWordFocus() {
     if (state.currentScale >= state.scaleThreshold) {
         // 找出距离视图中心最近的单词
         let closestWord = null;
-        let minDistance = window.innerHeight / 4;
+        const targetId = targetNodeId !== null && targetNodeId !== undefined ? String(targetNodeId) : "";
+        if (targetId) {
+            closestWord = document.getElementById(targetId);
+        }
 
-        document.querySelectorAll('.word-node').forEach(node => {
-            const rect = node.getBoundingClientRect();
-            const nodeCenter = {
-                x: rect.left + rect.width / 2,
-                y: rect.top + rect.height / 2
-            };
+        if (!closestWord) {
+            let minDistance = window.innerHeight / 4;
 
-            // 计算距离
-            const distance = Math.sqrt(
-                Math.pow(nodeCenter.x - viewportCenter.x, 2) +
-                Math.pow(nodeCenter.y - viewportCenter.y, 2)
-            );
+            document.querySelectorAll('.word-node').forEach(node => {
+                const rect = node.getBoundingClientRect();
+                const nodeCenter = {
+                    x: rect.left + rect.width / 2,
+                    y: rect.top + rect.height / 2
+                };
 
-            // 更新最近单词
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestWord = node;
-            }
-        });
+                // Calculate distance from viewport center.
+                const distance = Math.sqrt(
+                    Math.pow(nodeCenter.x - viewportCenter.x, 2) +
+                    Math.pow(nodeCenter.y - viewportCenter.y, 2)
+                );
+
+                // Keep nearest word candidate.
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestWord = node;
+                }
+            });
+        }
 
         // 聚焦最近的单词
         if (closestWord) {
@@ -270,6 +277,9 @@ export function updateWordFocus() {
                     scrollToTop(); // 使用新的滚动到顶端函数
                 });
             }
+            if (typeof window.__DD_SYNC_ROUTE === "function") {
+                window.__DD_SYNC_ROUTE();
+            }
         }
     } else {
         setMenuCompact(false);
@@ -293,18 +303,6 @@ export function updateWordDetails() {
     }, {
         passive: false
     });
-
-    // term section
-    // const termTitle = document.querySelector('#term .detail-title');
-    // const termMainEl = document.querySelector('#term .term-main');
-    // const originalTermEl = document.querySelector('#term .term-ori');
-    // termTitle.textContent = String(word.id).padStart(4, '0');
-    // termMainEl.textContent = word.term || '未知单词';
-    // originalTermEl.textContent = word.termOri || '无';
-
-    // const node = document.getElementById(word.id);
-    // const termDiv = document.getElementById("term");
-    // termDiv.style.backgroundColor = node.style.backgroundColor;
 
     // related works + source image section
     const imageTitle = document.querySelector('#image .detail-title');
@@ -377,7 +375,10 @@ export function updateWordDetails() {
 
 function hideNearbyNodes(focusedNode) {
     document.querySelectorAll('.word-node').forEach(node => {
-        if (node === focusedNode) return;
+        if (node === focusedNode) {
+            node.style.opacity = '1';
+            return;
+        }
         node.style.opacity = '0.2';
     });
 }
@@ -462,5 +463,109 @@ function stopBreathingAnimation() {
     }
 }
 
+function getCenteredPanForScale(scale) {
+    const totalWidth = state.baseWidth * scale * 24;
+    const totalHeight = state.baseHeight * scale;
+    return {
+        panX: (window.innerWidth - totalWidth) / 2,
+        panY: (window.innerHeight - totalHeight) / 2
+    };
+}
 
+function getPanForWordAtScale(node, scale) {
+    const logicalX = parseFloat(node.dataset.x);
+    const logicalY = parseFloat(node.dataset.y);
+    const container = document.getElementById("word-nodes-container");
+    if (!container || Number.isNaN(logicalX) || Number.isNaN(logicalY)) return null;
 
+    const containerRect = container.getBoundingClientRect();
+    const worldX = logicalX * containerRect.width;
+    const worldY = logicalY * containerRect.height;
+
+    const viewportCenterX = window.innerWidth / 2;
+    const viewportCenterY = window.innerHeight / 2;
+
+    return {
+        panX: viewportCenterX - (worldX * scale + 318 / 2),
+        panY: viewportCenterY - (worldY * scale + 210 / 2)
+    };
+}
+
+function applyViewport(scale, panX, panY) {
+    state.currentScale = scale;
+    state.panX = panX;
+    state.panY = panY;
+    draw();
+    updateWordNodeTransforms();
+    updateRelations();
+    updateScaleForNodes(scale);
+    moveIndicator(scale);
+}
+
+function applyEntryOpacityTransition(focusedNode, progress) {
+    const clamped = Math.max(0, Math.min(1, progress));
+    const otherOpacity = 1 - 0.8 * clamped;
+    document.querySelectorAll(".word-node").forEach((node) => {
+        if (node === focusedNode) {
+            node.style.opacity = "1";
+        } else {
+            node.style.opacity = String(otherOpacity);
+        }
+    });
+}
+
+export function zoomInToWordOnSessionEntry(targetWordId, options = {}) {
+    const node = document.getElementById(String(targetWordId));
+    if (!node) return Promise.resolve(false);
+
+    const {
+        minScale = 1,
+        targetScale = state.scaleThreshold,
+        duration = 2400,
+        firstFrameHold = 500
+    } = options;
+
+    const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const from = getCenteredPanForScale(minScale);
+    const to = getPanForWordAtScale(node, targetScale);
+    if (!to) return Promise.resolve(false);
+
+    if (reducedMotion || duration <= 0) {
+        applyViewport(targetScale, to.panX, to.panY);
+        applyEntryOpacityTransition(node, 1);
+        clearEntryNodeVisualScale();
+        return Promise.resolve(true);
+    }
+
+    applyViewport(minScale, from.panX, from.panY);
+    applyEntryOpacityTransition(node, 0);
+
+    return new Promise((resolve) => {
+        const startedAt = performance.now() + Math.max(0, Number(firstFrameHold) || 0);
+        const ease = (t) => 1 - Math.pow(1 - t, 3);
+
+        const frame = (now) => {
+            if (now < startedAt) {
+                window.requestAnimationFrame(frame);
+                return;
+            }
+            const progress = Math.min(1, (now - startedAt) / duration);
+            const eased = ease(progress);
+
+            const nextScale = minScale + (targetScale - minScale) * eased;
+            const nextPanX = from.panX + (to.panX - from.panX) * eased;
+            const nextPanY = from.panY + (to.panY - from.panY) * eased;
+
+            applyViewport(nextScale, nextPanX, nextPanY);
+            applyEntryOpacityTransition(node, progress);
+
+            if (progress < 1) {
+                window.requestAnimationFrame(frame);
+            } else {
+                resolve(true);
+            }
+        };
+
+        window.requestAnimationFrame(frame);
+    });
+}

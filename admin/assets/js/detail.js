@@ -1,4 +1,4 @@
-import {
+﻿import {
     state
 } from "./state.js";
 
@@ -125,7 +125,6 @@ function safeWriteStorage(key, value) {
 const COMMENT_LIKES_KEY = "dd_comment_likes_v1";
 const COMMENT_LIKE_EVENT_NAME = "comment_like_toggle";
 const COMMENT_LIKE_COUNTS_CACHE_TTL_MS = 30000;
-const COMMENT_LIKE_EVENTS_LIMIT = 2000;
 const commentLikeCountsCache = new Map();
 const voteStatsSessionRefreshedWordIds = new Set();
 const commentLikeSessionRefreshedWordIds = new Set();
@@ -177,50 +176,6 @@ function getPendingCommentLikeState(wordId, commentIndex) {
     return null;
 }
 
-function normalizeEventsPayload(payload) {
-    if (Array.isArray(payload)) return payload;
-    if (!payload || typeof payload !== "object") return [];
-    if (Array.isArray(payload.events)) return payload.events;
-    if (Array.isArray(payload.items)) return payload.items;
-    if (Array.isArray(payload.data)) return payload.data;
-    return [];
-}
-
-function buildCommentLikeCountsFromEvents(events, wordId) {
-    const latestByUserAndComment = new Map();
-    const targetWordId = String(wordId);
-
-    events.forEach((event) => {
-        if (!event || event.name !== COMMENT_LIKE_EVENT_NAME) return;
-        const data = event.data || {};
-        if (String(data.wordId) !== targetWordId) return;
-
-        const commentIndex = Number(data.commentIndex);
-        if (!Number.isFinite(commentIndex)) return;
-
-        const deviceId = String(data.deviceId || "").trim();
-        const sessionId = String(event.sessionId || "").trim();
-        const dedupeId = deviceId || sessionId;
-        if (!dedupeId) return;
-
-        const key = `${commentIndex}::${dedupeId}`;
-        const ts = Number(event.ts) || 0;
-        const liked = Boolean(data.liked);
-        const prev = latestByUserAndComment.get(key);
-        if (!prev || ts >= prev.ts) {
-            latestByUserAndComment.set(key, { ts, liked, commentIndex });
-        }
-    });
-
-    const counts = {};
-    latestByUserAndComment.forEach((entry) => {
-        if (!entry.liked) return;
-        const idx = String(entry.commentIndex);
-        counts[idx] = (counts[idx] || 0) + 1;
-    });
-    return counts;
-}
-
 async function fetchCommentLikeCounts(wordId, { force = false } = {}) {
     const cacheKey = String(wordId);
     const now = Date.now();
@@ -229,32 +184,18 @@ async function fetchCommentLikeCounts(wordId, { force = false } = {}) {
         return cached.counts;
     }
 
-    try {
-        const response = await fetch(buildApiUrl(`/api/votes/comment-likes?wordId=${encodeURIComponent(cacheKey)}`), {
-            cache: "no-store"
-        });
-        if (!response.ok) {
-            throw new Error(`failed_to_fetch_comment_like_counts_${response.status}`);
-        }
-
-        const payload = await response.json();
-        const rawCounts = payload?.countsByCommentIndex;
-        const counts = rawCounts && typeof rawCounts === "object" ? rawCounts : {};
-        commentLikeCountsCache.set(cacheKey, { ts: now, counts });
-        return counts;
-    } catch (_) {
-        // Fallback for servers that have not deployed /api/votes/comment-likes yet.
-        const legacyResp = await fetch(buildApiUrl(`/events?limit=${COMMENT_LIKE_EVENTS_LIMIT}`), {
-            cache: "no-store"
-        });
-        if (!legacyResp.ok) {
-            throw new Error(`failed_to_fetch_comment_like_counts_legacy_${legacyResp.status}`);
-        }
-        const payload = await legacyResp.json();
-        const counts = buildCommentLikeCountsFromEvents(normalizeEventsPayload(payload), cacheKey);
-        commentLikeCountsCache.set(cacheKey, { ts: now, counts });
-        return counts;
+    const response = await fetch(buildApiUrl(`/api/votes/comment-likes?wordId=${encodeURIComponent(cacheKey)}`), {
+        cache: "no-store"
+    });
+    if (!response.ok) {
+        throw new Error(`failed_to_fetch_comment_like_counts_${response.status}`);
     }
+
+    const payload = await response.json();
+    const rawCounts = payload?.countsByCommentIndex;
+    const counts = rawCounts && typeof rawCounts === "object" ? rawCounts : {};
+    commentLikeCountsCache.set(cacheKey, { ts: now, counts });
+    return counts;
 }
 
 function setCommentLikeBadge(buttonEl, count, shouldShow) {
@@ -302,10 +243,7 @@ async function refreshCommentLikeBadges(contentScroll, wordId, { force = false }
             setCommentLikeBadge(btn, displayCount, liked);
         });
     } catch (_) {
-        buttons.forEach((btn) => {
-            const liked = btn.classList.contains("is-liked");
-            setCommentLikeBadge(btn, liked ? 1 : 0, liked);
-        });
+        buttons.forEach((btn) => setCommentLikeBadge(btn, 0, false));
     }
 }
 

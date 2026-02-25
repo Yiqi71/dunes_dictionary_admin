@@ -19,6 +19,69 @@ body {
     transition: opacity 0.8s, transform 0.8s;
 }
 
+#app-root {
+    opacity: 1;
+}
+
+body.boot-pending #app-root {
+    opacity: 1;
+}
+
+body.boot-ready #app-root {
+    opacity: 1;
+}
+
+#boot-progress {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    background: radial-gradient(circle at 20% 20%, #f8f3ea 0%, #f3efe7 45%, #ece4d8 100%);
+    opacity: 1;
+    transition: opacity 480ms ease;
+}
+
+#boot-progress.is-fading {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#boot-progress-text,
+#boot-progress-track {
+    width: min(420px, calc(100vw - 40px));
+    max-width: 420px;
+}
+
+#boot-progress-track {
+    position: relative;
+    height: 1.37px;
+    background-color: #43403B;
+}
+
+#boot-progress-indicator {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 13px;
+    height: 13px;
+    background-color: #43403B;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: left 220ms ease;
+}
+
+#boot-progress-text {
+    margin-top: 18px;
+    color: rgba(57, 47, 23, 0.82);
+    text-align: left;
+    font-family: "Barlow Condensed", "ChillDIN", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+}
+
 img {
     user-select: none;
     /* 禁止文字/图片被选中 */
@@ -37,7 +100,7 @@ h3 {
 }
 
 h1.Chinese {
-    color: #392f17;
+    color: #43403B;
     text-align: center;
     font-family: "ChillDIN";
     font-size: 42px;
@@ -45,7 +108,7 @@ h1.Chinese {
 }
 
 h1.English {
-    color: #392f17;
+    color: #43403B;
     text-align: center;
     font-family: "Stint Ultra Condensed";
     font-size: 42px;
@@ -258,7 +321,7 @@ body[data-scale="4"] .word-node .terms {
 
 body[data-scale="3"] .word-node .terms .term-main,
 body[data-scale="4"] .word-node .terms .term-main {
-    color: #392F17;
+    color: #43403B;
     font-family: "ChillDIN";
     font-size: 23.493px;
     font-style: normal;
@@ -268,7 +331,7 @@ body[data-scale="4"] .word-node .terms .term-main {
 
 body[data-scale="3"] .word-node .terms .term-ori,
 body[data-scale="4"] .word-node .terms .term-ori {
-    color: #392F17;
+    color: #43403B;
     font-family: "Stint Ultra Condensed";
     font-size: 33.428px;
     font-style: normal;
@@ -293,7 +356,7 @@ body[data-scale="5"] .word-node .terms {
 }
 
 body[data-scale="5"] .word-node .terms .term-main {
-    color: #392F17;
+    color: #43403B;
     font-family: "ChillDIN";
     font-size: 42.911px;
     font-style: normal;
@@ -302,7 +365,7 @@ body[data-scale="5"] .word-node .terms .term-main {
 }
 
 body[data-scale="5"] .word-node .terms .term-ori {
-    color: #392F17;
+    color: #43403B;
     font-family: "Stint Ultra Condensed";
     font-size: 61.06px;
     font-style: normal;
@@ -325,7 +388,7 @@ html:lang(en) body[data-scale="2"] .word-node {
 
 html:lang(en) body[data-scale="3"] .word-node .terms .term-main,
 html:lang(en) body[data-scale="4"] .word-node .terms .term-main {
-    color: #392F17;
+    color: #43403B;
     font-family: "Stint Ultra Condensed";
     font-size: 33.428px;
     font-style: normal;
@@ -334,7 +397,7 @@ html:lang(en) body[data-scale="4"] .word-node .terms .term-main {
 }
 
 html:lang(en) body[data-scale="5"] .word-node .terms .term-main {
-    color: #392F17;
+    color: #43403B;
     font-family: "Stint Ultra Condensed";
     font-size: 61.06px;
     font-style: normal;
@@ -358,18 +421,15 @@ body[data-scale="5"] .detail-title {
 }
 
 
-.word-node::after {
+/* .word-node::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-repeat: repeat;
     background-size: 120px 120px;
-    /* 改这个 = 噪点“颗粒大小/缩放” */
     opacity: .70;
-    /* 改这个 = 强度（像 Figma 的 Amount） */
     mix-blend-mode: multiply;
-    /* 常用混合模式：multiply/overlay/soft-light */
     background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>\
   <filter id='n'>\
@@ -378,7 +438,7 @@ body[data-scale="5"] .detail-title {
   </filter>\
   <rect width='100%' height='100%' filter='url(%23n)'/>\
 </svg>");
-}
+} */
 
 .detail {
     position: absolute;
@@ -433,19 +493,15 @@ body[data-scale="5"] .detail-title {
 
 
 /* 噪点覆盖层 */
-.detail::after {
+/* .detail::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
-    /* 不挡交互 */
     background-repeat: repeat;
     background-size: 120px 120px;
-    /* 改这个 = 噪点“颗粒大小/缩放” */
     opacity: .70;
-    /* 改这个 = 强度（像 Figma 的 Amount） */
     mix-blend-mode: multiply;
-    /* 常用混合模式：multiply/overlay/soft-light */
     background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>\
   <filter id='n'>\
@@ -454,7 +510,7 @@ body[data-scale="5"] .detail-title {
   </filter>\
   <rect width='100%' height='100%' filter='url(%23n)'/>\
 </svg>");
-}
+} */
 
 
 #term {
@@ -487,7 +543,7 @@ body[data-scale="5"] .detail-title {
 #term .term-main {
     margin: 0;
     padding: 0;
-    color: #392F17;
+    color: #43403B;
     font-family: "ChillDINGothic";
     font-size: 42.911px;
     font-style: normal;
@@ -499,7 +555,7 @@ body[data-scale="5"] .detail-title {
 #term .term-ori {
     margin: 0;
     padding: 0;
-    color: #392F17;
+    color: #43403B;
     font-family: "Stint Ultra Condensed";
     font-size: 61.06px;
     font-style: normal;
@@ -630,7 +686,7 @@ html:lang(en) #proposer .proposer-ori {
 }
 
 #comment h3 {
-    color: #392F17;
+    color: #43403B;
     font-family: "ChillDIN";
     font-size: 28.834px;
     font-style: normal;
@@ -641,7 +697,7 @@ html:lang(en) #proposer .proposer-ori {
 }
 
 #comment p {
-    color: #392F17;
+    color: #43403B;
     text-align: right;
     font-family: "ChillDINGothic";
     font-size: 17.3px;
