@@ -75,6 +75,36 @@ function getCenterPosition(element) {
     };
 }
 
+function getInsetEndpointPositions(node1, node2) {
+    const center1 = getCenterPosition(node1);
+    const center2 = getCenterPosition(node2);
+    const dx = center2.x - center1.x;
+    const dy = center2.y - center1.y;
+    const distance = Math.hypot(dx, dy);
+
+    if (distance < 1) {
+        return { start: center1, end: center2 };
+    }
+
+    const ux = dx / distance;
+    const uy = dy / distance;
+    let inset1 = Math.max(node1.offsetWidth, node1.offsetHeight) / 2 + 2;
+    let inset2 = Math.max(node2.offsetWidth, node2.offsetHeight) / 2 + 2;
+    const maxTotalInset = Math.max(0, distance - 6);
+    const totalInset = inset1 + inset2;
+
+    if (totalInset > maxTotalInset && totalInset > 0) {
+        const scale = maxTotalInset / totalInset;
+        inset1 *= scale;
+        inset2 *= scale;
+    }
+
+    return {
+        start: { x: center1.x + ux * inset1, y: center1.y + uy * inset1 },
+        end: { x: center2.x - ux * inset2, y: center2.y - uy * inset2 }
+    };
+}
+
 function getRelationLabel(relation, lang) {
     const isEn = lang === "en";
     switch (relation) {
@@ -186,8 +216,7 @@ function drawLine(id1, id2, relation) {
     const word1 = window.allWords.find(w => w.id == id1);
     const word2 = window.allWords.find(w => w.id == id2);
 
-    const pos1 = getCenterPosition(node1);
-    const pos2 = getCenterPosition(node2);
+    const { start: pos1, end: pos2 } = getInsetEndpointPositions(node1, node2);
 
     // 为每条线创建唯一ID
     const lineId = `${id1}-${id2}-${relation}`;

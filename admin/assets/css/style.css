@@ -127,6 +127,7 @@ h1.English {
 #word-details {
     opacity: 1;
     transition: opacity 500ms ease-in-out;
+    z-index: 40;
 }
 
 #word-details.details-transition-out {
@@ -165,8 +166,13 @@ h1.English {
     height: 100vh;
 }
 
+#universe-canvas {
+    z-index: 1;
+}
+
 #connection-lines {
-    pointer-events: auto;
+    pointer-events: none;
+    z-index: 30;
 
     transition: left 0.3s ease-in-out;
 }
@@ -190,6 +196,7 @@ h1.English {
     height: 100vh;
     background: rgba(0, 0, 0, 0.1);
     pointer-events: none;
+    z-index: 20;
 }
 
 .word-node {
@@ -463,10 +470,12 @@ body[data-scale="5"] .detail-title {
     z-index: 100;
 
     box-shadow: #403b2c58 0px 0px 2px 2px;
+    cursor: pointer;
 }
 
 .detail * {
     margin: 15px 12px;
+    cursor: inherit;
 }
 
 .detail i {

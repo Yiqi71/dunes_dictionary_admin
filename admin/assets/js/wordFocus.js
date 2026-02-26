@@ -10,6 +10,7 @@ let focusedWord = null;
 let lastFocusedNodeId = null;
 let activeZoomAnimation = null;
 const MENU_COMPACT_CLASS = "menu-compact";
+const PENDING_FOCUS_CLASS = "pending-focus";
 
 function fadeOutDetailsForTransition() {
     const detailDiv = document.getElementById("word-details");
@@ -163,6 +164,10 @@ function cancelActiveZoomAnimation(resolveValue = false) {
 export function zoomToWord(id, newScale, options = {}) {
     const node = document.getElementById(String(id));
     if (!node) return Promise.resolve(false);
+    document.querySelectorAll(`.word-node.${PENDING_FOCUS_CLASS}`).forEach((n) => {
+        n.classList.remove(PENDING_FOCUS_CLASS);
+    });
+    node.classList.add(PENDING_FOCUS_CLASS);
 
     const {
         animated = false,
@@ -255,6 +260,10 @@ function resolveImagePath(src) {
 }
 
 export function updateWordFocus(targetNodeId = null) {
+    document.querySelectorAll(`.word-node.${PENDING_FOCUS_CLASS}`).forEach((node) => {
+        node.classList.remove(PENDING_FOCUS_CLASS);
+    });
+
     // 清除之前聚焦的单词
     if (focusedWord) {
         focusedWord.classList.remove('focused');
@@ -557,13 +566,15 @@ function getPanForWordAtScale(node, scale) {
     };
 }
 
-function applyViewport(scale, panX, panY) {
+function applyViewport(scale, panX, panY, { drawRelations: shouldDrawRelations = true } = {}) {
     state.currentScale = scale;
     state.panX = panX;
     state.panY = panY;
     draw();
     updateWordNodeTransforms();
-    updateRelations();
+    if (shouldDrawRelations) {
+        updateRelations();
+    }
     updateScaleForNodes(scale);
     moveIndicator(scale);
 }
@@ -583,6 +594,11 @@ function applyEntryOpacityTransition(focusedNode, progress) {
 export function zoomInToWordOnSessionEntry(targetWordId, options = {}) {
     const node = document.getElementById(String(targetWordId));
     if (!node) return Promise.resolve(false);
+    const relationLines = document.getElementById("connection-lines");
+    const setRelationVisibility = (isVisible) => {
+        if (!relationLines) return;
+        relationLines.style.opacity = isVisible ? "1" : "0";
+    };
 
     const {
         minScale = 1,
@@ -598,12 +614,14 @@ export function zoomInToWordOnSessionEntry(targetWordId, options = {}) {
 
     if (reducedMotion || duration <= 0) {
         applyViewport(targetScale, to.panX, to.panY);
+        setRelationVisibility(true);
         applyEntryOpacityTransition(node, 1);
         clearEntryNodeVisualScale();
         return Promise.resolve(true);
     }
 
-    applyViewport(minScale, from.panX, from.panY);
+    setRelationVisibility(false);
+    applyViewport(minScale, from.panX, from.panY, { drawRelations: false });
     applyEntryOpacityTransition(node, 0);
 
     return new Promise((resolve) => {
@@ -622,12 +640,14 @@ export function zoomInToWordOnSessionEntry(targetWordId, options = {}) {
             const nextPanX = from.panX + (to.panX - from.panX) * eased;
             const nextPanY = from.panY + (to.panY - from.panY) * eased;
 
-            applyViewport(nextScale, nextPanX, nextPanY);
+            applyViewport(nextScale, nextPanX, nextPanY, { drawRelations: false });
             applyEntryOpacityTransition(node, progress);
 
             if (progress < 1) {
                 window.requestAnimationFrame(frame);
             } else {
+                updateRelations();
+                setRelationVisibility(true);
                 resolve(true);
             }
         };
