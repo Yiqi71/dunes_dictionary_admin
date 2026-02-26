@@ -148,22 +148,22 @@ export function moveIndicator(scaleValue) {
 
 // menu
 let dunesIcon = document.getElementById("dunes-icon");
-dunesIcon.addEventListener('click', () => {
+dunesIcon.addEventListener('click', async () => {
     endWordView("switch");
     startWordView(17);
-    zoomToWord(17, state.scaleThreshold);
-    updateWordFocus();
+    await zoomToWord(17, state.scaleThreshold, { animated: true, duration: 900 });
+    updateWordFocus(17);
     logEvent("menu_home_click", { toWordId: 17 });
 });
 
 window.addEventListener('DOMContentLoaded', () => {
     const shuffleIcon = document.getElementById('shuffle-icon');
-    shuffleIcon.addEventListener('click', () => {
+    shuffleIcon.addEventListener('click', async () => {
         const randomId = window.allWords[Math.floor(Math.random() * window.allWords.length)].id;
         endWordView("switch");
         startWordView(randomId);
-        zoomToWord(randomId, state.scaleThreshold);
-        updateWordFocus();
+        await zoomToWord(randomId, state.scaleThreshold, { animated: true, duration: 920 });
+        updateWordFocus(randomId);
         logEvent("shuffle_click", { toWordId: randomId });
     });
 });
@@ -501,13 +501,13 @@ function displaySearchResults(words) {
     
     // Add click handlers to result items
     resultsContainer.querySelectorAll('.search-result-item').forEach(item => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', async () => {
             const wordId = parseInt(item.dataset.wordId);
             closeMenuSearch("select");
             endWordView("switch");
             startWordView(wordId);
-            zoomToWord(wordId, state.scaleThreshold);
-            updateWordFocus();
+            await zoomToWord(wordId, state.scaleThreshold, { animated: true, duration: 860 });
+            updateWordFocus(wordId);
         });
     });
 }

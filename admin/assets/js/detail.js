@@ -851,14 +851,14 @@ function filterProposer(name) {
         link.style.display = 'block';
 
         // Navigate to the clicked related word.
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', async (e) => {
             e.stopPropagation();
             const targetNodeId = link.id.replace('related-', '');
             const fromWordId = state.focusedNodeId;
             endWordView("switch");
             startWordView(targetNodeId);
             logEvent("link_click", { fromWordId, toWordId: targetNodeId });
-            zoomToWord(targetNodeId, state.currentScale);
+            await zoomToWord(targetNodeId, state.currentScale, { animated: true, duration: 800 });
             updateWordFocus(targetNodeId);
 
             renderPanelSections();

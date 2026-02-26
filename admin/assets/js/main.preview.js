@@ -556,13 +556,13 @@ function renderWordUniverse(wordsData) {
                 e.stopPropagation();
             });
 
-            node.addEventListener('click', (e) => {
+            node.addEventListener('click', async (e) => {
                 e.stopPropagation();
                 if (!isDragging) {
                     if (node.classList.contains('focused')) {} else {
                         endWordView("switch");
                         startWordView(node.id);
-                        zoomToWord(node.id, state.scaleThreshold);
+                        await zoomToWord(node.id, state.scaleThreshold, { animated: true, duration: 920 });
                         updateWordFocus(node.id);
                         renderPanelSections();
                         logEvent("word-node-click", { wordId: node.id });
@@ -635,13 +635,13 @@ function renderWordUniverse(wordsData) {
                 e.stopPropagation();
             });
 
-            node.addEventListener('click', (e) => {
+            node.addEventListener('click', async (e) => {
                 e.stopPropagation();
                 if (!isDragging) {
                     if (node.classList.contains('focused')) {} else {
                         endWordView("switch");
                         startWordView(node.id);
-                        zoomToWord(node.id, state.scaleThreshold);
+                        await zoomToWord(node.id, state.scaleThreshold, { animated: true, duration: 920 });
                         updateWordFocus(node.id);
                         renderPanelSections();
                         logEvent("word-node-click", { wordId: node.id });

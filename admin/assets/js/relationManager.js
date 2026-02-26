@@ -314,13 +314,13 @@ function addLineInteractions(hitbox, visualLine, word1, word2, relation, targetI
         hideTooltip();
     });
 
-    hitbox.addEventListener('pointerdown', (e) => {
+    hitbox.addEventListener('pointerdown', async (e) => {
         e.stopPropagation();
         e.preventDefault();
         const fromWordId = state.focusedNodeId;
         console.log("[relation click]", { from: fromWordId, to: targetId, relation });
         hideTooltip();
-        zoomToWord(targetId, state.currentScale);
+        await zoomToWord(targetId, state.currentScale, { animated: true, duration: 800 });
         updateWordFocus(targetId);
         logEvent("link_click", {
             fromWordId,

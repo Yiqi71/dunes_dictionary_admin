@@ -124,6 +124,16 @@ h1.English {
     pointer-events: none;
 }
 
+#word-details {
+    opacity: 1;
+    transition: opacity 500ms ease-in-out;
+}
+
+#word-details.details-transition-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* 主视图 */
 #universe-view {
     position: relative;

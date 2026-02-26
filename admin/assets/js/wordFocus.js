@@ -8,7 +8,21 @@ import { moveIndicator } from "./menu.js";
 
 let focusedWord = null;
 let lastFocusedNodeId = null;
+let activeZoomAnimation = null;
 const MENU_COMPACT_CLASS = "menu-compact";
+
+function fadeOutDetailsForTransition() {
+    const detailDiv = document.getElementById("word-details");
+    if (!detailDiv) return;
+    detailDiv.classList.add("details-transition-out");
+}
+
+function fadeInDetailsAfterTransition() {
+    const detailDiv = document.getElementById("word-details");
+    if (!detailDiv) return;
+    detailDiv.classList.remove("details-transition-out");
+}
+
 function prepareLazyImage(img) {
     if (!img) return;
     img.loading = "lazy";
@@ -134,41 +148,92 @@ function getNeighbors(left, top) {
 
     return neighbors;
 }
+function cancelActiveZoomAnimation(resolveValue = false) {
+    if (!activeZoomAnimation) return;
+    const { rafId, resolve } = activeZoomAnimation;
+    if (rafId) {
+        window.cancelAnimationFrame(rafId);
+    }
+    activeZoomAnimation = null;
+    if (typeof resolve === "function") {
+        resolve(resolveValue);
+    }
+}
 
-export function zoomToWord(id, newScale) {
-    const node = document.getElementById(id);
-    if (!node) return;
+export function zoomToWord(id, newScale, options = {}) {
+    const node = document.getElementById(String(id));
+    if (!node) return Promise.resolve(false);
 
-    const oldScale = state.currentScale;
+    const {
+        animated = false,
+        duration = 780,
+        easing = (t) => 1 - Math.pow(1 - t, 4)
+    } = options;
 
-    // 用逻辑坐标而不是 rect
-    const logicalX = parseFloat(node.dataset.x); // 假设0-1范围
-    const logicalY = parseFloat(node.dataset.y);
+    const target = getPanForWordAtScale(node, newScale);
+    if (!target) return Promise.resolve(false);
 
-    const container = document.getElementById('word-nodes-container');
-    const containerRect = container.getBoundingClientRect();
-    const worldX = logicalX * containerRect.width;
-    const worldY = logicalY * containerRect.height;
+    if (!animated || duration <= 0) {
+        cancelActiveZoomAnimation(false);
+        applyViewport(newScale, target.panX, target.panY);
+        return Promise.resolve(true);
+    }
 
-    // 屏幕中心
-    const viewportCenterX = window.innerWidth / 2;
-    const viewportCenterY = window.innerHeight / 2;
+    cancelActiveZoomAnimation(false);
+    fadeOutDetailsForTransition();
 
-    // 补偿 node 尺寸
-    const rect = node.getBoundingClientRect();
-    const nodeWidth = rect.width / oldScale; 
-    const nodeHeight = rect.height / oldScale;
+    const previousFocusedNode = document.querySelector(".word-node.focused");
+    const oldFocusedNode = previousFocusedNode && previousFocusedNode !== node ? previousFocusedNode : null;
+    const oldFocusedStartOpacity = oldFocusedNode ? Number(window.getComputedStyle(oldFocusedNode).opacity) || 1 : 1;
+    const newFocusedStartOpacity = Number(window.getComputedStyle(node).opacity) || 1;
 
-    state.panX = viewportCenterX - (worldX * newScale + 318 / 2);
-    state.panY = viewportCenterY - (worldY * newScale + 210 / 2);
+    const startScale = state.currentScale;
+    const startPanX = state.panX;
+    const startPanY = state.panY;
+    const deltaScale = newScale - startScale;
+    const deltaPanX = target.panX - startPanX;
+    const deltaPanY = target.panY - startPanY;
 
-    state.currentScale = newScale;
+    return new Promise((resolve) => {
+        const startedAt = performance.now();
+        const animationState = { rafId: null, resolve };
+        activeZoomAnimation = animationState;
 
-    draw();
-    updateWordNodeTransforms();
-    updateRelations();
-    updateScaleForNodes(newScale);
-    moveIndicator(newScale);
+        const step = (now) => {
+            if (activeZoomAnimation !== animationState) return;
+
+            const progress = Math.min(1, (now - startedAt) / duration);
+            const eased = easing(Math.max(0, Math.min(1, progress)));
+
+            applyViewport(
+                startScale + deltaScale * eased,
+                startPanX + deltaPanX * eased,
+                startPanY + deltaPanY * eased
+            );
+
+            // Fade only two nodes linearly for better performance.
+            if (oldFocusedNode) {
+                const oldOpacity = oldFocusedStartOpacity + (0.2 - oldFocusedStartOpacity) * progress;
+                oldFocusedNode.style.opacity = String(oldOpacity);
+            }
+            const newOpacity = newFocusedStartOpacity + (1 - newFocusedStartOpacity) * progress;
+            node.style.opacity = String(newOpacity);
+
+            if (progress < 1) {
+                animationState.rafId = window.requestAnimationFrame(step);
+                return;
+            }
+
+            // Ensure final opacity state is ready before focus handoff.
+            if (oldFocusedNode) oldFocusedNode.style.opacity = "0.2";
+            node.style.opacity = "1";
+
+            activeZoomAnimation = null;
+            resolve(true);
+        };
+
+        animationState.rafId = window.requestAnimationFrame(step);
+    });
 }
 
 // 修改现有的 updateWordFocus 函数
@@ -296,6 +361,7 @@ export function updateWordDetails() {
     // 显示details
     const detailDiv = document.getElementById("word-details");
     detailDiv.classList.remove('hidden');
+    fadeInDetailsAfterTransition();
 
     detailDiv.addEventListener('wheel', function (e) {
         e.stopPropagation();
