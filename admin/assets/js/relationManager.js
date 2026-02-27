@@ -75,36 +75,6 @@ function getCenterPosition(element) {
     };
 }
 
-function getInsetEndpointPositions(node1, node2) {
-    const center1 = getCenterPosition(node1);
-    const center2 = getCenterPosition(node2);
-    const dx = center2.x - center1.x;
-    const dy = center2.y - center1.y;
-    const distance = Math.hypot(dx, dy);
-
-    if (distance < 1) {
-        return { start: center1, end: center2 };
-    }
-
-    const ux = dx / distance;
-    const uy = dy / distance;
-    let inset1 = Math.max(node1.offsetWidth, node1.offsetHeight) / 2 + 2;
-    let inset2 = Math.max(node2.offsetWidth, node2.offsetHeight) / 2 + 2;
-    const maxTotalInset = Math.max(0, distance - 6);
-    const totalInset = inset1 + inset2;
-
-    if (totalInset > maxTotalInset && totalInset > 0) {
-        const scale = maxTotalInset / totalInset;
-        inset1 *= scale;
-        inset2 *= scale;
-    }
-
-    return {
-        start: { x: center1.x + ux * inset1, y: center1.y + uy * inset1 },
-        end: { x: center2.x - ux * inset2, y: center2.y - uy * inset2 }
-    };
-}
-
 function getRelationLabel(relation, lang) {
     const isEn = lang === "en";
     switch (relation) {
@@ -122,92 +92,84 @@ function createStraightPath(pos1, pos2) {
     return `M ${pos1.x} ${pos1.y} L ${pos2.x} ${pos2.y}`;
 }
 
-// 为每条线生成固定的波浪形状种子
-const wormPathCache = new Map();
+function getRectEdgePoint(element, center, dirX, dirY, padding = 2) {
+    const rect = element.getBoundingClientRect();
+    const halfW = rect.width / 2;
+    const halfH = rect.height / 2;
 
-// 创建蚯蚓般的不规则波浪线路径（使用固定种子确保形状不变）
-function createWormPath(pos1, pos2, lineId, relation) {
+    const safeDx = Math.abs(dirX) < 1e-6 ? 1e-6 : Math.abs(dirX);
+    const safeDy = Math.abs(dirY) < 1e-6 ? 1e-6 : Math.abs(dirY);
+    const t = Math.min(halfW / safeDx, halfH / safeDy);
+    const edgeX = center.x + dirX * t;
+    const edgeY = center.y + dirY * t;
+
+    return {
+        x: edgeX + dirX * padding,
+        y: edgeY + dirY * padding
+    };
+}
+
+function getFannedEndpointPositions(node1, node2, index, total) {
+    const center1 = getCenterPosition(node1);
+    const center2 = getCenterPosition(node2);
+    const dx = center2.x - center1.x;
+    const dy = center2.y - center1.y;
+    const distance = Math.hypot(dx, dy);
+
+    if (distance < 1) {
+        return { start: center1, end: center2, slotOffset: 0 };
+    }
+
+    const baseAngle = Math.atan2(dy, dx);
+    const hasFan = total > 1;
+    const normalizedSlot = hasFan ? (index - (total - 1) / 2) : 0;
+    const spreadStep = Math.min(0.2, 0.65 / Math.max(1, total - 1));
+    const angleOffset = normalizedSlot * spreadStep;
+
+    const startDirX = Math.cos(baseAngle + angleOffset);
+    const startDirY = Math.sin(baseAngle + angleOffset);
+    const endDirX = Math.cos(baseAngle - angleOffset * 0.35);
+    const endDirY = Math.sin(baseAngle - angleOffset * 0.35);
+
+    return {
+        start: getRectEdgePoint(node1, center1, startDirX, startDirY, 2),
+        end: getRectEdgePoint(node2, center2, -endDirX, -endDirY, 2),
+        slotOffset: normalizedSlot
+    };
+}
+
+function createCurvedPath(pos1, pos2, relation, slotOffset) {
     const dx = pos2.x - pos1.x;
     const dy = pos2.y - pos1.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    
-    if (distance < 50) {
-        // 距离太近时使用直线
+    const distance = Math.hypot(dx, dy);
+    if (distance < 30) {
         return createStraightPath(pos1, pos2);
     }
-    
-    // 检查缓存中是否已有这条线的波浪参数
-    if (!wormPathCache.has(lineId)) {
-        // 根据关系类型设置不同的波浪参数
-        const segments = Math.max(3, Math.floor(distance / 60));
-        const waveParams = [];
-        
-        // 概念相关：更弯曲，波浪更明显
-        // 共同提出者：相对平缓一些
-        const baseAmplitude = relation === '概念相关' ? 0 : 20;
-        const amplitudeVariation = relation === '概念相关' ? 25 : 10;
-        
-        for (let i = 1; i <= segments; i++) {
-            waveParams.push({
-                amplitude: baseAmplitude + Math.random() * amplitudeVariation,
-                direction: (Math.random() - 0.5) * 2,
-                irregularity: 0.7 + Math.random() * 0.6,
-                frequency: 1 + Math.sin(i * Math.PI * 2 + Math.random() * Math.PI) * 0.3
-            });
-        }
-        
-        wormPathCache.set(lineId, waveParams);
-    }
-    
-    // 使用缓存的参数生成路径
-    const waveParams = wormPathCache.get(lineId);
-    const segments = waveParams.length;
-    let path = `M ${pos1.x} ${pos1.y}`;
-    
-    // 计算垂直于连线的方向
-    const perpX = -dy / distance;
-    const perpY = dx / distance;
-    
-    for (let i = 0; i < segments; i++) {
-        const t = (i + 1) / segments;
-        
-        // 基础插值点
-        const baseX = pos1.x + dx * t;
-        const baseY = pos1.y + dy * t;
-        
-        // 使用固定的波浪参数
-        const params = waveParams[i];
-        const offsetX = perpX * params.amplitude * params.direction * params.irregularity * params.frequency;
-        const offsetY = perpY * params.amplitude * params.direction * params.irregularity * params.frequency;
-        
-        const controlX = baseX + offsetX;
-        const controlY = baseY + offsetY;
-        
-        if (i === 0) {
-            // 第一个点使用二次贝塞尔曲线
-            path += ` Q ${controlX} ${controlY} ${baseX} ${baseY}`;
-        } else {
-            // 后续点使用平滑曲线连接
-            const prevT = i / segments;
-            const prevBaseX = pos1.x + dx * prevT;
-            const prevBaseY = pos1.y + dy * prevT;
-            
-            // 创建平滑的控制点
-            const smoothX = (prevBaseX + baseX) / 2 + offsetX * 0.5;
-            const smoothY = (prevBaseY + baseY) / 2 + offsetY * 0.5;
-            
-            path += ` S ${smoothX} ${smoothY} ${baseX} ${baseY}`;
-        }
-    }
-    
-    // 最后连接到终点
-    path += ` L ${pos2.x} ${pos2.y}`;
-    
-    return path;
+
+    const ux = dx / distance;
+    const uy = dy / distance;
+    const perpX = -uy;
+    const perpY = ux;
+
+    const baseCurve = relation === "概念相关" ? 0.14 : 0.1;
+    const longDistanceBoost = 1 + Math.min(0.35, Math.max(0, distance - 420) / 1400);
+    const rawCurve = distance * baseCurve * longDistanceBoost;
+    const dynamicMaxCurve = Math.max(40, distance * 0.1);
+    const curveMagnitude = Math.min(dynamicMaxCurve, Math.max(24, rawCurve));
+    const direction = slotOffset === 0 ? (relation === "概念相关" ? 1 : -1) : Math.sign(slotOffset);
+    const slotBoost = 1 + Math.min(0.9, Math.abs(slotOffset) * 0.2);
+    const bulge = curveMagnitude * direction * slotBoost;
+
+    const c1x = pos1.x + ux * distance * 0.25 + perpX * bulge;
+    const c1y = pos1.y + uy * distance * 0.25 + perpY * bulge;
+    const c2x = pos1.x + ux * distance * 0.75 + perpX * bulge;
+    const c2y = pos1.y + uy * distance * 0.75 + perpY * bulge;
+
+    return `M ${pos1.x} ${pos1.y} C ${c1x} ${c1y} ${c2x} ${c2y} ${pos2.x} ${pos2.y}`;
 }
 
 // 画线svg relations
-function drawLine(id1, id2, relation) {
+function drawLine(id1, id2, relation, fanIndex = 0, fanTotal = 1) {
     const svg = document.getElementById('connection-lines');
     const node1 = document.getElementById(id1);
     const node2 = document.getElementById(id2);
@@ -216,14 +178,10 @@ function drawLine(id1, id2, relation) {
     const word1 = window.allWords.find(w => w.id == id1);
     const word2 = window.allWords.find(w => w.id == id2);
 
-    const { start: pos1, end: pos2 } = getInsetEndpointPositions(node1, node2);
+    const { start: pos1, end: pos2, slotOffset } = getFannedEndpointPositions(node1, node2, fanIndex, fanTotal);
 
-    // 为每条线创建唯一ID
-    const lineId = `${id1}-${id2}-${relation}`;
-    
-    // 两种关系都使用蚯蚓波浪线
-    const mainPath = createWormPath(pos1, pos2, lineId, relation);
-    const hoverPath = createStraightPath(pos1, pos2); // hover时变直线
+    // 使用平滑弧线，按线序号做分流
+    const mainPath = createCurvedPath(pos1, pos2, relation, slotOffset);
 
     // 视觉线 - 使用path元素
     const visualLine = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -264,14 +222,14 @@ function drawLine(id1, id2, relation) {
     hitbox.style.cursor = 'crosshair';
 
     // 添加交互事件
-    addLineInteractions(hitbox, visualLine, word1, word2, relation, id2, mainPath, hoverPath);
+    addLineInteractions(hitbox, visualLine, word1, word2, relation, id2, mainPath);
 
     // 保证 hitbox 在上面，视觉线在下面
     svg.appendChild(visualLine);
     svg.appendChild(hitbox);
 }
 
-function addLineInteractions(hitbox, visualLine, word1, word2, relation, targetId, mainPath, hoverPath) {
+function addLineInteractions(hitbox, visualLine, word1, word2, relation, targetId, mainPath) {
     let tooltipDiv = document.getElementById("tooltipDiv");
 
     hitbox.addEventListener('mouseenter', (e) => {
@@ -281,22 +239,20 @@ function addLineInteractions(hitbox, visualLine, word1, word2, relation, targetI
         // 高亮效果：变粗、变亮
         const currentWidth = parseFloat(visualLine.getAttribute('stroke-width'));
         visualLine.setAttribute('stroke-width', currentWidth * 1.8);
-        visualLine.setAttribute('stroke', '#FFE135'); // 高亮颜色
+        visualLine.setAttribute('stroke', '#F9D67A'); // 高亮颜色
         
-        // hover时变成直线
-        visualLine.setAttribute('d', hoverPath);
         // hover时取消虚线效果，显示为实线
         visualLine.setAttribute('stroke-dasharray', 'none');
         
-        visualLine.style.filter = 'drop-shadow(0 0 4px rgba(255, 225, 53, 0.6))'; // 发光效果
+        visualLine.style.filter = 'drop-shadow(0 0 4px rgba(249, 214, 122, 0.6))'; // 发光效果
         
         // 显示tooltip
         const wordLabel = getLangText(word2?.term, state.currentLang) || String(targetId || "");
         const relationLabel = getRelationLabel(relation, state.currentLang);
         tooltipDiv.textContent = `${relationLabel}: ${wordLabel}`;
         tooltipDiv.style.position = 'fixed';
-        tooltipDiv.style.background = 'rgba(0, 0, 0, 0.85)';
-        tooltipDiv.style.color = '#FFE135';
+        tooltipDiv.style.background = '#1E1C16';
+        tooltipDiv.style.color = '#F9D67A';
         tooltipDiv.style.padding = '6px 10px';
         tooltipDiv.style.borderRadius = '6px';
         tooltipDiv.style.fontSize = '13px';
@@ -305,7 +261,7 @@ function addLineInteractions(hitbox, visualLine, word1, word2, relation, targetI
         tooltipDiv.style.zIndex = '9999';
         tooltipDiv.style.display = 'block';
         tooltipDiv.style.opacity = "1";
-        tooltipDiv.style.border = '1px solid #FFE135';
+        tooltipDiv.style.border = '1px solid #F9D67A';
         tooltipDiv.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
         tooltipDiv.style.left = (e.clientX + 12) + 'px';
         tooltipDiv.style.top = (e.clientY + 12) + 'px';
@@ -387,33 +343,35 @@ export function updateRelations() {
     const thisWord = window.allWords.find(w => w.id == state.focusedNodeId);
     if (!thisWord) return;
     
-    // 1. 绘制概念相关的关系
+    const lineSpecs = [];
     const drawn = new Set();
+    const addLineSpec = (id1, id2, relation, key) => {
+        if (key && drawn.has(key)) return;
+        if (key) drawn.add(key);
+        lineSpecs.push({ id1, id2, relation });
+    };
+
+    // 1. 收集概念相关关系
 
     if (Array.isArray(thisWord.related_terms)) {
         thisWord.related_terms.forEach(relation => {
             const key = `${state.focusedNodeId}->${relation.id}:concept`;
-            if (drawn.has(key)) return;
-            drawn.add(key);
-            drawLine(state.focusedNodeId, relation.id, '概念相关');
+            addLineSpec(state.focusedNodeId, relation.id, '概念相关', key);
         });
     }
 
-    // 1b. 反向相关：其他词条指向当前词条，也画出来
+    // 1b. 收集反向相关：其他词条指向当前词条
     window.allWords.forEach(otherWord => {
         if (!otherWord || otherWord.id === thisWord.id) return;
         if (!Array.isArray(otherWord.related_terms)) return;
         const hits = otherWord.related_terms.some(r => r && r.id == thisWord.id);
         if (!hits) return;
         const key = `${state.focusedNodeId}->${otherWord.id}:concept`;
-        if (drawn.has(key)) return;
-        drawn.add(key);
-        drawLine(state.focusedNodeId, otherWord.id, '概念相关');
+        addLineSpec(state.focusedNodeId, otherWord.id, '概念相关', key);
     });
 
-    // 2. 绘制共同提出者的关系
+    // 2. 收集共同提出者关系
     if (Array.isArray(thisWord.proposers)) {
-        // 当前词的 proposer 名称列表
         const proposerNames = thisWord.proposers
             .map(p => p?.name?.zh)
             .filter(Boolean);
@@ -428,10 +386,47 @@ export function updateRelations() {
                 return otherName && proposerNames.includes(otherName);
             });
             if (hasCommon) {
-                drawLine(thisWord.id, otherWord.id, "共同提出者");
+                const key = `${thisWord.id}->${otherWord.id}:proposer`;
+                addLineSpec(thisWord.id, otherWord.id, "共同提出者", key);
             }
         });
     }
+
+    if (lineSpecs.length === 0) return;
+
+    const nodeCenterCache = new Map();
+    const getNodeCenter = (id) => {
+        if (nodeCenterCache.has(id)) return nodeCenterCache.get(id);
+        const node = document.getElementById(String(id));
+        const center = node ? getCenterPosition(node) : null;
+        nodeCenterCache.set(id, center);
+        return center;
+    };
+
+    const grouped = new Map();
+    lineSpecs.forEach(spec => {
+        const groupKey = String(spec.id1);
+        if (!grouped.has(groupKey)) grouped.set(groupKey, []);
+        grouped.get(groupKey).push(spec);
+    });
+
+    grouped.forEach((specs) => {
+        const sourceCenter = getNodeCenter(specs[0].id1);
+        if (sourceCenter) {
+            specs.sort((a, b) => {
+                const aCenter = getNodeCenter(a.id2);
+                const bCenter = getNodeCenter(b.id2);
+                const angleA = aCenter ? Math.atan2(aCenter.y - sourceCenter.y, aCenter.x - sourceCenter.x) : 0;
+                const angleB = bCenter ? Math.atan2(bCenter.y - sourceCenter.y, bCenter.x - sourceCenter.x) : 0;
+                return angleA - angleB;
+            });
+        }
+
+        const total = specs.length;
+        specs.forEach((spec, index) => {
+            drawLine(spec.id1, spec.id2, spec.relation, index, total);
+        });
+    });
 }
 
 // 导出隐藏tooltip函数，供其他模块使用
