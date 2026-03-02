@@ -14,7 +14,7 @@ body {
     overflow: hidden;
     height: 100vh;
     background: #1E1C16;
-    color: #414141;
+    color: #43403B;
     font-family: "ChillDIN", "Barlow Condensed", "ChillDINGothic";
     transition: opacity 0.8s, transform 0.8s;
 }
@@ -251,7 +251,7 @@ h1.English {
 }
 
 .term-main {
-    color: #544011;
+    color: #43403B;
     font-family: "ChillDIN";
     font-weight: 600;
     margin: 0;
@@ -264,7 +264,7 @@ html:lang(en) .word-node .terms .term-main {
 }
 
 .term-ori {
-    color: #544011;
+    color: #43403B;
     font-family: "Stint Ultra Condensed";
     font-weight: 400;
     margin: 0;
@@ -343,7 +343,7 @@ html:lang(en) .word-node .terms .term-main {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #544011;
+    background-color: #43403B;
     display: inline-block;
 }
 
