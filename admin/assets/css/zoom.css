@@ -166,9 +166,10 @@ body[data-scale="5"] .word-node .save-indicator {
 }
 
 body[data-scale="5"] .word-node.is-saved .save-indicator {
-    background-image: url("../images/saved_big.svg");
+    background-image: url("../images/saved_big.png");
 }
 
 body[data-scale="5"] .word-node:not(.is-saved) .save-indicator {
     background-image: url("../images/unsaved.svg");
 }
+
