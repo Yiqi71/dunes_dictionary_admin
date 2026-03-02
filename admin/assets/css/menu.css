@@ -21,7 +21,7 @@
 }
 
 #upper-menu p {
-    color: #392F17;
+    color: #43403B;
     font-family: "Barlow Condensed";
     font-size: 20px;
     font-style: normal;
@@ -249,7 +249,7 @@
     border: none;
     outline: none;
     background: transparent;
-    color: #392F17;
+    color: #43403B;
     font-family: "Barlow Condensed";
     font-size: 18px;
     opacity: 0;
@@ -362,7 +362,7 @@
 }
 
 .menu-search-results .search-result-term {
-    color: #392F17;
+    color: #43403B;
     font-family: "ChillDIN";
     font-size: 18px;
     font-weight: 600;
@@ -393,82 +393,6 @@
     border-radius: 22.733px;
     background: #EEE9DB;
 }
-
-#scaleContainer {
-    position: relative;
-    width: 255px;
-    height: 32px;
-    flex-shrink: 0;
-}
-
-.scale-line {
-    position: absolute;
-    top: 80%;
-    left: 0;
-    right: 0;
-    height: 1.37px;
-    background-color: #392F17;
-    transform: translateY(-50%);
-}
-
-.scale-numbers,
-.scale-ticks {
-    position: absolute;
-    top: 28%;
-    /* 对数字可调 */
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-.scale-numbers span {
-    position: absolute;
-    top: -30%;
-    transform: translateX(-50%);
-    /* 让数字中心对齐刻度线 */
-    color: #392F17;
-    text-align: center;
-    font-family: "Barlow Condensed";
-    font-size: 13.778px;
-    font-style: normal;
-    font-weight: 500;
-    /* 900% */
-}
-
-.scale-indicator {
-    position: absolute;
-    top: 80%;
-    width: 13px;
-    height: 13px;
-    flex-shrink: 0;
-    background-color: #392F17;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    z-index: 10;
-}
-
-.scale-ticks div {
-    position: absolute;
-    width: 1.37px;
-    height: 8px;
-    background-color: black;
-    top: 50%;
-    /* 放在横线上方 */
-    transform: translateX(-50%) translateY(-100%);
-    /* 中心对齐 */
-}
-
-#indicator {
-    cursor: grab;
-}
-
-#indicator.dragging {
-    cursor: grabbing;
-}
-
-
 
 /* Year Filter Slide Bar */
 #year-menu {
@@ -531,7 +455,7 @@
     position: absolute;
     width: 1px;
     height: 100%;
-    background-color: #392F17;
+    background-color: #43403B;
     top: 0;
     transform: translateX(-50%);
 }
@@ -549,7 +473,7 @@
 .year-numbers span {
     position: absolute;
     transform: translateX(-50%);
-    color: #392F17;
+    color: #43403B;
     text-align: center;
     font-family: "Barlow Condensed";
     font-size: 13.778px;
@@ -568,7 +492,7 @@
     top: 70%;
     width: 13px;
     height: 13px;
-    background-color: #392F17;
+    background-color: #43403B;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
@@ -593,3 +517,4 @@
 #upper-menu #about-button * {
     cursor: pointer;
 }
+

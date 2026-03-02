@@ -14,9 +14,15 @@ import {
     draw,
     updateWordNodeTransforms,
     clampOffsetX,
-    clampOffsetY,
-    updateScaleForNodes
+    clampOffsetY
 } from "./uni-canvas.js";
+import {
+    updateScaleForNodes,
+    getScaleFromSliderPercent,
+    getIndicatorScaleValue,
+    clampIndicatorScaleValue,
+    getIndicatorPercent
+} from "./zoom.js";
 import { logEvent, startWordView, endWordView } from "/analytics.js";
 
 // �?menu.js 文件顶部�?import 部分添加
@@ -52,17 +58,11 @@ numbersContainer.innerHTML = '';
 
 for (let i = 0; i < numSteps; i++) {
     const percent = (i / (numSteps - 1)) * 100;
-
-    // 刻度�?
-    const tick = document.createElement('div');
-    tick.style.left = percent + '%';
-    ticksContainer.appendChild(tick);
-
-    // 数字
-    const num = document.createElement('span');
-    num.textContent = (i + 1);
-    num.style.left = percent + '%';
-    numbersContainer.appendChild(num);
+    if (i === 0 || i === numSteps - 1) {
+        const tick = document.createElement('div');
+        tick.style.left = percent + '%';
+        ticksContainer.appendChild(tick);
+    }
 }
 
 const indicator = document.getElementById('indicator');
@@ -103,7 +103,7 @@ function onDrag(e) {
 
 
     let scale = state.currentScale;
-    let newScale = percent * 19 / 100 + 1;
+    let newScale = getScaleFromSliderPercent(percent);
 
     const mouseX = window.innerWidth / 2;
     const mouseY = window.innerHeight / 2;
@@ -116,7 +116,7 @@ function onDrag(e) {
 
     state.panX = clampOffsetX(offsetX);
     state.panY = clampOffsetY(offsetY); // 加边�?
-    state.currentScale = percent * 19 / 100 + 1;
+    state.currentScale = newScale;
 
     draw();
     updateWordNodeTransforms();
@@ -138,10 +138,9 @@ function snapToStep() {
 
 // 可程序化移动 indicator
 export function moveIndicator(scaleValue) {
-    scaleValue = (scaleValue-1) * 4 / (state.scaleThreshold-1)+1;
-    if (scaleValue < 1) scaleValue = 1;
-    if (scaleValue > 5) scaleValue = 5;
-    const percent = (scaleValue - 1) * 25; // 5 个刻�?
+    scaleValue = getIndicatorScaleValue(scaleValue, state.scaleThreshold);
+    scaleValue = clampIndicatorScaleValue(scaleValue);
+    const percent = getIndicatorPercent(scaleValue); // 5 个刻�?
     indicator.style.left = percent + '%';
 }
 
@@ -263,6 +262,7 @@ function updateYearDisplay() {
 function filterWordsByYear() {
     const selectedPeriod = yearPeriods[currentYearIndex];
     const cutoffYear = selectedPeriod.year;
+    const hasFocusedNode = Boolean(document.querySelector('.word-node.focused'));
     
     document.querySelectorAll('.word-node').forEach(node => {
         const wordId = node.id;
@@ -283,9 +283,9 @@ function filterWordsByYear() {
         if (cutoffYear === null || 
             (!isNaN(wordYear) && wordYear <= cutoffYear) ||
             (isNaN(wordYear) && cutoffYear !== null)) {
-            node.style.display = 'block';
+            node.style.display = '';
             node.style.opacity = node.classList.contains('focused') ? '1' : 
-                                 (state.focusedNodeId && !node.classList.contains('focused') ? '0.5' : '1');
+                                 (hasFocusedNode ? '0.5' : '1');
         } else {
             node.style.display = 'none';
         }
@@ -564,4 +564,5 @@ document.addEventListener('mousedown', (e) => {
         closeMenuSearch("outside");
     }
 });
+
 

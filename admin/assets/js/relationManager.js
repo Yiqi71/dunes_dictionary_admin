@@ -219,7 +219,7 @@ function drawLine(id1, id2, relation, fanIndex = 0, fanTotal = 1) {
     hitbox.setAttribute('stroke-width', '15');
     hitbox.setAttribute('pointer-events', 'stroke');
     hitbox.setAttribute('stroke-linecap', 'round');
-    hitbox.style.cursor = 'crosshair';
+    hitbox.style.cursor = 'pointer';
 
     // 添加交互事件
     addLineInteractions(hitbox, visualLine, word1, word2, relation, id2, mainPath);

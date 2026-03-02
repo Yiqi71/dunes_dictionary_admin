@@ -217,12 +217,15 @@ function updateTabLabels() {
             span = button.querySelector('span');
         }
 
-        const htmlText = button.innerHTML;
-        if (htmlText.includes("词条") || htmlText.includes("ENTRY") || htmlText.includes("ENTRY")) {
-            span.textContent = currentLang === "en" ? "ENTRY" : "词条";
-        }
-        if (htmlText.includes("笔记") || htmlText.includes("NOTES") || htmlText.includes("NOTES")) {
-            span.textContent = currentLang === "en" ? "NOTES" : "笔记";
+        const tabName = button.dataset.tab;
+        if (tabName === "entry") {
+            span.textContent = currentLang === "en" ? "ENTRY" : "\u8bcd\u6761";
+        } else if (tabName === "comment") {
+            span.textContent = currentLang === "en" ? "NOTES" : "\u7b14\u8bb0";
+        } else if (tabName === "about") {
+            span.textContent = currentLang === "en" ? "ABOUT" : "\u5173\u4e8e";
+        } else if (tabName === "devlog") {
+            span.textContent = currentLang === "en" ? "DEVLOG" : "\u65e5\u5fd7";
         }
 
         if (currentLang === "en") {

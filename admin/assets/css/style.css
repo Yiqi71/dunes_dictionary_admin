@@ -127,7 +127,6 @@ h1.English {
 #word-details {
     opacity: 1;
     transition: opacity 500ms ease-in-out;
-    z-index: 40;
 }
 
 #word-details.details-transition-out {
@@ -199,6 +198,17 @@ h1.English {
     z-index: 20;
 }
 
+#focused-node-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 41;
+}
+
+#focused-node-layer .word-node {
+    pointer-events: auto;
+}
+
 .word-node {
     box-sizing: border-box;
     /* overflow: hidden; */
@@ -262,182 +272,6 @@ html:lang(en) .word-node .terms .term-main {
 }
 
 
-/* scale=1 → 纯色矩形 */
-body[data-scale="1"] .word-node {
-    min-width: 36px;
-    width: auto;
-    height: 24px;
-    border-radius: 2px;
-    box-shadow: #403b2c58 0px 0px 2px 2px;
-}
-
-body[data-scale="1"] .word-node .detail-title,
-body[data-scale="1"] .word-node .terms {
-    display: none;
-}
-
-/* scale=2 → 中文+英文 */
-body[data-scale="2"] .word-node {
-    padding: 1px 5px;
-    min-width: 93px;
-    width: auto;
-    height: 32px;
-    flex-shrink: 0;
-    opacity: 1;
-    border-radius: 4px;
-
-    text-align: left;
-    font-size: 12px;
-    line-height: 12px;
-    text-wrap: nowrap;
-
-    justify-content: center;
-    gap: 0;
-
-    box-shadow: #403b2c58 0px 0px 2px 2px;
-}
-
-body[data-scale="2"] .word-node .detail-title {
-    display: none;
-}
-
-body[data-scale="2"] .word-node .terms {
-    display: flex;
-}
-
-body[data-scale="2"] .word-node .terms .term-ori {
-    color: #544011;
-    font-family: "Barlow Condensed", "ChillDIN";
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 600;
-}
-
-/* scale=3~4 → 加编号 */
-body[data-scale="3"] .word-node,
-body[data-scale="4"] .word-node {
-    min-width: 180px;
-    width: auto;
-    height: 117px;
-    justify-content: space-between !important;
-    align-items: flex-start;
-    
-    box-shadow: #403b2c58 0px 0px 3px 3px;
-}
-
-body[data-scale="3"] .word-node .detail-title,
-body[data-scale="4"] .word-node .detail-title {
-    display: flex;
-    margin: 8px;
-}
-
-body[data-scale="3"] .word-node .terms,
-body[data-scale="4"] .word-node .terms {
-    margin: 8px;
-}
-
-body[data-scale="3"] .word-node .terms .term-main,
-body[data-scale="4"] .word-node .terms .term-main {
-    color: #43403B;
-    font-family: "ChillDIN";
-    font-size: 23.493px;
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: -1.287px;
-}
-
-body[data-scale="3"] .word-node .terms .term-ori,
-body[data-scale="4"] .word-node .terms .term-ori {
-    color: #43403B;
-    font-family: "Stint Ultra Condensed";
-    font-size: 33.428px;
-    font-style: normal;
-    font-weight: 400;
-}
-
-/* scale=5 → 字体更大，布局微调 */
-body[data-scale="5"] .word-node {
-    min-width: 328px;
-    width: auto;
-    height: 213px;
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between !important;
-    box-shadow: #403b2c 0px 0px 2px 2px;
-}
-
-body[data-scale="5"] .word-node .terms {
-    margin: 20px;
-}
-
-body[data-scale="5"] .word-node .terms .term-main {
-    color: #43403B;
-    font-family: "ChillDIN";
-    font-size: 42.911px;
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: -1.287px;
-}
-
-body[data-scale="5"] .word-node .terms .term-ori {
-    color: #43403B;
-    font-family: "Stint Ultra Condensed";
-    font-size: 61.06px;
-    font-style: normal;
-    font-weight: 400;
-}
-
-html:lang(en) body[data-scale="2"] .word-node .terms .term-main {
-    color: #544011;
-    font-family: "Barlow Condensed", "ChillDIN";
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: -0.2px;
-}
-
-html:lang(en) body[data-scale="2"] .word-node {
-    justify-content: flex-end;
-    padding-bottom: 4px;
-}
-
-html:lang(en) body[data-scale="3"] .word-node .terms .term-main,
-html:lang(en) body[data-scale="4"] .word-node .terms .term-main {
-    color: #43403B;
-    font-family: "Stint Ultra Condensed";
-    font-size: 33.428px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: -0.2px;
-}
-
-html:lang(en) body[data-scale="5"] .word-node .terms .term-main {
-    color: #43403B;
-    font-family: "Stint Ultra Condensed";
-    font-size: 61.06px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: -0.4px;
-}
-
-html:lang(en) .word-node .terms .term-ori {
-    display: none;
-}
-
-body[data-scale="5"] .detail-title {
-    margin: 24px;
-    
-    color: #43403B;
-    font-family: "Barlow Condensed";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 19.835px; /* 123.967% */
-}
-
-
 /* .word-node::after {
     content: "";
     position: absolute;
@@ -467,10 +301,14 @@ body[data-scale="5"] .detail-title {
     flex-direction: column;
     justify-content: space-between;
 
-    z-index: 100;
+    z-index: 40;
 
     box-shadow: #403b2c58 0px 0px 2px 2px;
     cursor: pointer;
+}
+
+#word-details .detail:hover {
+    z-index: 42;
 }
 
 .detail * {

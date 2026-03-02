@@ -1,0 +1,174 @@
+/* Word node scale is linear and continuous with scroll:
+   min view ~= 1/5 of full node, max view = full node. */
+body {
+    --word-node-scale-factor: 0.2;
+}
+
+/* Keep node content layout stable at all times. */
+.word-node {
+    display: flex;
+    justify-content: space-between !important;
+}
+
+body[data-scale="5"] .word-node {
+    min-width: calc(328px * var(--word-node-scale-factor));
+    width: auto;
+    height: calc(213px * var(--word-node-scale-factor));
+    border-radius: calc(5px * var(--word-node-scale-factor));
+    font-size: calc(20px * var(--word-node-scale-factor));
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between !important;
+    box-shadow: #403b2c58 0px 0px 2px 2px;
+}
+
+body[data-scale="5"] .word-node .detail-title {
+    display: flex;
+    align-items: center;
+    margin: calc(24px * var(--word-node-scale-factor));
+    gap: calc(6px * var(--word-node-scale-factor));
+    line-height: 1;
+}
+
+body[data-scale="5"] .word-node .terms {
+    margin: calc(20px * var(--word-node-scale-factor));
+}
+
+body[data-scale="5"] .word-node .terms .term-main {
+    color: #43403B;
+    font-family: "ChillDIN";
+    font-size: calc(42.911px * var(--word-node-scale-factor));
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: calc(-1.287px * var(--word-node-scale-factor));
+}
+
+body[data-scale="5"] .word-node .terms .term-ori {
+    color: #43403B;
+    font-family: "Stint Ultra Condensed";
+    font-size: calc(61.06px * var(--word-node-scale-factor));
+    font-style: normal;
+    font-weight: 400;
+}
+
+html:lang(en) body[data-scale="5"] .word-node .terms .term-main {
+    color: #43403B;
+    font-family: "Stint Ultra Condensed";
+    font-size: calc(61.06px * var(--word-node-scale-factor));
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: calc(-0.4px * var(--word-node-scale-factor));
+}
+
+html:lang(en) .word-node .terms .term-ori {
+    display: none;
+}
+
+body[data-scale="5"] .detail-title {
+    margin: calc(24px * var(--word-node-scale-factor));
+    color: #43403B;
+    font-family: "Barlow Condensed";
+    font-size: calc(16px * var(--word-node-scale-factor));
+    font-style: normal;
+    font-weight: 600;
+    line-height: calc(19.835px * var(--word-node-scale-factor));
+}
+
+body[data-scale="5"] .word-node .detail-title::before {
+    display: block;
+    flex-shrink: 0;
+    align-self: center;
+    width: calc(10px * var(--word-node-scale-factor));
+    height: calc(10px * var(--word-node-scale-factor));
+}
+
+/* Zoom slider styles */
+#scaleContainer {
+    position: relative;
+    width: 255px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.scale-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1.37px;
+    background-color: #43403B;
+    transform: translateY(-50%);
+}
+
+.scale-numbers,
+.scale-ticks {
+    position: absolute;
+    top: 12%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.scale-numbers span {
+    position: absolute;
+    top: -30%;
+    transform: translateX(-50%);
+    color: #43403B;
+    text-align: center;
+    font-family: "Barlow Condensed";
+    font-size: 13.778px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.scale-indicator {
+    position: absolute;
+    top: 50%;
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    background-color: #43403B;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.scale-ticks div {
+    position: absolute;
+    width: 1.37px;
+    height: 8px;
+    background-color: black;
+    top: 50%;
+    transform: translateX(-50%) translateY(-100%);
+}
+
+#indicator {
+    cursor: grab;
+}
+
+#indicator.dragging {
+    cursor: grabbing;
+}
+
+/* Saved indicator follows the same linear node scale. */
+body[data-scale="5"] .word-node .save-indicator {
+    display: block;
+    pointer-events: auto;
+    cursor: pointer;
+    width: calc(16px * var(--word-node-scale-factor));
+    height: calc(21px * var(--word-node-scale-factor));
+    top: calc(13px * var(--word-node-scale-factor));
+    right: calc(15px * var(--word-node-scale-factor));
+    transform: none;
+}
+
+body[data-scale="5"] .word-node.is-saved .save-indicator {
+    background-image: url("../images/saved_big.svg");
+}
+
+body[data-scale="5"] .word-node:not(.is-saved) .save-indicator {
+    background-image: url("../images/unsaved.svg");
+}

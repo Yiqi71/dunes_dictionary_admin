@@ -1,6 +1,7 @@
 // wordFocus.js - 专门处理单词焦点和缩放
 import { state } from "./state.js";
-import { draw, updateWordNodeTransforms, updateScaleForNodes } from "./uni-canvas.js";
+import { draw, updateWordNodeTransforms } from "./uni-canvas.js";
+import { updateScaleForNodes } from "./zoom.js";
 import { updateRelations } from "./relationManager.js";
 import { renderPanelSections , showFloatingPanel, scrollToTop, resetFloatingPanelState } from "./detail.js";
 import { moveIndicator } from "./menu.js";
@@ -11,6 +12,33 @@ let lastFocusedNodeId = null;
 let activeZoomAnimation = null;
 const MENU_COMPACT_CLASS = "menu-compact";
 const PENDING_FOCUS_CLASS = "pending-focus";
+const FOCUSED_NODE_LAYER_ID = "focused-node-layer";
+
+function ensureFocusedNodeLayer() {
+    let layer = document.getElementById(FOCUSED_NODE_LAYER_ID);
+    if (layer) return layer;
+    const universeView = document.getElementById("universe-view");
+    if (!universeView) return null;
+
+    layer = document.createElement("div");
+    layer.id = FOCUSED_NODE_LAYER_ID;
+    universeView.appendChild(layer);
+    return layer;
+}
+
+function moveFocusedNodeToLayer(node) {
+    if (!node) return;
+    const layer = ensureFocusedNodeLayer();
+    if (!layer || node.parentElement === layer) return;
+    layer.appendChild(node);
+}
+
+function restoreNodeToContainer(node) {
+    if (!node) return;
+    const container = document.getElementById("word-nodes-container");
+    if (!container || node.parentElement === container) return;
+    container.appendChild(node);
+}
 
 function fadeOutDetailsForTransition() {
     const detailDiv = document.getElementById("word-details");
@@ -266,6 +294,7 @@ export function updateWordFocus(targetNodeId = null) {
 
     // 清除之前聚焦的单词
     if (focusedWord) {
+        restoreNodeToContainer(focusedWord);
         focusedWord.classList.remove('focused');
         focusedWord = null;
         state.focusedNodeId = null;
@@ -322,6 +351,7 @@ export function updateWordFocus(targetNodeId = null) {
         // 聚焦最近的单词
         if (closestWord) {
             closestWord.classList.add('focused');
+            moveFocusedNodeToLayer(closestWord);
             focusedWord = closestWord;
             state.focusedNodeId = closestWord.id;
             setMenuCompact(true);
@@ -433,7 +463,7 @@ export function updateWordDetails() {
     const commentContent = document.querySelector('#comment #comment-content');
 
     if(normalizeLang(state.currentLang)=="en"){
-        commentTitle.textContent = 'Notes';
+        commentTitle.textContent = 'Echoes';
     }else if(normalizeLang(state.currentLang)=="zh"){
         commentTitle.textContent = '笔记';
     }
