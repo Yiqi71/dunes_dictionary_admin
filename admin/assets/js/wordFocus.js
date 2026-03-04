@@ -14,6 +14,10 @@ const MENU_COMPACT_CLASS = "menu-compact";
 const PENDING_FOCUS_CLASS = "pending-focus";
 const FOCUSED_NODE_LAYER_ID = "focused-node-layer";
 
+function isMobileLayout() {
+    return window.matchMedia("(max-width: 768px)").matches;
+}
+
 function ensureFocusedNodeLayer() {
     let layer = document.getElementById(FOCUSED_NODE_LAYER_ID);
     if (layer) return layer;
@@ -102,6 +106,16 @@ const detailPositions = {
 
 // 修改现有的 applyPositionVariations 函数，添加呼吸感的 CSS 属性
 export function applyPositionVariations(wordId) {
+    if (isMobileLayout()) {
+        Object.keys(detailPositions).forEach((sectionId) => {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+            section.style.top = "";
+            section.style.left = "";
+            section.style.transition = "";
+        });
+        return;
+    }
     // 使用单词ID作为种子来确保相同单词的位置是一致的
     const seed = parseInt(wordId) || 1;
     
@@ -139,6 +153,16 @@ export function applyPositionVariations(wordId) {
 
 // 重置所有detail sections到基础位置
 function resetPositions() {
+    if (isMobileLayout()) {
+        Object.keys(detailPositions).forEach((sectionId) => {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+            section.style.top = "";
+            section.style.left = "";
+            section.style.transition = "";
+        });
+        return;
+    }
     Object.keys(detailPositions).forEach(sectionId => {
         const section = document.getElementById(sectionId);
         if (!section) return;

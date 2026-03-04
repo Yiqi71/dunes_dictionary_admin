@@ -55,6 +55,9 @@ export function updateWordNodeTransforms() {
     const scale = state.currentScale;
     const totalWidth = state.baseWidth * scale * 24;
     const totalHeight = state.baseHeight * scale;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const mobileFocusedX = (126 / 440) * window.innerWidth;
+    const mobileFocusedY = (460 / 956) * window.innerHeight;
 
     const nodes = document.querySelectorAll(".word-node");
 
@@ -68,6 +71,14 @@ export function updateWordNodeTransforms() {
         node.style.left = `0px`;
         node.style.top = `0px`;
         node.style.position = 'absolute';
+
+        // On mobile, keep the focused node pinned to the requested viewport spot.
+        const isFocusedNode = node.parentElement?.id === "focused-node-layer";
+        if (isMobile && isFocusedNode) {
+            node.style.transform = `translate(${mobileFocusedX}px, ${mobileFocusedY}px)`;
+            return;
+        }
+
         node.style.transform = `translate(${baseX}px, ${baseY}px)`;
     });
 }
