@@ -1,7 +1,7 @@
 import { state } from "./state.js";
 
-const ZOOM_WHEEL_STEP = 0.28;
-const MIN_SCALE = 3;
+const ZOOM_WHEEL_STEP = 0.4;
+const MIN_SCALE = 2;
 
 export function getMinScaleForCurrentPath(pathname = window.location.pathname) {
     return MIN_SCALE;

@@ -3,6 +3,7 @@
 
 import { state } from "./state.js";
 import { clampOffsetX, clampOffsetY } from "./uni-canvas.js";
+import { getMinScaleForCurrentPath } from "./zoom.js";
 
 (function() {
     'use strict';
@@ -325,7 +326,8 @@ import { clampOffsetX, clampOffsetY } from "./uni-canvas.js";
     
     function syncParticleTransform() {
         const worldScale = state.currentScale;
-        const particleScale = 1 + (worldScale - 1) * 0.15;
+        const minScale = getMinScaleForCurrentPath();
+        const particleScale = minScale + (worldScale - minScale) * 0.15;
         const offsetX = clampOffsetX(state.panX);
         const offsetY = clampOffsetY(state.panY);
 
