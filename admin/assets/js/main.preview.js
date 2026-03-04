@@ -61,7 +61,12 @@ function wait(ms) {
 }
 
 async function tryRunEntryFlow() {
-    if (entryFlowStarted || !entryDataReady || !entryGateReady) return;
+    if (entryFlowStarted || !entryDataReady || !entryGateReady) {
+        if (typeof window.__DD_BOOT_DEBUG_REPORT__ === "function") {
+            window.__DD_BOOT_DEBUG_REPORT__(`entry wait: started=${entryFlowStarted} data=${entryDataReady} gate=${entryGateReady}`);
+        }
+        return;
+    }
     entryFlowStarted = true;
 
     const targetId = state.focusedNodeId;
@@ -473,6 +478,7 @@ function renderWordUniverse(wordsData) {
     const wordNodesContainer = document.getElementById('word-nodes-container');
     wordNodesContainer.innerHTML = '';
     wordsOnGrid = {};
+    const nodesFragment = document.createDocumentFragment();
 
     const wordsByCountry = {};
     const unknownWords = [];
@@ -573,9 +579,7 @@ function renderWordUniverse(wordsData) {
                 }
             });
 
-            wordNodesContainer.appendChild(node);
-            
-            updateWordNodeTransforms();
+            nodesFragment.appendChild(node);
         }
     }
 
@@ -652,10 +656,11 @@ function renderWordUniverse(wordsData) {
                 }
             });
 
-            wordNodesContainer.appendChild(node);
-            updateWordNodeTransforms();
+            nodesFragment.appendChild(node);
         }
     }
+    wordNodesContainer.appendChild(nodesFragment);
+    updateWordNodeTransforms();
     let isDragging = false;
 
     let canvas = document.getElementById("universe-canvas");
@@ -726,8 +731,14 @@ function setupImageVisibilityWatcher() {
 document.addEventListener('DOMContentLoaded', () => {
     setBootProgress(30, "Loading app...");
     entryGateReady = hasGateBeenDismissed();
+    if (typeof window.__DD_BOOT_DEBUG_REPORT__ === "function") {
+        window.__DD_BOOT_DEBUG_REPORT__(`gate initial hidden=${entryGateReady}`);
+    }
     window.addEventListener(ENTRY_READY_EVENT, () => {
         entryGateReady = true;
+        if (typeof window.__DD_BOOT_DEBUG_REPORT__ === "function") {
+            window.__DD_BOOT_DEBUG_REPORT__("entry-ready event received");
+        }
         tryRunEntryFlow();
     }, { once: true });
     sessionStartTs = Date.now();
@@ -750,6 +761,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             setBootProgress(72, "Rendering words...");
             window.allWords = data.words;
+            if (typeof window.__DD_BOOT_DEBUG_REPORT__ === "function") {
+                window.__DD_BOOT_DEBUG_REPORT__(`render start: ${Array.isArray(data.words) ? data.words.length : 0} words`);
+            }
             const matchedWord = findWordByRouteSlug(routeState.routeSlug, data.words);
             const homeIdRaw = data?.meta?.home_node_id;
             const homeIdNum = Number(homeIdRaw);
@@ -761,6 +775,9 @@ document.addEventListener('DOMContentLoaded', () => {
             logEvent("data_loaded", { status: "success", count: data.words ? data.words.length : 0 });
             // Render once data is loaded.
             renderWordUniverse(data.words);
+            if (typeof window.__DD_BOOT_DEBUG_REPORT__ === "function") {
+                window.__DD_BOOT_DEBUG_REPORT__("render complete");
+            }
             entryDataReady = true;
             tryRunEntryFlow();
         })

@@ -135,7 +135,8 @@
   #dunes-icon {
     position: fixed;
     top: 60px;
-    left: 15px;
+    left: 20px;
+    column-gap: 5px !important;
     z-index: 11010;
     pointer-events: auto;
   }
@@ -152,7 +153,7 @@
     --buttons-width: calc(30px * 3 + 53.79px + 8px * 3);
     position: fixed;
     top: 60px;
-    right: 30px;
+    right: 20px;
     z-index: 11011;
     pointer-events: auto;
     height: 30px;
@@ -267,6 +268,81 @@
   .menu-search-results .search-result-item,
   .year-indicator {
     transition: none !important;
+  }
+
+  /* Mobile floating/about panel: full-screen overlay, no side tabs. */
+  #floating-panel,
+  #about-panel {
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    z-index: 12020 !important;
+  }
+
+  #floating-panel .panel-entry,
+  #floating-panel .panel-comment,
+  #about-panel .panel-entry,
+  #about-panel .panel-comment {
+    border-radius: 0 !important;
+  }
+
+  #floating-panel .panel-entry:not(.active),
+  #floating-panel .panel-comment:not(.active),
+  #about-panel .panel-entry:not(.active),
+  #about-panel .panel-comment:not(.active) {
+    display: none !important;
+    transform: none !important;
+  }
+
+  #floating-panel .panel-tabs,
+  #about-panel .panel-tabs {
+    display: none !important;
+  }
+
+  #floating-panel .panel-slide,
+  #about-panel .panel-slide {
+    display: none !important;
+  }
+
+  #floating-panel .panel-top img {
+    align-self: center !important;
+    width: calc(100% - 40px) !important;
+    max-width: calc(100% - 40px) !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  #floating-close-btn {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0px) + 20px);
+    right: 18px;
+    width: 37px;
+    height: 37px;
+    border: none;
+    border-radius: 37px;
+    background: #EEE9DB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 12030;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #floating-close-btn .close-icon {
+    width: 14.32px;
+    height: 14.32px;
+    display: block;
+  }
+
+  #floating-close-btn .close-icon line {
+    stroke: #43403B;
+    stroke-width: 2.25;
+    stroke-linecap: round;
   }
 }
 
