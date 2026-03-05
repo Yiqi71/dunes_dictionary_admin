@@ -40,6 +40,11 @@ function initMobileYearTouchBridge() {
 
     yearIndicator.addEventListener("touchstart", (e) => {
         if (!isMobileLayout() || hasFocusedWord()) return;
+        if (e.touches.length !== 1) {
+            isTouchDragging = false;
+            tapCandidate = null;
+            return;
+        }
         const touch = e.touches[0];
         if (!touch) return;
         isTouchDragging = true;
@@ -50,6 +55,10 @@ function initMobileYearTouchBridge() {
 
     yearContainer.addEventListener("touchstart", (e) => {
         if (!isMobileLayout() || hasFocusedWord()) return;
+        if (e.touches.length !== 1) {
+            tapCandidate = null;
+            return;
+        }
         if (e.target === yearIndicator || yearIndicator.contains(e.target)) return;
         const touch = e.touches[0];
         if (!touch) return;
@@ -59,6 +68,12 @@ function initMobileYearTouchBridge() {
 
     window.addEventListener("touchmove", (e) => {
         if (!isTouchDragging) return;
+        if (e.touches.length !== 1) {
+            window.dispatchEvent(new MouseEvent("mouseup", { bubbles: true, cancelable: true, button: 0 }));
+            isTouchDragging = false;
+            tapCandidate = null;
+            return;
+        }
         const touch = e.touches[0];
         if (!touch) return;
         e.preventDefault();
@@ -67,6 +82,9 @@ function initMobileYearTouchBridge() {
 
     window.addEventListener("touchend", (e) => {
         if (isTouchDragging) {
+            if (e.touches.length > 0) {
+                return;
+            }
             const touch = e.changedTouches[0];
             if (touch) {
                 dispatchMouseEvent(window, "mouseup", touch);

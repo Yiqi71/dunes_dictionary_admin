@@ -2,7 +2,7 @@ import { state } from "./state.js";
 import { updateRelations } from "./relationManager.js";
 import { moveIndicator } from "./menu.js";
 import { hideFloatingPanel } from "./detail.js"
-import { resolveWheelScale, updateScaleForNodes } from "./zoom.js";
+import { getMinScaleForCurrentPath, resolveWheelScale, updateScaleForNodes } from "./zoom.js";
 import { logEvent } from "/analytics.js";
 
 const canvas = document.getElementById("universe-canvas");
@@ -43,11 +43,72 @@ export function clampOffsetX(offsetX) {
 let isDragging = false;
 let dragStartX = 0;
 let dragStartY = 0;
+let isPinching = false;
+let pinchStartDistance = 0;
+let pinchStartScale = 1;
+let pinchStartPanX = 0;
+let pinchStartPanY = 0;
+let pinchStartCenterX = 0;
+let pinchStartCenterY = 0;
 
 function endDrag() {
     if (!isDragging) return;
     isDragging = false;
     updateRelations();
+}
+
+function getTouchDistance(touchA, touchB) {
+    return Math.hypot(touchB.clientX - touchA.clientX, touchB.clientY - touchA.clientY);
+}
+
+function getTouchCenter(touchA, touchB) {
+    return {
+        x: (touchA.clientX + touchB.clientX) / 2,
+        y: (touchA.clientY + touchB.clientY) / 2
+    };
+}
+
+function beginPinch(touchA, touchB) {
+    const center = getTouchCenter(touchA, touchB);
+    pinchStartDistance = Math.max(1, getTouchDistance(touchA, touchB));
+    pinchStartScale = state.currentScale;
+    pinchStartPanX = state.panX;
+    pinchStartPanY = state.panY;
+    pinchStartCenterX = center.x;
+    pinchStartCenterY = center.y;
+    isPinching = true;
+    isDragging = false;
+
+    const detailDiv = document.getElementById("word-details");
+    if (detailDiv) {
+        detailDiv.classList.add("hidden");
+    }
+    hideFloatingPanel();
+}
+
+function applyPinch(touchA, touchB) {
+    if (!isPinching) return;
+
+    const currentDistance = Math.max(1, getTouchDistance(touchA, touchB));
+    const center = getTouchCenter(touchA, touchB);
+    const minScale = getMinScaleForCurrentPath();
+    const maxScale = state.scaleThreshold;
+
+    const rawScale = pinchStartScale * (currentDistance / pinchStartDistance);
+    const nextScale = Math.min(maxScale, Math.max(minScale, rawScale));
+
+    const anchorWorldX = (pinchStartCenterX - pinchStartPanX) / pinchStartScale;
+    const anchorWorldY = (pinchStartCenterY - pinchStartPanY) / pinchStartScale;
+
+    state.currentScale = nextScale;
+    state.panX = clampOffsetX(center.x - anchorWorldX * nextScale);
+    state.panY = clampOffsetY(center.y - anchorWorldY * nextScale);
+
+    draw();
+    updateWordNodeTransforms();
+    updateRelations();
+    moveIndicator(state.currentScale);
+    updateScaleForNodes(nextScale);
 }
 
 // 更新 word-nodes 的 position
@@ -118,10 +179,87 @@ canvas.addEventListener("mouseleave", () => {
     endDrag();
 });
 
+canvas.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 2) {
+        beginPinch(e.touches[0], e.touches[1]);
+        e.preventDefault();
+        return;
+    }
+
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    if (!touch) return;
+
+    isPinching = false;
+    isDragging = true;
+    dragStartX = touch.clientX;
+    dragStartY = touch.clientY;
+    const detailDiv = document.getElementById("word-details");
+    if (detailDiv) {
+        detailDiv.classList.add("hidden");
+    }
+    hideFloatingPanel();
+}, { passive: false });
+
+canvas.addEventListener("touchmove", (e) => {
+    if (e.touches.length === 2) {
+        if (!isPinching) {
+            beginPinch(e.touches[0], e.touches[1]);
+        }
+        applyPinch(e.touches[0], e.touches[1]);
+        e.preventDefault();
+        return;
+    }
+
+    if (!isDragging || isPinching || e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    if (!touch) return;
+
+    let offsetX = state.panX + (touch.clientX - dragStartX);
+    let offsetY = state.panY + (touch.clientY - dragStartY);
+
+    dragStartX = touch.clientX;
+    dragStartY = touch.clientY;
+
+    state.panX = clampOffsetX(offsetX);
+    state.panY = clampOffsetY(offsetY);
+
+    draw();
+    updateWordNodeTransforms();
+    updateRelations();
+    e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener("touchend", (e) => {
+    if (e.touches.length >= 2) {
+        beginPinch(e.touches[0], e.touches[1]);
+        return;
+    }
+
+    if (isPinching && e.touches.length === 1) {
+        isPinching = false;
+        isDragging = true;
+        dragStartX = e.touches[0].clientX;
+        dragStartY = e.touches[0].clientY;
+        return;
+    }
+
+    if (e.touches.length === 0) {
+        isPinching = false;
+        endDrag();
+    }
+}, { passive: true });
+
+canvas.addEventListener("touchcancel", () => {
+    isPinching = false;
+    endDrag();
+});
+
 window.addEventListener("mouseup", endDrag);
 window.addEventListener("blur", endDrag);
 document.addEventListener("visibilitychange", () => {
     if (document.visibilityState !== "visible") {
+        isPinching = false;
         endDrag();
     }
 });
