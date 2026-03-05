@@ -42,9 +42,18 @@ export function clampOffsetX(offsetX) {
 }
 
 export function getMobileFocusedNodeAnchor() {
+    const ratioX = 126 / 440;
+    const ratioY = 460 / 956;
+    const vv = window.visualViewport;
+    if (vv) {
+        return {
+            x: vv.offsetLeft + vv.width * ratioX,
+            y: vv.offsetTop + vv.height * ratioY
+        };
+    }
     return {
-        x: (126 / 440) * window.innerWidth,
-        y: (460 / 956) * window.innerHeight
+        x: ratioX * window.innerWidth,
+        y: ratioY * window.innerHeight
     };
 }
 
