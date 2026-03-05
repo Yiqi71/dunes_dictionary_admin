@@ -6,6 +6,7 @@ import { getMinScaleForCurrentPath, resolveWheelScale, updateScaleForNodes } fro
 import { logEvent } from "/analytics.js";
 
 const canvas = document.getElementById("universe-canvas");
+const universeView = document.getElementById("universe-view");
 const ctx = canvas.getContext("2d");
 
 // 初始化尺�?+ 高清屏支�?
@@ -179,7 +180,11 @@ canvas.addEventListener("mouseleave", () => {
     endDrag();
 });
 
-canvas.addEventListener("touchstart", (e) => {
+function canStartSingleFingerDrag(target) {
+    return target === canvas || canvas.contains(target);
+}
+
+function handleTouchStart(e) {
     if (e.touches.length === 2) {
         beginPinch(e.touches[0], e.touches[1]);
         e.preventDefault();
@@ -187,6 +192,7 @@ canvas.addEventListener("touchstart", (e) => {
     }
 
     if (e.touches.length !== 1) return;
+    if (!canStartSingleFingerDrag(e.target)) return;
     const touch = e.touches[0];
     if (!touch) return;
 
@@ -199,9 +205,9 @@ canvas.addEventListener("touchstart", (e) => {
         detailDiv.classList.add("hidden");
     }
     hideFloatingPanel();
-}, { passive: false });
+}
 
-canvas.addEventListener("touchmove", (e) => {
+function handleTouchMove(e) {
     if (e.touches.length === 2) {
         if (!isPinching) {
             beginPinch(e.touches[0], e.touches[1]);
@@ -228,9 +234,9 @@ canvas.addEventListener("touchmove", (e) => {
     updateWordNodeTransforms();
     updateRelations();
     e.preventDefault();
-}, { passive: false });
+}
 
-canvas.addEventListener("touchend", (e) => {
+function handleTouchEnd(e) {
     if (e.touches.length >= 2) {
         beginPinch(e.touches[0], e.touches[1]);
         return;
@@ -248,12 +254,18 @@ canvas.addEventListener("touchend", (e) => {
         isPinching = false;
         endDrag();
     }
-}, { passive: true });
+}
 
-canvas.addEventListener("touchcancel", () => {
+function handleTouchCancel() {
     isPinching = false;
     endDrag();
-});
+}
+
+const touchSurface = universeView || canvas;
+touchSurface.addEventListener("touchstart", handleTouchStart, { passive: false });
+touchSurface.addEventListener("touchmove", handleTouchMove, { passive: false });
+touchSurface.addEventListener("touchend", handleTouchEnd, { passive: true });
+touchSurface.addEventListener("touchcancel", handleTouchCancel);
 
 window.addEventListener("mouseup", endDrag);
 window.addEventListener("blur", endDrag);
