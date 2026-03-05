@@ -613,12 +613,10 @@ function getCenteredPanForScale(scale) {
 function getPanForWordAtScale(node, scale) {
     const logicalX = parseFloat(node.dataset.x);
     const logicalY = parseFloat(node.dataset.y);
-    const container = document.getElementById("word-nodes-container");
-    if (!container || Number.isNaN(logicalX) || Number.isNaN(logicalY)) return null;
+    if (Number.isNaN(logicalX) || Number.isNaN(logicalY)) return null;
 
-    const containerRect = container.getBoundingClientRect();
-    const worldX = logicalX * containerRect.width;
-    const worldY = logicalY * containerRect.height;
+    const worldX = logicalX * state.baseWidth * 24;
+    const worldY = logicalY * state.baseHeight;
 
     if (isMobileLayout()) {
         const anchor = getMobileFocusedNodeAnchor();

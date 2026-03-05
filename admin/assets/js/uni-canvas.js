@@ -9,20 +9,36 @@ const canvas = document.getElementById("universe-canvas");
 const universeView = document.getElementById("universe-view");
 const ctx = canvas.getContext("2d");
 
+function getViewportSize() {
+    const vv = window.visualViewport;
+    if (vv) {
+        return {
+            width: vv.width,
+            height: vv.height
+        };
+    }
+    return {
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+}
+
 // 初始化尺�?+ 高清屏支�?
 function setupCanvas() {
+    const viewport = getViewportSize();
     const dpr = window.devicePixelRatio || 1;
-    canvas.style.width = window.innerWidth + "px";
-    canvas.style.height = window.innerHeight + "px";
-    canvas.width = window.innerWidth * dpr;
-    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = viewport.width + "px";
+    canvas.style.height = viewport.height + "px";
+    canvas.width = viewport.width * dpr;
+    canvas.height = viewport.height * dpr;
     ctx.setTransform(1, 0, 0, 1, 0, 0); // 重置
     ctx.scale(dpr, dpr);
 }
 
 function updateGridSizeToFitHeight() {
-    state.baseWidth = window.innerWidth / 24;
-    state.baseHeight = window.innerHeight;
+    const viewport = getViewportSize();
+    state.baseWidth = viewport.width / 24;
+    state.baseHeight = viewport.height;
 }
 
 // 限制 Y 方向边界
@@ -434,5 +450,8 @@ function initialize() {
 }
 
 window.addEventListener("resize", initialize);
+if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", initialize);
+}
 initialize();
 
