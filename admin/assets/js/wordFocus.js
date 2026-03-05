@@ -247,6 +247,11 @@ export function zoomToWord(id, newScale, options = {}) {
 
     const previousFocusedNode = document.querySelector(".word-node.focused");
     const oldFocusedNode = previousFocusedNode && previousFocusedNode !== node ? previousFocusedNode : null;
+    if (oldFocusedNode && isMobileLayout()) {
+        // On mobile, release previous focused node from the pinned layer
+        // before zoom animation so it follows world transform immediately.
+        restoreNodeToContainer(oldFocusedNode);
+    }
     const oldFocusedStartOpacity = oldFocusedNode ? Number(window.getComputedStyle(oldFocusedNode).opacity) || 1 : 1;
     const newFocusedStartOpacity = Number(window.getComputedStyle(node).opacity) || 1;
 
