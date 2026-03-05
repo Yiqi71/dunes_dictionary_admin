@@ -1,6 +1,6 @@
 // wordFocus.js - 专门处理单词焦点和缩放
 import { state } from "./state.js";
-import { draw, updateWordNodeTransforms } from "./uni-canvas.js";
+import { draw, getMobileFocusedNodeAnchor, updateWordNodeTransforms } from "./uni-canvas.js";
 import { updateScaleForNodes } from "./zoom.js";
 import { updateRelations } from "./relationManager.js";
 import { renderPanelSections , showFloatingPanel, scrollToTop, resetFloatingPanelState } from "./detail.js";
@@ -619,6 +619,14 @@ function getPanForWordAtScale(node, scale) {
     const containerRect = container.getBoundingClientRect();
     const worldX = logicalX * containerRect.width;
     const worldY = logicalY * containerRect.height;
+
+    if (isMobileLayout()) {
+        const anchor = getMobileFocusedNodeAnchor();
+        return {
+            panX: anchor.x - worldX * scale,
+            panY: anchor.y - worldY * scale
+        };
+    }
 
     const viewportCenterX = window.innerWidth / 2;
     const viewportCenterY = window.innerHeight / 2;

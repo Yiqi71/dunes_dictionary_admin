@@ -41,6 +41,13 @@ export function clampOffsetX(offsetX) {
     return Math.min(Math.max(offsetX, minX), maxX);
 }
 
+export function getMobileFocusedNodeAnchor() {
+    return {
+        x: (126 / 440) * window.innerWidth,
+        y: (460 / 956) * window.innerHeight
+    };
+}
+
 let isDragging = false;
 let dragStartX = 0;
 let dragStartY = 0;
@@ -118,8 +125,7 @@ export function updateWordNodeTransforms() {
     const totalWidth = state.baseWidth * scale * 24;
     const totalHeight = state.baseHeight * scale;
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const mobileFocusedX = (126 / 440) * window.innerWidth;
-    const mobileFocusedY = (460 / 956) * window.innerHeight;
+    const mobileAnchor = getMobileFocusedNodeAnchor();
 
     const nodes = document.querySelectorAll(".word-node");
 
@@ -137,7 +143,7 @@ export function updateWordNodeTransforms() {
         // On mobile, keep the focused node pinned to the requested viewport spot.
         const isFocusedNode = node.parentElement?.id === "focused-node-layer";
         if (isMobile && isFocusedNode) {
-            node.style.transform = `translate(${mobileFocusedX}px, ${mobileFocusedY}px)`;
+            node.style.transform = `translate(${mobileAnchor.x}px, ${mobileAnchor.y}px)`;
             return;
         }
 
