@@ -554,15 +554,41 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-document.addEventListener('mousedown', (e) => {
-    if (!isMenuSearchOpen) return;
+function isInsideMenuSearch(target) {
     resolveMenuSearchRefs();
-    const target = e.target;
     const inButtons = menuButtons && menuButtons.contains(target);
     const inResults = searchResults && searchResults.contains(target);
-    if (!inButtons && !inResults) {
-        closeMenuSearch("outside");
-    }
-});
+    return Boolean(inButtons || inResults);
+}
+
+let suppressOutsideClickUntil = 0;
+
+function handleOutsideSearchInteraction(e) {
+    if (!isMenuSearchOpen) return false;
+    const target = e.target;
+    if (isInsideMenuSearch(target)) return false;
+    closeMenuSearch("outside");
+    suppressOutsideClickUntil = Date.now() + 450;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    return true;
+}
+
+function blockResidualClickAfterSearchClose(e) {
+    if (Date.now() > suppressOutsideClickUntil) return;
+    const target = e.target;
+    if (isInsideMenuSearch(target)) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+}
+
+// When search is open, outside interactions should only close search
+// and must not trigger other UI behaviors.
+document.addEventListener('pointerdown', handleOutsideSearchInteraction, true);
+document.addEventListener('touchstart', handleOutsideSearchInteraction, true);
+document.addEventListener('click', (e) => {
+    if (handleOutsideSearchInteraction(e)) return;
+    blockResidualClickAfterSearchClose(e);
+}, true);
 
 

@@ -14,6 +14,12 @@ const MENU_COMPACT_CLASS = "menu-compact";
 const PENDING_FOCUS_CLASS = "pending-focus";
 const FOCUSED_NODE_LAYER_ID = "focused-node-layer";
 
+function emitWordFocusChange(focusedNodeId) {
+    document.dispatchEvent(new CustomEvent("word-focus-change", {
+        detail: { focusedNodeId: focusedNodeId ?? null }
+    }));
+}
+
 function isMobileLayout() {
     return window.matchMedia("(max-width: 768px)").matches;
 }
@@ -322,6 +328,7 @@ export function updateWordFocus(targetNodeId = null) {
         focusedWord.classList.remove('focused');
         focusedWord = null;
         state.focusedNodeId = null;
+        emitWordFocusChange(null);
         lastFocusedNodeId = null;
         restoreAllNodes();
         resetPositions();
@@ -378,6 +385,7 @@ export function updateWordFocus(targetNodeId = null) {
             moveFocusedNodeToLayer(closestWord);
             focusedWord = closestWord;
             state.focusedNodeId = closestWord.id;
+            emitWordFocusChange(closestWord.id);
             setMenuCompact(true);
             if (lastFocusedNodeId !== closestWord.id) {
                 resetFloatingPanelState();
@@ -410,6 +418,7 @@ export function updateWordFocus(targetNodeId = null) {
             }
         }
     } else {
+        emitWordFocusChange(null);
         setMenuCompact(false);
     }
 }

@@ -136,7 +136,7 @@
     position: fixed;
     top: 60px;
     left: 20px;
-    column-gap: 5px !important;
+    column-gap: 4px !important;
     z-index: 11010;
     pointer-events: auto;
   }
@@ -157,6 +157,20 @@
     z-index: 11011;
     pointer-events: auto;
     height: 30px;
+  }
+
+  #buttons.search-expanded #menu-search {
+    width: 100% !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 2 !important;
+  }
+
+  #buttons.search-expanded #menu-search input {
+    opacity: 1 !important;
+    width: 100% !important;
+    pointer-events: auto !important;
   }
 
   #upper-menu .small-icon {
@@ -190,6 +204,14 @@
   }
 
   #search-results {
+    position: fixed !important;
+    top: calc(60px + 30px + 8px) !important;
+    right: 20px !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: calc(30px * 3 + 53.79px + 8px * 3) !important;
+    max-height: min(42vh, 320px) !important;
+    z-index: 11020 !important;
     pointer-events: auto;
   }
 
@@ -222,6 +244,12 @@
     width: 100%;
   }
 
+  #year-menu.mobile-hidden {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
   /* Keep top/bottom menu parts always visible on mobile. */
   #side-menu.menu-compact #dunes-icon,
   #side-menu.menu-compact #buttons,
@@ -235,6 +263,7 @@
     margin: 0 !important;
     padding: 0 !important;
     overflow: visible !important;
+    transform: none !important;
   }
 
   #side-menu.menu-compact:hover #lower-menu {
@@ -268,6 +297,15 @@
   .menu-search-results .search-result-item,
   .year-indicator {
     transition: none !important;
+  }
+
+  /* Keep search usable/animated on mobile. */
+  #menu-search {
+    transition: width 0.35s ease, box-shadow 0.35s ease !important;
+  }
+
+  #menu-search input {
+    transition: opacity 0.35s ease, width 0.35s ease !important;
   }
 
   /* Mobile floating/about panel: full-screen overlay, no side tabs. */
