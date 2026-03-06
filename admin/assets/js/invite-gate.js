@@ -136,8 +136,8 @@ function initInviteGate() {
         }
     };
 
-    let deviceId = resolveDeviceIdWithRepair();
-    if (!isValidDeviceId(deviceId)) {
+    let lastKnownDeviceId = resolveDeviceIdWithRepair();
+    if (!isValidDeviceId(lastKnownDeviceId)) {
         clearLocalVerify();
         setMessage(message, "设备标识异常，请刷新后重试", "error");
         return;
@@ -155,7 +155,14 @@ function initInviteGate() {
         }
 
         try {
-            await verifyInvite(code, deviceId, {
+            const currentDeviceId = resolveDeviceIdWithRepair();
+            if (!isValidDeviceId(currentDeviceId)) {
+                throw Object.assign(new Error("设备标识异常，请刷新后重试"), {
+                    code: "invalid_device_id"
+                });
+            }
+            lastKnownDeviceId = currentDeviceId;
+            await verifyInvite(code, currentDeviceId, {
                 legacyCached: silent
             });
             localStorage.setItem(INVITE_OK_KEY, "true");
@@ -163,8 +170,8 @@ function initInviteGate() {
             showSuccessOverlay(gate, input, submit, message);
         } catch (err) {
             if (retryOnInvalidDeviceId && err && err.code === "invalid_device_id") {
-                deviceId = resolveDeviceIdWithRepair();
-                if (isValidDeviceId(deviceId)) {
+                lastKnownDeviceId = resolveDeviceIdWithRepair();
+                if (isValidDeviceId(lastKnownDeviceId)) {
                     return verifyAndUnlock(code, {
                         silent,
                         retryOnInvalidDeviceId: false
