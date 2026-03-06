@@ -677,6 +677,33 @@ app.get("/api/votes/comment-likes", async (req, res) => {
   return res.json({ ok: true, countsByWordId });
 });
 
+app.get("/api/invite/usage", async (req, res) => {
+  try {
+    const rows = await dbAll(
+      `SELECT code, bound_count, max_devices, status, updated_at
+       FROM invite_codes
+       ORDER BY code ASC`
+    );
+
+    const items = rows.map((row) => {
+      const boundCount = Math.max(0, Number(row.bound_count) || 0);
+      const maxDevices = Math.max(1, Number(row.max_devices) || DEFAULT_INVITE_MAX_DEVICES);
+      return {
+        code: row.code,
+        boundCount,
+        maxDevices,
+        status: row.status || "active",
+        updatedAt: Number(row.updated_at) || null
+      };
+    });
+
+    return res.json({ ok: true, items });
+  } catch (err) {
+    console.error("Invite usage query failed", err);
+    return res.status(500).json({ ok: false, error: "DB query failed" });
+  }
+});
+
 app.post("/api/invite/verify", async (req, res) => {
   const code = normalizeInviteCode(req.body && req.body.code);
   const deviceId = normalizeDeviceId(req.body && req.body.device_id);
