@@ -2,6 +2,7 @@ import { getOrCreateDeviceId, isValidDeviceId } from "./device-id.js";
 
 const INVITE_OK_KEY = "dunes_invite_verified_v1";
 const INVITE_CODE_KEY = "dunes_invite_code_v1";
+const DEVICE_ID_KEYS = ["dd_device_id_v1", "dunes_device_id_v1", "dd_vote_device_id_v1"];
 const SUCCESS_HOLD_MS = 2000;
 const FADE_OUT_MS = 700;
 const ENTRY_READY_EVENT = "dunes:entry-ready";
@@ -98,6 +99,20 @@ function ensureSuccessTitle(gate) {
     gate.appendChild(title);
 }
 
+function resolveDeviceIdWithRepair() {
+    let id = getOrCreateDeviceId();
+    if (isValidDeviceId(id)) return id;
+    try {
+        for (const key of DEVICE_ID_KEYS) {
+            localStorage.removeItem(key);
+        }
+    } catch (_) {
+        // ignore
+    }
+    id = getOrCreateDeviceId();
+    return isValidDeviceId(id) ? id : "";
+}
+
 function initInviteGate() {
     const gate = document.getElementById("invite-gate");
     const form = document.getElementById("invite-form");
@@ -121,7 +136,7 @@ function initInviteGate() {
         }
     };
 
-    const deviceId = getOrCreateDeviceId();
+    let deviceId = resolveDeviceIdWithRepair();
     if (!isValidDeviceId(deviceId)) {
         clearLocalVerify();
         setMessage(message, "设备标识异常，请刷新后重试", "error");
@@ -131,6 +146,7 @@ function initInviteGate() {
     let unlocking = false;
     const verifyAndUnlock = async (code, options = {}) => {
         const silent = Boolean(options.silent);
+        const retryOnInvalidDeviceId = options.retryOnInvalidDeviceId !== false;
         unlocking = true;
         submit.disabled = true;
         input.disabled = true;
@@ -146,6 +162,15 @@ function initInviteGate() {
             localStorage.setItem(INVITE_CODE_KEY, code);
             showSuccessOverlay(gate, input, submit, message);
         } catch (err) {
+            if (retryOnInvalidDeviceId && err && err.code === "invalid_device_id") {
+                deviceId = resolveDeviceIdWithRepair();
+                if (isValidDeviceId(deviceId)) {
+                    return verifyAndUnlock(code, {
+                        silent,
+                        retryOnInvalidDeviceId: false
+                    });
+                }
+            }
             clearLocalVerify();
             input.disabled = false;
             submit.disabled = false;
