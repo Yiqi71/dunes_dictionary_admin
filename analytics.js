@@ -1,3 +1,5 @@
+import { getOrCreateDeviceId } from "./admin/assets/js/device-id.js";
+
 const STORAGE_KEY = "dd_events";
 const MAX_EVENTS = 500;
 let currentWordView = null;
@@ -34,26 +36,12 @@ function getSessionId() {
   return id;
 }
 
-function getDeviceId() {
-  const key = "dd_vote_device_id_v1";
-  try {
-    let id = localStorage.getItem(key);
-    if (!id) {
-      id = `d_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-      localStorage.setItem(key, id);
-    }
-    return id;
-  } catch (_) {
-    return "";
-  }
-}
-
 export function logEvent(name, data = {}) {
   try {
     const events = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
     const payload = { ...(data || {}) };
     if (!payload.lang) payload.lang = getDocLang();
-    if (!payload.deviceId) payload.deviceId = getDeviceId();
+    if (!payload.deviceId) payload.deviceId = getOrCreateDeviceId();
 
     const event = {
       id: `e_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,

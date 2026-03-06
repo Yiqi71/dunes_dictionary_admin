@@ -194,9 +194,11 @@ function loadWordTermMap() {
   return map;
 }
 
-function buildTermAgg(events, wordTermMap = null) {
+function buildTermAgg(events, wordTermMap = null, langFilter = null) {
   const terms = new Map();
   for (const e of events) {
+    const eventLang = getEventLangKey(e) || "cn";
+    if (langFilter && eventLang !== langFilter) continue;
     if (e.name === "word_view_start" && e.data && e.data.wordId !== undefined) {
       const id = Number(e.data.wordId);
       if (!Number.isFinite(id)) continue;
@@ -224,6 +226,57 @@ function buildTermAgg(events, wordTermMap = null) {
     durationText: fmtMs(t.durationMs),
     activeDays: t.days.size
   }));
+}
+
+function aggregateSavedWordMetrics(events, sinceTs) {
+  const latestNowByWordAndDevice = new Map();
+  const latestBeforeByWordAndDevice = new Map();
+
+  for (const e of events || []) {
+    if (!e || e.name !== "word_save_toggle") continue;
+    const data = e.data || {};
+    const wordId = Number(data.wordId);
+    const deviceId = String(data.deviceId || "").trim();
+    if (!Number.isFinite(wordId) || !deviceId) continue;
+
+    const saved = Boolean(data.saved);
+    const ts = Number(e.ts) || 0;
+    const key = `${wordId}::${deviceId}`;
+
+    const prevNow = latestNowByWordAndDevice.get(key);
+    if (!prevNow || ts >= prevNow.ts) {
+      latestNowByWordAndDevice.set(key, { wordId, saved, ts });
+    }
+
+    if (ts < sinceTs) {
+      const prevBefore = latestBeforeByWordAndDevice.get(key);
+      if (!prevBefore || ts >= prevBefore.ts) {
+        latestBeforeByWordAndDevice.set(key, { wordId, saved, ts });
+      }
+    }
+  }
+
+  const countSavedByWord = (map) => {
+    const out = new Map();
+    map.forEach((entry) => {
+      if (!entry.saved) return;
+      out.set(entry.wordId, (out.get(entry.wordId) || 0) + 1);
+    });
+    return out;
+  };
+
+  const totalByWord = countSavedByWord(latestNowByWordAndDevice);
+  const beforeByWord = countSavedByWord(latestBeforeByWordAndDevice);
+  const deltaByWord = new Map();
+  const ids = new Set([...totalByWord.keys(), ...beforeByWord.keys()]);
+
+  ids.forEach((wordId) => {
+    const total = totalByWord.get(wordId) || 0;
+    const before = beforeByWord.get(wordId) || 0;
+    deltaByWord.set(wordId, total - before);
+  });
+
+  return { totalByWord, deltaByWord };
 }
 
 function buildTrendNdByLang(events, daysCount) {
@@ -600,24 +653,61 @@ app.get("/api/dashboard", async (req, res) => {
 
 app.get("/api/terms", async (req, res) => {
   const range = req.query.range || "7d";
+  const rawLang = String(req.query.lang || "").toLowerCase();
+  const lang = rawLang === "en" ? "en" : (rawLang === "cn" || rawLang === "zh" ? "cn" : null);
   const rangeMs =
     range === "24h" ? 24 * 3600_000 :
     range === "30d" ? 30 * 24 * 3600_000 :
     7 * 24 * 3600_000;
 
   const since = Date.now() - rangeMs;
-  let recent = [];
+  let recentViewEvents = [];
+  let allViewEvents = [];
+  let allSaveEvents = [];
   try {
-    const rows = await dbAll("SELECT * FROM events WHERE ts >= ? ORDER BY ts ASC", [since]);
-    recent = rows.map(rowToEvent);
+    const recentRows = await dbAll(
+      "SELECT * FROM events WHERE ts >= ? AND name IN (?, ?) ORDER BY ts ASC",
+      [since, "word_view_start", "word_view_end"]
+    );
+    const allViewRows = await dbAll(
+      "SELECT * FROM events WHERE name IN (?, ?) ORDER BY ts ASC",
+      ["word_view_start", "word_view_end"]
+    );
+    const saveRows = await dbAll(
+      "SELECT * FROM events WHERE name = ? ORDER BY ts ASC",
+      ["word_save_toggle"]
+    );
+    recentViewEvents = recentRows.map(rowToEvent);
+    allViewEvents = allViewRows.map(rowToEvent);
+    allSaveEvents = saveRows.map(rowToEvent);
   } catch (err) {
     console.error("Terms query failed", err);
     return res.status(500).json({ ok: false, error: "DB query failed" });
   }
 
   const wordTermMap = loadWordTermMap();
-  const rows = buildTermAgg(recent, wordTermMap)
-    .sort((a, b) => b.visits - a.visits)
+  const rangeAgg = buildTermAgg(recentViewEvents, wordTermMap, lang);
+  const totalAgg = buildTermAgg(allViewEvents, wordTermMap, lang);
+  const totalByWordId = new Map(totalAgg.map((item) => [item.id, item]));
+  const savedMetrics = aggregateSavedWordMetrics(allSaveEvents, since);
+
+  const rows = rangeAgg
+    .map((item) => {
+      const total = totalByWordId.get(item.id);
+      const rangeVisits = Math.max(0, Number(item.visits) || 0);
+      const totalVisits = Math.max(0, Number(total && total.visits) || 0);
+      const savedDelta = Number(savedMetrics.deltaByWord.get(item.id) || 0);
+      const savedTotal = Math.max(0, Number(savedMetrics.totalByWord.get(item.id)) || 0);
+      return {
+        ...item,
+        rangeVisits,
+        totalVisits,
+        savedDelta,
+        savedTotal,
+        visits: rangeVisits
+      };
+    })
+    .sort((a, b) => b.rangeVisits - a.rangeVisits)
     .slice(0, 50);
 
   res.json({ ok: true, terms: rows });

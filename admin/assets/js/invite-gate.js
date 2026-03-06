@@ -1,4 +1,4 @@
-import { getOrCreateDeviceId, isValidDeviceId } from "./device-id.js";
+import { getOrCreateDeviceId } from "./device-id.js";
 
 const INVITE_OK_KEY = "dunes_invite_verified_v1";
 const INVITE_CODE_KEY = "dunes_invite_code_v1";
@@ -8,6 +8,7 @@ const FADE_OUT_MS = 700;
 const ENTRY_READY_EVENT = "dunes:entry-ready";
 
 let entryReadyNotified = false;
+const STRICT_DEVICE_ID_PATTERN = /^[a-z0-9-]{16,128}$/;
 
 const API_BASE = (() => {
     const injected = (typeof window !== "undefined" && window.DD_API_BASE) ? String(window.DD_API_BASE).trim() : "";
@@ -23,6 +24,10 @@ function normalizeInviteCode(value) {
 
 function isValidInviteCode(value) {
     return /^DUNES-[A-Z0-9]{4}$/.test(normalizeInviteCode(value));
+}
+
+function isValidInviteDeviceId(value) {
+    return STRICT_DEVICE_ID_PATTERN.test(String(value || "").trim().toLowerCase());
 }
 
 function setMessage(el, text, type) {
@@ -101,7 +106,7 @@ function ensureSuccessTitle(gate) {
 
 function resolveDeviceIdWithRepair() {
     let id = getOrCreateDeviceId();
-    if (isValidDeviceId(id)) return id;
+    if (isValidInviteDeviceId(id)) return id;
     try {
         for (const key of DEVICE_ID_KEYS) {
             localStorage.removeItem(key);
@@ -110,7 +115,7 @@ function resolveDeviceIdWithRepair() {
         // ignore
     }
     id = getOrCreateDeviceId();
-    return isValidDeviceId(id) ? id : "";
+    return isValidInviteDeviceId(id) ? id : "";
 }
 
 function initInviteGate() {
@@ -137,7 +142,7 @@ function initInviteGate() {
     };
 
     let lastKnownDeviceId = resolveDeviceIdWithRepair();
-    if (!isValidDeviceId(lastKnownDeviceId)) {
+    if (!isValidInviteDeviceId(lastKnownDeviceId)) {
         clearLocalVerify();
         setMessage(message, "设备标识异常，请刷新后重试", "error");
         return;
@@ -156,7 +161,7 @@ function initInviteGate() {
 
         try {
             const currentDeviceId = resolveDeviceIdWithRepair();
-            if (!isValidDeviceId(currentDeviceId)) {
+            if (!isValidInviteDeviceId(currentDeviceId)) {
                 throw Object.assign(new Error("设备标识异常，请刷新后重试"), {
                     code: "invalid_device_id"
                 });
@@ -171,7 +176,7 @@ function initInviteGate() {
         } catch (err) {
             if (retryOnInvalidDeviceId && err && err.code === "invalid_device_id") {
                 lastKnownDeviceId = resolveDeviceIdWithRepair();
-                if (isValidDeviceId(lastKnownDeviceId)) {
+                if (isValidInviteDeviceId(lastKnownDeviceId)) {
                     return verifyAndUnlock(code, {
                         silent,
                         retryOnInvalidDeviceId: false

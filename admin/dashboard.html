@@ -251,8 +251,10 @@
             <tr>
               <th class="px-6 py-4 font-normal">词条信息 Term Info</th>
               <th class="px-6 py-4 font-normal">总访问 Total Visits</th>
+              <th class="px-6 py-4 font-normal">时间段访问 Range Visits</th>
               <th class="px-6 py-4 font-normal">总时长 Total Duration</th>
-              <th class="px-6 py-4 font-normal">昨日访问 Visits (Yest.)</th>
+              <th class="px-6 py-4 font-normal">收藏变化 Saved Δ</th>
+              <th class="px-6 py-4 font-normal">总收藏 Total Saved</th>
               <th class="px-6 py-4 font-normal">上站天数 Days Active</th>
             </tr>
           </thead>
@@ -834,10 +836,72 @@
       if (!Array.isArray(events) || !events.length) {
         return { cn: { ok: true, terms: [] }, en: { ok: true, terms: [] } };
       }
+      const buildSavedMetrics = (allEvents, sinceTs) => {
+        const latestNow = new Map();
+        const latestBefore = new Map();
+        (allEvents || []).forEach((e) => {
+          if (e?.name !== "word_save_toggle") return;
+          const data = e.data || {};
+          const wordId = Number(data.wordId);
+          const deviceId = String(data.deviceId || "").trim();
+          if (!Number.isFinite(wordId) || !deviceId) return;
+          const ts = Number(e.ts) || 0;
+          const saved = Boolean(data.saved);
+          const key = `${wordId}::${deviceId}`;
+          const prevNow = latestNow.get(key);
+          if (!prevNow || ts >= prevNow.ts) latestNow.set(key, { wordId, saved, ts });
+          if (ts < sinceTs) {
+            const prevBefore = latestBefore.get(key);
+            if (!prevBefore || ts >= prevBefore.ts) latestBefore.set(key, { wordId, saved, ts });
+          }
+        });
+        const countSaved = (map) => {
+          const out = new Map();
+          map.forEach((entry) => {
+            if (!entry.saved) return;
+            out.set(entry.wordId, (out.get(entry.wordId) || 0) + 1);
+          });
+          return out;
+        };
+        const totalByWord = countSaved(latestNow);
+        const beforeByWord = countSaved(latestBefore);
+        const deltaByWord = new Map();
+        const ids = new Set([...totalByWord.keys(), ...beforeByWord.keys()]);
+        ids.forEach((id) => {
+          deltaByWord.set(id, (totalByWord.get(id) || 0) - (beforeByWord.get(id) || 0));
+        });
+        return { totalByWord, deltaByWord };
+      };
+
       const rangeMs = rangeToMs(currentRange);
       const recentRange = events.filter(e => inLast(e.ts, rangeMs));
-      const cnTerms = buildTermAgg(recentRange, "cn").sort((a, b) => b.visits - a.visits).slice(0, 50);
-      const enTerms = buildTermAgg(recentRange, "en").sort((a, b) => b.visits - a.visits).slice(0, 50);
+      const sinceTs = Date.now() - rangeMs;
+      const savedMetrics = buildSavedMetrics(events, sinceTs);
+      const enrichTerms = (terms, allTerms) => {
+        const totalById = new Map((allTerms || []).map(item => [item.id, item]));
+        return terms.map((item) => {
+          const total = totalById.get(item.id);
+          const rangeVisits = Number(item.visits) || 0;
+          const totalVisits = Number(total?.visits) || 0;
+          const savedDelta = Number(savedMetrics.deltaByWord.get(item.id)) || 0;
+          const savedTotal = Number(savedMetrics.totalByWord.get(item.id)) || 0;
+          return {
+            ...item,
+            rangeVisits,
+            totalVisits,
+            savedDelta,
+            savedTotal
+          };
+        });
+      };
+      const cnTerms = enrichTerms(
+        buildTermAgg(recentRange, "cn").sort((a, b) => b.visits - a.visits).slice(0, 50),
+        buildTermAgg(events, "cn")
+      );
+      const enTerms = enrichTerms(
+        buildTermAgg(recentRange, "en").sort((a, b) => b.visits - a.visits).slice(0, 50),
+        buildTermAgg(events, "en")
+      );
       return {
         cn: { ok: true, terms: cnTerms },
         en: { ok: true, terms: enTerms }
@@ -887,8 +951,11 @@
 
     async function loadFromApi() {
       const dash = await tryFetchJson("/api/dashboard");
-      const terms = await tryFetchJson(`/api/terms?range=${currentRange}`);
-      return { mode: "api", dash, terms };
+      const [termsCn, termsEn] = await Promise.all([
+        tryFetchJson(`/api/terms?range=${currentRange}&lang=cn`),
+        tryFetchJson(`/api/terms?range=${currentRange}&lang=en`)
+      ]);
+      return { mode: "api", dash, terms: termsCn, termsByLang: { cn: termsCn, en: termsEn } };
     }
 
     async function loadFromEventsFallback() {
@@ -928,7 +995,16 @@
 
       const rangeMsTerms = rangeToMs(currentRange);
       const recentRange = events.filter(e => inLast(e.ts, rangeMsTerms));
-      const terms = { ok: true, terms: buildTermAgg(recentRange).slice(0, 50) };
+      const terms = {
+        ok: true,
+        terms: buildTermAgg(recentRange).slice(0, 50).map((item) => ({
+          ...item,
+          rangeVisits: Number(item.visits) || 0,
+          totalVisits: Number(item.visits) || 0,
+          savedDelta: 0,
+          savedTotal: 0
+        }))
+      };
 
       return { mode: "events", dash, terms, events };
     }
@@ -1072,23 +1148,35 @@
           const page = Number(btn.dataset.page);
           if (!Number.isFinite(page)) return;
           currentTermPage = page;
-          renderTable(window.__currentTermsPayload || { terms: [] }, window.__currentYesterdayMap || new Map());
+          renderTable(window.__currentTermsPayload || { terms: [] });
         });
       });
     }
 
-    function renderTable(termsPayload, yesterdayMap = new Map()) {
+    function formatSignedCount(value) {
+      const num = Number(value) || 0;
+      if (num > 0) return `+${num.toLocaleString()}`;
+      if (num < 0) return `-${Math.abs(num).toLocaleString()}`;
+      return "0";
+    }
+
+    function renderTable(termsPayload) {
       const terms = termsPayload.terms || [];
       const tb = $("term-table-body");
       tb.innerHTML = "";
 
       const start = (currentTermPage - 1) * TERMS_PER_PAGE;
       const pageData = terms.slice(start, start + TERMS_PER_PAGE);
-      const hasYesterday = yesterdayMap && yesterdayMap.size;
 
       pageData.forEach(item => {
-        const yestVisits = hasYesterday ? (yesterdayMap.get(item.id) || 0) : "-";
         const displayTerm = resolveTermLabel(item.id, item.term);
+        const totalVisits = Number(item.totalVisits ?? item.visits) || 0;
+        const rangeVisits = Number(item.rangeVisits ?? item.visits) || 0;
+        const savedDelta = Number(item.savedDelta) || 0;
+        const savedTotal = Number(item.savedTotal) || 0;
+        const savedDeltaClass = savedDelta > 0
+          ? "text-green-700"
+          : (savedDelta < 0 ? "text-red-700" : "text-stone-600");
         const row = document.createElement("tr");
         row.className = "hover:bg-amber-50/30 transition-colors group cursor-pointer";
         row.addEventListener("click", () => openModal(item.id));
@@ -1097,18 +1185,18 @@
             <div class="font-bold text-stone-900">${displayTerm}</div>
             <div class="text-[10px] text-stone-300 mt-1 font-mono">ID: ${item.id}</div>
           </td>
-          <td class="px-6 py-4 text-stone-600 font-medium">${(item.visits ?? 0).toLocaleString()}</td>
+          <td class="px-6 py-4 text-stone-600 font-medium">${totalVisits.toLocaleString()}</td>
+          <td class="px-6 py-4 text-stone-600 font-medium">${rangeVisits.toLocaleString()}</td>
           <td class="px-6 py-4 text-stone-600 font-medium">${item.durationText ?? "0s"}</td>
-          <td class="px-6 py-4 text-stone-600 font-medium">${typeof yestVisits === "number" ? yestVisits.toLocaleString() : yestVisits}</td>
+          <td class="px-6 py-4 font-medium ${savedDeltaClass}">${formatSignedCount(savedDelta)}</td>
+          <td class="px-6 py-4 text-stone-600 font-medium">${savedTotal.toLocaleString()}</td>
           <td class="px-6 py-4 text-stone-600 font-medium">${(item.activeDays ?? 0).toLocaleString()}</td>
         `;
         tb.appendChild(row);
       });
 
       window.__terms = terms;
-      window.__yesterdayMap = yesterdayMap;
       window.__currentTermsPayload = termsPayload;
-      window.__currentYesterdayMap = yesterdayMap;
       renderPagination(terms.length);
       if (window.lucide && typeof window.lucide.createIcons === "function") {
         lucide.createIcons();
@@ -1129,8 +1217,7 @@
 
       currentTermPage = 1;
       const termsPayload = (window.__termsByLang && window.__termsByLang[currentTermLang]) || { ok: true, terms: [] };
-      const yesterdayMap = (window.__yesterdayByLang && window.__yesterdayByLang[currentTermLang]) || new Map();
-      renderTable(termsPayload, yesterdayMap);
+      renderTable(termsPayload);
     }
 
     function openModal(id) {
@@ -1274,7 +1361,7 @@
     async function refreshAll() {
       try {
         await ensureTermNameMap();
-        const { dash, terms, mode, events } = await (async () => {
+        const { dash, terms, termsByLang: apiTermsByLang, mode, events } = await (async () => {
           try {
             const api = await loadFromApi();
             return api;
@@ -1303,23 +1390,16 @@
         const langMetrics = buildLangMetrics(eventsForYesterday);
         renderLang(langMetrics);
         const hasEvents = Array.isArray(eventsForYesterday) && eventsForYesterday.length > 0;
-        const termsByLang = hasEvents
+        const termsByLang = (mode === "api" && apiTermsByLang)
+          ? apiTermsByLang
+          : hasEvents
           ? buildTermsByLang(eventsForYesterday)
           : { cn: terms, en: terms };
-        const fallbackYesterday = buildYesterdayVisitsMap(eventsForYesterday);
-        const yesterdayByLang = hasEvents
-          ? {
-            cn: buildYesterdayVisitsMap(eventsForYesterday, "cn"),
-            en: buildYesterdayVisitsMap(eventsForYesterday, "en")
-          }
-          : { cn: fallbackYesterday, en: fallbackYesterday };
 
         window.__termsByLang = termsByLang;
-        window.__yesterdayByLang = yesterdayByLang;
 
         const currentTermsPayload = termsByLang[currentTermLang] || terms;
-        const currentYesterdayMap = yesterdayByLang[currentTermLang] || fallbackYesterday;
-        renderTable(currentTermsPayload, currentYesterdayMap);
+        renderTable(currentTermsPayload);
 
         setStatus(true, "已连接");
       } catch (err) {

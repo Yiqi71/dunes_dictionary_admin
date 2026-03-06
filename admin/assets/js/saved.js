@@ -1,3 +1,5 @@
+import { getOrCreateDeviceId } from "./device-id.js";
+
 const SAVED_WORD_IDS_STORAGE_KEY = "dd_saved_word_ids_v1";
 const SAVED_WORD_SYNC_QUEUE_KEY = "dd_saved_word_sync_queue_v1";
 const SAVED_WORD_SYNC_INTERVAL_MS = 15000;
@@ -52,7 +54,8 @@ function buildSavedWordSyncEvent(wordId, saved) {
         sessionId: getSessionId(),
         data: {
             wordId: String(wordId),
-            saved: Boolean(saved)
+            saved: Boolean(saved),
+            deviceId: getOrCreateDeviceId()
         }
     };
 }
