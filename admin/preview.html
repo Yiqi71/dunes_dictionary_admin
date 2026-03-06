@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="assets/css/menu.css">
     <link rel="stylesheet" href="assets/css/zoom.css">
     <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="stylesheet" href="assets/css/invite-gate.css">
 
     <!-- <script src="assets/js/boot-startup-debug.js"></script> -->
     <script type="module" src="assets/js/uni-canvas.js" defer></script>
@@ -35,7 +36,7 @@
     <script type="module" src="assets/js/invite-gate.js" defer></script>
     <script type="module" src="assets/js/mobile-panel.js" defer></script>
     <script type="module" src="assets/js/mobile-interactions.js" defer></script>
-
+    <script type="module" src="assets/js/wordFocus.hotkey.rs.js" defer></script>
     
     <script type="module" src="assets/js/particles.js" defer></script>
 
@@ -43,6 +44,19 @@
 </head>
 
 <body class="boot-pending">
+    <div id="invite-gate" role="dialog" aria-modal="true" aria-labelledby="invite-title">
+        <div class="invite-card">
+            <form id="invite-form" novalidate>
+                <h1 class="invite-title" id="invite-title">请输入邀请码</h1>
+                <p class="invite-sub">每个邀请码最多可绑定 5 台设备。</p>
+                <label class="invite-label" for="invite-input">邀请码</label>
+                <input id="invite-input" type="text" inputmode="text" autocomplete="off" placeholder="DUNES-XXXX" maxlength="10">
+                <button id="invite-submit" type="submit">验证并进入</button>
+                <p id="invite-message" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+
     <div id="boot-progress" role="status" aria-live="polite" aria-label="Page loading">
         <div id="boot-progress-track">
             <div id="boot-progress-indicator"></div>

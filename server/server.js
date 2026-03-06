@@ -25,6 +25,14 @@ const trackingDir = path.join(rootDir, "tracking");
 const contentDir = path.join(rootDir, "content");
 
 app.use(express.json({ limit: "200kb" }));
+// Prevent leaking raw invite code lists from static files.
+app.use((req, res, next) => {
+  const reqPath = String(req.path || "");
+  if (/invite-codes\.json$/i.test(reqPath)) {
+    return res.status(404).json({ ok: false, error: "not_found" });
+  }
+  return next();
+});
 app.use(express.static(publicDir));
 app.use(express.static(rootDir));
 app.use("/public", express.static(publicDir));
@@ -51,6 +59,36 @@ db.serialize(() => {
   );
   db.run(`CREATE INDEX IF NOT EXISTS idx_events_ts ON events(ts)`);
   db.run(`CREATE INDEX IF NOT EXISTS idx_events_name ON events(name)`);
+  db.run(
+    `CREATE TABLE IF NOT EXISTS invite_codes (
+      code TEXT PRIMARY KEY,
+      max_devices INTEGER NOT NULL DEFAULT 5,
+      status TEXT NOT NULL DEFAULT 'active',
+      bound_count INTEGER NOT NULL DEFAULT 0,
+      created_at INTEGER NOT NULL,
+      updated_at INTEGER NOT NULL
+    )`
+  );
+  db.run(
+    `CREATE TABLE IF NOT EXISTS invite_devices (
+      code TEXT NOT NULL,
+      device_id TEXT NOT NULL,
+      first_seen_at INTEGER NOT NULL,
+      last_seen_at INTEGER NOT NULL,
+      PRIMARY KEY (code, device_id)
+    )`
+  );
+  db.run(`CREATE INDEX IF NOT EXISTS idx_invite_devices_code ON invite_devices(code)`);
+  db.run(
+    `CREATE TABLE IF NOT EXISTS invite_legacy_exempt_devices (
+      code TEXT NOT NULL,
+      device_id TEXT NOT NULL,
+      first_seen_at INTEGER NOT NULL,
+      last_seen_at INTEGER NOT NULL,
+      PRIMARY KEY (code, device_id)
+    )`
+  );
+  db.run(`CREATE INDEX IF NOT EXISTS idx_invite_legacy_code ON invite_legacy_exempt_devices(code)`);
 });
 
 function dbRun(sql, params = []) {
@@ -58,6 +96,15 @@ function dbRun(sql, params = []) {
     db.run(sql, params, function (err) {
       if (err) return reject(err);
       resolve(this);
+    });
+  });
+}
+
+function dbGet(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.get(sql, params, (err, row) => {
+      if (err) return reject(err);
+      resolve(row || null);
     });
   });
 }
@@ -359,6 +406,89 @@ function aggregateCommentLikeVotes(events, targetWordId = null) {
   return countsByWordId;
 }
 
+function normalizeInviteCode(value) {
+  return String(value || "").trim().toUpperCase();
+}
+
+function normalizeDeviceId(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function isValidInviteCode(code) {
+  return /^DUNES-[A-Z0-9]{4}$/.test(code);
+}
+
+function isValidDeviceId(deviceId) {
+  return /^[a-z0-9-]{16,128}$/.test(deviceId);
+}
+
+const DEFAULT_INVITE_MAX_DEVICES = 5;
+const INVITE_REVOKE_ON_LIMIT = String(process.env.INVITE_REVOKE_ON_LIMIT || "").toLowerCase() === "true";
+const INVITE_CODES_SEED_PATH = process.env.INVITE_CODES_SEED_PATH
+  ? process.env.INVITE_CODES_SEED_PATH
+  : path.join(rootDir, "admin", "assets", "data", "invite-codes.json");
+
+function readJsonFileWithBomSupport(filePath) {
+  const bytes = fs.readFileSync(filePath);
+  let text = "";
+
+  if (bytes.length >= 2 && bytes[0] === 0xFF && bytes[1] === 0xFE) {
+    text = bytes.toString("utf16le");
+  } else if (bytes.length >= 2 && bytes[0] === 0xFE && bytes[1] === 0xFF) {
+    const swapped = Buffer.allocUnsafe(bytes.length - 2);
+    for (let i = 2; i + 1 < bytes.length; i += 2) {
+      swapped[i - 2] = bytes[i + 1];
+      swapped[i - 1] = bytes[i];
+    }
+    text = swapped.toString("utf16le");
+  } else {
+    text = bytes.toString("utf8");
+  }
+
+  text = text.replace(/^\uFEFF/, "").trim();
+  return JSON.parse(text);
+}
+
+async function seedInviteCodesIfNeeded() {
+  try {
+    const row = await dbGet("SELECT COUNT(1) AS n FROM invite_codes");
+    if (row && Number(row.n) > 0) return;
+
+    if (!fs.existsSync(INVITE_CODES_SEED_PATH)) {
+      console.warn("Invite seed file not found:", INVITE_CODES_SEED_PATH);
+      return;
+    }
+
+    const payload = readJsonFileWithBomSupport(INVITE_CODES_SEED_PATH);
+    const codes = Array.isArray(payload && payload.codes) ? payload.codes : [];
+    const normalized = Array.from(new Set(codes.map(normalizeInviteCode).filter(isValidInviteCode)));
+    if (!normalized.length) {
+      console.warn("Invite seed file has no valid codes:", INVITE_CODES_SEED_PATH);
+      return;
+    }
+
+    const now = Date.now();
+    await dbRun("BEGIN IMMEDIATE TRANSACTION");
+    try {
+      for (const code of normalized) {
+        await dbRun(
+          `INSERT OR IGNORE INTO invite_codes
+            (code, max_devices, status, bound_count, created_at, updated_at)
+           VALUES (?, ?, 'active', 0, ?, ?)`,
+          [code, DEFAULT_INVITE_MAX_DEVICES, now, now]
+        );
+      }
+      await dbRun("COMMIT");
+      console.log(`Seeded invite codes: ${normalized.length}`);
+    } catch (err) {
+      await dbRun("ROLLBACK");
+      throw err;
+    }
+  } catch (err) {
+    console.error("Failed to seed invite codes", err);
+  }
+}
+
 app.post("/events", async (req, res) => {
   const e = req.body;
 
@@ -547,6 +677,182 @@ app.get("/api/votes/comment-likes", async (req, res) => {
   return res.json({ ok: true, countsByWordId });
 });
 
+app.post("/api/invite/verify", async (req, res) => {
+  const code = normalizeInviteCode(req.body && req.body.code);
+  const deviceId = normalizeDeviceId(req.body && req.body.device_id);
+  const legacyCached = Boolean(req.body && req.body.legacy_cached);
+
+  if (!isValidInviteCode(code)) {
+    return res.status(400).json({
+      ok: false,
+      allowed: false,
+      error: "invalid_code_format",
+      message: "邀请码格式错误"
+    });
+  }
+
+  if (!isValidDeviceId(deviceId)) {
+    return res.status(400).json({
+      ok: false,
+      allowed: false,
+      error: "invalid_device_id",
+      message: "设备标识无效"
+    });
+  }
+
+  try {
+    await dbRun("BEGIN IMMEDIATE TRANSACTION");
+    try {
+      const invite = await dbGet(
+        "SELECT code, max_devices, status, bound_count FROM invite_codes WHERE code = ?",
+        [code]
+      );
+
+      if (!invite || invite.status !== "active") {
+        await dbRun("ROLLBACK");
+        return res.status(403).json({
+          ok: false,
+          allowed: false,
+          error: "invite_invalid_or_inactive",
+          message: "邀请码无效或已失效"
+        });
+      }
+
+      const maxDevices = Math.max(1, Number(invite.max_devices) || DEFAULT_INVITE_MAX_DEVICES);
+      const boundCount = Math.max(0, Number(invite.bound_count) || 0);
+      const existing = await dbGet(
+        "SELECT code FROM invite_devices WHERE code = ? AND device_id = ?",
+        [code, deviceId]
+      );
+      const existingLegacyExempt = await dbGet(
+        "SELECT code FROM invite_legacy_exempt_devices WHERE code = ? AND device_id = ?",
+        [code, deviceId]
+      );
+
+      const now = Date.now();
+      if (existing) {
+        await dbRun(
+          "UPDATE invite_devices SET last_seen_at = ? WHERE code = ? AND device_id = ?",
+          [now, code, deviceId]
+        );
+        await dbRun(
+          "UPDATE invite_codes SET updated_at = ? WHERE code = ?",
+          [now, code]
+        );
+        await dbRun("COMMIT");
+        return res.json({
+          ok: true,
+          allowed: true,
+          code,
+          alreadyBound: true,
+          legacyExempt: false,
+          boundCount,
+          maxDevices,
+          remaining: Math.max(0, maxDevices - boundCount)
+        });
+      }
+
+      if (existingLegacyExempt) {
+        await dbRun(
+          "UPDATE invite_legacy_exempt_devices SET last_seen_at = ? WHERE code = ? AND device_id = ?",
+          [now, code, deviceId]
+        );
+        await dbRun(
+          "UPDATE invite_codes SET updated_at = ? WHERE code = ?",
+          [now, code]
+        );
+        await dbRun("COMMIT");
+        return res.json({
+          ok: true,
+          allowed: true,
+          code,
+          alreadyBound: false,
+          legacyExempt: true,
+          boundCount,
+          maxDevices,
+          remaining: Math.max(0, maxDevices - boundCount)
+        });
+      }
+
+      if (legacyCached) {
+        await dbRun(
+          "INSERT INTO invite_legacy_exempt_devices (code, device_id, first_seen_at, last_seen_at) VALUES (?, ?, ?, ?)",
+          [code, deviceId, now, now]
+        );
+        await dbRun(
+          "UPDATE invite_codes SET updated_at = ? WHERE code = ?",
+          [now, code]
+        );
+        await dbRun("COMMIT");
+        return res.json({
+          ok: true,
+          allowed: true,
+          code,
+          alreadyBound: false,
+          legacyExempt: true,
+          boundCount,
+          maxDevices,
+          remaining: Math.max(0, maxDevices - boundCount)
+        });
+      }
+
+      if (boundCount >= maxDevices) {
+        if (INVITE_REVOKE_ON_LIMIT) {
+          await dbRun(
+            "UPDATE invite_codes SET status = 'revoked', updated_at = ? WHERE code = ?",
+            [now, code]
+          );
+        } else {
+          await dbRun(
+            "UPDATE invite_codes SET updated_at = ? WHERE code = ?",
+            [now, code]
+          );
+        }
+        await dbRun("COMMIT");
+        return res.status(403).json({
+          ok: false,
+          allowed: false,
+          error: "device_limit_reached",
+          message: "该邀请码绑定设备数量已达上限"
+        });
+      }
+
+      await dbRun(
+        "INSERT INTO invite_devices (code, device_id, first_seen_at, last_seen_at) VALUES (?, ?, ?, ?)",
+        [code, deviceId, now, now]
+      );
+      await dbRun(
+        "UPDATE invite_codes SET bound_count = bound_count + 1, updated_at = ? WHERE code = ?",
+        [now, code]
+      );
+      await dbRun("COMMIT");
+
+      const nextBoundCount = boundCount + 1;
+      return res.json({
+        ok: true,
+        allowed: true,
+        code,
+        alreadyBound: false,
+        legacyExempt: false,
+        boundCount: nextBoundCount,
+        maxDevices,
+        remaining: Math.max(0, maxDevices - nextBoundCount)
+      });
+    } catch (err) {
+      await dbRun("ROLLBACK");
+      throw err;
+    }
+  } catch (err) {
+    console.error("Invite verify failed", err);
+    return res.status(500).json({
+      ok: false,
+      allowed: false,
+      error: "server_error",
+      message: "服务端校验失败"
+    });
+  }
+});
+
 
 
 
@@ -554,6 +860,8 @@ app.get("/api/votes/comment-likes", async (req, res) => {
 app.use("/api/content", require("./routes/content"));
 app.use("/content", express.static(path.join(process.cwd(), "public", "content")));
 app.use("/draft", express.static(path.join(process.cwd(), "content", "draft")));
+
+seedInviteCodesIfNeeded();
 
 
 const PORT = process.env.PORT || 3000;

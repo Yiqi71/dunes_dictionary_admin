@@ -1,14 +1,52 @@
-﻿const INVITE_OK_KEY = "dunes_invite_verified_v1";
+const INVITE_OK_KEY = "dunes_invite_verified_v1";
 const INVITE_CODE_KEY = "dunes_invite_code_v1";
-const CODES_URL = "assets/data/invite-codes.json";
+const DEVICE_ID_KEY = "dunes_invite_device_id_v1";
 const SUCCESS_HOLD_MS = 2000;
 const FADE_OUT_MS = 700;
 const ENTRY_READY_EVENT = "dunes:entry-ready";
 
 let entryReadyNotified = false;
 
+const API_BASE = (() => {
+    const injected = (typeof window !== "undefined" && window.DD_API_BASE) ? String(window.DD_API_BASE).trim() : "";
+    if (injected) return injected.replace(/\/+$/, "");
+    const host = (typeof location !== "undefined" && location.hostname) ? location.hostname : "";
+    if (host === "localhost" || host === "127.0.0.1") return "http://localhost:3000";
+    return "https://api.dunes-dictionary.com";
+})();
+
+function buildApiUrl(path) {
+    return `${API_BASE}${path}`;
+}
+
 function normalizeInviteCode(value) {
     return String(value || "").trim().toUpperCase();
+}
+
+function normalizeDeviceId(value) {
+    return String(value || "").trim().toLowerCase();
+}
+
+function createDeviceId() {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+        return window.crypto.randomUUID().toLowerCase();
+    }
+    const rand = () => Math.random().toString(36).slice(2, 10);
+    return `${Date.now().toString(36)}-${rand()}-${rand()}`.toLowerCase();
+}
+
+function getOrCreateDeviceId() {
+    try {
+        const stored = normalizeDeviceId(localStorage.getItem(DEVICE_ID_KEY));
+        if (/^[a-z0-9-]{16,128}$/.test(stored)) {
+            return stored;
+        }
+        const next = createDeviceId();
+        localStorage.setItem(DEVICE_ID_KEY, next);
+        return next;
+    } catch (_) {
+        return createDeviceId();
+    }
 }
 
 function setMessage(el, text, type) {
@@ -17,14 +55,34 @@ function setMessage(el, text, type) {
     el.className = type ? type : "";
 }
 
-async function loadCodes() {
-    const response = await fetch(CODES_URL, { cache: "no-store" });
-    if (!response.ok) throw new Error("failed_to_load_codes");
-    const payload = await response.json();
-    if (!payload || !Array.isArray(payload.codes)) {
-        throw new Error("invalid_code_payload");
+async function verifyInvite(code, deviceId, options = {}) {
+    const legacyCached = Boolean(options.legacyCached);
+    const response = await fetch(buildApiUrl("/api/invite/verify"), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            code,
+            device_id: deviceId,
+            legacy_cached: legacyCached
+        })
+    });
+
+    let payload = null;
+    try {
+        payload = await response.json();
+    } catch (_) {
+        payload = null;
     }
-    return new Set(payload.codes.map(normalizeInviteCode));
+
+    if (!response.ok || !payload || payload.ok !== true || payload.allowed !== true) {
+        const err = new Error((payload && payload.message) ? payload.message : "邀请码验证失败");
+        err.code = payload && payload.error ? payload.error : "verify_failed";
+        throw err;
+    }
+
+    return payload;
 }
 
 function notifyEntryReady(source) {
@@ -78,43 +136,66 @@ function initInviteGate() {
     }
 
     ensureSuccessTitle(gate);
+    const deviceId = getOrCreateDeviceId();
+    let unlocking = false;
+
+    const clearLocalVerify = () => {
+        try {
+            localStorage.removeItem(INVITE_OK_KEY);
+            localStorage.removeItem(INVITE_CODE_KEY);
+        } catch (_) {
+            // ignore
+        }
+    };
+
+    const verifyAndUnlock = async (code, options = {}) => {
+        const silent = Boolean(options.silent);
+        unlocking = true;
+        submit.disabled = true;
+        input.disabled = true;
+        if (!silent) {
+            setMessage(message, "正在验证邀请码...", "");
+        }
+
+        try {
+            await verifyInvite(code, deviceId, {
+                legacyCached: silent
+            });
+            try {
+                localStorage.setItem(INVITE_OK_KEY, "true");
+                localStorage.setItem(INVITE_CODE_KEY, code);
+            } catch (_) {
+                setMessage(message, "本地存储不可用，无法保存验证状态", "error");
+                unlocking = false;
+                submit.disabled = false;
+                input.disabled = false;
+                return;
+            }
+            showSuccessOverlay(gate, input, submit, message);
+        } catch (err) {
+            clearLocalVerify();
+            input.disabled = false;
+            submit.disabled = false;
+            unlocking = false;
+            const text = (err && err.message) ? err.message : "邀请码验证失败，请稍后重试";
+            setMessage(message, text, "error");
+            if (!silent) {
+                input.focus();
+            }
+        }
+    };
 
     try {
-        if (localStorage.getItem(INVITE_OK_KEY) === "true") {
-            hideGate(gate, "invite-cached");
+        const cachedOk = localStorage.getItem(INVITE_OK_KEY) === "true";
+        const cachedCode = normalizeInviteCode(localStorage.getItem(INVITE_CODE_KEY));
+        if (cachedOk && /^DUNES-[A-Z0-9]{4}$/.test(cachedCode)) {
+            input.value = cachedCode;
+            verifyAndUnlock(cachedCode, { silent: true });
             return;
         }
     } catch (_) {
         // ignore and continue with invite form
     }
-
-    let codeSet = null;
-    let loading = false;
-    let unlocking = false;
-
-    const ensureCodes = async () => {
-        if (codeSet) return codeSet;
-        if (loading) return null;
-
-        loading = true;
-        submit.disabled = true;
-        setMessage(message, "正在加载邀请码...", "");
-        try {
-            codeSet = await loadCodes();
-            setMessage(message, "", "");
-            return codeSet;
-        } catch (_) {
-            setMessage(message, "邀请码列表加载失败，请稍后刷新重试", "error");
-            return null;
-        } finally {
-            loading = false;
-            if (!unlocking) {
-                submit.disabled = false;
-            }
-        }
-    };
-
-    ensureCodes();
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -128,24 +209,7 @@ function initInviteGate() {
             return;
         }
 
-        const set = await ensureCodes();
-        if (!set) return;
-
-        if (!set.has(code)) {
-            setMessage(message, "邀请码无效", "error");
-            return;
-        }
-
-        try {
-            localStorage.setItem(INVITE_OK_KEY, "true");
-            localStorage.setItem(INVITE_CODE_KEY, code);
-        } catch (_) {
-            setMessage(message, "本地存储不可用，无法保存验证状态", "error");
-            return;
-        }
-
-        unlocking = true;
-        showSuccessOverlay(gate, input, submit, message);
+        verifyAndUnlock(code);
     });
 }
 
