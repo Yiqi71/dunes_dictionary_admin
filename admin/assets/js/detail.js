@@ -14,7 +14,8 @@ import {
 } from "./relationManager.js"
 
 import { applyStintFallbackIn } from "./fontFallback.js";
-
+import { getDisplayOriText } from "./oriDisplay.js";
+import { getOrCreateDeviceId } from "./device-id.js";
 import { logEvent, startWordView, endWordView } from "/analytics.js";
 // Floating panel UI state
 let isPanelVisible = false;
@@ -95,7 +96,6 @@ const ENTRY_USER_VOTES_KEY = "dd_entry_understanding_user_votes_v1";
 const ENTRY_VOTE_SYNC_QUEUE_KEY = "dd_entry_understanding_vote_sync_queue_v1";
 const ENTRY_VOTE_SYNC_INTERVAL_MS = 15000;
 const ENTRY_VOTE_STATS_CACHE_TTL_MS = 30000;
-const ENTRY_VOTE_DEVICE_ID_KEY = "dd_vote_device_id_v1";
 const COMMENT_LIKE_SYNC_QUEUE_KEY = "dd_comment_like_sync_queue_v1";
 const COMMENT_LIKE_SNAPSHOT_SESSION_KEY = "dd_comment_like_snapshot_sent_v1";
 const ENTRY_VOTE_LOCAL_KEYS = [
@@ -266,16 +266,7 @@ function getVoteSessionId() {
 }
 
 function getVoteDeviceId() {
-    try {
-        let id = localStorage.getItem(ENTRY_VOTE_DEVICE_ID_KEY);
-        if (!id) {
-            id = `d_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-            localStorage.setItem(ENTRY_VOTE_DEVICE_ID_KEY, id);
-        }
-        return id;
-    } catch (_) {
-        return "";
-    }
+    return getOrCreateDeviceId();
 }
 
 function isVoteSyncConnected() {
@@ -1231,12 +1222,13 @@ export function renderPanelSections() {
 
     // Upper section
     const title = entryPanel.querySelector('.panel-top');
+    const displayTermOri = getDisplayOriText(currentWord.termOri, lang, currentWord.term?.zh || "");
     title.innerHTML = `
     <p> ${String(currentWord.id).padStart(4, '0')} </p>
     <img src = "${resolveImagePath(currentWord.concept_image)}" alt = "concept image" loading="lazy" decoding="async"></img> 
     <div>
     <div class = "term-main"> ${currentWord.term?.[lang] || '未知单词'} </div>
-    <div class = "term-ori"> ${currentWord.termOri || '无'} </div></div>
+    ${displayTermOri ? `<div class = "term-ori"> ${displayTermOri} </div>` : ""}</div>
     `
 
     // Lower section
@@ -1380,11 +1372,17 @@ function renderCommentSection() {
 
     // Upper section
     const title = commentPanel.querySelector('.panel-top');
+    const echoHeading = lang === "en" ? "Echoes" : "回声";
+    const echoIntro = lang === "en"
+        ? "From personal narratives, field notes, to multidisciplinary dialogues, these echoes translate abstract entries into concrete lived experiences."
+        : "基于词条撰写的个人视角、田野观察与对话，将抽象概念引入具体的生命经验";
     title.innerHTML = `
-    <p> ${String(currentWord.id).padStart(4, '0')} </p>
-    <div>
-    <div class = "term-main"> ${currentWord.term?.[lang] || '未知单词'} </div>
-    <div class = "term-ori"> ${currentWord.termOri || '无'} </div></div>
+    <div class="comment-top-id">${String(currentWord.id).padStart(4, '0')}</div>
+    <div class="comment-top-center">
+        <div class="term-main">${currentWord.term?.[lang] || (lang === "en" ? "Unknown term" : "未知词条")}</div>
+        <div class="comment-top-echoes">${echoHeading}</div>
+        <p class="comment-top-intro">${echoIntro}</p>
+    </div>
     `
 
     const contentScroll = commentPanel.querySelector('.panel-bottom');
@@ -1458,7 +1456,7 @@ function renderCommentSection() {
         : (lang === "en" ? "No contributor information yet." : "暂无贡献者信息");
     contributorsSec.innerHTML = `<p>${contributorTextInComment}</p>`;
 
-    const contactPrimaryTextInComment = lang === "en" ? "If you have any historical anecdotes or extended reflections regarding this entry, or if you have experienced a direct connection between this theoretical concept and daily life, we welcome you to submit your notes to the following email address: " : "如果您知道关于这个词条的历史趣闻，延展思考或者能感受到过这个理论概念与生活的直接联系，欢迎将你的笔记投稿至以下邮箱。";
+    const contactPrimaryTextInComment = lang === "en" ? "If you have any historical anecdotes or extended reflections regarding this entry, or if you have experienced a direct connection between this theoretical concept and daily life, we welcome you to submit your echoes to the following email address: " : "如果您知道关于这个词条的历史趣闻，延展思考或者能感受到过这个理论概念与生活的直接联系，欢迎将你的回声投稿至以下邮箱。";
     const contactSecondaryTextInComment = "hello@dunesworkshop.org";
     if (contactSec) {
         contactSec.innerHTML = `
@@ -2206,3 +2204,5 @@ document.addEventListener('about-panel:show', () => {
         hideFloatingPanel();
     }
 });
+
+

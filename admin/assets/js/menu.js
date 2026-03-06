@@ -24,6 +24,7 @@ import {
     getIndicatorPercent
 } from "./zoom.js";
 import { logEvent, startWordView, endWordView } from "/analytics.js";
+import { getDisplayOriText } from "./oriDisplay.js";
 
 // �?menu.js 文件顶部�?import 部分添加
 import { showAboutPanel } from "./aboutPanel.js";
@@ -489,15 +490,18 @@ function displaySearchResults(words) {
         return;
     }
     
-    resultsContainer.innerHTML = words.map(word => `
+    resultsContainer.innerHTML = words.map(word => {
+        const displayOri = getDisplayOriText(getLangText(word.termOri, lang), lang, getLangText(word.term, "zh"));
+        return `
         <div class="search-result-item" data-word-id="${word.id}">
             <div>
                 <div class="search-result-term">${getLangText(word.term, lang) || 'Unknown Term'}</div>
-                ${getLangText(word.termOri, lang) ? `<div class="search-result-original">${getLangText(word.termOri, lang)}</div>` : ''}
+                ${displayOri ? `<div class="search-result-original">${displayOri}</div>` : ''}
                 ${getLangText(word.brief_definition, lang) ? `<div class="search-result-definition">${getLangText(word.brief_definition, lang).substring(0, 100)}${getLangText(word.brief_definition, lang).length > 100 ? '...' : ''}</div>` : ''}
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
     
     // Add click handlers to result items
     resultsContainer.querySelectorAll('.search-result-item').forEach(item => {

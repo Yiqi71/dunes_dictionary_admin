@@ -163,6 +163,8 @@ body[data-scale="5"] .word-node .save-indicator {
     top: calc(13px * var(--word-node-scale-factor));
     right: calc(15px * var(--word-node-scale-factor));
     transform: none;
+    z-index: 6;
+    touch-action: manipulation;
 }
 
 body[data-scale="5"] .word-node.is-saved .save-indicator {

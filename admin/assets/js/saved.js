@@ -188,15 +188,37 @@ export function bindSaveIndicatorInteraction(node) {
     const indicator = node?.querySelector(".save-indicator");
     if (!indicator) return;
 
+    let lastToggleTs = 0;
+    const TOGGLE_DEDUPE_MS = 350;
+    const tryToggle = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!isScaleFiveActive()) return;
+        const now = Date.now();
+        if (now - lastToggleTs < TOGGLE_DEDUPE_MS) return;
+        lastToggleTs = now;
+        toggleSavedStateForNode(node);
+    };
+
     indicator.addEventListener("mousedown", (e) => {
         e.stopPropagation();
     });
 
-    indicator.addEventListener("click", (e) => {
-        e.preventDefault();
+    indicator.addEventListener("pointerdown", (e) => {
         e.stopPropagation();
-        if (!isScaleFiveActive()) return;
-        toggleSavedStateForNode(node);
+    });
+
+    indicator.addEventListener("pointerup", tryToggle);
+    indicator.addEventListener("touchend", tryToggle, { passive: false });
+
+    indicator.addEventListener("click", (e) => {
+        const now = Date.now();
+        if (now - lastToggleTs < TOGGLE_DEDUPE_MS) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+        tryToggle(e);
     });
 }
 

@@ -1,6 +1,7 @@
+import { getOrCreateDeviceId, isValidDeviceId } from "./device-id.js";
+
 const INVITE_OK_KEY = "dunes_invite_verified_v1";
 const INVITE_CODE_KEY = "dunes_invite_code_v1";
-const DEVICE_ID_KEY = "dunes_invite_device_id_v1";
 const SUCCESS_HOLD_MS = 2000;
 const FADE_OUT_MS = 700;
 const ENTRY_READY_EVENT = "dunes:entry-ready";
@@ -15,38 +16,12 @@ const API_BASE = (() => {
     return "https://api.dunes-dictionary.com";
 })();
 
-function buildApiUrl(path) {
-    return `${API_BASE}${path}`;
-}
-
 function normalizeInviteCode(value) {
     return String(value || "").trim().toUpperCase();
 }
 
-function normalizeDeviceId(value) {
-    return String(value || "").trim().toLowerCase();
-}
-
-function createDeviceId() {
-    if (window.crypto && typeof window.crypto.randomUUID === "function") {
-        return window.crypto.randomUUID().toLowerCase();
-    }
-    const rand = () => Math.random().toString(36).slice(2, 10);
-    return `${Date.now().toString(36)}-${rand()}-${rand()}`.toLowerCase();
-}
-
-function getOrCreateDeviceId() {
-    try {
-        const stored = normalizeDeviceId(localStorage.getItem(DEVICE_ID_KEY));
-        if (/^[a-z0-9-]{16,128}$/.test(stored)) {
-            return stored;
-        }
-        const next = createDeviceId();
-        localStorage.setItem(DEVICE_ID_KEY, next);
-        return next;
-    } catch (_) {
-        return createDeviceId();
-    }
+function isValidInviteCode(value) {
+    return /^DUNES-[A-Z0-9]{4}$/.test(normalizeInviteCode(value));
 }
 
 function setMessage(el, text, type) {
@@ -57,7 +32,7 @@ function setMessage(el, text, type) {
 
 async function verifyInvite(code, deviceId, options = {}) {
     const legacyCached = Boolean(options.legacyCached);
-    const response = await fetch(buildApiUrl("/api/invite/verify"), {
+    const response = await fetch(`${API_BASE}/api/invite/verify`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -136,8 +111,6 @@ function initInviteGate() {
     }
 
     ensureSuccessTitle(gate);
-    const deviceId = getOrCreateDeviceId();
-    let unlocking = false;
 
     const clearLocalVerify = () => {
         try {
@@ -148,6 +121,14 @@ function initInviteGate() {
         }
     };
 
+    const deviceId = getOrCreateDeviceId();
+    if (!isValidDeviceId(deviceId)) {
+        clearLocalVerify();
+        setMessage(message, "设备标识异常，请刷新后重试", "error");
+        return;
+    }
+
+    let unlocking = false;
     const verifyAndUnlock = async (code, options = {}) => {
         const silent = Boolean(options.silent);
         unlocking = true;
@@ -161,16 +142,8 @@ function initInviteGate() {
             await verifyInvite(code, deviceId, {
                 legacyCached: silent
             });
-            try {
-                localStorage.setItem(INVITE_OK_KEY, "true");
-                localStorage.setItem(INVITE_CODE_KEY, code);
-            } catch (_) {
-                setMessage(message, "本地存储不可用，无法保存验证状态", "error");
-                unlocking = false;
-                submit.disabled = false;
-                input.disabled = false;
-                return;
-            }
+            localStorage.setItem(INVITE_OK_KEY, "true");
+            localStorage.setItem(INVITE_CODE_KEY, code);
             showSuccessOverlay(gate, input, submit, message);
         } catch (err) {
             clearLocalVerify();
@@ -188,11 +161,12 @@ function initInviteGate() {
     try {
         const cachedOk = localStorage.getItem(INVITE_OK_KEY) === "true";
         const cachedCode = normalizeInviteCode(localStorage.getItem(INVITE_CODE_KEY));
-        if (cachedOk && /^DUNES-[A-Z0-9]{4}$/.test(cachedCode)) {
+        if (cachedOk && isValidInviteCode(cachedCode)) {
             input.value = cachedCode;
             verifyAndUnlock(cachedCode, { silent: true });
             return;
         }
+        clearLocalVerify();
     } catch (_) {
         // ignore and continue with invite form
     }
@@ -204,7 +178,7 @@ function initInviteGate() {
         const code = normalizeInviteCode(input.value);
         input.value = code;
 
-        if (!/^DUNES-[A-Z0-9]{4}$/.test(code)) {
+        if (!isValidInviteCode(code)) {
             setMessage(message, "格式不正确，请输入 DUNES-XXXX", "error");
             return;
         }

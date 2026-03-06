@@ -130,9 +130,9 @@ function renderAboutContent() {
         aboutBottom.innerHTML = `
         <section>
             <div>
-                <p class="about-intro">Dunes Dictionary is a living index of concepts and terminologies, comprising keyword explanations and notes from diverse contributors. We view "words" as "incisions" into the vast terrain. By offering clear, accessible explanations, these words become entry points that open up a constellation of ideas and further inquiries. Whether a personal perspective, a story, a field visit, a dialogue, a correspondence, or a translation, these notes—stemming from "words"—provide an openness and depth that dismantles barriers and reveals the rich interconnectedness of different fields.
+                <p class="about-intro">Dunes Dictionary is a living index of concepts and terminologies, comprising keyword explanations and echoes from diverse contributors. We view "words" as "incisions" into the vast terrain. By offering clear, accessible explanations, these words become entry points that open up a constellation of ideas and further inquiries. Whether a personal perspective, a story, a field visit, a dialogue, a correspondence, or a translation, these echoes—stemming from "words"—provide an openness and depth that dismantles barriers and reveals the rich interconnectedness of different fields.
 <br><br>In an era where jargon and buzzwords run rampant, Dunes Dictionary does not aim to establish authority; rather, it is an invitation to examine how words can help us navigate contemporary life. Started in 2019 as a series of social media posts to introduce architectural jargon, the project has expanded with contributions from young scholars across the humanities and sciences, evolving into this website launched in 2026. A biannual publication on themed topics is also part of the Dunes Dictionary project.
-<br><br>We invite you to be part of this growing repository of concepts, definitions, and critical notes. If you are interested in participating in our workshops and/or contributing your notes, please contact us.
+<br><br>We invite you to be part of this growing repository of concepts, definitions, and critical echoes. If you are interested in participating in our workshops and/or contributing your echoes, please contact us.
 <br><br>Precise and lucid, intersecting and illuminating, focused and diverse. Dunes Dictionary strives to provide just enough structure to inspire, and enough openness to wander.
                 </p>
             </div>
@@ -193,10 +193,10 @@ function renderAboutContent() {
         aboutBottom.innerHTML = `
         <section>
             <div>
-                <p class="about-intro">沙丘词典编写词条的释义，并收录多元贡献者们对它们的笔记。这是一个跨学科的、持续生长的思想索引。
-<br><br>我们将“词条”视为剖开广袤学术疆域的“切口”。通过提供明白晓畅的阐释，词条开启一片由思想构成的星丛，并激发更深远的追问。无论是个人视角、故事、田野考察、对话、书信还是翻译，这些围绕“词条”的“笔记”提供了一种开放性与深度，消融学术的藩篱，并展现不同学科之间丰厚的内在联结。
+                <p class="about-intro">沙丘词典编写词条的释义，并收录多元贡献者们对它们的回声。这是一个跨学科的、持续生长的思想索引。
+<br><br>我们将“词条”视为剖开广袤学术疆域的“切口”。通过提供明白晓畅的阐释，词条开启一片由思想构成的星丛，并激发更深远的追问。无论是个人视角、故事、田野考察、对话、书信还是翻译，这些围绕“词条”的“回声”提供了一种开放性与深度，消融学术的藩篱，并展现不同学科之间丰厚的内在联结。
 <br><br>在行业黑话、缩写词、网络用语横行的当下，沙丘词典并不想要树立权威；而是为了发起一场关于“如何解释并定义当下”的思考运动。最早在2019年，沙丘研究所在微信公众平台发布了“沙丘词典”这个推送栏目，其初衷是解释建筑术语。此后，通过不同学科的青年学者的贡献，项目得以不断扩展，演变为这个于 2026 年上线的网站。同时，半年刊出版物也是项目的一部分。
-<br><br>若您有兴趣参与我们的共创工作坊或贡献你的笔记，请联系我们。我们诚邀你加入这个不断生长的档案库。
+<br><br>若您有兴趣参与我们的共创工作坊或贡献你的回声，请联系我们。我们诚邀你加入这个不断生长的档案库。
 <br><br>直白而精准，交织而启发，聚焦而多元。我们希望赋予词典恰如其分的结构，能够提供让思想漫游、灵感涌现的开放空间。
                 </p>
             </div>

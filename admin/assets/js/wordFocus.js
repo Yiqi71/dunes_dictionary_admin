@@ -5,6 +5,7 @@ import { updateScaleForNodes } from "./zoom.js";
 import { updateRelations } from "./relationManager.js";
 import { renderPanelSections , showFloatingPanel, scrollToTop, resetFloatingPanelState } from "./detail.js";
 import { moveIndicator } from "./menu.js";
+import { getDisplayOriText } from "./oriDisplay.js";
 
 
 let focusedWord = null;
@@ -659,12 +660,13 @@ export function updateWordDetails(options = {}) {
         const proposer = word.proposers[0];
         const localizedName = proposer.name?.[lang] || '';
         const sourceName = proposer.name?.ori || '';
+        const zhName = proposer.name?.zh || '';
         const displayName = (localizedName || sourceName || '未知').trim();
         const proposerImagePath = hasUsableImageSource(proposer.image)
             ? resolveImagePath(proposer.image)
             : "";
         proposerPrimary.textContent = displayName;
-        proposerOri.textContent = sourceName;
+        proposerOri.textContent = getDisplayOriText(sourceName, lang, zhName);
         if (proposerImagePath) {
             proposerImg.src = proposerImagePath;
             proposerImg.alt = localizedName || sourceName || '';
@@ -690,7 +692,7 @@ export function updateWordDetails(options = {}) {
     if(normalizeLang(state.currentLang)=="en"){
         commentTitle.textContent = 'Echoes';
     }else if(normalizeLang(state.currentLang)=="zh"){
-        commentTitle.textContent = '笔记';
+        commentTitle.textContent = '回声';
     }
     if (word.commentAbs) {
         const comment = word.commentAbs;
@@ -699,7 +701,7 @@ export function updateWordDetails(options = {}) {
         const authorBlock = author ? ` <p>${author}</p>` : "";
         commentContent.innerHTML = `<div class="comment-abs-content">${content}</div>${authorBlock}`;
     } else {
-        commentContent.innerHTML = `<h3>暂无笔记</h3> <p></p>`;
+        commentContent.innerHTML = `<h3>暂无回声</h3> <p></p>`;
     }
 
     return Promise.all([

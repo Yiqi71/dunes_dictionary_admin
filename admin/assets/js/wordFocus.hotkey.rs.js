@@ -54,8 +54,9 @@ function isPlaceholderContent(rawText) {
         normalized === "noguideyet" ||
         normalized === "nocommentaryyet." ||
         normalized === "nocommentaryyet" ||
-        normalized === "nonotesyet." ||
-        normalized === "nonotesyet"
+        normalized === "暂无回声" ||
+        normalized === "noechoesyet." ||
+        normalized === "noechoesyet"
     );
 }
 

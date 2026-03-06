@@ -11,6 +11,7 @@ import {
     updateWordFocus
 } from "./wordFocus.js";
 import { applyStintFallbackToElement } from "./fontFallback.js";
+import { getDisplayOriText } from "./oriDisplay.js";
 import {
     readSavedWordIdSet,
     applySavedStateToNode,
@@ -226,7 +227,7 @@ function updateTabLabels() {
         if (tabName === "entry") {
             span.textContent = currentLang === "en" ? "ENTRY" : "\u8bcd\u6761";
         } else if (tabName === "comment") {
-            span.textContent = currentLang === "en" ? "NOTES" : "\u7b14\u8bb0";
+            span.textContent = currentLang === "en" ? "ECHOES" : "回声";
         } else if (tabName === "about") {
             span.textContent = currentLang === "en" ? "ABOUT" : "\u5173\u4e8e";
         } else if (tabName === "devlog") {
@@ -258,6 +259,22 @@ langBtn.addEventListener("click", () => {
 
         const termMain = node.querySelector('.term-main');
         if(termMain) termMain.textContent = word.term?.[lang] || '未知单词';
+
+        const displayOri = getDisplayOriText(word.termOri, lang, word.term?.zh || "");
+        const termsWrap = node.querySelector('.terms');
+        if (!termsWrap) return;
+        let termOri = termsWrap.querySelector('.term-ori');
+        if (displayOri) {
+            if (!termOri) {
+                termOri = document.createElement('div');
+                termOri.className = 'term-ori';
+                termsWrap.appendChild(termOri);
+            }
+            termOri.textContent = displayOri;
+            applyStintFallbackToElement(termOri);
+        } else if (termOri) {
+            termOri.remove();
+        }
     });
 
     updateTabLabels();
@@ -530,7 +547,7 @@ function renderWordUniverse(wordsData) {
             <div class="detail-title">${String(word.id).padStart(4, '0')}</div>
             <div class="terms">
                 <div class="term-main">${word.term?.[lang] || '未知单词'}</div>
-                <div class="term-ori">${word.termOri || ''}</div>
+                ${getDisplayOriText(word.termOri, lang, word.term?.zh || "") ? `<div class="term-ori">${getDisplayOriText(word.termOri, lang, word.term?.zh || "")}</div>` : ""}
             </div>
             `;
             applyStintFallbackToElement(node.querySelector('.term-ori'));
@@ -610,7 +627,7 @@ function renderWordUniverse(wordsData) {
             <div class="detail-title">${String(word.id).padStart(4, '0')}</div>
             <div class="terms">
                 <div class="term-main">${word.term?.[lang] || '\u672a\u77e5\u5355\u8bcd'}</div>
-                <div class="term-ori">${word.termOri || ''}</div>
+                ${getDisplayOriText(word.termOri, lang, word.term?.zh || "") ? `<div class="term-ori">${getDisplayOriText(word.termOri, lang, word.term?.zh || "")}</div>` : ""}
             </div>
             `;
             applyStintFallbackToElement(node.querySelector('.term-ori'));
@@ -825,4 +842,5 @@ window.addEventListener('beforeunload', () => {
     endWordView('unload');
     endSession('unload');
 });
+
 
