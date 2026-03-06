@@ -40,3 +40,4 @@ npm install
 npm start
 
 http://localhost:3000/admin/
+http://localhost:3000/index.html

@@ -3,7 +3,7 @@ import { state } from "./state.js";
 import { updateWordNodeTransforms, handleZoomWheel } from "./uni-canvas.js";
 import { country_bounding_boxes } from "./countryBoundingBoxes.js";
 import { resolveCountryCode } from "./countryMapping.js";
-import { renderPanelSections } from "./detail.js";
+import { renderPanelSections, showFloatingPanel } from "./detail.js";
 import {updateRelations} from "./relationManager.js";
 import {
     zoomToWord,
@@ -568,7 +568,9 @@ function renderWordUniverse(wordsData) {
             node.addEventListener('click', async (e) => {
                 e.stopPropagation();
                 if (!isDragging) {
-                    if (node.classList.contains('focused')) {} else {
+                    if (node.classList.contains('focused')) {
+                        showFloatingPanel();
+                    } else {
                         endWordView("switch");
                         startWordView(node.id);
                         await zoomToWord(node.id, state.scaleThreshold, { animated: true, duration: 920 });
@@ -645,7 +647,9 @@ function renderWordUniverse(wordsData) {
             node.addEventListener('click', async (e) => {
                 e.stopPropagation();
                 if (!isDragging) {
-                    if (node.classList.contains('focused')) {} else {
+                    if (node.classList.contains('focused')) {
+                        showFloatingPanel();
+                    } else {
                         endWordView("switch");
                         startWordView(node.id);
                         await zoomToWord(node.id, state.scaleThreshold, { animated: true, duration: 920 });

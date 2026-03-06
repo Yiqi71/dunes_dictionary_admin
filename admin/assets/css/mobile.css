@@ -22,6 +22,23 @@
 
   #proposer .proposer-text .proposer-primary {
     font-size: 32.469px !important;
+    line-height: 30px !important;
+  }
+
+  #proposer .proposer-text {
+    gap: 2px !important;
+  }
+
+  #proposer .proposer-text .proposer-primary,
+  #proposer .proposer-text .proposer-ori {
+    margin: 0 !important;
+  }
+
+  html:lang(zh) #proposer .proposer-text .proposer-primary {
+    font-size: 30px !important;
+    line-height: 30px !important;
+    text-align: center !important;
+    max-width: 80% !important;
   }
 
   #image {
@@ -223,7 +240,7 @@
   #year-menu {
     position: fixed;
     left: 50%;
-    bottom: 60px;
+    bottom: calc(60px + var(--app-bottom-inset));
     transform: translateX(-50%);
     width: min(
       366px,
@@ -315,7 +332,7 @@
     right: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
+    height: var(--app-vh) !important;
     border-radius: 0 !important;
     z-index: 12020 !important;
   }
@@ -352,6 +369,57 @@
     margin-left: 20px !important;
     margin-right: 20px !important;
     box-sizing: border-box !important;
+  }
+
+  #floating-panel .panel-bottom .diagram-caption,
+  #about-panel .panel-bottom .diagram-caption {
+    color: #FAF4E5;
+    text-align: justify;
+    font-family: "ChillDINGothic";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.75px;
+  }
+
+  #floating-panel #section-example .diagram-stage,
+  #about-panel #section-example .diagram-stage {
+    --diagram-arrow-slot-mobile: 56px;
+    padding: 24px var(--diagram-arrow-slot-mobile) 12px var(--diagram-arrow-slot-mobile) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    align-items: flex-end !important;
+  }
+
+  #floating-panel .panel-comment .note-images-carousel .diagram-stage,
+  #about-panel .panel-comment .note-images-carousel .diagram-stage {
+    --diagram-arrow-slot-mobile: 56px;
+    padding: 26px var(--diagram-arrow-slot-mobile) 0 var(--diagram-arrow-slot-mobile) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    align-items: flex-end !important;
+  }
+
+  #floating-panel .panel-comment .note-body img,
+  #about-panel .panel-comment .note-body img {
+    padding: 24px 0 0 0 !important;
+  }
+
+  #floating-panel #section-example .diagram-image,
+  #about-panel #section-example .diagram-image,
+  #floating-panel .panel-comment .note-images-carousel .diagram-image,
+  #about-panel .panel-comment .note-images-carousel .diagram-image {
+    height: auto !important;
+    max-height: 300px !important;
+    object-position: center bottom !important;
+    padding: 0 !important;
+  }
+
+  #floating-panel .panel-bottom .diagram-caption,
+  #about-panel .panel-bottom .diagram-caption {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 
   #floating-close-btn {

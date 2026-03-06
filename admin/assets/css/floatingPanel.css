@@ -18,20 +18,20 @@
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh;
+    height: var(--app-vh);
     width: 37vw;
     border-radius: 8px 0 0 8px;
     background: transparent; /* 改为透明，因为子panel有自己的背景 */
 
     display: flex;
     flex-direction: row;
-    /* 让slide在右�?*/
+    /* 让slide在右�?*/
     z-index: 1000;
     transition: transform 0.45s ease-in-out, width 0.3s ease-in-out;
     transform: translateX(100%);
     /* overflow: hidden; */
     /* 防止溢出 */
-    /* fixed元素可以作为absolute子元素的定位上下�?*/
+    /* fixed元素可以作为absolute子元素的定位上下�?*/
 }
 
 #floating-panel.hidden,
@@ -97,14 +97,14 @@
     pointer-events: none;
 }
 
-/* 主内容区�?- 包含top和bottom，可整体滚动 */
+/* 主内容区�?- 包含top和bottom，可整体滚动 */
 .panel-main {
     flex: 1;
-    height: 100vh;
+    height: var(--app-vh);
     overflow-y: scroll;
     /* padding-right: 12px; */
 
-    /* 隐藏原生滚动�?*/
+    /* 隐藏原生滚动�?*/
     scrollbar-width: none;
     /* Firefox */
     -ms-overflow-style: none;
@@ -119,7 +119,7 @@
 /* 上半部分 */
 .panel-top {
     min-height: 200px;
-    /* 改为min-height，让它可以根据内容调�?*/
+    /* 改为min-height，让它可以根据内容调�?*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -129,7 +129,7 @@
     padding-bottom: 70px;
 }
 
-/* 笔记面板的顶部边框颜�?*/
+/* 笔记面板的顶部边框颜�?*/
 /* .panel-comment .panel-top {
     border-bottom: 1px solid #43403B;
 } */
@@ -164,7 +164,7 @@
     /* img到div之间50px */
 }
 
-/* �?*/
+/* �?*/
 .panel-top p {
     color: #FAF4E5;
     text-align: center;
@@ -183,7 +183,7 @@
     line-height: 40px;
 }
 
-/* 笔记面板的文字颜�?*/
+/* 笔记面板的文字颜�?*/
 .panel-comment .panel-top p {
     color: #43403B;
 }
@@ -261,7 +261,7 @@
     line-height: 25.928px;
 }
 
-/* 下半部分：其他标签内�?*/
+/* 下半部分：其他标签内�?*/
 .panel-bottom {
     display: flex;
     flex-direction: column;
@@ -391,7 +391,7 @@
     box-shadow: none;
 }
 
-/* 展开状�?*/
+/* 展开状�?*/
 .panel-comment .panel-bottom section.note-expanded {
     max-height: none;
 }
@@ -481,12 +481,12 @@ html:lang(en) #floating-panel .panel-comment {
     padding: 0;
 }
 
-/* 折叠状�?hover 时向上位移，露出更多内容（不影响其他元素布局�?*/
+/* 折叠状�?hover 时向上位移，露出更多内容（不影响其他元素布局�?*/
 .panel-comment.active .panel-bottom section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors):hover {
     transform: translateY(-20px);
 }
 
-/* 排除contributors和editors section，它们不需要折�?*/
+/* 排除contributors和editors section，它们不需要折�?*/
 .panel-comment .panel-bottom section#section-contributors,
 .panel-comment .panel-bottom section#section-contact,
 .panel-comment .panel-bottom section#section-editors {
@@ -528,6 +528,16 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
     line-height: 26px;
     letter-spacing: 0.42px;
 }
+.panel-comment .panel-bottom .note-body .diagram-caption {
+    color: #FAF4E5;
+    text-align: justify;
+    font-family: "ChillDINGothic";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.75px;
+}
 
 .panel-bottom section * {
     padding: 0 0 20px 0;
@@ -568,17 +578,20 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
 }
 
 #section-example .diagram-stage {
+    --diagram-arrow-slot: 52px;
     position: relative;
     width: 100%;
+    box-sizing: border-box;
     height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px 12px 20px 12px;
+    padding: 24px var(--diagram-arrow-slot) 10px var(--diagram-arrow-slot);
 }
 
 #section-example .diagram-image {
     width: 100%;
+    max-width: 100%;
     height: 300px;
     object-fit: contain;
     display: block;
@@ -624,7 +637,7 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
 }
 
 #section-example .diagram-arrow-left {
-    left: 12px;
+    left: 0;
 }
 
 #section-example .diagram-arrow-right {
@@ -642,17 +655,20 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
 }
 
 .panel-comment .note-images-carousel .diagram-stage {
+    --diagram-arrow-slot: 52px;
     position: relative;
     width: 100%;
+    box-sizing: border-box;
     height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 26px 12px 20px 12px;
+    padding: 26px var(--diagram-arrow-slot) 10px var(--diagram-arrow-slot);
 }
 
 .panel-comment .note-images-carousel .diagram-image {
     width: 100% !important;
+    max-width: 100% !important;
     height: 300px !important;
     object-fit: contain !important;
     padding: 0 !important;
@@ -683,7 +699,7 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
 }
 
 .panel-comment .note-images-carousel .diagram-arrow-left {
-    left: 12px;
+    left: 0;
 }
 
 .panel-comment .note-images-carousel .diagram-arrow-right {
@@ -704,7 +720,7 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
 
 /* Note images in comment panel */
 .panel-comment .note-body img {
-    padding: 24px 0 36px 0;
+    padding: 24px 0 18px 0;
     width: 406px !important;
     height: 270px !important;
     object-fit: cover !important;
@@ -876,14 +892,14 @@ html:lang(en) .panel-comment .panel-bottom .note-body * {
     border-top: #FAF4E5 solid 1px;
 }
 
-/* 笔记面板的边框颜�?*/
+/* 笔记面板的边框颜�?*/
 .panel-comment #section-proposers,
 .panel-comment #section-contributors {
     border-top: #43403B solid 1px;
 }
 
 
-/* �?*/
+/* �?*/
 .panel-bottom p {
     color: #FAF4E5;
     font-family: "ChillDINGothic Condensed";
@@ -903,7 +919,7 @@ line-height: 26px; /* 123.81% */
 letter-spacing: 0.42px;
 }
 
-/* 笔记面板的底部文字颜�?*/
+/* 笔记面板的底部文字颜�?*/
 .panel-comment .panel-bottom p {
     color: #43403B;
 }
@@ -1025,13 +1041,13 @@ line-height: 40px;
 .panel-bottom .diagram-caption {
     color: #FAF4E5;
     text-align: justify;
-    font-family: "ChillDINGothic", "ChillDIN";
-    font-size: 20px;
+    font-family: "ChillDINGothic";
+    font-size: 15px !important;
     font-style: normal;
-    font-weight: 325;
+    font-weight: 400;
     line-height: 20px;
-    /* 125% */
-    letter-spacing: 0.8px;
+    /* 133.333% */
+    letter-spacing: 0.75px;
 }
 
 .panel-bottom .diagram-source {
@@ -1047,7 +1063,7 @@ line-height: 40px;
 
 /* 笔记面板的diagram-caption颜色 */
 .panel-comment .panel-bottom .diagram-caption {
-    color: #43403B;
+    color: #FAF4E5;
 }
 
 .panel-comment .panel-bottom .diagram-source {
@@ -1216,7 +1232,7 @@ line-height: 40px;
     padding-top: 160px;
 }
 
-/* 展开状态下的图片调�?*/
+/* 展开状态下的图片调�?*/
 #floating-panel.expanded .panel-top img,
 #about-panel.expanded .panel-top img {
     width: 60vw; /* 比默认的541px更大 */
@@ -1233,7 +1249,7 @@ line-height: 40px;
     object-fit: cover !important;
 }
 
-/* 展开状态下笔记面板的颜�?*/
+/* 展开状态下笔记面板的颜�?*/
 #floating-panel.expanded .panel-comment .panel-bottom p,
 #about-panel.expanded .panel-comment .panel-bottom p {
     color: #43403B;
@@ -1252,7 +1268,7 @@ line-height: 40px;
 }
 #floating-panel.expanded .panel-comment .panel-bottom .diagram-caption,
 #about-panel.expanded .panel-comment .panel-bottom .diagram-caption {
-    color: #43403B;
+    color: #FAF4E5;
 }
 #floating-panel.expanded .panel-comment .panel-bottom .proposer-name,
 #about-panel.expanded .panel-comment .panel-bottom .proposer-name {
@@ -1269,7 +1285,7 @@ line-height: 40px;
     left: 20px; /* 保持在左上角 */
 }
 
-/* 隐藏状态保持不�?*/
+/* 隐藏状态保持不�?*/
 #floating-panel.hidden,
 #about-panel.hidden {
     opacity: 0;
@@ -1316,7 +1332,7 @@ line-height: 40px;
     line-height: 26px;
     /* 144.444% */
 
-    /* �?SVG path 裁剪 */
+    /* �?SVG path 裁剪 */
     -webkit-clip-path: path("M4 25.6222C4 18.6955 8.20257 12.4615 14.6236 9.86337L39 0V106L15.1311 97.22C8.44371 94.7601 4 88.3907 4 81.2652V25.6222Z");
     clip-path: path("M4 25.6222C4 18.6955 8.20257 12.4615 14.6236 9.86337L39 0V106L15.1311 97.22C8.44371 94.7601 4 88.3907 4 81.2652V25.6222Z");
 
@@ -1369,7 +1385,7 @@ line-height: 40px;
     display: flex;
     justify-content: center;
     flex-shrink: 0;
-    /* 防止被压�?*/
+    /* 防止被压�?*/
 }
 
 /* 未激活panel的滚动条隐藏 */
@@ -1379,7 +1395,7 @@ line-height: 40px;
     pointer-events: none;
 }
 
-/* 笔记panel完全隐藏滚动�?*/
+/* 笔记panel完全隐藏滚动�?*/
 .panel-comment .panel-slide {
     display: none;
 }

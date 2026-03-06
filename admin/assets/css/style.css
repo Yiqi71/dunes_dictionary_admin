@@ -4,6 +4,11 @@ body {
     /* 禁止双击缩放 */
 }
 
+:root {
+    --app-vh: 100vh;
+    --app-bottom-inset: env(safe-area-inset-bottom, 0px);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +17,7 @@ body {
 
 body {
     overflow: hidden;
-    height: 100vh;
+    height: var(--app-vh);
     background: #1E1C16;
     color: #43403B;
     font-family: "ChillDIN", "Barlow Condensed", "ChillDINGothic";
@@ -138,7 +143,7 @@ h1.English {
 #universe-view {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: var(--app-vh);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,7 +167,7 @@ h1.English {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: var(--app-vh);
 }
 
 #universe-canvas {
@@ -192,7 +197,7 @@ h1.English {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: var(--app-vh);
     background: rgba(0, 0, 0, 0.1);
     pointer-events: none;
     z-index: 20;
@@ -463,6 +468,7 @@ html:lang(en) .word-node .terms .term-main {
     width: 260px;
     min-height: 160px;
     background-color: #E6D9D0;
+    --proposer-name-color: #E6D9D0;
 }
 
 #proposer .detail-title {
@@ -497,7 +503,7 @@ html:lang(en) .word-node .terms .term-main {
 }
 
 #proposer .proposer-text .proposer-primary {
-    color:#E6D9D0;
+    color: var(--proposer-name-color);
     margin: 0;
     font-family: ChillDINGothic Condensed;
     font-size: 24px;
@@ -507,7 +513,7 @@ html:lang(en) .word-node .terms .term-main {
     letter-spacing: 1.2px;
 }
 html:lang(en) #proposer .proposer-text .proposer-primary {
-    color: #E6D9D0;
+    color: var(--proposer-name-color);
     text-align: center;
     font-family: "Stint Ultra Condensed";
     font-size: 39.48px;
@@ -519,7 +525,7 @@ html:lang(en) #proposer .proposer-text .proposer-primary {
 }
 
 #proposer .proposer-ori {
-    color: #E6D9D0;
+    color: var(--proposer-name-color);
     text-align: center;
     font-family: "Stint Ultra Condensed";
     font-size: 21.933px;
@@ -578,7 +584,7 @@ html:lang(en) #proposer .proposer-ori {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: var(--app-vh);
     background-color: #625136;
     opacity: 0;
     transition: opacity 0.8s;

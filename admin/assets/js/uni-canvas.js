@@ -9,6 +9,18 @@ const canvas = document.getElementById("universe-canvas");
 const universeView = document.getElementById("universe-view");
 const ctx = canvas.getContext("2d");
 
+function updateViewportCssVars() {
+    const root = document.documentElement;
+    const viewport = getViewportSize();
+    root.style.setProperty("--app-vh", `${viewport.height}px`);
+
+    const vv = window.visualViewport;
+    const browserBottomInset = vv
+        ? Math.max(0, window.innerHeight - (vv.height + vv.offsetTop))
+        : 0;
+    root.style.setProperty("--app-bottom-inset", `${browserBottomInset}px`);
+}
+
 function getViewportSize() {
     const vv = window.visualViewport;
     if (vv) {
@@ -27,6 +39,7 @@ function getViewportSize() {
 function setupCanvas() {
     const viewport = getViewportSize();
     const dpr = window.devicePixelRatio || 1;
+    updateViewportCssVars();
     canvas.style.width = viewport.width + "px";
     canvas.style.height = viewport.height + "px";
     canvas.width = viewport.width * dpr;
@@ -58,7 +71,7 @@ export function clampOffsetX(offsetX) {
 }
 
 export function getMobileFocusedNodeAnchor() {
-    const ratioX = 126 / 440;
+    const ratioX = 100 / 440;
     const ratioY = 460 / 956;
     const vv = window.visualViewport;
     if (vv) {
@@ -150,7 +163,6 @@ export function updateWordNodeTransforms() {
     const totalWidth = state.baseWidth * scale * 24;
     const totalHeight = state.baseHeight * scale;
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const mobileAnchor = getMobileFocusedNodeAnchor();
 
     const nodes = document.querySelectorAll(".word-node");
 
@@ -168,6 +180,7 @@ export function updateWordNodeTransforms() {
         // On mobile, keep the focused node pinned to the requested viewport spot.
         const isFocusedNode = node.parentElement?.id === "focused-node-layer";
         if (isMobile && isFocusedNode) {
+            const mobileAnchor = getMobileFocusedNodeAnchor();
             node.style.transform = `translate(${mobileAnchor.x}px, ${mobileAnchor.y}px)`;
             return;
         }
@@ -452,6 +465,7 @@ function initialize() {
 window.addEventListener("resize", initialize);
 if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", initialize);
+    window.visualViewport.addEventListener("scroll", initialize);
 }
 initialize();
 

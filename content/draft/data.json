@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-02-18T20:37:25.713Z",
-    "source": "c1abc8b412a1dc45931baf137fbce14f",
+    "generated_at": "2026-03-05T08:04:30.989Z",
+    "source": "353011e997972a71286313c815d43669",
     "home_node_id": 13
   },
   "words": [
@@ -957,6 +957,10 @@
         {
           "id": 37,
           "relation": "概念相关"
+        },
+        {
+          "id": 41,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -1404,6 +1408,10 @@
         {
           "id": 40,
           "relation": "概念相关"
+        },
+        {
+          "id": 51,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -1546,6 +1554,10 @@
         },
         {
           "id": 39,
+          "relation": "概念相关"
+        },
+        {
+          "id": 41,
           "relation": "概念相关"
         }
       ],
@@ -1700,7 +1712,7 @@
         {
           "content": {
             "zh": "对于本雅明而言，灵韵的消逝带着一种辩证的希望。“机械复制时代”打破了精英对艺术的垄断，让艺术走向了政治。\n桑塔格则更为悲观，在《论摄影》中，武装了照相机的窥视者（Voyeur）拒绝尊重这种距离。相机“捕捉”并“占有”了被摄主体，将私人领域公开化、将遥远之物拉近。一旦你拍摄了某物，你就已经消费了它，使其成为收藏品的一部分，而不再是一个鲜活的、有生命力的实体。\n摄影技术将美国变成一个消费的景观，桑塔格的“窥视者”（或者说摄影师）是更极致的消费主义世界中的“游荡者”（Flâneur）。对于本雅明而言，游荡者仍然在人群中寻找独特的体验，带有“距离感”的灵韵，虽然它已经变得难以寻觅。然而另一方面，这种漫游的行为本身也已经商业化了，游荡者自身的“光晕”也随之消逝。\n最近重温一些电影和摄影集时，我发现影像总能赋予那些极其普通的城市空间一种“美感”。无论是Stephen Shore镜头下的美国郊区，贾樟柯电影里的中国乡村，还是Wolfgang Tillmans记录的日常生活，都呈现出一种超越了建筑空间本身的独特质感。它们似乎成功地构建了一种与“现实”的“距离感”，从而使图像具备了一种“乡愁”。这种效果在其他媒介中似乎难以复刻，或许影像媒介本身就更擅长制造一种易于被“消费”的“美学”？",
-            "en": "For Benjamin, the decay of aura carries a spark of dialectical hope. The \"age of mechanical reproduction\" shattered the elite monopoly on art, steering it toward the realm of politics.\nSontag, however, was far more pessimistic. In #On Photography#, armed with camera, the voyeur refuses to respect such distance. The camera \"captures\" and \"possesses\" the subject, making the private public and bringing the remote within reach. Once you photograph something, you have consumed it, turning it into a mere collectible rather than a living, breathing entity.\nPhotographic technology has transformed America into a landscape of consumption; Sontag’s \"voyeur\" (or photographer) is a more extreme version of the #flâneur# in a consumerist world. For Benjamin, the #flâneur# still seeks unique experiences within the crowd—an aura of \"distance,\" however elusive it has become. Yet, on the other hand, the act of wandering itself has become commodified, and the #flâneur#’s own \"halo\" has vanished along with it.\nRevisiting some films and photography books, I’ve noticed how images consistently imbue mundane urban spaces with \"aesthetic beauty.\" Whether it’s the American suburbs through the lens of Stephen Shore, the Chinese countryside in #Jia Zhangke#'s films, or the everyday life documented by Wolfgang Tillmans, they all present a unique texture that transcends the physical space. They seem to successfully construct a \"sense of distance\" from \"reality,\" thereby endowing the images with a form of \"nostalgia.\" This effect seems difficult to replicate in other media. Perhaps the medium of the image is inherently better at manufacturing an \"aesthetic\" that is easily \"consumed\"?"
+            "en": "For Walter Benjamin, the decay of aura carries a spark of dialectical hope. The \"age of mechanical reproduction\" shattered the elite monopoly on art, steering it toward the realm of politics.\nSontag, however, was far more pessimistic. In #On Photography#, armed with camera, the voyeur refuses to respect such distance. The camera \"captures\" and \"possesses\" the subject, making the private public and bringing the remote within reach. Once you photograph something, you have consumed it, turning it into a mere collectible rather than a living, breathing entity.\nPhotographic technology has transformed America into a landscape of consumption; Sontag’s \"voyeur\" (or photographer) is a more extreme version of the #flâneur# in a consumerist world. For Benjamin, the #flâneur# still seeks unique experiences within the crowd—an aura of \"distance,\" however elusive it has become. Yet, on the other hand, the act of wandering itself has become commodified, and the #flâneur#’s own \"halo\" has vanished along with it.\nRevisiting some films and photography books, I’ve noticed how images consistently imbue mundane urban spaces with \"aesthetic beauty.\" Whether it’s the American suburbs through the lens of Stephen Shore, the Chinese countryside in #Jia Zhangke#'s films, or the everyday life documented by Wolfgang Tillmans, they all present a unique texture that transcends the physical space. They seem to successfully construct a \"sense of distance\" from \"reality,\" thereby endowing the images with a form of \"nostalgia.\" This effect seems difficult to replicate in other media. Perhaps the medium of the image is inherently better at manufacturing an \"aesthetic\" that is easily \"consumed\"?"
           },
           "role": {
             "zh": "贡献者",
@@ -1719,7 +1731,7 @@
             {
               "src": "images/灵韵_note1_1.jpg",
               "caption": {
-                "zh": "Stephen Shore #Uncommon Places: The Complete Works#, Thames & Hudson, 2014",
+                "zh": "Stephen Shore,  #Uncommon Places: The Complete Works#, Thames & Hudson, 2014",
                 "en": "Stephen Shore #Uncommon Places: The Complete Works#, Thames & Hudson, 2014"
               }
             }
@@ -2354,6 +2366,10 @@
         {
           "id": 18,
           "relation": "概念相关"
+        },
+        {
+          "id": 50,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -2490,6 +2506,10 @@
         },
         {
           "id": 42,
+          "relation": "概念相关"
+        },
+        {
+          "id": 52,
           "relation": "概念相关"
         }
       ],
@@ -3126,6 +3146,10 @@
         {
           "id": 41,
           "relation": "概念相关"
+        },
+        {
+          "id": 51,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -3580,8 +3604,8 @@
       "contributors": [
         {
           "name": {
-            "zh": "飞樾 雅伦",
-            "en": "Dunes Workshop"
+            "zh": "飞樾、雅伦",
+            "en": "Feiyue, Yalun"
           },
           "role": {
             "zh": "沙丘研究所创始人",
@@ -3623,6 +3647,10 @@
         },
         {
           "id": 29,
+          "relation": "概念相关"
+        },
+        {
+          "id": 50,
           "relation": "概念相关"
         }
       ],
@@ -4479,6 +4507,18 @@
         },
         {
           "id": 15,
+          "relation": "概念相关"
+        },
+        {
+          "id": 41,
+          "relation": "概念相关"
+        },
+        {
+          "id": 50,
+          "relation": "概念相关"
+        },
+        {
+          "id": 52,
           "relation": "概念相关"
         }
       ],
@@ -6227,19 +6267,19 @@
       "id": 41,
       "term": {
         "zh": "活人感",
-        "en": "term"
+        "en": "Huorengan (sense of life)"
       },
-      "termOri": "termOri",
+      "termOri": "活人感",
       "concept_image": "images/活人感_aigc.jpg",
       "sm_title": {
-        "zh": "沙丘词典｜不要永远正确的机械运行，要「活人感」",
+        "zh": "社媒标题",
         "en": "social title"
       },
       "proposers": [
         {
           "name": {
             "zh": "中文互联网网民群体",
-            "en": "proposer",
+            "en": "Chinese Internet Users",
             "ori": "proposerOri"
           },
           "year": {
@@ -6254,31 +6294,31 @@
         }
       ],
       "source": {
-        "zh": "2025年12月，中文刊物《咬文嚼字》发布本年度十大流行语，“活人感”一词赫然在列。",
-        "en": "source"
+        "zh": "2025年12月，中文刊物《咬文嚼字》发布本年度十大流行语，“活人感”一词在列。",
+        "en": "In December 2025, the Chinese linguistic periodical #Yaowen Jiaozi# released its list of the Top Ten Buzzwords of the Year, and the term #huorengan# was officially included."
       },
       "source_image": "No source cover yet.",
       "related_works": [
         {
-          "zh": "暂无相关著作",
-          "en": "No related works yet."
+          "zh": "菲利普·奥兰德 (Philip Auslander)，《现场性：中介化文化中的表演 (Liveness: Performance in a Mediatized Culture)》，伦敦: 劳特利奇出版社 (Routledge), 1999。中国大陆已出版，南京大学出版社",
+          "en": "Philip Auslander, Liveness: Performance in a Mediatized Culture, London: Routledge, 1999."
         }
       ],
       "domain": {
         "zh": "媒介与传播 Media & Communications 人类学 Anthropology",
         "en": "媒介与传播 Media & Communications 人类学 Anthropology"
       },
-      "proposing_country": "中国",
+      "proposing_country": "CN",
       "proposing_time": "2021",
       "contributors": [
         {
           "name": {
             "zh": "飞樾",
-            "en": ""
+            "en": "Feiyue"
           },
           "role": {
             "zh": "沙丘研究所创始人",
-            "en": ""
+            "en": "Founder of Dunes Workshop"
           }
         }
       ],
@@ -6286,50 +6326,64 @@
       "editors": [
         {
           "zh": "孟汀 编辑，参考人民日报《入选年度十大流行语，“活人感”何以打动人心》文章（2025年12月9日）",
-          "en": ""
+          "en": "Mengting, editor, refers to the People's Daily article \"Selected as one of the top ten buzzwords of the year, how \"feeling alive\" touches people's hearts\" (December 9, 2025)"
         }
       ],
       "edit_date": "No edit date yet.",
       "brief_definition": {
-        "zh": "富有生命力和情感、甚至带有出其不意的搞笑、偏颇和瑕疵的真实生命感",
-        "en": "brief"
+        "zh": "富有情感，甚至带有出其不意的玩笑、偏颇和瑕疵的真实生命感",
+        "en": "A sense of authentic vitality—one that feels profoundly human, imbued with raw emotion, and even the unexpected flickers of wit, bias, and imperfection."
       },
       "extended_definition": {
         "zh": [
-          "社交媒体上现在不乏这样的账号：头像精致、专业，内容全是精心修过的风景大片、高端餐厅打卡、金句频出的励志语录，更新频率稳定得像设定好的程序。它“完美”，得像是橱窗里的塑料模特。这时带有“活人感”的账号反而让你更有好感：头像是随手拍的生活照，偶尔发一些背景杂乱、没有后期处理的自拍，吐槽生活中的烦恼，也分享小确幸，甚至文案里还有一些错别字。",
-          "“活人感”是中文互联网在长期经历“去人化”环境后自发涌现的审美偏好。它最初的火种可以追溯到2018年前后的“饭圈”文化，粉丝开始厌倦明星工作室那套滴水不漏、仅作为广告位存在的社交账号，转而怀念早期互联网，特别是2010年代初的微博中那些会“深夜发疯”、会直抒胸臆、会展露脆弱的真实艺人。随后，这一诉求在豆瓣、小红书等社区发酵，演变为一种对“样板间”账号的反抗。",
-          "“活人感”虽然是高度绑定在中文互联网的词汇，但可以和菲利普·奥斯兰德（Philip Auslander）所讨论的“现场性”（Liveness）平行讨论，甚至可以被看作后者在数字时代的变体。它不是生理意义上的活着，而是一种通过不可预测性、情感流露以及对日常琐事的共情所构建的互动体验。当网络内容生产从早期的 UGC（用户生成内容），到PGC（专业生成内容） 占据主流，再到AIGC（人工智能生成的内容）和精准算法大行其道，那些带有“人味儿”的小缺憾、即时性的情绪波动、甚至是偶尔的笨拙，反而成为了证明个体存在、建立心理连接的核心资产，也成为了网友寻找“活人同类”的某种暗号。"
+          "社交媒体上现在不乏这样的账号：头像精致、专业，内容全是精心修过的风景大片、高端餐厅打卡、金句频出的励志语录，更新频率稳定得像设定好的程序。它完美，得像是橱窗里的塑料模特。这时带有“活人感”的账号反而让你更有好感：头像是随手拍的生活照，偶尔发一些背景杂乱、没有后期处理的自拍，吐槽生活中的烦恼，也分享小确幸，甚至文案里还有一些错别字。",
+          "“活人感”是中文互联网在长期经历网红流水线化、偶像账号模板化的环境后，自发涌现的审美偏好。它最初可以追溯到2018年，甚至更早。“饭圈”文化中，粉丝开始厌倦明星工作室那套滴水不漏、仅作为广告位存在的社交账号，转而怀念早期互联网，特别是2010年代初的微博中那些会“深夜发疯”、直抒胸臆、展露脆弱的真实艺人。随后，这一诉求在豆瓣、小红书等社区发酵，越来越多的人开始讨论和使用这个词。",
+          "“活人感”虽然是高度绑定在中文互联网的词汇，但可以和菲利普·奥斯兰德（Philip Auslander）所讨论的“现场性”（Liveness）平行讨论，甚至可以被看作后者在数字时代的变体。它不是生理意义上的活着，而是一种通过不可预测性、情感流露以及对日常琐事的共情所构建的互动体验。网络内容生产从早期的 UGC（用户生成内容），到PGC（专业生成内容） 占据主流，再到AIGC（人工智能生成的内容）和精准算法大行其道，那些带有“人味儿”的小缺憾、即时性的情绪波动、甚至是偶尔的笨拙，反而成为了证明个体存在、建立心理连接的重要通道。"
         ],
         "en": [
-          "extended"
+          "Social media today is teeming with a certain kind of account: the profile picture is polished and professional, and the feed is a relentless stream of meticulously edited landscapes, check-ins at high-end restaurants, and inspirational quotes brimming with aphorisms. Their update frequency is as consistent as a pre-programmed script. It is perfect—as perfect as a plastic mannequin in a shop window. In this landscape, accounts with a sense of #huorengan# (living-person feel) actually earn more of your favor. Their profile pictures are candid snapshots of daily life; they occasionally post unedited selfies with cluttered backgrounds, vent about life’s frustrations, share small joys, and even leave a few typos in their captions.",
+          "#Huorengan# is an aesthetic preference that emerged spontaneously within the Chinese internet after a long period of industrialized influencer content and templated idol accounts. It can be traced back to 2018 or even earlier. Within #fanquan# (fandom) culture, fans grew weary of the air-tight social media presences managed by celebrity studios—accounts that existed solely as advertising slots. Instead, they began to long for the early internet, particularly the Weibo of the early 2010s, where authentic artists would engage in #shenye fafeng# (late-night venting), speak their minds, and reveal their vulnerabilities. Subsequently, this demand fermented in communities like Douban and Xiaohongshu, leading more people to discuss and adopt the term.",
+          "While #huorengan# is deeply tethered to the Chinese internet, it can be discussed in parallel with the concept of liveness explored by Philip Auslander; it could even be seen as a digital-age variant of the latter. It is not \"living\" in a physiological sense, but rather an interactive experience constructed through unpredictability, emotional outpourings, and empathy for everyday minutiae. As online content production shifted from the early days of UGC (User-Generated Content) to the dominance of PGC (Professionally-Generated Content), and now to the prevalence of AIGC (AI-Generated Content) and precision algorithms, those \"human-flavored\" minor flaws, spontaneous emotional fluctuations, and even occasional clumsiness have become vital channels for proving individual existence and establishing psychological connections."
         ]
       },
       "example_sentence": {
-        "zh": "比起西装革履的辩论我还是喜欢看微博发疯文学，就是更有活人感。",
-        "en": "example"
+        "zh": "比起西装革履的辩论，我还是喜欢看更有“活人感”的微博发疯文学。",
+        "en": "I still like reading Weibo's crazy posts more than the professional debates - it's just more liveliness."
       },
       "diagrams": [],
       "related_terms": [
         {
           "id": 20,
           "relation": "概念相关"
+        },
+        {
+          "id": 6,
+          "relation": "概念相关"
+        },
+        {
+          "id": 10,
+          "relation": "概念相关"
+        },
+        {
+          "id": 29,
+          "relation": "概念相关"
         }
       ],
       "commentAbs": {
         "content": {
           "zh": "活人感不仅是对AI时代的逃逸，也更是对资本主义时代的劳工问题的批判。",
-          "en": "abstract"
+          "en": "liveliness is not merely an escape from the AI era, but also a critique of labor conditions under capitalism."
         },
         "author": {
           "zh": "孟汀",
-          "en": "TODO"
+          "en": "Mengting"
         }
       },
       "comments": [
         {
           "content": {
             "zh": "“活人感”指的是在言语和行为上呈现出真实自然、有血有肉、带有情绪甚至是偏颇的“人味”。它强调反对完美、反对完全的正确，袒露情绪化、生活化的烟火气，对抗被精心包装的“人设”，是一种对回归真实生活状态和真实人际交往的渴求。\n\n这个词有几层比较主要的打动人心的原因，虽然没有与之对应的学术词汇，但有与之可以形成对应的一些平行概念。首先，它是对“异化”的回应和反击，身处快节奏的现代社会，面对各种各样的生活和工作压力，人们容易陷入倦怠，“活人感”正是针对这种低能量状态，肯定生命本能的流露，期望重拾活力。\n\n其次，AI时代，语言变得更加机械、人的情感体验也很多时候被机器所衡量、调和（mediated)，AI应用渗透到文字、图像、音视频创作领域，但却时常因为表达得太完美而令人感到不真实、无法产生情感上的连接，促使人们寻找“人味儿”、对抗“人机感”。STS学者Kalindi Vora与Neda Atanasoski提出Surrogate Humanity一词，在“赛博格”的概念基础上，讨论了当下机器大规模渗透人类劳动和思维、社交模式的状态。\n\n人们对人工智能及数字交互中“活人感”的渴求，实则充满残酷的讽刺。当我们训练AI模仿人类的温暖、共情与即兴时，屏幕后真实的人类却早在AI大规模铺排之前就被迫像机器般运作——标准化、可预测、少休息。或许，随着AI的使用更加无处不在，真正属于“人”的生命力和创造力将得到新的关注，而活人感不仅是对AI时代的逃逸，也更是对资本主义时代的劳工问题的批判。",
-            "en": ""
+            "en": "#Huorengan# refers to the manifestation of a \"human flavor\"—being authentic, natural, flesh-and-blood, and possessing emotions or even biases in one’s speech and behavior. It emphasizes a rejection of perfection and absolute correctness, instead baring the \"fire and brimstone\" of emotional, everyday life. By resisting meticulously packaged \"personae,\" it represents a yearning to return to authentic living states and genuine interpersonal connections.\nThere are several key layers to why this term resonates so deeply. While it lacks a direct academic equivalent, several parallel concepts can be drawn. First, it is a response and a counter-strike against \"alienation.\" In a fast-paced modern society, faced with various life and work pressures, people easily fall into burnout. #Huorengan# targets this low-energy state, affirming the outpouring of life instincts and the desire to regain vitality.\nSecondly, in the AI era, language has become more mechanical, and human emotional experiences are often mediated by machines. As AI applications permeate text, image, audio, and video creation, they often feel \"unreal\" due to being too perfect, failing to establish emotional connections. This prompts people to seek out \"human flavor\" as a way to combat #renjigan# (bot-like feel). STS (Science, Technology, and Society) scholars Kalindi Vora and Neda Atanasoski proposed the term #Surrogate Humanity#, building on the concept of the \"cyborg\" to discuss the current state where machines extensively permeate human labor, thought, and social patterns.\nThere is a cruel irony in the craving for #huorengan# within artificial intelligence and digital interaction. While we train AI to mimic human warmth, empathy, and improvisation, the real humans behind the screens were forced to operate like machines—standardized, predictable, and tireless—long before the mass deployment of AI. Perhaps, as the use of AI becomes even more ubiquitous, the vitality and creativity truly belonging to \"humans\" will receive renewed focus. #Huorengan# is not just an escape from the AI era; it is a critique of labor issues in the age of capitalism."
           },
           "role": {
             "zh": "贡献者",
@@ -6348,7 +6402,7 @@
             {
               "src": "images/活人感_note1_1.jpg",
               "caption": {
-                "zh": "surrogate humanity 代理人类 （一本相关STS书）的封面",
+                "zh": "#Surrogate Humanity# 《代理人类》 ，一本相关STS书的封面。",
                 "en": ""
               }
             }
@@ -6357,7 +6411,7 @@
         {
           "content": {
             "zh": "曾经，“亚健康”是主流概念框架。这个术语暗示个体只需通过维护（休息、补充维生素、锻炼）就能恢复生产力。如今该词已被视为过时，新词汇“活人微死”表明损害已不仅限于生理层面，更涉及存在主义层面。过去我们认为身体坏了是“生病”，可以用医学解决。但现在的词汇（如“微死”、“班味”、“赛博供养”）反映出一种集体的病理学共识：问题不在于我身体的细胞，而在于我所处的结构。",
-            "en": ""
+            "en": "Once, #Sub-health# was the dominant conceptual framework. This term implied that individuals could restore their productivity simply through maintenance—rest, vitamins, and exercise. Today, that term is seen as obsolete. The newer phrase #huoren weisi# (the living-slightly-dead) suggests that the damage is no longer confined to the physiological level; it has reached the existential. In the past, we believed that if the body broke down, it was a \"sickness\" to be solved by medicine. However, current vocabulary (such as #weisi#, #banwei#, and #saibo gongyang#) reflects a collective pathological consensus: the problem lies not in the cells of my body, but in the structure of my environment."
           },
           "role": {
             "zh": "贡献者",
@@ -6368,15 +6422,15 @@
             "en": ""
           },
           "background": {
-            "zh": "医学人文、STS",
-            "en": ""
+            "zh": "人类学",
+            "en": "Medical humanities, Science and technology studies"
           },
           "date": "2026/02/07"
         },
         {
           "content": {
             "zh": "随着社交媒体不断开发“注意力经济”，人们在互联网上都更加注重“人设”，并以维护“人设”获取收入，但“活人感”恰恰跳出种种精致“人设”，展露出真实的自我，反而备受流量的偏好。当AI可以模仿人类写出得体的邮件，当社交媒体算法要求我们磨平棱角以换取流量，我们正逐渐沦为自己生活中的“代理人”。“活人感”是对这种代理状态的反叛。它拒绝成为一个精准的零件，而是选择做一个“多余”的人、“错误”的人——拥有那些无法被算法模拟的、偶尔的失控、旺盛的表达欲以及真实的共情，不是为了完成任务而存在。",
-            "en": ""
+            "en": "As social media continues to exploit the \"attention economy,\" users have become increasingly fixated on their #renshe# (personae), maintaining these curated identities as a primary source of income. Yet, #huorengan# bypasses these polished facades to reveal the authentic self, ironically becoming a magnet for the very traffic it seems to disregard. When AI can mimic a human to draft a perfectly poised email, and when social media algorithms demand we smooth over our rough edges in exchange for reach, we are gradually reduced to being \"proxies\" of our own lives. #Huorengan# is an act of rebellion against this state of proxyhood. It is a refusal to be a precision-engineered component; instead, it chooses to be the \"superfluous\" person, the \"flawed\" person—possessing that occasional loss of control, that exuberant urge to express, and that genuine empathy that no algorithm can simulate. It exists not to complete a task, but simply to exist."
           },
           "role": {
             "zh": "贡献者",
@@ -6387,8 +6441,27 @@
             "en": ""
           },
           "background": {
-            "zh": "媒体研究",
-            "en": ""
+            "zh": "人类学",
+            "en": "Media studies"
+          },
+          "date": "2026/02/07"
+        },
+        {
+          "content": {
+            "zh": "我跟好友淇森聊到准备做“活人感”这个词条，他的反应是：还有比这荒唐的词吗？我也乐了，并且同意，人是活的，这不是不言自明的？还用证明吗，还用描述吗，还用专门发明一个词出来吗？这个词还火了？要知道，我们并不是用“活人感”来描述电视机或者什么物体的，我们甚至也不用它描述机器人——这个词专门就是用来描述人的。活人。这自然说明了一个问题，很多活着的人并没有活人感。“活人微死”，这个词也火。这种流行文化现象必然折射出一些深层次的社会心理。\n\n我首先想到的另一个词是“存在感”——套用同一个逻辑，这个词当然也荒唐了：存在的东西自然存在，还犯得着发明一个词吗？这个词当然比“活人感”年长，我们也对其习以为常了。我犹记得它先是日语词，查了一下确实是这样。也就是说，“存在感（Sonzai-kan）”是个比较晚近的和制汉语。它大概在 20 世纪中出现，最初比较多用在体育赛事和文艺表演评论上。《广辞苑》对它的定义是“确切地感觉到人或事物在那里的感觉”（人や物が、そこに確かにあると感じられる感じ）。这个定义和现在中文互联网中的“存在感”基本是一样的意思，但还是有用法和意味上面微妙的不同。\n\n日语中，它好像更接近于一种“主体论的资产”，强大的气场，由内而外散发的气息，让人无法忽视的气质，自然而然达成的影响力。它也更多是以肯定方式出现的，亦不局限于描述人。也就是说，一个演员可以很有存在感，一个精美的雕塑可以有存在感，一座古桥可以有存在感。而这个词流行到中国，大概是在 2000 年代末、2010 年代初（如有更严谨的数据，望指正），是从社交媒体上流行起来的。这是我的猜测：它在中文互联网上传播开，可能因为彼时刚开始流行起来“关注量”、“访客量”、“粉丝数”这样的社媒社交资产。网络名人们、大 V 们开始涌现，那么我们需要一个用以描述的词。\n\n一些语义重心的迁移似乎也发生了，中文里，它更多以否定形式出现——“没存在感”，需要“刷存在感”。它好像成了小透明的社交债务。而倒回来，“没存在感”在日语中其实更常用“影子很薄”（影が薄い）来形容。在英语中，它更接近于“无名小卒”（nobody）。而原本日语中的那个作为肯定方式使用的“存在感”，在英文中可能也不适于翻译成 sense of existence，这太哲学化了。Presence 稍好，但也有些不太一样。He's got no presence，也有“他没有到场”、“他老是不来”这层意思。我觉得比较合适的可能是 charisma（感召力），或者近些年比较流行的 aura（魅力氛围）或者 main character energy（主角气场）。或者也可以说 She carries her own gravity. 她自带一圈引力（好像周围的人都会自动被吸过去）。\n\n我个人感觉“活人感”可以被当做“存在感”的小辈子。并且这里好像有一条若隐若现的脉络——“活人感”是否是“存在感”的进阶版要求？一个场景：2010 年代，饭圈文化，粉丝要求自家偶像的经纪团队给点力，热度不要掉下去了，多刷刷他的“存在感”。于是团队开始专业化地运作这个账号，成建制、有模板地发微博。过程中，越来越多明星偶像因为管不住一张嘴塌了房，团队更坚定了，别让自家偶像随意开麦了。那么，粉丝量、阅读量倒是涨上去了，但是感觉不到“人味儿”了。这时候，粉丝要求不再只是“存在感”了，而更要“活人感”。\n\n很有趣的是，日语社交媒体上也有一个词“生身感 (Namami-kan)”。它描述的是本该虚幻的、“营业”的、包装的东西，突然有了鲜活的人类气息——比如 AI 的虚拟主播突然说了一句“好烦今天下雨，袜子都湿了。”当然，“生身感”也应用在偶像明星身上。只是我觉得有必要再次指出中文“活人感”的特殊性——基本就是用来描述活人的。\n\n另一个有趣的观察是，“活人感”在 2025 年被《咬文嚼字》评为十大流行语之一，而《韦氏词典》将 \"Authenticity\"（本真性）选为年度词汇。当然，这后面动因的相同与不同也很值得玩味。在我的理解里面，英文公共领域对于 authenticity 的追求也是一种对假消息、谎言、伪造新闻泛滥的反应。而对 AI 内容蔓延的反对，对流水线网红盛行的厌倦，对职场的面具生活感到的疲惫，这些是全球共享的情绪。\n\n“活人感”在英文世界中的对应词呢？Authenticity 肯定算是一个。我觉得同作为比较口语的用词，real（真实的）和 raw（生的，不加修饰的）也比较相近。而如果说中文互联网上，“活人感”的反义词是“人机感”，那么在英文社媒上近些年也有一个流行说法比较适配：NPC。也就是 Non-Player Character，游戏里面的背景路人，玩家每次找 ta 都重复着一样的话。\n\n最后，没什么关系也有关系的：我希望沙丘词典的笔记部分总是很有“活人感”的。",
+            "en": "I was chatting with my good friend Qisen about preparing the entry for #huorengan#, and his reaction was: \"Is there a word more absurd than this?\" I laughed too, and I have to agree. Humans are alive—isn't that self-evident? Does it really need proving, describing, or a specially invented term? And yet, the word went viral. Keep in mind, we don't use #huorengan# to describe a television or some inanimate object; we don't even use it for robots—it is used exclusively to describe people. Living people. This naturally points to a problem: many living people lack a \"living-person feel.\" There is another viral term, #huoren weisi# (the living-slightly-dead), that echoes this. This pop culture phenomenon inevitably reflects some deep-seated social psychology.\nThe first other term that came to mind was #zaizhaigan# (sense of presence). Following the same logic, this word is equally absurd: things that exist naturally \"exist,\" so why bother inventing a word for it? This term is certainly older than #huorengan#, and we've grown accustomed to it. I recalled it being a Japanese loanword, and upon checking, that is indeed the case. That is to say, #zaizhaigan# (#Sonzai-kan#) is a relatively recent #Wasei-kango# (Japanese-coined Chinese word). it appeared around the mid-20th century, initially used mostly in sports commentary and literary performance reviews. The #Kojien# defines it as \"the feeling that a person or object is surely there\" (#hito ya mono ga, soko ni tashika ni aru to kanjirareru kanji#). This definition is basically identical to the current meaning of #zaizhaigan# on the Chinese internet, yet there are subtle differences in usage and connotation.\nIn Japanese, it seems closer to an ontological asset—a powerful #qichang# (field of energy), an aura emanating from within, a quality that makes it impossible to ignore someone, a naturally achieved influence. It also mostly appears in the affirmative and isn't limited to describing humans. That is, an actor can have a \"sense of presence,\" but so can an exquisite sculpture or an ancient bridge. The term likely migrated to China in the late 2000s or early 2010s (I welcome more rigorous data if available), gaining popularity via social media. My guess is that it spread across the Chinese internet because that was when social assets like \"followers,\" \"visitors,\" and \"fan counts\" first became trendy. As internet celebrities and \"Big Vs\" emerged, we needed a word to describe that certain something they had.\nSome shifts in semantic gravity seem to have occurred. In Chinese, the term more often appears in the negative—\"lacking a sense of presence\"—or as something one needs to \"brush\" or \"assert\" (#shua zaizhaigan#). It has become a sort of social debt for the \"invisible\" wallflowers. Conversely, \"lacking a sense of presence\" in Japanese is more commonly described as #kage ga usui# (the shadow is thin). In English, it’s closer to being a \"nobody.\" Furthermore, the affirmative Japanese \"sense of presence\" might not be best translated as \"sense of existence\"—that’s too philosophical. \"Presence\" is better, but still slightly off. \"He's got no presence\" can also mean he simply isn't there or fails to show up. I think more suitable terms might be \"charisma,\" or the more recently popular \"aura\" or \"main character energy.\" Or one could say, \"She carries her own gravity,\" as if people around her are automatically pulled into her orbit.\nPersonally, I feel #huorengan# can be viewed as the younger sibling of #zaizhaigan#. There seems to be a faint thread connecting them—is #huorengan# an \"upgraded\" requirement of #zaizhaigan#? Consider this scenario: in the 2010s #fanquan# culture, fans demanded that an idol’s management team step up so the idol's popularity wouldn't drop; they wanted them to \"assert their presence\" (#shua zaizhaigan#) more. So, the team began professionalizing the account, posting Weibo updates in a systematic, templated way. In the process, as more idols \"collapsed\" (#tafang#) because they couldn't hold their tongues, teams became more resolute: don't let the idols speak freely. Consequently, while follower counts and read counts went up, the \"human flavor\" vanished. At this point, fans no longer just demanded a \"sense of presence\"; they demanded #huorengan#.\nInterestingly, Japanese social media has a term #Namami-kan# (raw-body feel). It describes something that is supposed to be illusory, \"business-like,\" or packaged—like an AI VTuber suddenly saying, \"It’s so annoying that it’s raining today; my socks are soaked.\" Of course, #Namami-kan# is also applied to idols. However, I find it necessary to point out again the specificity of the Chinese #huorengan#—it is fundamentally used to describe living people.\nAnother interesting observation: while #huorengan# was named one of the Top Ten Buzzwords of 2025 by #Yaowen Jiaozi#, #Merriam-Webster# selected \"Authenticity\" as its Word of the Year. The similarities and differences in the motivations behind these choices are worth pondering. In my understanding, the pursuit of authenticity in the English public sphere is a reaction to the flood of deepfakes, lies, and fake news. Yet, the pushback against the spread of AI content, the weariness toward factory-style influencers, and the exhaustion from wearing masks in the workplace are globally shared sentiments.\nWhat are the English equivalents for #huorengan#? \"Authenticity\" is certainly one. I think as far as colloquialisms go, \"real\" and \"raw\" are also quite close. And if the antonym of #huorengan# on the Chinese internet is #renjigan# (bot-like feel), then a popular English social media term fits perfectly: \"NPC.\" That is, a Non-Player Character—a background extra in a game who repeats the same lines every time you approach them.\nFinally, related or not: I hope the notes section of Dunes Dictionary always maintains a strong #huorengan#."
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "飞樾",
+            "en": "Feiyue"
+          },
+          "background": {
+            "zh": "城市学",
+            "en": "Urbanism"
           },
           "date": "2026/02/07"
         }
@@ -6500,6 +6573,10 @@
         },
         {
           "id": 16,
+          "relation": "概念相关"
+        },
+        {
+          "id": 50,
           "relation": "概念相关"
         }
       ],

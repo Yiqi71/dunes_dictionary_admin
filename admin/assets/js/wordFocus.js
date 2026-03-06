@@ -67,12 +67,98 @@ function prepareLazyImage(img) {
     img.loading = "lazy";
     img.decoding = "async";
     img.classList.add("lazy-img");
+    img.style.visibility = "hidden";
     if (img.complete && img.naturalWidth > 0) {
         img.classList.remove("lazy-img");
+        img.style.visibility = "visible";
         return;
     }
-    img.addEventListener("load", () => img.classList.remove("lazy-img"), { once: true });
-    img.addEventListener("error", () => img.classList.add("lazy-img-error"), { once: true });
+    img.addEventListener("load", () => {
+        img.classList.remove("lazy-img");
+        img.style.visibility = "visible";
+    }, { once: true });
+    img.addEventListener("error", () => {
+        img.classList.add("lazy-img-error");
+        img.style.visibility = "hidden";
+    }, { once: true });
+}
+
+const PROPOSER_TEXT_COLOR_LIGHT = "#E6D9D0";
+const PROPOSER_TEXT_COLOR_DARK = "#43403B";
+const PROPOSER_LOWER_HALF_LIGHT_THRESHOLD = 155;
+
+function setProposerTextColor(color) {
+    const proposerSection = document.getElementById("proposer");
+    if (!proposerSection) return;
+    const finalColor = color || PROPOSER_TEXT_COLOR_LIGHT;
+    proposerSection.style.setProperty("--proposer-name-color", finalColor);
+    const primaryEl = proposerSection.querySelector(".proposer-primary");
+    const oriEl = proposerSection.querySelector(".proposer-ori");
+    if (primaryEl) primaryEl.style.color = finalColor;
+    if (oriEl) oriEl.style.color = finalColor;
+}
+
+function getImageLowerHalfLuminance(img) {
+    if (!img || !img.complete || img.naturalWidth <= 0 || img.naturalHeight <= 0) return null;
+    try {
+        const canvas = document.createElement("canvas");
+        const width = 48;
+        const height = 48;
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+        if (!ctx) return null;
+
+        ctx.drawImage(img, 0, 0, width, height);
+        const startY = Math.floor(height / 2);
+        const pixelData = ctx.getImageData(0, startY, width, height - startY).data;
+        let luminanceSum = 0;
+        let sampleCount = 0;
+
+        for (let i = 0; i < pixelData.length; i += 4) {
+            const alpha = pixelData[i + 3];
+            if (alpha < 16) continue;
+            const r = pixelData[i];
+            const g = pixelData[i + 1];
+            const b = pixelData[i + 2];
+            luminanceSum += 0.2126 * r + 0.7152 * g + 0.0722 * b;
+            sampleCount += 1;
+        }
+
+        return sampleCount > 0 ? (luminanceSum / sampleCount) : null;
+    } catch (_) {
+        return null;
+    }
+}
+
+function syncProposerTextContrast(img) {
+    if (!isMobileLayout()) {
+        setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT);
+        return;
+    }
+    const luminance = getImageLowerHalfLuminance(img);
+    if (luminance === null) {
+        setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT);
+        return;
+    }
+    if (luminance >= PROPOSER_LOWER_HALF_LIGHT_THRESHOLD) {
+        setProposerTextColor(PROPOSER_TEXT_COLOR_DARK);
+        return;
+    }
+    setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT);
+}
+
+function attachProposerContrastWatcher(img) {
+    if (!img) {
+        setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT);
+        return;
+    }
+    if (img.complete && img.naturalWidth > 0) {
+        syncProposerTextContrast(img);
+        return;
+    }
+    img.addEventListener("load", () => syncProposerTextContrast(img), { once: true });
+    img.addEventListener("error", () => setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT), { once: true });
 }
 const noteAuthor = {
     role: { zh: "编辑", en: "Editor" },
@@ -322,6 +408,20 @@ function resolveImagePath(src) {
     return src;
 }
 
+function hasUsableImageSource(src) {
+    const text = String(src || "").trim();
+    if (!text) return false;
+    const normalized = text.toLowerCase().replace(/\s+/g, " ");
+    return (
+        normalized !== "no proponent image yet." &&
+        normalized !== "no proposer image yet." &&
+        normalized !== "no concept image yet." &&
+        normalized !== "no source cover yet." &&
+        normalized !== "暂无提出者图片" &&
+        normalized !== "暂无提出者头像"
+    );
+}
+
 export function updateWordFocus(targetNodeId = null) {
     document.querySelectorAll(`.word-node.${PENDING_FOCUS_CLASS}`).forEach((node) => {
         node.classList.remove(PENDING_FOCUS_CLASS);
@@ -410,14 +510,6 @@ export function updateWordFocus(targetNodeId = null) {
             // 启动呼吸动画
             setTimeout(startBreathingAnimation, 500); // 延迟启动，让位置动画先完成
 
-            const node = document.getElementById(state.focusedNodeId);
-            if(node){
-                node.addEventListener("click", (e) => {
-                    e.stopPropagation();
-                    showFloatingPanel();
-                    scrollToTop(); // 使用新的滚动到顶端函数
-                });
-            }
             if (typeof window.__DD_SYNC_ROUTE === "function") {
                 window.__DD_SYNC_ROUTE();
             }
@@ -476,6 +568,7 @@ export function updateWordDetails() {
     const proposerOri = document.querySelector('#proposer .proposer-ori');
     const proposerImg = document.querySelector('#proposer img');
     prepareLazyImage(proposerImg);
+    setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT);
     if(normalizeLang(state.currentLang)=="en"){
         proposerTitle.textContent = 'Proponent';
     }else if(normalizeLang(state.currentLang)=="zh"){
@@ -485,15 +578,28 @@ export function updateWordDetails() {
         const proposer = word.proposers[0];
         const localizedName = proposer.name?.[lang] || '';
         const sourceName = proposer.name?.ori || '';
-        proposerPrimary.textContent = localizedName || sourceName;
+        const displayName = (localizedName || sourceName || '未知').trim();
+        const proposerImagePath = hasUsableImageSource(proposer.image)
+            ? resolveImagePath(proposer.image)
+            : "";
+        proposerPrimary.textContent = displayName;
         proposerOri.textContent = sourceName;
-        proposerImg.src = resolveImagePath(proposer.image);
-        proposerImg.alt = localizedName || sourceName || '';
-        proposerImg.style.display = 'block';
+        if (proposerImagePath) {
+            proposerImg.src = proposerImagePath;
+            proposerImg.alt = localizedName || sourceName || '';
+            proposerImg.style.display = 'block';
+            attachProposerContrastWatcher(proposerImg);
+        } else {
+            proposerImg.src = '';
+            proposerImg.style.display = 'none';
+            setProposerTextColor(PROPOSER_TEXT_COLOR_DARK);
+        }
     } else {
         proposerPrimary.textContent = '未知';
         proposerOri.textContent = '';
+        proposerImg.src = '';
         proposerImg.style.display = 'none';
+        setProposerTextColor(PROPOSER_TEXT_COLOR_DARK);
     }
 
     // comment section

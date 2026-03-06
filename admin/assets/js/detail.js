@@ -53,13 +53,21 @@ function setupLazyImages(root) {
         img.loading = "lazy";
         img.decoding = "async";
         img.classList.add("lazy-img");
+        img.style.visibility = "hidden";
 
         if (img.complete && img.naturalWidth > 0) {
             img.classList.remove("lazy-img");
+            img.style.visibility = "visible";
             return;
         }
-        img.addEventListener("load", () => img.classList.remove("lazy-img"), { once: true });
-        img.addEventListener("error", () => img.classList.add("lazy-img-error"), { once: true });
+        img.addEventListener("load", () => {
+            img.classList.remove("lazy-img");
+            img.style.visibility = "visible";
+        }, { once: true });
+        img.addEventListener("error", () => {
+            img.classList.add("lazy-img-error");
+            img.style.visibility = "hidden";
+        }, { once: true });
     });
 }
 
