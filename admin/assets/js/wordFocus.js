@@ -10,6 +10,7 @@ import { moveIndicator } from "./menu.js";
 let focusedWord = null;
 let lastFocusedNodeId = null;
 let activeZoomAnimation = null;
+let detailsTransitionToken = 0;
 const MENU_COMPACT_CLASS = "menu-compact";
 const PENDING_FOCUS_CLASS = "pending-focus";
 const FOCUSED_NODE_LAYER_ID = "focused-node-layer";
@@ -56,10 +57,65 @@ function fadeOutDetailsForTransition() {
     detailDiv.classList.add("details-transition-out");
 }
 
+function hideDetailsImmediatelyForTransition() {
+    const detailDiv = document.getElementById("word-details");
+    if (!detailDiv) return;
+    detailDiv.classList.add("hidden");
+    detailDiv.classList.add("details-transition-out");
+}
+
 function fadeInDetailsAfterTransition() {
     const detailDiv = document.getElementById("word-details");
     if (!detailDiv) return;
+    detailDiv.classList.remove("hidden");
     detailDiv.classList.remove("details-transition-out");
+}
+
+function waitForDetailsFadeOut(timeoutMs = 560) {
+    const detailDiv = document.getElementById("word-details");
+    if (!detailDiv) return Promise.resolve();
+    if (detailDiv.classList.contains("hidden")) return Promise.resolve();
+
+    fadeOutDetailsForTransition();
+
+    return new Promise((resolve) => {
+        let settled = false;
+        const done = () => {
+            if (settled) return;
+            settled = true;
+            detailDiv.removeEventListener("transitionend", onTransitionEnd);
+            resolve();
+        };
+        const onTransitionEnd = (event) => {
+            if (event.target !== detailDiv) return;
+            if (event.propertyName !== "opacity") return;
+            done();
+        };
+        detailDiv.addEventListener("transitionend", onTransitionEnd);
+        window.setTimeout(done, timeoutMs);
+    });
+}
+
+function waitForImageSettle(img, timeoutMs = 4000) {
+    if (!img) return Promise.resolve();
+    if (img.style.display === "none") return Promise.resolve();
+    const src = img.getAttribute("src");
+    if (!src) return Promise.resolve();
+    if (img.complete) return Promise.resolve();
+
+    return new Promise((resolve) => {
+        let settled = false;
+        const done = () => {
+            if (settled) return;
+            settled = true;
+            img.removeEventListener("load", done);
+            img.removeEventListener("error", done);
+            resolve();
+        };
+        img.addEventListener("load", done, { once: true });
+        img.addEventListener("error", done, { once: true });
+        window.setTimeout(done, timeoutMs);
+    });
 }
 
 function prepareLazyImage(img) {
@@ -429,6 +485,7 @@ export function updateWordFocus(targetNodeId = null) {
 
     // 清除之前聚焦的单词
     if (focusedWord) {
+        detailsTransitionToken += 1;
         restoreNodeToContainer(focusedWord);
         focusedWord.classList.remove('focused');
         focusedWord = null;
@@ -437,8 +494,7 @@ export function updateWordFocus(targetNodeId = null) {
         lastFocusedNodeId = null;
         restoreAllNodes();
         resetPositions();
-        const detailDiv = document.getElementById("word-details");
-        detailDiv.classList.add("hidden");
+        fadeOutDetailsForTransition();
         setMenuCompact(false);
         
         // 停止呼吸动画
@@ -486,6 +542,7 @@ export function updateWordFocus(targetNodeId = null) {
 
         // 聚焦最近的单词
         if (closestWord) {
+            const transitionToken = ++detailsTransitionToken;
             closestWord.classList.add('focused');
             moveFocusedNodeToLayer(closestWord);
             focusedWord = closestWord;
@@ -501,8 +558,20 @@ export function updateWordFocus(targetNodeId = null) {
             hideNearbyNodes(closestWord);
 
             // 自动吸附到屏幕中心
-            zoomToWord(focusedWord.id, state.scaleThreshold);
-            updateWordDetails();
+            const detailsReady = Promise.resolve(waitForDetailsFadeOut()).then(() => {
+                if (transitionToken !== detailsTransitionToken) return;
+                hideDetailsImmediatelyForTransition();
+                return updateWordDetails({ wordId: closestWord.id, reveal: false });
+            });
+            const focusReady = Promise.resolve(zoomToWord(focusedWord.id, state.scaleThreshold));
+            Promise.all([focusReady, detailsReady]).then(() => {
+                if (transitionToken !== detailsTransitionToken) return;
+                if (!state.focusedNodeId || String(state.focusedNodeId) !== String(closestWord.id)) return;
+                requestAnimationFrame(() => {
+                    if (transitionToken !== detailsTransitionToken) return;
+                    fadeInDetailsAfterTransition();
+                });
+            });
             
             // 应用位置变化（除了term section）
             applyPositionVariations(closestWord.id);
@@ -515,29 +584,41 @@ export function updateWordFocus(targetNodeId = null) {
             }
         }
     } else {
+        detailsTransitionToken += 1;
         emitWordFocusChange(null);
         setMenuCompact(false);
     }
 }
 
-export function updateWordDetails() {
-    if (!state.focusedNodeId) return;
-    const word = window.allWords.find(w => w.id == state.focusedNodeId);
-    if (!word) return;
+export function updateWordDetails(options = {}) {
+    const {
+        wordId = state.focusedNodeId,
+        reveal = true
+    } = options;
+    if (!wordId) return Promise.resolve();
+    const word = window.allWords.find(w => w.id == wordId);
+    if (!word) return Promise.resolve();
 
     const lang = normalizeLang(state.currentLang || "zh");
 
     // 显示details
     const detailDiv = document.getElementById("word-details");
-    detailDiv.classList.remove('hidden');
-    fadeInDetailsAfterTransition();
+    if (reveal) {
+        detailDiv.classList.remove('hidden');
+        fadeInDetailsAfterTransition();
+    } else {
+        hideDetailsImmediatelyForTransition();
+    }
 
-    detailDiv.addEventListener('wheel', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-    }, {
-        passive: false
-    });
+    if (detailDiv.dataset.wheelBlockBound !== "1") {
+        detailDiv.addEventListener('wheel', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }, {
+            passive: false
+        });
+        detailDiv.dataset.wheelBlockBound = "1";
+    }
 
     // related works + source image section
     const imageTitle = document.querySelector('#image .detail-title');
@@ -620,6 +701,11 @@ export function updateWordDetails() {
     } else {
         commentContent.innerHTML = `<h3>暂无笔记</h3> <p></p>`;
     }
+
+    return Promise.all([
+        waitForImageSettle(imageEl),
+        waitForImageSettle(proposerImg)
+    ]);
 }
 
 function hideNearbyNodes(focusedNode) {
