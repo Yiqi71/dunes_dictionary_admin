@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generated_at": "2026-03-05T08:04:30.989Z",
-    "source": "353011e997972a71286313c815d43669",
-    "home_node_id": 13
+    "generated_at": "2026-03-07T03:41:10.598Z",
+    "source": "692f567f52a2e5f799ea66aa89585d86",
+    "home_node_id": 46
   },
   "words": [
     {
@@ -1408,10 +1408,6 @@
         {
           "id": 40,
           "relation": "概念相关"
-        },
-        {
-          "id": 51,
-          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -2366,10 +2362,6 @@
         {
           "id": 18,
           "relation": "概念相关"
-        },
-        {
-          "id": 50,
-          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -2509,7 +2501,7 @@
           "relation": "概念相关"
         },
         {
-          "id": 52,
+          "id": 45,
           "relation": "概念相关"
         }
       ],
@@ -3146,10 +3138,6 @@
         {
           "id": 41,
           "relation": "概念相关"
-        },
-        {
-          "id": 51,
-          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -3647,10 +3635,6 @@
         },
         {
           "id": 29,
-          "relation": "概念相关"
-        },
-        {
-          "id": 50,
           "relation": "概念相关"
         }
       ],
@@ -4514,11 +4498,7 @@
           "relation": "概念相关"
         },
         {
-          "id": 50,
-          "relation": "概念相关"
-        },
-        {
-          "id": 52,
+          "id": 45,
           "relation": "概念相关"
         }
       ],
@@ -6270,7 +6250,7 @@
         "en": "Huorengan (sense of life)"
       },
       "termOri": "活人感",
-      "concept_image": "images/活人感_aigc.jpg",
+      "concept_image": "images/活人感_aigc.png",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
@@ -6574,10 +6554,6 @@
         {
           "id": 16,
           "relation": "概念相关"
-        },
-        {
-          "id": 50,
-          "relation": "概念相关"
         }
       ],
       "commentAbs": {
@@ -6782,7 +6758,7 @@
         "en": "Supermodernity"
       },
       "termOri": "Surmodernité",
-      "concept_image": "images/超现代性_aigc.jpg",
+      "concept_image": "images/超现代性_aigc.png",
       "sm_title": {
         "zh": "社媒标题",
         "en": "social title"
@@ -6893,6 +6869,306 @@
       },
       "comments": [],
       "online_date": "2026/02/08"
+    },
+    {
+      "id": 45,
+      "term": {
+        "zh": "萨普",
+        "en": "La Sape"
+      },
+      "termOri": "La Sape",
+      "concept_image": "images/萨普_aigc.png",
+      "sm_title": {
+        "zh": "社媒标题",
+        "en": "social title"
+      },
+      "proposers": [
+        {
+          "name": {
+            "zh": "帕帕·温巴",
+            "en": "Papa Wemba",
+            "ori": "Shungu Wembadio Pene Kikumba"
+          },
+          "year": {
+            "zh": "1949-2016",
+            "en": "1949-2016"
+          },
+          "role": {
+            "zh": "歌手、文化偶像",
+            "en": "singer and cultural icon"
+          },
+          "image": "images/萨普_proposer.jpg"
+        }
+      ],
+      "source": {
+        "zh": "《萨普的回归（1995年巴黎现场） (Le Retour De La Sape (Live in Paris 1995))》，巴黎 (Paris)，1995。尚无中文翻译。帕帕·温巴对于萨普的主张从1970年代就开始了，但并无某张专辑或歌曲命名为“萨普”。这里选用的专辑比较有代表性地体现了他的风格。",
+        "en": "#Le Retour De La Sape (Live in Paris 1995)# (The Return of the Sape), Paris, 1995. There is no official Chinese translation available yet. Papa Wemba’s advocacy for La Sape dates back to the 1970s, though no specific album or song was ever titled “Sape” per se. The album selected here serves as a representative manifestation of his signature style."
+      },
+      "source_image": "images/萨普_source_cover.jpg",
+      "related_works": [
+        {
+          "zh": "丹尼尔·塔马尼，《#巴刚果的绅士们# (#Gentlemen of Bacongo#)》，伦敦: #Prestel# (Prestel), 2009。中国大陆及港台尚无中文翻译。",
+          "en": "Tamagni, Daniele. #Gentlemen of Bacongo#. London: Prestel, 2009."
+        },
+        {
+          "zh": "迪迪埃·贡多拉，《#热带牛仔：金沙萨的流行文化与抵抗# (#Tropical Cowboys: Popular Culture and Resistance in Kinshasa#)》，布卢明顿: 印第安纳大学出版社 (Indiana University Press), 2016。尚无中文翻译。",
+          "en": "Gondola, Didier. #Tropical Cowboys: Popular Culture and Resistance in Kinshasa#. Bloomington: Indiana University Press, 2016."
+        }
+      ],
+      "domain": {
+        "zh": "人类学 Anthropology 社会学 Sociology 媒介与传播 Media & Communications",
+        "en": "人类学 Anthropology 社会学 Sociology 媒介与传播 Media & Communications"
+      },
+      "proposing_country": "CD",
+      "proposing_time": "1970",
+      "contributors": [
+        {
+          "name": {
+            "zh": "淇森",
+            "en": "Qisen"
+          },
+          "role": {
+            "zh": "沙丘研究所核心成员",
+            "en": "Staff of Dunes Workshop"
+          }
+        }
+      ],
+      "contribute_date": "2026/02/23",
+      "editors": [],
+      "edit_date": "No edit date yet.",
+      "brief_definition": {
+        "zh": "刚果地区底层民众通过穿着奢华大牌服饰，追求极致优雅与和平的时尚亚文化。",
+        "en": "A Congolese subculture where people in poverty dress in high-end designer clothes to express elegance, status, and pacifism."
+      },
+      "extended_definition": {
+        "zh": [
+          "在刚果布拉柴维尔那些坑洼不平、尘土飞扬的贫民窟街道上，空气中弥漫着廉价汽油和烧烤的味道。突然，一个男人走出了低矮的铁皮屋。他穿着剪裁完美的迪奥亮粉色西装，脚踩一双亮得能映出天空的鳄鱼皮鞋，手里拄着一根考究的红木拐杖，甚至连袜子颜色的深浅都经过精确计算。他像君主巡视领地一般缓慢走过臭水沟，周围围满了欢呼的孩子。",
+          "这种极度不协调的场景，正是“萨普”（La Sape）的核心。这个词源于法语短语的缩写，意为“氛围营造者与优雅人士协会”（Société des Ambianceurs et des Personnes Élégantes）。它并不是单纯的“虚荣”或“拜金”。这群自称“萨普尔”（Sapeur）的人，大多是普通的清洁工、泥瓦匠或出租车司机，他们可能全家挤在破旧的屋子里，却愿意积攒数年的收入去购买一套顶级大牌西装。",
+          "这可以被理解为一种身体政治的实践——简单来说，就是用身体语言、动作和身体外表来表达意见，或者表达反叛：通过夺取、玩弄、重构前殖民者（法国和比利时）的文化符号，他们几乎挑衅式地宣示了自己的审美主权。",
+          "在殖民时代，白人的西装是权力的外衣；而在“萨普尔”身上，它演绎出了新的意思。“萨普文化”在1990年代走向成熟。对于一些旁观者来说，“萨普”是一种行为艺术，而对于“萨普尔”来说，这是一种生活方式。他们制定了严格的“绅士准则”，宣扬和平、洁净与修养。他们用这种极端的优雅和夸张的色彩，在贫困和动荡的社会现实中，强行开辟出一片属于个体的、自由的幻象空间。但值得注意的是，国际品牌在视觉与叙事上也在重新吸收“萨普文化”，把它作为浪漫的异域奇观来借用和消费。“萨普尔”多以广告和婚礼场合的表演换取收入。"
+        ],
+        "en": [
+          "Upon the potholed, dust-choked streets of the slums in Brazzaville, Congo, the air hangs heavy with the scent of cheap gasoline and grilled meat. Suddenly, a man emerges from a low-slung tin shack. He is clad in a perfectly tailored, hot-pink Dior suit, his feet encased in crocodile leather shoes polished so bright they reflect the sky. He leans on a refined rosewood cane, every detail—down to the precise tonal depth of his socks—meticulously calculated. Like a monarch inspecting his realm, he strides slowly past open sewers, flanked by a crowd of cheering children.",
+          "This scene of extreme incongruity lies at the heart of \"La Sape.\" The term is an acronym derived from the French phrase #Société des Ambianceurs et des Personnes Élégantes# (the Society of Ambiance-Makers and Elegant People). It is not merely a matter of \"vanity\" or \"materialism.\" These self-styled \"Sapeurs\" are mostly ordinary cleaners, bricklayers, or taxi drivers. They might live with their entire families in dilapidated rooms, yet they are willing to save years of income just to purchase a single high-end designer suit.",
+          "This can be understood as a practice of \"body politics\"—simply put, using body language, movement, and physical appearance to voice an opinion or stage a rebellion. By seizing, playing with, and reconstructing the cultural symbols of former colonizers (France and Belgium), they declare their aesthetic sovereignty in an almost provocative manner.",
+          "During the colonial era, the white man's suit was the mantle of power; on a Sapeur, however, it takes on an entirely new meaning. Sape culture came into its own during the 1990s. To an outsider, La Sape might look like performance art, but for a Sapeur, it is a way of life. They have established a strict \"gentleman's code,\" promoting peace, hygiene, and refinement. Through this extreme elegance and extravagant use of color, they carve out a phantasmal space of individual freedom amidst a social reality of poverty and upheaval. Yet, it is worth noting that international brands are re-absorbing Sape culture into their visual narratives, borrowing and consuming it as a romanticized, exotic spectacle. Today, many Sapeurs earn their living through performances in advertisements and at weddings."
+        ]
+      },
+      "example_sentence": {
+        "zh": "上海的绅装爱好者在互联网上被戏称为“上海萨普”，可能因为人们觉得他们也和周围环境有较大反差。",
+        "en": "Sartorial enthusiasts in Shanghai are mockingly dubbed #Shanghai Sapeurs# on the internet, likely because people perceive a sharp contrast between their attire and the surrounding environment."
+      },
+      "diagrams": [
+        {
+          "src": "images/萨普_diagram_1.jpg",
+          "caption": {
+            "zh": "Vogue Scandinavia",
+            "en": "diagram caption"
+          }
+        }
+      ],
+      "related_terms": [
+        {
+          "id": 29,
+          "relation": "概念相关"
+        },
+        {
+          "id": 16,
+          "relation": "概念相关"
+        }
+      ],
+      "commentAbs": {
+        "content": {
+          "zh": "当原本属于“主子”的制服被“仆人”穿出了超越原作的华丽感时，殖民者的权威感就会陷入一种似是而非中的焦虑。",
+          "en": "When a uniform originally belonging to the \"master\" is worn by the \"servant\" with a flamboyance that surpasses the original, the colonizer’s sense of authority falls into an anxious state of ambiguity."
+        },
+        "author": {
+          "zh": "飞樾",
+          "en": "Feiyue"
+        }
+      },
+      "comments": [
+        {
+          "content": {
+            "zh": "在知道萨普是一个刚果的亚文化之前，很多人（包括我）都是先听说的“上海萨普”。我觉得这个现象值得一个正经的人类学研究——一个前提问题是“为什么中国的绅装爱好者集中在上海地区”，然后是“为什么中国的绅装爱好者容易被群嘲”。\n\n在小红书上搜“萨普”能看到不少内容，大多是在上海的，其中有不少评论也提及了“萨普”原初是起源自非洲的。有帖子科普，为什么这个文化在刚果可以被理解为一种后殖民的反抗。当然，也有不解：“我头一回听说反叛的方法是捡反叛对象的旧衣服穿。”\n\n反叛者和被反叛的对象，被殖民者和殖民者，仆人和主子，从不是简单的非黑即白的关系。特别是考虑到服装很多时候恰恰代表了身份，“衣服怎么穿”承载了许多微妙的信号。主子是胜利者、强者，仆人是服务者、劳动者、弱者，但很多时候，恰恰因为后者更直接地从事生产，更具体地把握着事物，奴仆由此获得了主人反而不拥有的独立性和自主性。在这个意味上，被奴役者反而才是改造物质世界的主宰者，完成了对主人的超越。\n\n而具体到萨普文化——西装当然是欧洲殖民者带来的。在很长一段时间，在非洲穿着西装，也自然代表了主人、胜利者、奴役者的身份。但后殖民文化研究者霍米·巴巴会说，我穿你的衣服，并不简单意味着我臣服于你，屈服于你。这是一种“拟仿”（mimicry）：通过精准的模仿，殖民者的身份标识被“偷走”了。\n\n那么，“萨普”是否可以被理解为一种“过度拟仿”？当原本属于“主子”的制服被“仆人”穿出了超越原作的华丽感时，殖民者的权威感就会陷入一种似是而非中的焦虑。西装怎么穿、怎么搭配、什么场合穿……这些规则被重写了。此时，西装就不再仅仅被理解为“西方人的服装”，而变成了“萨普尔”自己掌握和解释的东西。也就是说，弱者通过模仿来解构强者，并且为自己赋权。\n\n我还想要提到的是，收录这个词是因为近期在制作沙丘词典的网页的时候，我们惊觉，原来栏目挑选的五十词居然没有一个是在“全球南方”提出的(绝大多数词都来自欧洲)……大家因为这个原因开始收集诞生在非洲、南美、东南亚等地的文化现象和专有词汇，做平衡和补充。“萨普”就是这其中的第一个。在收集资料、编写词条、内部讨论的过程中，也确实让我们自己看到了一些从前视野之外的东西。\n\n也像刚才提到的，很多人其实是因为“上海萨普”这个说法才接触到这个词的。在国内的讨论中，“萨普”的含义也很多时候被直接挪用到了中国的社会语境，已经很大程度上隐去了它在刚果的原始图像。关于这一点，我们内部也说开了去。它确实是一个很好的引子，可以打开很多值得讨论的现象和问题（我们也把“笔记”改称为“回声”了）。譬如，\n\n为什么中国大众很少有 dress code （着装要求）这个东西？\n为什么在中文互联网上，“美丽羞耻症”和“潮人恐惧症”同时广受讨论？\n作为全球服装第一省的广东，为什么反而以拖鞋、背心作为“省服”？\n为什么西装反而主要流行在中国三四线城市、县城、农村的中年男人群体？\n为什么嘲笑穿着西装的人为“中介”、“卖保险的”成为了中国的常态？\n为什么嘲笑讲究穿搭细节的男性为“娘娘腔”成了常态？\n……\n\n另外，一个容易联想到的服饰文化现象是日本的美式穿搭“アメカジ”（阿美咔叽）——日本对 20 世纪中叶美式复古休闲风格的极致复刻、修正与再创造。开玩笑地说，这是一群比美国人还要了解美国服饰历史的日本人，如数家珍地研究、收藏着常春藤（Ivy）、工装（Workwear）、军事（Military）和机车（Biker）风……这里面也有战胜国和战败国的关系，也是一个我把你带过来的东西，研究得比你还极致，玩儿得比你还精通的故事。同样，类似于日本把“阿美咔叽”风格深度地本土化变成了自己的社会习俗、审美系统的一部分，西装在日本也成为了标配的上班族制服，高度国民化了，不再被理解为外来文化。\n\n\n东京的Hinoya (ヒノヤ)古着店。\nPhoto by Vogue Scandinavia\n\n如果说西装在很多其他非西方国家已经被纳入了自己的系统，那么，“为什么中国的绅装爱好者容易被群嘲”？首先，就我粗略地浏览了一大堆刚果萨普尔的视频，即便被采访者大多以正面的方式在描述这事儿，但视频中记录下来的极度反差——存两年的钱买一双皮鞋，一群人穿着夸张的西服上街放着音乐跳舞，站在车水马龙的道路中间装作静止的雕塑，耐司机怎么鸣笛都不动……让我很难相信他们在本地完全不会被批评和讽刺。而“阿美咔叽”最初这种风格在日本也被视为叛逆，甚至有年轻人因为这种打扮被警察盘问。所以，这种对小众穿搭的群嘲肯定不独属于中国。\n\n我想特殊于国内的情况，首先有20世纪长期的社会主义、集体主义教育，这让大多数人对“小资情调”有天然的警惕心理。在经济环境不好的情况下，人们也容易反感带有精英感和优越感的消费。嘲笑绅装和嘲笑“主理人”、“沪币”、“citywalk”有同样的心理背景。\n\n相对更偏爱含蓄的东亚文化，加上几十年的集体主义教育，也人们对“显眼包”有下意识的敌意，反感招摇、显露、主动吸引他人目光的行为。一群人穿着精致考究的西装，骑着复古自行车，在街心广场拍照打卡，对很多人来说是有过度的剧场感的。\n\n显然，在民族主义被鼓励的时期，代表西方入侵文化的东西容易被攻击的对象（上海和宁波的“摇摆舞”的评论区也容易出现类似的攻击）。一般也是在这种时期，“霸权男性气概”（Hegemonic Masculinity）成为一种主流审美。也就是说，“糙、实用、力量”被认为是男性特质，“美、细致、修饰”被划归为女性特质。那么在意穿搭、绅装出行的男性也成为了“性别警察”的靶子。",
+            "en": "Before many people (myself included) knew that #La Sape# was a Congolese subculture, they had first heard of the \"Shanghai Sapeurs.\" I believe this phenomenon warrants a serious anthropological study. A foundational question would be \"Why are China’s classic menswear enthusiasts concentrated in the Shanghai area?\" followed by \"Why are they so easily subjected to mass mockery?\"\nSearching for \"Sape\" on Xiaohongshu yields a fair amount of content, mostly centered in Shanghai, with many comments mentioning that #La Sape# originally hailed from Africa. Some posts explain why this culture is understood in the Congo as a form of post-colonial resistance. Naturally, there is also bewilderment: \"This is the first time I've heard that the way to rebel is to pick up the oppressor’s old clothes and wear them.\"\nThe relationship between the rebel and the rebelled-against, the colonized and the colonizer, the servant and the master, is never a simple matter of black and white. Especially considering that clothing often represents identity, \"how one wears clothes\" carries many subtle signals. The master is the victor, the strong; the servant is the provider, the laborer, the weak. Yet, frequently, because the latter is more directly engaged in production and has a more concrete grasp of things, the servant attains an independence and autonomy that the master lacks. In this sense, the enslaved becomes the master of transforming the material world, achieving a transcendence over the master.\nSpecific to the culture of #La Sape#—the suit was, of course, brought by European colonizers. For a long time, wearing a suit in Africa naturally represented the identity of the master, the victor, and the enslaver. However, post-colonial cultural theorist Homi Bhabha would argue that \"wearing your clothes\" does not simply mean submission or surrender. It is a form of mimicry: through precise imitation, the colonizer's identity markers are \"stolen.\"\nCan #La Sape#, then, be understood as a form of \"excessive mimicry\"? When a uniform originally belonging to the \"master\" is worn by the \"servant\" with a flamboyance that surpasses the original, the colonizer’s sense of authority falls into an anxious state of ambiguity. The rules of how to wear a suit, how to coordinate it, and for what occasion... these rules are rewritten. At this point, the suit is no longer merely understood as \"Western clothing,\" but becomes something that the #Sapeur# themselves possess and interpret. That is to say, the weak deconstruct the strong through imitation and empower themselves in the process.\nI also want to mention that we included this term because, while developing the Dunes Dictionary website recently, we realized with a shock that none of the fifty words selected for our columns were proposed in the \"Global South\" (the vast majority came from Europe). For this reason, we began collecting cultural phenomena and specialized vocabulary born in Africa, South America, and Southeast Asia to provide balance and supplementation. #La Sape# is the first among them. In the process of gathering data, writing entries, and internal discussions, it has indeed allowed us to see things that were previously outside our field of vision.\nAs mentioned, many people only encountered this term through the phrase \"Shanghai Sapeurs.\" In domestic discussions, the meaning of \"Sape\" is often directly appropriated into the Chinese social context, largely obscuring its original Congolese imagery. We have discussed this internally as well. It serves as an excellent lead-in to open up many phenomena and questions worth discussing (we have also renamed our \"Notes\" section to \"Echoes\"). For instance:\nWhy does the Chinese public rarely have a concept of a \"dress code\"?\nWhy are \"beauty shame\" and \"trendsetter phobia\" simultaneously widely discussed on the Chinese internet?\nWhy does Guangdong, the world's leading province for garment production, instead use flip-flops and tank tops as its \"provincial uniform\"?\nWhy is the suit primarily popular among middle-aged men in China’s third- and fourth-tier cities, counties, and rural areas?\nWhy has it become the norm in China to mock those wearing suits as \"real estate agents\" or \"insurance salesmen\"?\nWhy is it the norm to mock men who pay attention to sartorial details as \"sissies\"? ...\nAdditionally, an easily associated clothing culture phenomenon is the Japanese American-style #Amekaji#—Japan’s ultimate replication, refinement, and re-creation of mid-20th-century American vintage casual style. Jokingly, these are a group of Japanese people who know American clothing history better than Americans themselves, researching and collecting Ivy, Workwear, Military, and Biker styles with expert precision. There is also a relationship here between the victor and the vanquished; it is another story of \"I took what you brought over and studied it more intensely and mastered it more thoroughly than you.\" Similarly, just as Japan deeply localized the #Amekaji# style into its own social customs and aesthetic system, the suit has also become a standard salaryman uniform in Japan—highly nationalized and no longer perceived as an alien culture.\nIf the suit has already been integrated into the systems of many other non-Western countries, then \"why are China’s classic menswear enthusiasts so easily mocked?\" First, based on my brief browsing of many Congolese #Sapeur# videos, even if the interviewees describe it positively, the extreme contrasts recorded—saving money for two years to buy one pair of leather shoes, a group of people dancing in exaggerated suits to music on the street, standing like frozen statues in the middle of heavy traffic regardless of how much drivers honk—make it hard for me to believe they aren't criticized or satirized locally. Even #Amekaji# was initially seen as rebellious in Japan, with some youths being questioned by police because of their outfits. Thus, this mass mockery of niche styles is certainly not unique to China.\nRegarding the specific situation in China, I believe there is first the long-term socialist and collectivist education of the 20th century, which has left most people with a natural wariness toward \"bourgeois sentiment.\" In a poor economic climate, people also tend to resent consumption that carries a sense of elitism or superiority. Mocking classic menswear shares the same psychological background as mocking \"brand directors,\" \"Shanghai currency,\" or \"citywalks.\"\nA preference for the more restrained East Asian culture, combined with decades of collectivist education, has also fostered a subconscious hostility toward \"attention-seekers\" (#xianyanbao#)—a resentment toward behavior that is flashy, revealing, or actively seeks the gaze of others. For many, a group of people wearing exquisitely tailored suits, riding vintage bicycles, and taking photos at a city square has an excessive sense of \"theatricality.\"\nClearly, during periods when nationalism is encouraged, things representing Western \"invader\" culture become easy targets (similar attacks often appear in the comment sections for \"Swing Dance\" in Shanghai and Ningbo). Generally, it is during such times that Hegemonic Masculinity becomes a mainstream aesthetic. That is, \"ruggedness, utility, and strength\" are categorized as masculine traits, while \"beauty, meticulousness, and grooming\" are relegated to feminine traits. Consequently, men who care about their outfits and go out in classic menswear become targets for \"gender police.\""
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "飞樾",
+            "en": "Feiyue"
+          },
+          "background": {
+            "zh": "城市学",
+            "en": "Urbanism"
+          },
+          "date": "2026/02/23",
+          "images": [
+            {
+              "src": "images/萨普_note1_1.jpg",
+              "caption": {
+                "zh": "来自小红书界面截图。",
+                "en": "A screenshot from the Xiaohongshu (Red Note) interface."
+              }
+            },
+            {
+              "src": "images/萨普_note1_2.jpg",
+              "caption": {
+                "zh": "灰色、深色、宽松的西服在国内几乎代表了一种90年代美学。\n图源贾樟柯电影《小武》。",
+                "en": "Grey, dark, and oversized suits represent a quintessential aesthetic of the 1990s in China.\nImage source: Jia Zhangke’s film #Xiao Wu#."
+              }
+            },
+            {
+              "src": "images/萨普_note1_3.jpg",
+              "caption": {
+                "zh": "东京的Hinoya (ヒノヤ)古着店。\nPhoto by Vogue Scandinavia.",
+                "en": "The Hinoya (ヒノヤ) vintage store in Tokyo.\nPhoto by #Vogue Scandinavia#."
+              }
+            }
+          ]
+        }
+      ],
+      "online_date": "2026/03/06"
+    },
+    {
+      "id": 46,
+      "term": {
+        "zh": "上岸",
+        "en": "shàng'àn"
+      },
+      "termOri": "shàng'àn",
+      "concept_image": "images/上岸_aigc.png",
+      "sm_title": {
+        "zh": "社媒标题",
+        "en": "social title"
+      },
+      "proposers": [
+        {
+          "name": {
+            "zh": "中文互联网网民群体",
+            "en": "Chinese Internet Users",
+            "ori": "proposerOri"
+          },
+          "year": {
+            "zh": "2010-",
+            "en": "2010-"
+          },
+          "role": {
+            "zh": "身份",
+            "en": "role"
+          },
+          "image": "No proponent image yet."
+        }
+      ],
+      "source": {
+        "zh": "澎湃新闻，《当代青年的“上岸”执念：一种关于稳定的空间想象》，上海: 澎湃新闻报业 (The Paper), 2021。中国大陆已出版，澎湃新闻官网。",
+        "en": "#The Paper#, #Contemporary Youth’s Obsession with “Shang’an”: A Spatial Imagination of Stability#, Shanghai: The Paper News (The Paper), 2021. Published in Mainland China, official website of The Paper."
+      },
+      "source_image": "No source cover yet.",
+      "related_works": [
+        {
+          "zh": "项飙，《把自己作为工具 (#Self as Method#)》，上海: 上海文艺出版社 (Shanghai Literature & Art Publishing House), 2020。中国大陆已出版，上海文艺出版社。",
+          "en": "Biao Xiang, #Self as Method# (#Bazi ji zuowei gongju#), Shanghai: Shanghai Literature & Art Publishing House, 2020. Published in Mainland China, Shanghai Literature & Art Publishing House."
+        },
+        {
+          "zh": "廉思，《蚁族：大学毕业生首聚地定性研究 (#Ant Tribe#)》，北京: 中信出版社 (CITIC Press), 2009。中国大陆已出版，中信出版社。",
+          "en": "Si Lian, #Ant Tribe: A Qualitative Research on the First Gathering Places of University Graduates# (#Yizu: Daxue biyesheng shoujudi dingxing yanjiu#), Beijing: CITIC Press, 2009. Published in Mainland China, CITIC Press."
+        }
+      ],
+      "domain": {
+        "zh": "人类学 Anthropology 社会学 Sociology 语言学 Linguistics 政治学 Political Science",
+        "en": "人类学 Anthropology 社会学 Sociology 语言学 Linguistics 政治学 Political Science"
+      },
+      "proposing_country": "CN",
+      "proposing_time": "2010",
+      "contributors": [
+        {
+          "name": {
+            "zh": "孟汀",
+            "en": "Mengting"
+          },
+          "role": {
+            "zh": "人类学在读博士",
+            "en": "PhD candidate in Anthropology"
+          }
+        }
+      ],
+      "contribute_date": "2026/03/06",
+      "editors": [
+        {
+          "zh": "沙丘研究所（Gemini 3.0 Pro辅助润色），网站中收录的内容可能基于社交媒体中的内容做了进一步编辑和润色。",
+          "en": "Dunes Workshop (Gemini 3.0 Pro–assisted editing), content featured on this website may have been further edited and refined based on material from social media."
+        }
+      ],
+      "edit_date": "No edit date yet.",
+      "brief_definition": {
+        "zh": "通过竞争性选拔考试获得体制内职位或名校录取的成功跨越，也可以指脱离漂泊不稳定的境况，抵达某种稳定可靠的生活状态。",
+        "en": "The successful leap of securing a position within the system or gaining admission to a prestigious university through competitive selection exams; it can also refer to escaping a state of drifting instability to arrive at a stable and reliable way of life."
+      },
+      "extended_definition": {
+        "zh": [
+          "生活如同无涯苦海，究竟何时能够上岸？——“上岸”这个词的热度一直居高不下，在经济大环境波动的近几年，更是被更为频繁地提起。它很形象地表达着，当代青年渴望逃离充满变数的劳动力市场，栖身一个可以长期依赖的稳定平台。不过，其所指并非单一的，因为无论是加入公务员序列、事业编制或名校，人们都在使用这个词。",
+          "一个“上”字，固然道尽挣扎求存的艰辛，但细究其义，与传统的形容社会竞争、攀登阶级的词汇相比较，“上岸”有着一个明确的“岸”：不再是不断向上攀爬的阶梯，而是抵达一个可驻足休息的“岸”处。这里面有一种对终局的想象，又与眼下在浑水中载沉载浮、随波逐流的境遇恰成鲜明对照。“岸上”意味着秩序、保障与终点，而“水中”则代表竞争、焦虑与充满脆弱变动的漂泊。这个词不仅生动地写出了当代大众感受到的生活压力，也明显折射出对摆脱不稳定性的保守倾向。或许可以说，社会保障的不完善、照护网络的缺席，使得个体无处托付，不敢追求更有风险的机会，唯有自求“上岸”。",
+          "然而，这种对“岸”的执着，是否正将人生简化为一场场排他性的通关游戏？有人自嘲：“上岸”后才发现，彼岸不过是此岸的延伸，竞争与倾轧并没有减少。甚至，由于“上岸”意味着对当前的建制结构的维护，它反而进一步抑制了社会流动性。",
+          "“上岸”一词最早见于明清小说，指妓女从良或盗贼改邪归正。在20世纪80年代，它与“下海”相对，指离开商海回归稳妥行当。改革开放之初，人们辞去公职、“下海”经商。彼时体制意味着按部就班、一眼望穿的人生，而市场经济则是风高浪急却遍地机会的汪洋。敢于下海者，非但不以令人筋疲力尽的风险为苦，反以弄潮为荣。同样是与水相关的隐喻，“下海”形容了拥抱不确定性的豪情。当经济增速放缓、阶层流动收窄，企业裁员严重，回到陆地又成为了主要的期盼。"
+        ],
+        "en": [
+          "Life is like a boundless sea of suffering; when will we finally reach the shore? The term #shang’an#—literally \"reaching the shore\"—has seen its popularity remain at a fever pitch. In recent years, amidst a fluctuating economic climate, it has been invoked even more frequently. It serves as a vivid metaphor for the desire of contemporary youth to escape the volatile labor market and find sanctuary within a stable, long-term platform. However, its referent is not singular; whether one is entering the civil service, securing a position at a public institution, or gaining admission to a prestigious university, the term is used across the board.",
+          "The character #shang# (up/onto) certainly encapsulates the grueling struggle for survival. Yet, upon closer inspection, compared to traditional vocabulary describing social competition or \"climbing the social ladder,\" #shang’an# presents a definitive \"shore.\" It is no longer an endless ladder to be climbed, but a place where one can stop and rest. Inherent in this is an imagination of a \"finality,\" which stands in stark contrast to the current predicament of drifting and sinking in murky waters. Being \"on shore\" signifies order, security, and a destination, while being \"in the water\" represents competition, anxiety, and a fragile, nomadic existence. This word not only vividly depicts the life pressures felt by the masses today but also clearly reflects a conservative leaning toward escaping instability. Perhaps one could say that the inadequacies of social security and the absence of a care network leave individuals with nowhere to entrust their lives. Fearing the pursuit of riskier opportunities, they have no choice but to seek \"the shore\" for themselves.",
+          "However, does this obsession with \"the shore\" reduce life to a series of exclusionary level-clearing games? Some self-mockingly remark that only after #shang’an# do they realize the \"other shore\" is merely an extension of \"this shore,\" where competition and infighting remain unabated. Furthermore, since \"reaching the shore\" implies the maintenance of current institutional structures, it may actually further suppress social mobility.",
+          "The term #shang’an# first appeared in #Ming and Qing novels#, referring to courtesans \"leaving the trade\" or bandits \"turning over a new leaf.\" In the 1980s, it stood in opposition to #xiahai# (\"plunging into the sea\"), referring to those who left the business world to return to stable professions. At the start of the Reform and Opening-up era, people resigned from public office to #xiahai# and engage in trade. At that time, \"the system\" meant a predictable, rote life, while the market economy was an ocean—treacherous and stormy, yet teeming with opportunity. Those who dared to dive in did not suffer from the exhausting risks; rather, they took pride in being \"tide-players.\" Also a water-related metaphor, #xiahai# described the heroic spirit of embracing uncertainty. Now, as economic growth slows, social mobility narrows, and corporate layoffs intensify, returning to dry land has once again become the primary aspiration."
+        ]
+      },
+      "example_sentence": {
+        "zh": "在 Bilibili 视频平台中，一些高播放量的视频中，每每出现抒情的风景空镜，我们总能见到满屏的“上岸”弹幕。",
+        "en": "On the Bilibili video platform, whenever a high-view-count video features lyrical, empty scenic shots, we invariably encounter a screen full of #shang’an# bullet chats."
+      },
+      "diagrams": [],
+      "related_terms": [],
+      "commentAbs": {
+        "content": {
+          "zh": "权力有时决定了谁必须上岸，有时决定了谁有资格上岸，有时决定了哪块土地被定义为可以提供庇护的“岸”，而哪块土地只是用来放逐的“岛”。",
+          "en": "...power sometimes decides who must come ashore, sometimes who is eligible to come ashore, and sometimes which land is defined as a \"shore\" that provides asylum, and which is merely an \"island\" used for exile."
+        },
+        "author": {
+          "zh": "孟汀",
+          "en": "Mengting"
+        }
+      },
+      "comments": [
+        {
+          "content": {
+            "zh": "我在想“上岸\"这个词的时间性。它不是一个渐进的过程，不是一个连续的过程（continuum），而是突进的跨越。\"上岸\"的时间性不是渐进的、连续的，而是断裂的，是一个清晰的 before 与 after。过渡地带被压缩成一个瞬间，是考试出分的那一刻，是 offer letter 发到邮箱的那一刻，终于可以发朋友圈的那一刻。在那之前是漫长的等待。\n\n我还想到，大家还会说“捞”“被捞了”——这个二分法很有趣，而且有一种很形象的湿漉漉的感觉。当然现实是“岸”很可能是一个新的连续不断的挣扎，但“上岸”给人一种心理功能就是提供一种明确的界限感。在持续不断的焦虑中，人需要相信存在一个节点，越过它就可以停下来。\n\n卡尔·施密特的《陆地与海洋》（1）说，人类是一种陆地动物，几乎所有民族的神话里都有大洪水，有诺亚方舟或者类似的故事。那种恐慌之后，人类抵达大地，抵达母亲的怀抱。陆地代表着秩序、法律、安宁，是可以确定的东西，可以被开垦。而海洋是流动的、危险、自由，是海盗和冒险家的领地。当然，他的陆海理论是在为德意志帝国的扩张辩护。\n\n不过，把上岸等同于保守也有点简化，上岸还同时是非常个人主义的，是“自己考、自己卷”，是自己的漂泊，哪怕“上岸” 是一种集体性的焦虑和愿望。\n\n中文里以\"地\"为核心也有很多有趣的词：接地气、脚踏实地、地位、立足之地、落地生根等等。似乎我们可以更多地注意一下，这些关于自然元素的语言以及对它们的新的用法。\n\n人类学还有另一种“上岸”（sedentarization）：水上族群被迫或主动登陆定居的过程。中国华南的疍（dàn ）民“以水为生”，从浮一船为家到居住在陆地上，这个过程本身反映了岛屿大陆化的一个重要面向。\n\n80 年前，珠江上有 10 万余疍家人，小艇是他们最重要的财产，江上共有3万多艘。新中国成立后，国家曾大规模安排疍民上岸。令人惆怅的是，上岸后的疍民也有很多不适应这些生产生活的情况。（2）\n\n这与印尼、马来西亚许多传统社区的命运类似：印尼当局将部分海上游牧民 Sama-Bajau （3、4） 迁至小岛，试图将社区从传统生活方式中剥离，安置于永久住房。\n\n对国家来说，水上住民是难以被统计、征税和管理的“流动人口”，安排“上岸” 是国家权力将“非正规”的生活方式转化为“可识别、可管理”的定居生活，与陆地居所相应地提供户籍、教育、医疗的统一管理。这些“上岸”与当代中国青年的“上岸”渴望可为镜像、互为价值判断：一个是被国家权力推上陆地，一个是主动挤进体制的庇护，但却都是一种“别无选择”。\n\n最近还学到这件事情，或许也可以加入上岸的图景：澳大利亚的“离岸处理”（offshore processing）政策：2013年，澳大利亚政府宣布对所有庇护寻求者实施“离岸处理”，所有通过海路入境但不持有效签证的人员将被送往巴布亚新几内亚和瑙鲁。\n\n于是，大量难民——多来自伊朗、阿富汗、伊拉克、索马里——历经千辛万苦乘船抵达澳大利亚海岸，却被拦截、遣送至太平洋小岛上。这被称为\"太平洋方案\"（Pacific Solution）。\n\n政治地理学家艾莉森·蒙茨（Alison Mountz）在《庇护之死》（4）中，追溯了美国、欧盟和澳大利亚如何通过离岸拘留中心和移民处理设施，将战争造成的难民潮“外包” 到遥远的岛屿。2016年泄露的“瑙鲁文件”也揭示了难民遭受的殴打、自残、大规模性侵、虐待儿童等情况。\n\n对这些难民来说，“上岸”当然意味着结束漂泊，但是这个“岸”却并不是家园，也不是安全的避风港，而是帝国主义勾结设计出的边缘废弃区域，它更进一步意味着对难民人权的漠视。这让我觉得“上岸”也是一个与权力结构密不可分的事情：权力有时决定了谁必须上岸，有时决定了谁有资格上岸，有时决定了哪块土地被定义为可以提供庇护的“岸”，而哪块土地只是用来放逐的“岛”。\n\n1. [德]卡尔·施米特著，林国基、周敏译：《陆地与海洋：古今之变的回想》，上海：华东师范大学出版社，2011年，第[引用页码]页。\n2. 广东省民族研究所编：《广东疍民社会调查》，广州：中山大学出版社，2001年，第[引用页码]页。\n3. \"Sama-Bajau: Asia’s Sea Nomads,\" Asia Media Centre, accessed [访问日期], https://www.asiamediacentre.org.nz/features/sama-bajau-asias-sea-nomads.\n4. Wikipedia, s.v. \"Sama-Bajau,\" last modified [最后修改日期], https://en.wikipedia.org/wiki/Sama-Bajau\n5. Alison Mountz, The Death of Asylum: Hidden Geographies of the Enforcement Archipelago, (Minneapolis: University of Minnesota Press, 2020)",
+            "en": "I have been reflecting on the temporality of the term #shang’an#. It is not a gradual progression or a continuum, but a sudden, forceful leap. The temporality of \"reaching the shore\" is not incremental; it is ruptured—a clean break between \"before\" and \"after.\" The transitional zone is compressed into a single instant: the moment test scores are released, the moment the offer letter hits the inbox, the moment one can finally post the news on social media. Before that, there is only the long, agonizing wait.\nI also thought about how people use the terms #lao# (\"scooping someone up\") or \"being scooped\"—this dichotomy is fascinating and carries a vivid, \"drenched\" tactile quality. Of course, the reality is that the \"shore\" may very well be a new, continuous struggle, but #shang’an# serves a psychological function by providing a clear sense of boundaries. Amidst incessant anxiety, one needs to believe in the existence of a nodal point—a threshold beyond which one can finally stop.\nIn #Land and Sea# (1), Carl Schmitt notes that humans are terrestrial creatures. Almost every nation’s mythology includes a Great Flood, a Noah’s Ark, or a similar tale. After that panic, humanity reaches the land, returning to the mother’s embrace. The land represents order, law, and tranquility; it is something deterministic that can be cultivated. In contrast, the sea is fluid, dangerous, and free—the domain of pirates and adventurers. Of course, his land-sea theory was a justification for the expansion of the German Empire.\nHowever, equating #shang’an# solely with conservatism is somewhat reductive. It is simultaneously deeply individualistic—it is about \"taking the exams yourself, grinding (#juan#) yourself,\" and your own personal drifting, even if the desire to \"reach the shore\" is a collective anxiety.\nIn Chinese, there are many intriguing terms centered on #di# (the earth/ground): #jiediqi# (grounded/down-to-earth), #jiaotashidi# (having one's feet on solid ground), #diwei# (status/position), #lizuzhidi# (a foothold), and #luodishenggen# (taking root), among others. It seems we could pay more attention to these elemental metaphors and their evolving usage.\nAnthropology offers another form of #shang’an#: sedentarization, the process by which water-bound groups are forced or choose to settle on land. The Tanka (#Dan#) people of Southern China \"lived by the water\"; their transition from using a boat as a home to living on land reflects a significant aspect of the \"continentalization\" of islands.\nEighty years ago, there were over 100,000 Tanka people on the Pearl River, with more than 30,000 small boats—their most vital asset. After the founding of the People’s Republic of China, the state organized large-scale sedentarization for them. Melancholically, many Tanka struggled to adapt to land-based production and lifestyle (2).\nThis mirrors the fate of many traditional communities in Indonesia and Malaysia: the Indonesian authorities relocated some of the Sama-Bajau (3, 4)—sea nomads—to small islands, attempting to strip the community of their traditional lifestyle by placing them in permanent housing.\nTo the state, water-dwellers are \"floating populations\" that are difficult to count, tax, and manage. Arranging for them to \"come ashore\" is an act of state power transforming \"informal\" lifestyles into \"legible and manageable\" settled lives, providing unified management of household registration (#hukou#), education, and healthcare. These instances of \"coming ashore\" and the contemporary Chinese youth's longing for #shang’an# serve as mirror images and mutual value judgments: one is pushed onto land by state power, while the other actively squeezes into the shelter of \"the system\"—yet both represent a sense of having \"no other choice.\"\nI recently learned about something else that might belong in this #shang’an# landscape: Australia's \"offshore processing\" policy. In 2013, the Australian government announced it would implement \"offshore processing\" for all asylum seekers; everyone entering by sea without a valid visa would be sent to Papua New Guinea or Nauru.\nConsequently, a vast number of refugees—mostly from Iran, Afghanistan, Iraq, and Somalia—traveled through immense hardship by boat to reach the Australian coast, only to be intercepted and deported to small Pacific islands. This was dubbed the #Pacific Solution#.\nIn #The Death of Asylum# (5), political geographer Alison Mountz traces how the US, EU, and Australia \"outsourced\" the tide of refugees caused by war to remote islands through offshore detention centers and processing facilities. The leaked \"Nauru files\" in 2016 revealed instances of assault, self-harm, systemic sexual violence, and child abuse.\nFor these refugees, #shang’an# certainly means an end to drifting, but this \"shore\" is neither a homeland nor a safe haven. Instead, it is a marginal, discarded zone designed by imperialist collusion, signifying a further disregard for refugee human rights. This makes me feel that #shang’an# is inextricably linked to power structures: power sometimes decides who must come ashore, sometimes who is eligible to come ashore, and sometimes which land is defined as a \"shore\" that provides asylum, and which is merely an \"island\" used for exile.\n\n1. Carl Schmitt, #Land and Sea: A World-Historical Meditation# (#Ludi yu haiyang: Gujin zhi bian de huixiang#), trans. Guoji Lin and Min Zhou, Shanghai: East China Normal University Press, 2011, p. [page number].\n2. Guangdong Institute of Ethnic Studies, ed., #Social Survey of the Guangdong Tanka People# (#Guangdong Danmin shehui diaocha#), Guangzhou: Sun Yat-sen University Press, 2001, p. [page number].\n3. \"Sama-Bajau: Asia’s Sea Nomads,\" Asia Media Centre, accessed [Date of Access], https://www.asiamediacentre.org.nz/features/sama-bajau-asias-sea-nomads.\n4. Wikipedia, s.v. \"Sama-Bajau,\" last modified [Date of Last Modification], https://en.wikipedia.org/wiki/Sama-Bajau.\n5. Alison Mountz, #The Death of Asylum: Hidden Geographies of the Enforcement Archipelago#, (Minneapolis: University of Minnesota Press, 2020)."
+          },
+          "role": {
+            "zh": "贡献者",
+            "en": "Contributor"
+          },
+          "author": {
+            "zh": "孟汀",
+            "en": "Mengting"
+          },
+          "background": {
+            "zh": "",
+            "en": ""
+          },
+          "date": "2026/03/06",
+          "images": [
+            {
+              "src": "images/上岸_note1_1.jpg",
+              "caption": {
+                "zh": "福州疍民把水上的船只作为家宅。图源维基百科。",
+                "en": "The Fuzhou Tanka people used their boats on the water as their homes. Image source: Wikipedia."
+              }
+            }
+          ]
+        }
+      ],
+      "online_date": "2026/03/06"
     }
   ]
 }
