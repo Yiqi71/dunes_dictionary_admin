@@ -1,8 +1,12 @@
-import { getOrCreateDeviceId } from "./admin/assets/js/device-id.js";
-
 const STORAGE_KEY = "dd_events";
 const MAX_EVENTS = 500;
+const DEVICE_ID_KEY = "dd_device_id_v1";
+const LEGACY_DEVICE_ID_KEYS = ["dunes_device_id_v1", "dd_vote_device_id_v1"];
+const DEVICE_ID_PATTERN = /^[a-z0-9-]{16,128}$/;
+const LEGACY_DEVICE_ID_PATTERN = /^d_[a-z0-9]+_[a-z0-9]+$/;
+
 let currentWordView = null;
+
 const API_BASE = (() => {
   const injected = (typeof window !== "undefined" && window.DD_API_BASE) ? String(window.DD_API_BASE).trim() : "";
   if (injected) return injected.replace(/\/+$/, "");
@@ -13,6 +17,45 @@ const API_BASE = (() => {
 
 function buildApiUrl(path) {
   return `${API_BASE}${path}`;
+}
+
+function normalizeDeviceId(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function isValidDeviceId(value) {
+  const normalized = normalizeDeviceId(value);
+  return DEVICE_ID_PATTERN.test(normalized) || LEGACY_DEVICE_ID_PATTERN.test(normalized);
+}
+
+function generateDeviceId() {
+  const ts = Date.now().toString(36);
+  const randomPart = Math.random().toString(36).slice(2, 12);
+  return `dunes-${ts}-${randomPart}`;
+}
+
+function persistDeviceId(id) {
+  localStorage.setItem(DEVICE_ID_KEY, id);
+}
+
+function getOrCreateDeviceId() {
+  try {
+    const candidates = [DEVICE_ID_KEY, ...LEGACY_DEVICE_ID_KEYS];
+    for (const key of candidates) {
+      const raw = localStorage.getItem(key);
+      const normalized = normalizeDeviceId(raw);
+      if (!isValidDeviceId(normalized)) continue;
+      persistDeviceId(normalized);
+      return normalized;
+    }
+
+    const next = normalizeDeviceId(generateDeviceId());
+    if (!isValidDeviceId(next)) return "";
+    persistDeviceId(next);
+    return next;
+  } catch (_) {
+    return "";
+  }
 }
 
 function getDocLang() {
@@ -51,25 +94,20 @@ export function logEvent(name, data = {}) {
       data: payload
     };
 
-    // 1) 仍然写本地（防断网丢）
     events.push(event);
     if (events.length > MAX_EVENTS) {
       events.splice(0, events.length - MAX_EVENTS);
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
 
-    // 2) 同时上报到后端
-    // - keepalive: 页面关闭/跳转时也尽量发出去
-    // - 不阻塞 UI：不 await
     fetch(buildApiUrl("/events"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(event),
       keepalive: true
     }).catch(() => {
-      // 这里先静默，避免控制台刷屏；需要调试再 console.log
+      // noop
     });
-
   } catch (err) {
     console.error("logEvent failed", err);
   }

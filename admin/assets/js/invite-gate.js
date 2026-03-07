@@ -5,6 +5,7 @@ const INVITE_CODE_KEY = "dunes_invite_code_v1";
 const DEVICE_ID_KEYS = ["dd_device_id_v1", "dunes_device_id_v1", "dd_vote_device_id_v1"];
 const SUCCESS_HOLD_MS = 2000;
 const FADE_OUT_MS = 700;
+const GATE_FIRST_SHOW_DELAY_MS = 900;
 const ENTRY_READY_EVENT = "dunes:entry-ready";
 
 let entryReadyNotified = false;
@@ -75,7 +76,10 @@ function notifyEntryReady(source) {
 }
 
 function hideGate(gate, source = "unknown") {
-    if (!gate) return;
+    if (!gate) {
+        notifyEntryReady(source);
+        return;
+    }
     gate.classList.add("is-hidden");
     notifyEntryReady(source);
 }
@@ -84,6 +88,8 @@ function showSuccessOverlay(gate, input, submit, message) {
     input.disabled = true;
     submit.disabled = true;
     setMessage(message, "", "");
+    gate.classList.remove("is-waiting");
+    gate.classList.remove("is-hidden");
     gate.classList.add("is-success");
 
     window.setTimeout(() => {
@@ -104,6 +110,28 @@ function ensureSuccessTitle(gate) {
     gate.appendChild(title);
 }
 
+function ensureGateDom() {
+    let gate = document.getElementById("invite-gate");
+    if (gate) return gate;
+
+    gate = document.createElement("div");
+    gate.id = "invite-gate";
+    gate.innerHTML = `
+        <div class="invite-card">
+            <h1 class="invite-title">输入邀请码</h1>
+            <p class="invite-sub">请输入你收到的邀请码后继续访问。</p>
+            <form id="invite-form" novalidate>
+                <label class="invite-label" for="invite-input">邀请码</label>
+                <input id="invite-input" type="text" inputmode="latin" autocomplete="off" placeholder="DUNES-XXXX" />
+                <button id="invite-submit" type="submit">进入</button>
+                <p id="invite-message" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    `;
+    document.body.appendChild(gate);
+    return gate;
+}
+
 function resolveDeviceIdWithRepair() {
     let id = getOrCreateDeviceId();
     if (isValidInviteDeviceId(id)) return id;
@@ -119,18 +147,30 @@ function resolveDeviceIdWithRepair() {
 }
 
 function initInviteGate() {
-    const gate = document.getElementById("invite-gate");
+    const gate = ensureGateDom();
     const form = document.getElementById("invite-form");
     const input = document.getElementById("invite-input");
     const submit = document.getElementById("invite-submit");
     const message = document.getElementById("invite-message");
 
     if (!gate || !form || !input || !submit || !message) {
-        notifyEntryReady("no-gate");
+        notifyEntryReady("gate-missing");
         return;
     }
 
+    gate.classList.add("is-waiting");
+    gate.classList.remove("is-success", "is-fading", "is-hidden");
     ensureSuccessTitle(gate);
+
+    const showGate = () => {
+        gate.classList.remove("is-hidden");
+        gate.classList.remove("is-fading");
+        gate.classList.remove("is-success");
+        gate.classList.remove("is-waiting");
+        input.disabled = false;
+        submit.disabled = false;
+        if (!input.value) input.focus();
+    };
 
     const clearLocalVerify = () => {
         try {
@@ -142,16 +182,12 @@ function initInviteGate() {
     };
 
     let lastKnownDeviceId = resolveDeviceIdWithRepair();
-    if (!isValidInviteDeviceId(lastKnownDeviceId)) {
-        clearLocalVerify();
-        setMessage(message, "设备标识异常，请刷新后重试", "error");
-        return;
-    }
 
     let unlocking = false;
     const verifyAndUnlock = async (code, options = {}) => {
         const silent = Boolean(options.silent);
         const retryOnInvalidDeviceId = options.retryOnInvalidDeviceId !== false;
+        const immediateUnlock = Boolean(options.immediateUnlock);
         unlocking = true;
         submit.disabled = true;
         input.disabled = true;
@@ -172,6 +208,11 @@ function initInviteGate() {
             });
             localStorage.setItem(INVITE_OK_KEY, "true");
             localStorage.setItem(INVITE_CODE_KEY, code);
+            unlocking = false;
+            if (immediateUnlock) {
+                hideGate(gate, "invite-cached");
+                return;
+            }
             showSuccessOverlay(gate, input, submit, message);
         } catch (err) {
             if (retryOnInvalidDeviceId && err && err.code === "invalid_device_id") {
@@ -179,6 +220,7 @@ function initInviteGate() {
                 if (isValidInviteDeviceId(lastKnownDeviceId)) {
                     return verifyAndUnlock(code, {
                         silent,
+                        immediateUnlock,
                         retryOnInvalidDeviceId: false
                     });
                 }
@@ -189,6 +231,7 @@ function initInviteGate() {
             unlocking = false;
             const text = (err && err.message) ? err.message : "邀请码验证失败，请稍后重试";
             setMessage(message, text, "error");
+            showGate();
             if (!silent) {
                 input.focus();
             }
@@ -198,14 +241,27 @@ function initInviteGate() {
     try {
         const cachedOk = localStorage.getItem(INVITE_OK_KEY) === "true";
         const cachedCode = normalizeInviteCode(localStorage.getItem(INVITE_CODE_KEY));
-        if (cachedOk && isValidInviteCode(cachedCode)) {
+        if (cachedOk && isValidInviteCode(cachedCode) && isValidInviteDeviceId(lastKnownDeviceId)) {
             input.value = cachedCode;
-            verifyAndUnlock(cachedCode, { silent: true });
+            hideGate(gate, "invite-cached-local");
+            verifyAndUnlock(cachedCode, { silent: true, immediateUnlock: true });
             return;
         }
         clearLocalVerify();
     } catch (_) {
         // ignore and continue with invite form
+    }
+
+    if (!isValidInviteDeviceId(lastKnownDeviceId)) {
+        clearLocalVerify();
+        window.setTimeout(() => {
+            showGate();
+            setMessage(message, "设备标识异常，请刷新后重试", "error");
+        }, GATE_FIRST_SHOW_DELAY_MS);
+    } else {
+        window.setTimeout(() => {
+            showGate();
+        }, GATE_FIRST_SHOW_DELAY_MS);
     }
 
     form.addEventListener("submit", async (event) => {

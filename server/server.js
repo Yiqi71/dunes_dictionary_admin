@@ -172,9 +172,34 @@ function countUniqueUsers(events) {
   return new Set((events || []).map(getEventDedupeId).filter(Boolean)).size;
 }
 
-function loadWordTermMap() {
+function parseOnlineDateMs(rawValue) {
+  const raw = String(rawValue || "").trim();
+  if (!raw) return null;
+  const m = raw.match(/^(\d{4})[/-](\d{1,2})[/-](\d{1,2})$/);
+  if (!m) return null;
+  const y = Number(m[1]);
+  const mon = Number(m[2]);
+  const d = Number(m[3]);
+  if (!Number.isFinite(y) || !Number.isFinite(mon) || !Number.isFinite(d)) return null;
+  if (mon < 1 || mon > 12 || d < 1 || d > 31) return null;
+  const dt = new Date(y, mon - 1, d);
+  if (Number.isNaN(dt.getTime())) return null;
+  return dt.getTime();
+}
+
+function calcActiveDaysFromOnlineDate(rawValue) {
+  const ms = parseOnlineDateMs(rawValue);
+  if (ms === null) return null;
+  const onlineStart = startOfDay(ms);
+  const todayStart = startOfDay(Date.now());
+  if (onlineStart > todayStart) return 0;
+  return Math.floor((todayStart - onlineStart) / (24 * 3600_000)) + 1;
+}
+
+function loadWordMetaMaps() {
   const draftPath = path.join(contentDir, "draft", "data.json");
-  const map = new Map();
+  const termMap = new Map();
+  const onlineDateMap = new Map();
   try {
     const raw = fs.readFileSync(draftPath, "utf8");
     const parsed = JSON.parse(raw);
@@ -186,15 +211,21 @@ function loadWordTermMap() {
       const zh = typeof term.zh === "string" ? term.zh.trim() : "";
       const en = typeof term.en === "string" ? term.en.trim() : "";
       const label = zh || en;
-      if (label) map.set(id, label);
+      if (label) termMap.set(id, label);
+      const onlineDate = typeof (word && word.online_date) === "string" ? word.online_date.trim() : "";
+      if (onlineDate) onlineDateMap.set(id, onlineDate);
     }
   } catch (err) {
     console.warn("Failed to read draft words for term labels:", err.message);
   }
-  return map;
+  return { termMap, onlineDateMap };
 }
 
-function buildTermAgg(events, wordTermMap = null, langFilter = null) {
+function loadWordTermMap() {
+  return loadWordMetaMaps().termMap;
+}
+
+function buildTermAgg(events, wordTermMap = null, langFilter = null, wordOnlineDateMap = null) {
   const terms = new Map();
   for (const e of events) {
     const eventLang = getEventLangKey(e) || "cn";
@@ -224,7 +255,12 @@ function buildTermAgg(events, wordTermMap = null, langFilter = null) {
     visits: t.visits,
     durationMs: t.durationMs,
     durationText: fmtMs(t.durationMs),
-    activeDays: t.days.size
+    activeDays: (() => {
+      const onlineRaw = wordOnlineDateMap ? wordOnlineDateMap.get(t.wordId) : "";
+      const fromOnlineDate = calcActiveDaysFromOnlineDate(onlineRaw);
+      if (fromOnlineDate !== null) return fromOnlineDate;
+      return t.days.size;
+    })()
   }));
 }
 
@@ -685,9 +721,9 @@ app.get("/api/terms", async (req, res) => {
     return res.status(500).json({ ok: false, error: "DB query failed" });
   }
 
-  const wordTermMap = loadWordTermMap();
-  const rangeAgg = buildTermAgg(recentViewEvents, wordTermMap, lang);
-  const totalAgg = buildTermAgg(allViewEvents, wordTermMap, lang);
+  const { termMap: wordTermMap, onlineDateMap } = loadWordMetaMaps();
+  const rangeAgg = buildTermAgg(recentViewEvents, wordTermMap, lang, onlineDateMap);
+  const totalAgg = buildTermAgg(allViewEvents, wordTermMap, lang, onlineDateMap);
   const totalByWordId = new Map(totalAgg.map((item) => [item.id, item]));
   const savedMetrics = aggregateSavedWordMetrics(allSaveEvents, since);
 
