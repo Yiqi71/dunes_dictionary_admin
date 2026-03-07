@@ -147,6 +147,7 @@ body[data-scale="5"] .word-node .detail-title::before {
 
 #indicator {
     cursor: grab;
+    touch-action: none;
 }
 
 #indicator.dragging {

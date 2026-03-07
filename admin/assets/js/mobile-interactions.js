@@ -117,8 +117,62 @@ function initMobileYearTouchBridge() {
     });
 }
 
+function initScaleTouchBridge() {
+    const scaleContainer = document.getElementById("scaleContainer");
+    const scaleIndicator = document.getElementById("indicator");
+    if (!scaleContainer || !scaleIndicator) return;
+
+    let isTouchDragging = false;
+
+    scaleIndicator.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) {
+            isTouchDragging = false;
+            return;
+        }
+        const touch = e.touches[0];
+        if (!touch) return;
+        isTouchDragging = true;
+        e.preventDefault();
+        dispatchMouseEvent(scaleIndicator, "mousedown", touch);
+    }, { passive: false });
+
+    window.addEventListener("touchmove", (e) => {
+        if (!isTouchDragging) return;
+        if (e.touches.length !== 1) {
+            window.dispatchEvent(new MouseEvent("mouseup", { bubbles: true, cancelable: true, button: 0 }));
+            isTouchDragging = false;
+            return;
+        }
+        const touch = e.touches[0];
+        if (!touch) return;
+        e.preventDefault();
+        dispatchMouseEvent(window, "mousemove", touch);
+    }, { passive: false });
+
+    window.addEventListener("touchend", (e) => {
+        if (!isTouchDragging) return;
+        if (e.touches.length > 0) return;
+        const touch = e.changedTouches[0];
+        if (touch) {
+            dispatchMouseEvent(window, "mouseup", touch);
+        } else {
+            window.dispatchEvent(new MouseEvent("mouseup", { bubbles: true, cancelable: true, button: 0 }));
+        }
+        isTouchDragging = false;
+        e.preventDefault();
+    }, { passive: false });
+
+    window.addEventListener("touchcancel", () => {
+        if (isTouchDragging) {
+            window.dispatchEvent(new MouseEvent("mouseup", { bubbles: true, cancelable: true, button: 0 }));
+        }
+        isTouchDragging = false;
+    });
+}
+
 function initMobileInteractions() {
     initMobileYearTouchBridge();
+    initScaleTouchBridge();
     syncYearMenuVisibility();
     window.addEventListener("resize", syncYearMenuVisibility);
     document.addEventListener("word-focus-change", syncYearMenuVisibility);
