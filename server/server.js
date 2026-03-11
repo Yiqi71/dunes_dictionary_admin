@@ -538,6 +538,23 @@ function readJsonFileWithBomSupport(filePath) {
   return JSON.parse(text);
 }
 
+function getInviteCodeSeedOrder() {
+  try {
+    if (!fs.existsSync(INVITE_CODES_SEED_PATH)) {
+      return new Map();
+    }
+
+    const payload = readJsonFileWithBomSupport(INVITE_CODES_SEED_PATH);
+    const codes = Array.isArray(payload && payload.codes) ? payload.codes : [];
+    const normalized = Array.from(new Set(codes.map(normalizeInviteCode).filter(isValidInviteCode)));
+
+    return new Map(normalized.map((code, index) => [code, index]));
+  } catch (err) {
+    console.error("Failed to read invite seed order", err);
+    return new Map();
+  }
+}
+
 async function seedInviteCodesIfNeeded() {
   try {
     const row = await dbGet("SELECT COUNT(1) AS n FROM invite_codes");
@@ -807,9 +824,15 @@ app.get("/api/invite/usage", async (req, res) => {
   try {
     const rows = await dbAll(
       `SELECT code, bound_count, max_devices, status, updated_at
-       FROM invite_codes
-       ORDER BY code ASC`
+       FROM invite_codes`
     );
+    const seedOrder = getInviteCodeSeedOrder();
+    rows.sort((a, b) => {
+      const aIndex = seedOrder.has(a.code) ? seedOrder.get(a.code) : Number.MAX_SAFE_INTEGER;
+      const bIndex = seedOrder.has(b.code) ? seedOrder.get(b.code) : Number.MAX_SAFE_INTEGER;
+      if (aIndex !== bIndex) return aIndex - bIndex;
+      return String(a.code || "").localeCompare(String(b.code || ""));
+    });
 
     const items = rows.map((row) => {
       const boundCount = Math.max(0, Number(row.bound_count) || 0);
