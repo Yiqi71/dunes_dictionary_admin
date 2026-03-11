@@ -557,9 +557,6 @@ function getInviteCodeSeedOrder() {
 
 async function seedInviteCodesIfNeeded() {
   try {
-    const row = await dbGet("SELECT COUNT(1) AS n FROM invite_codes");
-    if (row && Number(row.n) > 0) return;
-
     if (!fs.existsSync(INVITE_CODES_SEED_PATH)) {
       console.warn("Invite seed file not found:", INVITE_CODES_SEED_PATH);
       return;
@@ -576,16 +573,18 @@ async function seedInviteCodesIfNeeded() {
     const now = Date.now();
     await dbRun("BEGIN IMMEDIATE TRANSACTION");
     try {
+      let inserted = 0;
       for (const code of normalized) {
-        await dbRun(
+        const result = await dbRun(
           `INSERT OR IGNORE INTO invite_codes
             (code, max_devices, status, bound_count, created_at, updated_at)
            VALUES (?, ?, 'active', 0, ?, ?)`,
           [code, DEFAULT_INVITE_MAX_DEVICES, now, now]
         );
+        inserted += result && typeof result.changes === "number" ? result.changes : 0;
       }
       await dbRun("COMMIT");
-      console.log(`Seeded invite codes: ${normalized.length}`);
+      console.log(`Invite code sync complete: ${inserted} inserted, ${normalized.length} codes in seed file`);
     } catch (err) {
       await dbRun("ROLLBACK");
       throw err;
