@@ -82,6 +82,12 @@
       display: inline-flex;
       gap: 6px;
     }
+    .usage-text {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
     .box {
       width: 16px;
       height: 16px;
@@ -133,10 +139,10 @@
       ? "http://localhost:3000"
       : "https://api.dunes-dictionary.com";
 
-    function buildBoxes(usedCount) {
+    function buildBoxes(usedCount, maxDevices) {
       const boxes = document.createElement("div");
       boxes.className = "boxes";
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < maxDevices; i++) {
         const box = document.createElement("span");
         box.className = i < usedCount ? "box filled" : "box";
         boxes.appendChild(box);
@@ -156,12 +162,24 @@
         code.className = "code";
         code.textContent = item.code;
 
-        const usedCount = Math.min(5, Math.max(0, Number(item.boundCount) || 0));
-        const boxes = buildBoxes(usedCount);
-        boxes.title = `${usedCount}/5`;
+        const boundCount = Math.max(0, Number(item.boundCount) || 0);
+        const isUnlimited = Boolean(item.isUnlimited) || String(item.deviceLimitMode || "").toLowerCase() === "unlimited";
+        let usageNode;
+        if (isUnlimited) {
+          const usageText = document.createElement("div");
+          usageText.className = "usage-text";
+          usageText.textContent = `${boundCount} / unlimited`;
+          usageNode = usageText;
+        } else {
+          const maxDevices = Math.max(1, Number(item.maxDevices) || 5);
+          const usedCount = Math.min(maxDevices, boundCount);
+          const boxes = buildBoxes(usedCount, maxDevices);
+          boxes.title = `${usedCount}/${maxDevices}`;
+          usageNode = boxes;
+        }
 
         row.appendChild(code);
-        row.appendChild(boxes);
+        row.appendChild(usageNode);
         rowsEl.appendChild(row);
       }
     }

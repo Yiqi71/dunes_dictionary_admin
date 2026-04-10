@@ -4,3 +4,4 @@ content/sources
 tracking/*.sqlite
 tracking/*.sqlite-shm
 tracking/*.sqlite-wal
+note.md

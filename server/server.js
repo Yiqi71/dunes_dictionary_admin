@@ -28,7 +28,7 @@ app.use(express.json({ limit: "200kb" }));
 // Prevent leaking raw invite code lists from static files.
 app.use((req, res, next) => {
   const reqPath = String(req.path || "");
-  if (/invite-codes\.json$/i.test(reqPath)) {
+  if (/invite-codes(?:-[a-z0-9-]+)?\.json$/i.test(reqPath)) {
     return res.status(404).json({ ok: false, error: "not_found" });
   }
   return next();
@@ -63,6 +63,7 @@ db.serialize(() => {
     `CREATE TABLE IF NOT EXISTS invite_codes (
       code TEXT PRIMARY KEY,
       max_devices INTEGER NOT NULL DEFAULT 5,
+      device_limit_mode TEXT NOT NULL DEFAULT 'limited',
       status TEXT NOT NULL DEFAULT 'active',
       bound_count INTEGER NOT NULL DEFAULT 0,
       created_at INTEGER NOT NULL,
@@ -89,6 +90,19 @@ db.serialize(() => {
     )`
   );
   db.run(`CREATE INDEX IF NOT EXISTS idx_invite_legacy_code ON invite_legacy_exempt_devices(code)`);
+  db.run(
+    `ALTER TABLE invite_codes ADD COLUMN device_limit_mode TEXT NOT NULL DEFAULT 'limited'`,
+    (err) => {
+      if (err && !/duplicate column name/i.test(String(err.message || ""))) {
+        console.error("Failed to migrate invite_codes.device_limit_mode", err);
+      }
+    }
+  );
+  db.run(
+    `UPDATE invite_codes
+       SET device_limit_mode = 'limited'
+     WHERE device_limit_mode IS NULL OR TRIM(device_limit_mode) = ''`
+  );
 });
 
 function dbRun(sql, params = []) {
@@ -512,10 +526,36 @@ function isValidDeviceId(deviceId) {
 }
 
 const DEFAULT_INVITE_MAX_DEVICES = 5;
+const INVITE_LIMIT_MODE_LIMITED = "limited";
+const INVITE_LIMIT_MODE_UNLIMITED = "unlimited";
 const INVITE_REVOKE_ON_LIMIT = String(process.env.INVITE_REVOKE_ON_LIMIT || "").toLowerCase() === "true";
 const INVITE_CODES_SEED_PATH = process.env.INVITE_CODES_SEED_PATH
   ? process.env.INVITE_CODES_SEED_PATH
   : path.join(rootDir, "admin", "assets", "data", "invite-codes.json");
+const INVITE_CODES_UNLIMITED_SEED_PATH = process.env.INVITE_CODES_UNLIMITED_SEED_PATH
+  ? process.env.INVITE_CODES_UNLIMITED_SEED_PATH
+  : path.join(rootDir, "admin", "assets", "data", "invite-codes-unlimited.json");
+
+function normalizeInviteLimitMode(value) {
+  return String(value || "").trim().toLowerCase() === INVITE_LIMIT_MODE_UNLIMITED
+    ? INVITE_LIMIT_MODE_UNLIMITED
+    : INVITE_LIMIT_MODE_LIMITED;
+}
+
+function getInviteSeedConfigs() {
+  return [
+    {
+      filePath: INVITE_CODES_SEED_PATH,
+      limitMode: INVITE_LIMIT_MODE_LIMITED,
+      maxDevices: DEFAULT_INVITE_MAX_DEVICES
+    },
+    {
+      filePath: INVITE_CODES_UNLIMITED_SEED_PATH,
+      limitMode: INVITE_LIMIT_MODE_UNLIMITED,
+      maxDevices: 0
+    }
+  ];
+}
 
 function readJsonFileWithBomSupport(filePath) {
   const bytes = fs.readFileSync(filePath);
@@ -540,15 +580,15 @@ function readJsonFileWithBomSupport(filePath) {
 
 function getInviteCodeSeedOrder() {
   try {
-    if (!fs.existsSync(INVITE_CODES_SEED_PATH)) {
-      return new Map();
+    const ordered = [];
+    for (const config of getInviteSeedConfigs()) {
+      if (!fs.existsSync(config.filePath)) continue;
+      const payload = readJsonFileWithBomSupport(config.filePath);
+      const codes = Array.isArray(payload && payload.codes) ? payload.codes : [];
+      const normalized = Array.from(new Set(codes.map(normalizeInviteCode).filter(isValidInviteCode)));
+      ordered.push(...normalized);
     }
-
-    const payload = readJsonFileWithBomSupport(INVITE_CODES_SEED_PATH);
-    const codes = Array.isArray(payload && payload.codes) ? payload.codes : [];
-    const normalized = Array.from(new Set(codes.map(normalizeInviteCode).filter(isValidInviteCode)));
-
-    return new Map(normalized.map((code, index) => [code, index]));
+    return new Map(Array.from(new Set(ordered)).map((code, index) => [code, index]));
   } catch (err) {
     console.error("Failed to read invite seed order", err);
     return new Map();
@@ -557,37 +597,40 @@ function getInviteCodeSeedOrder() {
 
 async function seedInviteCodesIfNeeded() {
   try {
-    if (!fs.existsSync(INVITE_CODES_SEED_PATH)) {
-      console.warn("Invite seed file not found:", INVITE_CODES_SEED_PATH);
-      return;
-    }
-
-    const payload = readJsonFileWithBomSupport(INVITE_CODES_SEED_PATH);
-    const codes = Array.isArray(payload && payload.codes) ? payload.codes : [];
-    const normalized = Array.from(new Set(codes.map(normalizeInviteCode).filter(isValidInviteCode)));
-    if (!normalized.length) {
-      console.warn("Invite seed file has no valid codes:", INVITE_CODES_SEED_PATH);
-      return;
-    }
-
-    const now = Date.now();
-    await dbRun("BEGIN IMMEDIATE TRANSACTION");
-    try {
-      let inserted = 0;
-      for (const code of normalized) {
-        const result = await dbRun(
-          `INSERT OR IGNORE INTO invite_codes
-            (code, max_devices, status, bound_count, created_at, updated_at)
-           VALUES (?, ?, 'active', 0, ?, ?)`,
-          [code, DEFAULT_INVITE_MAX_DEVICES, now, now]
-        );
-        inserted += result && typeof result.changes === "number" ? result.changes : 0;
+    const seedConfigs = getInviteSeedConfigs();
+    for (const config of seedConfigs) {
+      if (!fs.existsSync(config.filePath)) {
+        console.warn("Invite seed file not found:", config.filePath);
+        continue;
       }
-      await dbRun("COMMIT");
-      console.log(`Invite code sync complete: ${inserted} inserted, ${normalized.length} codes in seed file`);
-    } catch (err) {
-      await dbRun("ROLLBACK");
-      throw err;
+
+      const payload = readJsonFileWithBomSupport(config.filePath);
+      const codes = Array.isArray(payload && payload.codes) ? payload.codes : [];
+      const normalized = Array.from(new Set(codes.map(normalizeInviteCode).filter(isValidInviteCode)));
+      if (!normalized.length) {
+        console.warn("Invite seed file has no valid codes:", config.filePath);
+        continue;
+      }
+
+      const now = Date.now();
+      await dbRun("BEGIN IMMEDIATE TRANSACTION");
+      try {
+        let inserted = 0;
+        for (const code of normalized) {
+          const result = await dbRun(
+            `INSERT OR IGNORE INTO invite_codes
+              (code, max_devices, device_limit_mode, status, bound_count, created_at, updated_at)
+             VALUES (?, ?, ?, 'active', 0, ?, ?)`,
+            [code, config.maxDevices, config.limitMode, now, now]
+          );
+          inserted += result && typeof result.changes === "number" ? result.changes : 0;
+        }
+        await dbRun("COMMIT");
+        console.log(`Invite code sync complete: ${inserted} inserted, ${normalized.length} codes in ${path.basename(config.filePath)}`);
+      } catch (err) {
+        await dbRun("ROLLBACK");
+        throw err;
+      }
     }
   } catch (err) {
     console.error("Failed to seed invite codes", err);
@@ -822,7 +865,7 @@ app.get("/api/votes/comment-likes", async (req, res) => {
 app.get("/api/invite/usage", async (req, res) => {
   try {
     const rows = await dbAll(
-      `SELECT code, bound_count, max_devices, status, updated_at
+      `SELECT code, bound_count, max_devices, device_limit_mode, status, updated_at
        FROM invite_codes`
     );
     const seedOrder = getInviteCodeSeedOrder();
@@ -834,12 +877,18 @@ app.get("/api/invite/usage", async (req, res) => {
     });
 
     const items = rows.map((row) => {
+      const deviceLimitMode = normalizeInviteLimitMode(row.device_limit_mode);
+      const isUnlimited = deviceLimitMode === INVITE_LIMIT_MODE_UNLIMITED;
       const boundCount = Math.max(0, Number(row.bound_count) || 0);
-      const maxDevices = Math.max(1, Number(row.max_devices) || DEFAULT_INVITE_MAX_DEVICES);
+      const maxDevices = isUnlimited
+        ? null
+        : Math.max(1, Number(row.max_devices) || DEFAULT_INVITE_MAX_DEVICES);
       return {
         code: row.code,
         boundCount,
         maxDevices,
+        deviceLimitMode,
+        isUnlimited,
         status: row.status || "active",
         updatedAt: Number(row.updated_at) || null
       };
@@ -879,7 +928,7 @@ app.post("/api/invite/verify", async (req, res) => {
     await dbRun("BEGIN IMMEDIATE TRANSACTION");
     try {
       const invite = await dbGet(
-        "SELECT code, max_devices, status, bound_count FROM invite_codes WHERE code = ?",
+        "SELECT code, max_devices, device_limit_mode, status, bound_count FROM invite_codes WHERE code = ?",
         [code]
       );
 
@@ -893,7 +942,11 @@ app.post("/api/invite/verify", async (req, res) => {
         });
       }
 
-      const maxDevices = Math.max(1, Number(invite.max_devices) || DEFAULT_INVITE_MAX_DEVICES);
+      const deviceLimitMode = normalizeInviteLimitMode(invite.device_limit_mode);
+      const isUnlimited = deviceLimitMode === INVITE_LIMIT_MODE_UNLIMITED;
+      const maxDevices = isUnlimited
+        ? null
+        : Math.max(1, Number(invite.max_devices) || DEFAULT_INVITE_MAX_DEVICES);
       const boundCount = Math.max(0, Number(invite.bound_count) || 0);
       const existing = await dbGet(
         "SELECT code FROM invite_devices WHERE code = ? AND device_id = ?",
@@ -921,9 +974,10 @@ app.post("/api/invite/verify", async (req, res) => {
           code,
           alreadyBound: true,
           legacyExempt: false,
+          deviceLimitMode,
           boundCount,
           maxDevices,
-          remaining: Math.max(0, maxDevices - boundCount)
+          remaining: isUnlimited ? null : Math.max(0, maxDevices - boundCount)
         });
       }
 
@@ -943,9 +997,10 @@ app.post("/api/invite/verify", async (req, res) => {
           code,
           alreadyBound: false,
           legacyExempt: true,
+          deviceLimitMode,
           boundCount,
           maxDevices,
-          remaining: Math.max(0, maxDevices - boundCount)
+          remaining: isUnlimited ? null : Math.max(0, maxDevices - boundCount)
         });
       }
 
@@ -965,13 +1020,14 @@ app.post("/api/invite/verify", async (req, res) => {
           code,
           alreadyBound: false,
           legacyExempt: true,
+          deviceLimitMode,
           boundCount,
           maxDevices,
-          remaining: Math.max(0, maxDevices - boundCount)
+          remaining: isUnlimited ? null : Math.max(0, maxDevices - boundCount)
         });
       }
 
-      if (boundCount >= maxDevices) {
+      if (!isUnlimited && boundCount >= maxDevices) {
         if (INVITE_REVOKE_ON_LIMIT) {
           await dbRun(
             "UPDATE invite_codes SET status = 'revoked', updated_at = ? WHERE code = ?",
@@ -1009,9 +1065,10 @@ app.post("/api/invite/verify", async (req, res) => {
         code,
         alreadyBound: false,
         legacyExempt: false,
+        deviceLimitMode,
         boundCount: nextBoundCount,
         maxDevices,
-        remaining: Math.max(0, maxDevices - nextBoundCount)
+        remaining: isUnlimited ? null : Math.max(0, maxDevices - nextBoundCount)
       });
     } catch (err) {
       await dbRun("ROLLBACK");
