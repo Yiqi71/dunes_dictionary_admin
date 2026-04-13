@@ -97,15 +97,6 @@ let pinchStartPanY = 0;
 let pinchStartCenterX = 0;
 let pinchStartCenterY = 0;
 
-function isFloatingPanelVisible() {
-    const panel = document.getElementById("floating-panel");
-    return !!panel && !panel.classList.contains("hidden");
-}
-
-function isMobileLayout() {
-    return window.matchMedia("(max-width: 768px)").matches;
-}
-
 function endDrag() {
     if (!isDragging) return;
     isDragging = false;
@@ -134,13 +125,11 @@ function beginPinch(touchA, touchB) {
     isPinching = true;
     isDragging = false;
 
-    const panelVisible = isFloatingPanelVisible();
-    const mobile = isMobileLayout();
     const detailDiv = document.getElementById("word-details");
-    if (detailDiv && (!mobile || !panelVisible)) {
+    if (detailDiv) {
         detailDiv.classList.add("hidden");
     }
-    hideFloatingPanel({ keepDetailsHidden: mobile ? !panelVisible : true });
+    hideFloatingPanel();
 }
 
 function applyPinch(touchA, touchB) {
@@ -205,13 +194,9 @@ canvas.addEventListener("mousedown", (e) => {
     isDragging = true;
     dragStartX = e.clientX;
     dragStartY = e.clientY;
-    const panelVisible = isFloatingPanelVisible();
-    const mobile = isMobileLayout();
     const detailDiv = document.getElementById("word-details");
-    if (detailDiv && (!mobile || !panelVisible)) {
-        detailDiv.classList.add("hidden");
-    }
-    hideFloatingPanel({ keepDetailsHidden: mobile ? !panelVisible : true });
+    detailDiv.classList.add("hidden");
+    hideFloatingPanel();
 });
 
 canvas.addEventListener("mousemove", (e) => {
@@ -255,17 +240,15 @@ function handleTouchStart(e) {
     const touch = e.touches[0];
     if (!touch) return;
 
-    const panelVisible = isFloatingPanelVisible();
-    const mobile = isMobileLayout();
     isPinching = false;
     isDragging = true;
     dragStartX = touch.clientX;
     dragStartY = touch.clientY;
     const detailDiv = document.getElementById("word-details");
-    if (detailDiv && (!mobile || !panelVisible)) {
+    if (detailDiv) {
         detailDiv.classList.add("hidden");
     }
-    hideFloatingPanel({ keepDetailsHidden: mobile ? !panelVisible : true });
+    hideFloatingPanel();
 }
 
 function handleTouchMove(e) {
@@ -341,8 +324,6 @@ document.addEventListener("visibilitychange", () => {
 export function handleZoomWheel(e) {
     e.preventDefault();
 
-    const panelVisible = isFloatingPanelVisible();
-    const mobile = isMobileLayout();
     const scale = state.currentScale;
     const { newScale } = resolveWheelScale(scale, e.deltaY, {
         maxScale: state.scaleThreshold
@@ -361,7 +342,7 @@ export function handleZoomWheel(e) {
     updateWordNodeTransforms();
     updateRelations();
     moveIndicator(state.currentScale);
-    hideFloatingPanel({ keepDetailsHidden: mobile ? !panelVisible : true });
+    hideFloatingPanel();
 
     updateScaleForNodes(newScale);
     logEvent("canvas_zoom", { deltaY: e.deltaY, scaleBefore: scale, scaleAfter: newScale });

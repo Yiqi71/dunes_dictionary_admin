@@ -1056,18 +1056,7 @@ function togglePanelWidth() {
 }
 
 
-function restoreWordDetailsVisibilityAfterClose() {
-    const detailDiv = document.getElementById("word-details");
-    if (!detailDiv) return;
-    // Only restore when a word remains focused; keep hidden otherwise.
-    if (!state.focusedNodeId) return;
-    detailDiv.classList.remove("hidden");
-    detailDiv.classList.remove("details-transition-out");
-}
-
-export function hideFloatingPanel(options = {}) {
-    const { keepDetailsHidden = false } = options;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+export function hideFloatingPanel() {
     const panel = getFloatingPanel();
     if (!panel) return;
     panel.classList.add('hidden');
@@ -1107,13 +1096,7 @@ export function hideFloatingPanel(options = {}) {
     setTimeout(updateRelations, 225);
     setTimeout(updateRelations, 300);
     setTimeout(updateRelations, 600);
-    if (isMobile) {
-        if (!keepDetailsHidden) {
-            setTimeout(restoreWordDetailsVisibilityAfterClose, 320);
-        }
-    } else {
-        setTimeout(updateWordFocus, 300);
-    }
+    setTimeout(updateWordFocus, 300);
 
 }
 
@@ -1311,7 +1294,7 @@ export function renderPanelSections() {
     proposerSec.innerHTML = `<p class="left-title">${sectionTitles.proposers[lang]}</p>
                         <div id="proposers-container"> </div>`;
     const proposersContainer = document.getElementById("proposers-container");
-    const proposers = Array.isArray(currentWord.proposers) ? currentWord.proposers : [];
+    let proposers = currentWord.proposers;
     proposers.forEach((proposer) => {
         const proposerBlock = document.createElement("div");
         proposerBlock.classList = "proposer-block";
@@ -1366,10 +1349,9 @@ export function renderPanelSections() {
                             </div>`;
     }
 
-    const editors = Array.isArray(currentWord.editors) ? currentWord.editors : [];
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>
                         <div id="editors-container">
-                        ${editors.map(editor => `<p>${applyHashItalics(editor?.[lang] || "")}</p>`).join('')}
+                        ${currentWord.editors.map(editor => `<p>${applyHashItalics(editor?.[lang])}</p>`).join('')}
                         </div>`
 
     setupLazyImages(entryPanel);
@@ -1484,10 +1466,9 @@ function renderCommentSection() {
                             </div>`;
     }
 
-    const editors = Array.isArray(currentWord.editors) ? currentWord.editors : [];
     editorsSec.innerHTML = `<p class="left-title">${sectionTitles.editors[lang]}</p>
                         <div id="editors-container">
-                        ${editors.map(editor => `<p>${applyHashItalics(editor?.[lang] || "")}</p>`).join('')}
+                        ${currentWord.editors.map(editor => `<p>${applyHashItalics(editor?.[lang])}</p>`).join('')}
                         </div>`
 
     const firstComment = comments[0];

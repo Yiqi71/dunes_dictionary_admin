@@ -317,68 +317,6 @@ function parseContributeDate(contributeDate) {
     return year * 10000 + month * 100 + day;
 }
 
-function createVisitorWordId() {
-    return `visitor-${Date.now()}`;
-}
-
-function buildVisitorWord(inputWord) {
-    const rawTermZh = String(inputWord?.term?.zh || inputWord?.termOri || inputWord?.word || "").trim();
-    const rawTermEn = String(inputWord?.term?.en || inputWord?.termOri || inputWord?.word || rawTermZh).trim();
-    const displayOri = String(inputWord?.termOri || rawTermZh || rawTermEn).trim();
-    const nowIso = new Date().toISOString();
-
-    return {
-        id: String(inputWord?.id || createVisitorWordId()),
-        term: {
-            zh: rawTermZh || rawTermEn || "未知词条",
-            en: rawTermEn || rawTermZh || "Unknown term"
-        },
-        termOri: displayOri || rawTermEn || rawTermZh,
-        source: {
-            zh: inputWord?.source?.zh || "未知",
-            en: inputWord?.source?.en || "Unknown"
-        },
-        proposing_country: inputWord?.proposing_country ?? null,
-        proposing_time: inputWord?.proposing_time ?? null,
-        isVisitorWord: true,
-        status: inputWord?.status || "not reviewed",
-        submitted_at: inputWord?.submitted_at || nowIso,
-        concept_image: inputWord?.concept_image || "",
-        source_image: inputWord?.source_image || "",
-        brief_definition: {
-            zh: inputWord?.brief_definition?.zh || "访客提交词条，待补充释义。",
-            en: inputWord?.brief_definition?.en || "Visitor-submitted term. Definition pending."
-        },
-        extended_definition: {
-            zh: Array.isArray(inputWord?.extended_definition?.zh) ? inputWord.extended_definition.zh : ["待补充。"],
-            en: Array.isArray(inputWord?.extended_definition?.en) ? inputWord.extended_definition.en : ["Pending."]
-        },
-        example_sentence: {
-            zh: Array.isArray(inputWord?.example_sentence?.zh) ? inputWord.example_sentence.zh : ["待补充。"],
-            en: Array.isArray(inputWord?.example_sentence?.en) ? inputWord.example_sentence.en : ["Pending."]
-        },
-        proposers: Array.isArray(inputWord?.proposers) ? inputWord.proposers : [],
-        related_works: Array.isArray(inputWord?.related_works) ? inputWord.related_works : [],
-        contributors: Array.isArray(inputWord?.contributors) ? inputWord.contributors : [],
-        editors: Array.isArray(inputWord?.editors) ? inputWord.editors : [],
-        comments: Array.isArray(inputWord?.comments) ? inputWord.comments : []
-    };
-}
-
-async function addVisitorWordToUniverse(inputWord) {
-    const visitorWord = buildVisitorWord(inputWord);
-    const existsIndex = window.allWords.findIndex((word) => String(word.id) === String(visitorWord.id));
-    if (existsIndex >= 0) {
-        window.allWords[existsIndex] = visitorWord;
-    } else {
-        window.allWords = [...window.allWords, visitorWord];
-    }
-    renderWordUniverse(window.allWords);
-    return visitorWord;
-}
-
-window.__DD_ADD_VISITOR_WORD__ = addVisitorWordToUniverse;
-
 // Grid placement helpers
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
