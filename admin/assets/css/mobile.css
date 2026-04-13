@@ -149,6 +149,21 @@
     pointer-events: none;
   }
 
+  #visitor-upload-panel {
+    top: 106px;
+    right: 14px;
+    left: 14px;
+    width: auto;
+  }
+
+  #visitor-upload-form {
+    padding: 10px 12px;
+  }
+
+  .visitor-upload-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
   #dunes-icon {
     position: fixed;
     top: 60px;
@@ -420,6 +435,59 @@
   #about-panel .panel-bottom .diagram-caption {
     margin-top: 0 !important;
     padding-top: 0 !important;
+  }
+
+  #floating-panel .panel-bottom section,
+  #about-panel .panel-bottom section {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  #floating-panel .panel-bottom .left-title,
+  #about-panel .panel-bottom .left-title {
+    width: auto !important;
+  }
+
+  #floating-panel .panel-comment .panel-bottom .left-title,
+  #about-panel .panel-comment .panel-bottom .left-title {
+    --comment-title-line-height-mobile: 20px;
+    line-height: var(--comment-title-line-height-mobile) !important;
+    padding-bottom: calc(var(--comment-title-line-height-mobile) * 2) !important;
+  }
+
+  #about-panel .panel-bottom section > div {
+    padding-top: 0 !important;
+  }
+
+  #floating-panel .panel-comment .panel-bottom .note-body,
+  #floating-panel .panel-comment .panel-bottom .note-body *,
+  #about-panel .panel-comment .panel-bottom .note-body,
+  #about-panel .panel-comment .panel-bottom .note-body * {
+    text-align: left !important;
+  }
+
+  #floating-panel .panel-comment .panel-bottom .note-body > br,
+  #about-panel .panel-comment .panel-bottom .note-body > br {
+    display: none !important;
+  }
+
+  #floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors),
+  #about-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors) {
+    height: auto !important;
+    min-height: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    align-items: flex-start !important;
+  }
+
+  #floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors) .note-like-toggle,
+  #about-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors) .note-like-toggle {
+    top: 10px !important;
+  }
+
+  #floating-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors) .left-title,
+  #about-panel .panel-comment .panel-bottom.notes-mode section:not(.note-expanded):not(#section-contributors):not(#section-contact):not(#section-editors) .left-title {
+    padding-bottom: 0 !important;
   }
 
   #floating-close-btn {

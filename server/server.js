@@ -1090,6 +1090,7 @@ app.post("/api/invite/verify", async (req, res) => {
 
 
 app.use("/api/content", require("./routes/content"));
+app.use("/api/visitor-words", require("./routes/visitorWords"));
 app.use("/content", express.static(path.join(process.cwd(), "public", "content")));
 app.use("/draft", express.static(path.join(process.cwd(), "content", "draft")));
 

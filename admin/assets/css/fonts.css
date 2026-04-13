@@ -16,6 +16,13 @@
   font-display: block;
 }
 
+@font-face {
+  font-family: "ChillDIN";
+  src: url("../fonts/Chilldin/ChillDINGothic_Medium.otf") format("opentype");
+  font-weight: 575;
+  font-style: normal;
+  font-display: block;
+}
 
 /* ChillDINGothic - Local font for consistent loading */
 @font-face {
