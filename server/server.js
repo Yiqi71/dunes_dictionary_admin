@@ -1,3 +1,5 @@
+require("./load_env").loadLocalEnv();
+
 const express = require("express");
 const path = require("path");
 const fs = require("fs");

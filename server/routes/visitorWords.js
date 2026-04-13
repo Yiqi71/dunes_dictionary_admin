@@ -1,6 +1,12 @@
 const express = require("express");
 
-const { buildVisitorWord, saveVisitorWord } = require("../services/visitor_words");
+const {
+  buildVisitorWord,
+  logBlockedVisitorWord,
+  moderateVisitorWord,
+  moderateVisitorWordWithAI,
+  saveVisitorWord
+} = require("../services/visitor_words");
 
 const router = express.Router();
 
@@ -12,6 +18,34 @@ router.post("/", async (req, res) => {
   }
 
   try {
+    const moderation = moderateVisitorWord(rawWord);
+    if (!moderation.allowed) {
+      await logBlockedVisitorWord(rawWord, {
+        source: "keyword",
+        reason: moderation.reason
+      });
+      return res.status(422).json({
+        ok: false,
+        error: "word_not_allowed",
+        reason: moderation.reason
+      });
+    }
+
+    const aiModeration = await moderateVisitorWordWithAI(rawWord);
+    if (!aiModeration.allowed) {
+      await logBlockedVisitorWord(rawWord, {
+        source: "ai",
+        reason: aiModeration.reason,
+        categories: aiModeration.categories || null,
+        flagged: aiModeration.flagged === true
+      });
+      return res.status(422).json({
+        ok: false,
+        error: "word_not_allowed",
+        reason: aiModeration.reason
+      });
+    }
+
     const word = buildVisitorWord(rawWord);
     await saveVisitorWord(word);
     return res.status(201).json({ ok: true, word });

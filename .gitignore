@@ -4,4 +4,8 @@ content/sources
 tracking/*.sqlite
 tracking/*.sqlite-shm
 tracking/*.sqlite-wal
+server/.env.local
+server/.env
+.env.local
+.env
 note.md

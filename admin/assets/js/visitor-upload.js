@@ -11,24 +11,37 @@ const API_BASE = (() => {
 })();
 
 function normalizeLang(code) {
-    const v = (code || "").toLowerCase();
-    return v.startsWith("en") ? "en" : "zh";
+    const value = (code || "").toLowerCase();
+    return value.startsWith("en") ? "en" : "zh";
 }
 
 function getStatusCopy(status, lang) {
-    if (status === "submitting") {
-        return "测试词条提交中... / Submitting test word...";
-    }
-    if (status === "success") {
-        return "提交完成，正在聚焦到测试词条。 / Submitted. Focusing on the test word.";
-    }
-    if (status === "empty") {
-        return "请先输入一个词。 / Please enter a word first.";
-    }
-    if (status === "missing-endpoint") {
-        return "功能测试中：上传接口暂未开放。 / Testing in progress: upload endpoint is not available yet.";
-    }
-    return "提交失败，请稍后再试。 / Submission failed. Please try again later.";
+    const copy = {
+        zh: {
+            submitting: "测试词条提交中...",
+            success: "提交完成，正在聚焦到测试词条。",
+            empty: "请先输入一个词。",
+            notAllowed: "该词不适合公开提交。",
+            missingEndpoint: "测试中：上传接口暂未开放。",
+            error: "提交失败，请稍后再试。"
+        },
+        en: {
+            submitting: "Submitting test word...",
+            success: "Submitted. Focusing on the test word.",
+            empty: "Please enter a word first.",
+            notAllowed: "This word is not allowed for public submission.",
+            missingEndpoint: "Testing in progress: upload endpoint is not available yet.",
+            error: "Submission failed. Please try again later."
+        }
+    };
+
+    const dict = lang === "en" ? copy.en : copy.zh;
+    if (status === "submitting") return dict.submitting;
+    if (status === "success") return dict.success;
+    if (status === "empty") return dict.empty;
+    if (status === "not-allowed") return dict.notAllowed;
+    if (status === "missing-endpoint") return dict.missingEndpoint;
+    return dict.error;
 }
 
 function setProgressState(progressEl, active) {
@@ -77,6 +90,9 @@ async function handleSubmit(event) {
         if (response.status === 404 || response.status === 501) {
             throw new Error("missing-endpoint");
         }
+        if (response.status === 422) {
+            throw new Error("not-allowed");
+        }
         if (!response.ok) {
             throw new Error(`submit-failed-${response.status}`);
         }
@@ -92,7 +108,9 @@ async function handleSubmit(event) {
         if (input) input.value = "";
         await focusVisitorWord(visitorWord);
     } catch (error) {
-        const statusKey = error?.message === "missing-endpoint" ? "missing-endpoint" : "error";
+        const statusKey = error?.message === "missing-endpoint"
+            ? "missing-endpoint"
+            : (error?.message === "not-allowed" ? "not-allowed" : "error");
         if (statusEl) statusEl.textContent = getStatusCopy(statusKey, lang);
         console.error("visitor upload failed:", error);
     } finally {
