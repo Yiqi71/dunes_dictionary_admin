@@ -128,65 +128,75 @@ async function moderateVisitorWordWithAI(rawWord) {
   }
 
   console.log("[visitor-words] Gemini moderation request started");
+  try {
+    const url = `${GEMINI_ENDPOINT_BASE}/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
+    const payload = {
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: rawWord }]
+        }
+      ],
+      safetySettings: [
+        {
+          category: "HARM_CATEGORY_HARASSMENT",
+          threshold: "BLOCK_LOW_AND_ABOVE"
+        },
+        {
+          category: "HARM_CATEGORY_HATE_SPEECH",
+          threshold: "BLOCK_LOW_AND_ABOVE"
+        },
+        {
+          category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+          threshold: "BLOCK_LOW_AND_ABOVE"
+        },
+        {
+          category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+          threshold: "BLOCK_ONLY_HIGH"
+        }
+      ],
+      generationConfig: {
+        temperature: 0,
+        maxOutputTokens: 1
+      }
+    };
 
-  const url = `${GEMINI_ENDPOINT_BASE}/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
-  const payload = {
-    contents: [
-      {
-        role: "user",
-        parts: [{ text: rawWord }]
-      }
-    ],
-    safetySettings: [
-      {
-        category: "HARM_CATEGORY_HARASSMENT",
-        threshold: "BLOCK_LOW_AND_ABOVE"
-      },
-      {
-        category: "HARM_CATEGORY_HATE_SPEECH",
-        threshold: "BLOCK_LOW_AND_ABOVE"
-      },
-      {
-        category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-        threshold: "BLOCK_LOW_AND_ABOVE"
-      },
-      {
-        category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-        threshold: "BLOCK_ONLY_HIGH"
-      }
-    ],
-    generationConfig: {
-      temperature: 0,
-      maxOutputTokens: 1
+    const response = await postJson(url, payload);
+    if (response.statusCode >= 400) {
+      console.log("[visitor-words] Gemini moderation request failed", {
+        statusCode: response.statusCode,
+        body: response.body || response.raw || null
+      });
+      return { allowed: true, reason: "ai_request_failed", skipped: true };
     }
-  };
 
-  const response = await postJson(url, payload);
-  if (response.statusCode >= 400) {
-    throw new Error(`gemini_request_failed_${response.statusCode}`);
-  }
+    const promptFeedback = response.body && response.body.promptFeedback ? response.body.promptFeedback : null;
+    const blockReason = String(promptFeedback && promptFeedback.blockReason ? promptFeedback.blockReason : "").trim();
+    const categories = toGeminiCategories(promptFeedback && promptFeedback.safetyRatings);
+    const blocked = Boolean(blockReason);
 
-  const promptFeedback = response.body && response.body.promptFeedback ? response.body.promptFeedback : null;
-  const blockReason = String(promptFeedback && promptFeedback.blockReason ? promptFeedback.blockReason : "").trim();
-  const categories = toGeminiCategories(promptFeedback && promptFeedback.safetyRatings);
-  const blocked = Boolean(blockReason);
+    if (blocked) {
+      console.log("[visitor-words] Gemini moderation blocked prompt", {
+        blockReason,
+        categories
+      });
+    } else {
+      console.log("[visitor-words] Gemini moderation allowed prompt");
+    }
 
-  if (blocked) {
-    console.log("[visitor-words] Gemini moderation blocked prompt", {
-      blockReason,
+    return {
+      allowed: !blocked,
+      reason: blocked ? "ai_flagged" : "ok",
+      skipped: false,
+      flagged: blocked,
       categories
+    };
+  } catch (error) {
+    console.log("[visitor-words] Gemini moderation request error", {
+      message: error && error.message ? error.message : String(error || "unknown_error")
     });
-  } else {
-    console.log("[visitor-words] Gemini moderation allowed prompt");
+    return { allowed: true, reason: "ai_request_failed", skipped: true };
   }
-
-  return {
-    allowed: !blocked,
-    reason: blocked ? "ai_flagged" : "ok",
-    skipped: false,
-    flagged: blocked,
-    categories
-  };
 }
 
 function buildVisitorWord(rawWord) {
