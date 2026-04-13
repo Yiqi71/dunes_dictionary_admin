@@ -63,6 +63,10 @@ function getGeminiApiKey() {
   return String(process.env.GEMINI_API_KEY || "").trim();
 }
 
+function hasGeminiApiKey() {
+  return Boolean(getGeminiApiKey());
+}
+
 function postJson(url, body, headers = {}) {
   return new Promise((resolve, reject) => {
     const payload = JSON.stringify(body);
@@ -119,8 +123,11 @@ function toGeminiCategories(safetyRatings = []) {
 async function moderateVisitorWordWithAI(rawWord) {
   const apiKey = getGeminiApiKey();
   if (!apiKey) {
+    console.log("[visitor-words] Gemini moderation skipped: no GEMINI_API_KEY");
     return { allowed: true, reason: "ai_not_configured", skipped: true };
   }
+
+  console.log("[visitor-words] Gemini moderation request started");
 
   const url = `${GEMINI_ENDPOINT_BASE}/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
   const payload = {
@@ -163,6 +170,15 @@ async function moderateVisitorWordWithAI(rawWord) {
   const blockReason = String(promptFeedback && promptFeedback.blockReason ? promptFeedback.blockReason : "").trim();
   const categories = toGeminiCategories(promptFeedback && promptFeedback.safetyRatings);
   const blocked = Boolean(blockReason);
+
+  if (blocked) {
+    console.log("[visitor-words] Gemini moderation blocked prompt", {
+      blockReason,
+      categories
+    });
+  } else {
+    console.log("[visitor-words] Gemini moderation allowed prompt");
+  }
 
   return {
     allowed: !blocked,
@@ -277,6 +293,7 @@ async function logBlockedVisitorWord(rawWord, details = {}) {
 
 module.exports = {
   buildVisitorWord,
+  hasGeminiApiKey,
   logBlockedVisitorWord,
   moderateVisitorWord,
   moderateVisitorWordWithAI,

@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
   buildVisitorWord,
+  hasGeminiApiKey,
   logBlockedVisitorWord,
   moderateVisitorWord,
   moderateVisitorWordWithAI,
@@ -12,6 +13,10 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const rawWord = String(req.body && req.body.word ? req.body.word : "").trim();
+  console.log("[visitor-words] Incoming submit", {
+    rawWord,
+    geminiConfigured: hasGeminiApiKey()
+  });
 
   if (!rawWord) {
     return res.status(400).json({ ok: false, error: "word is required" });
@@ -20,6 +25,10 @@ router.post("/", async (req, res) => {
   try {
     const moderation = moderateVisitorWord(rawWord);
     if (!moderation.allowed) {
+      console.log("[visitor-words] Blocked by keyword filter", {
+        rawWord,
+        reason: moderation.reason
+      });
       await logBlockedVisitorWord(rawWord, {
         source: "keyword",
         reason: moderation.reason
@@ -33,6 +42,11 @@ router.post("/", async (req, res) => {
 
     const aiModeration = await moderateVisitorWordWithAI(rawWord);
     if (!aiModeration.allowed) {
+      console.log("[visitor-words] Blocked by Gemini moderation", {
+        rawWord,
+        reason: aiModeration.reason,
+        categories: aiModeration.categories || null
+      });
       await logBlockedVisitorWord(rawWord, {
         source: "ai",
         reason: aiModeration.reason,
@@ -46,6 +60,7 @@ router.post("/", async (req, res) => {
       });
     }
 
+    console.log("[visitor-words] Allowed submission", { rawWord });
     const word = buildVisitorWord(rawWord);
     await saveVisitorWord(word);
     return res.status(201).json({ ok: true, word });
