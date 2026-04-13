@@ -143,6 +143,7 @@ function prepareLazyImage(img) {
 const PROPOSER_TEXT_COLOR_LIGHT = "#E6D9D0";
 const PROPOSER_TEXT_COLOR_DARK = "#43403B";
 const PROPOSER_LOWER_HALF_LIGHT_THRESHOLD = 155;
+let proposerContrastToken = 0;
 
 function setProposerTextColor(color) {
     const proposerSection = document.getElementById("proposer");
@@ -153,6 +154,11 @@ function setProposerTextColor(color) {
     const oriEl = proposerSection.querySelector(".proposer-ori");
     if (primaryEl) primaryEl.style.color = finalColor;
     if (oriEl) oriEl.style.color = finalColor;
+}
+
+function setProposerTextColorIfCurrent(token, color) {
+    if (token !== proposerContrastToken) return;
+    setProposerTextColor(color);
 }
 
 function getImageLowerHalfLuminance(img) {
@@ -188,34 +194,35 @@ function getImageLowerHalfLuminance(img) {
     }
 }
 
-function syncProposerTextContrast(img) {
+function syncProposerTextContrast(img, token = proposerContrastToken) {
+    if (token !== proposerContrastToken) return;
     if (!isMobileLayout()) {
-        setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT);
+        setProposerTextColorIfCurrent(token, PROPOSER_TEXT_COLOR_LIGHT);
         return;
     }
     const luminance = getImageLowerHalfLuminance(img);
     if (luminance === null) {
-        setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT);
+        setProposerTextColorIfCurrent(token, PROPOSER_TEXT_COLOR_LIGHT);
         return;
     }
     if (luminance >= PROPOSER_LOWER_HALF_LIGHT_THRESHOLD) {
-        setProposerTextColor(PROPOSER_TEXT_COLOR_DARK);
+        setProposerTextColorIfCurrent(token, PROPOSER_TEXT_COLOR_DARK);
         return;
     }
-    setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT);
+    setProposerTextColorIfCurrent(token, PROPOSER_TEXT_COLOR_LIGHT);
 }
 
-function attachProposerContrastWatcher(img) {
+function attachProposerContrastWatcher(img, token = proposerContrastToken) {
     if (!img) {
-        setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT);
+        setProposerTextColorIfCurrent(token, PROPOSER_TEXT_COLOR_LIGHT);
         return;
     }
     if (img.complete && img.naturalWidth > 0) {
-        syncProposerTextContrast(img);
+        syncProposerTextContrast(img, token);
         return;
     }
-    img.addEventListener("load", () => syncProposerTextContrast(img), { once: true });
-    img.addEventListener("error", () => setProposerTextColor(PROPOSER_TEXT_COLOR_LIGHT), { once: true });
+    img.addEventListener("load", () => syncProposerTextContrast(img, token), { once: true });
+    img.addEventListener("error", () => setProposerTextColorIfCurrent(token, PROPOSER_TEXT_COLOR_LIGHT), { once: true });
 }
 const noteAuthor = {
     role: { zh: "编辑", en: "Editor" },
@@ -479,6 +486,40 @@ function hasUsableImageSource(src) {
     );
 }
 
+function hasTextContent(value) {
+    return String(value || "").trim().length > 0;
+}
+
+function normalizePlaceholderText(value) {
+    return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(/[。.!?]/g, "")
+        .replace(/\s+/g, "");
+}
+
+function isCommentPlaceholder(value) {
+    const normalized = normalizePlaceholderText(value);
+    if (!normalized) return true;
+    return (
+        normalized === "暂无导读" ||
+        normalized === "暂无作者" ||
+        normalized === "暂无作者信息" ||
+        normalized === "暂无回声" ||
+        normalized === "noguideyet" ||
+        normalized === "nocommentaryyet" ||
+        normalized === "noauthoryet" ||
+        normalized === "noauthorinformationyet" ||
+        normalized === "noechoesyet"
+    );
+}
+
+function setDetailVisibility(sectionId, visible) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    section.style.display = visible ? "" : "none";
+}
+
 export function updateWordFocus(targetNodeId = null) {
     document.querySelectorAll(`.word-node.${PENDING_FOCUS_CLASS}`).forEach((node) => {
         node.classList.remove(PENDING_FOCUS_CLASS);
@@ -601,6 +642,7 @@ export function updateWordDetails(options = {}) {
     if (!word) return Promise.resolve();
 
     const lang = normalizeLang(state.currentLang || "zh");
+    const contrastToken = ++proposerContrastToken;
 
     // 显示details
     const detailDiv = document.getElementById("word-details");
@@ -632,7 +674,9 @@ export function updateWordDetails(options = {}) {
         imageTitle.textContent = '出处';
     }
 
-    if (word.source_image) {
+    const hasSourceImage = hasUsableImageSource(word.source_image);
+    setDetailVisibility("image", hasSourceImage);
+    if (hasSourceImage) {
         imageEl.src = resolveImagePath(word.source_image);
         imageEl.alt = word.term?.[lang] || '';
         imageEl.style.display = 'block';
@@ -661,28 +705,32 @@ export function updateWordDetails(options = {}) {
         const localizedName = proposer.name?.[lang] || '';
         const sourceName = proposer.name?.ori || '';
         const zhName = proposer.name?.zh || '';
-        const displayName = (localizedName || sourceName || '未知').trim();
+        const displayName = (localizedName || sourceName || '').trim();
         const proposerImagePath = hasUsableImageSource(proposer.image)
             ? resolveImagePath(proposer.image)
             : "";
+        const proposerOriText = getDisplayOriText(sourceName, lang, zhName);
+        const hasProposerContent = hasTextContent(displayName) || hasTextContent(proposerOriText) || hasTextContent(proposerImagePath);
+        setDetailVisibility("proposer", hasProposerContent);
         proposerPrimary.textContent = displayName;
-        proposerOri.textContent = getDisplayOriText(sourceName, lang, zhName);
+        proposerOri.textContent = proposerOriText;
         if (proposerImagePath) {
             proposerImg.src = proposerImagePath;
             proposerImg.alt = localizedName || sourceName || '';
             proposerImg.style.display = 'block';
-            attachProposerContrastWatcher(proposerImg);
+            attachProposerContrastWatcher(proposerImg, contrastToken);
         } else {
             proposerImg.src = '';
             proposerImg.style.display = 'none';
-            setProposerTextColor(PROPOSER_TEXT_COLOR_DARK);
+            setProposerTextColorIfCurrent(contrastToken, PROPOSER_TEXT_COLOR_DARK);
         }
     } else {
-        proposerPrimary.textContent = '未知';
+        setDetailVisibility("proposer", false);
+        proposerPrimary.textContent = '';
         proposerOri.textContent = '';
         proposerImg.src = '';
         proposerImg.style.display = 'none';
-        setProposerTextColor(PROPOSER_TEXT_COLOR_DARK);
+        setProposerTextColorIfCurrent(contrastToken, PROPOSER_TEXT_COLOR_DARK);
     }
 
     // comment section
@@ -696,12 +744,19 @@ export function updateWordDetails(options = {}) {
     }
     if (word.commentAbs) {
         const comment = word.commentAbs;
-        const content = applyHashItalics(comment.content?.[lang] || "");
-        const author = comment.author?.[lang] || "";
+        const rawContent = comment.content?.[lang] || "";
+        const rawAuthor = comment.author?.[lang] || "";
+        const content = isCommentPlaceholder(rawContent) ? "" : applyHashItalics(rawContent);
+        const author = isCommentPlaceholder(rawAuthor) ? "" : rawAuthor;
         const authorBlock = author ? ` <p>${author}</p>` : "";
-        commentContent.innerHTML = `<div class="comment-abs-content">${content}</div>${authorBlock}`;
+        const hasCommentContent = hasTextContent(content) || hasTextContent(author);
+        setDetailVisibility("comment", hasCommentContent);
+        commentContent.innerHTML = hasCommentContent
+            ? `<div class="comment-abs-content">${content}</div>${authorBlock}`
+            : "";
     } else {
-        commentContent.innerHTML = `<h3>暂无回声</h3> <p></p>`;
+        setDetailVisibility("comment", false);
+        commentContent.innerHTML = "";
     }
 
     return Promise.all([

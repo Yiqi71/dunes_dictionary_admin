@@ -1,4 +1,4 @@
-import { getOrCreateDeviceId } from "./device-id.js";
+﻿import { getOrCreateDeviceId } from "./device-id.js";
 
 const INVITE_OK_KEY = "dunes_invite_verified_v1";
 const INVITE_CODE_KEY = "dunes_invite_code_v1";
@@ -6,6 +6,7 @@ const DEVICE_ID_KEYS = ["dd_device_id_v1", "dunes_device_id_v1", "dd_vote_device
 const SUCCESS_HOLD_MS = 2000;
 const FADE_OUT_MS = 700;
 const GATE_FIRST_SHOW_DELAY_MS = 900;
+const GATE_REVEAL_SETTLE_MS = 760;
 const ENTRY_READY_EVENT = "dunes:entry-ready";
 
 let entryReadyNotified = false;
@@ -18,6 +19,12 @@ const API_BASE = (() => {
     if (host === "localhost" || host === "127.0.0.1") return "http://localhost:3000";
     return "https://api.dunes-dictionary.com";
 })();
+
+function shouldBypassInviteForLocalDev() {
+    if (typeof window === "undefined" || typeof location === "undefined") return false;
+    const host = String(location.hostname || "").toLowerCase();
+    return host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
+}
 
 function normalizeInviteCode(value) {
     return String(value || "").trim().toUpperCase();
@@ -85,6 +92,7 @@ function hideGate(gate, source = "unknown") {
 }
 
 function showSuccessOverlay(gate, input, submit, message) {
+    gate.style.display = "";
     input.disabled = true;
     submit.disabled = true;
     setMessage(message, "", "");
@@ -116,6 +124,7 @@ function ensureGateDom() {
 
     gate = document.createElement("div");
     gate.id = "invite-gate";
+    gate.style.display = "none";
     gate.innerHTML = `
         <div class="invite-card">
             <h1 class="invite-title">输入邀请码</h1>
@@ -158,17 +167,29 @@ function initInviteGate() {
         return;
     }
 
+    if (shouldBypassInviteForLocalDev()) {
+        hideGate(gate, "invite-bypass-local-dev");
+        return;
+    }
+
+    gate.style.display = "";
     gate.classList.add("is-waiting");
     gate.classList.remove("is-success", "is-fading", "is-hidden");
     ensureSuccessTitle(gate);
 
     const showGate = () => {
+        gate.style.display = "";
         gate.classList.remove("is-hidden");
         gate.classList.remove("is-fading");
         gate.classList.remove("is-success");
         gate.classList.remove("is-waiting");
         input.disabled = false;
         submit.disabled = false;
+        if (!entryReadyNotified) {
+            window.setTimeout(() => {
+                notifyEntryReady("invite-required");
+            }, GATE_REVEAL_SETTLE_MS);
+        }
         if (!input.value) input.focus();
     };
 

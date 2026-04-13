@@ -33,7 +33,7 @@
     <script type="module" src="assets/js/countryBoundingBoxes.js" defer></script>
     <script type="module" src="assets/js/boot-progress.js" defer></script>
     <script type="module" src="assets/js/main.preview.js"></script>
-    <script type="module" src="assets/js/invite-gate.js" defer></script>
+    <script type="module" src="assets/js/visitor-upload.js" defer></script>
     <script type="module" src="assets/js/mobile-panel.js" defer></script>
     <script type="module" src="assets/js/mobile-interactions.js" defer></script>
     <script type="module" src="assets/js/wordFocus.hotkey.rs.js" defer></script>
@@ -76,7 +76,7 @@
             </div>
             <div class="panel-tabs">
                 <button data-tab="entry" class="active">词条</button>
-                <button data-tab="comment" style="opacity:0; pointer-events:none;">笔记</button>
+                <button data-tab="comment" style="opacity:0; pointer-events:none;">回声</button>
             </div>
         </div>
 
@@ -92,7 +92,7 @@
             </div>
             <div class="panel-tabs">
                 <button data-tab="entry" style="opacity:0; pointer-events:none;">词条</button>
-                <button data-tab="comment" class="active">笔记</button>
+                <button data-tab="comment" class="active">回声</button>
             </div>
         </div>
 
@@ -154,6 +154,28 @@
                 </div>
             </div>
             <div id="search-results" class="menu-search-results hidden"></div>
+        </div>
+
+        <div id="visitor-upload-panel" aria-label="Visitor upload">
+            <form id="visitor-upload-form" novalidate>
+                <div class="visitor-upload-banner" aria-hidden="true">
+                    <strong>功能测试中，请忽略。。。</strong>
+                    <strong>Feature test in progress. Please ignore...</strong>
+                </div>
+                <label class="visitor-upload-label" for="visitor-word-input">
+                    <span>上传词条</span>
+                    <span>Upload a word</span>
+                </label>
+                <div class="visitor-upload-row">
+                    <input id="visitor-word-input" name="word" type="text" maxlength="80" placeholder="请输入词条 / Type a word..." autocomplete="off" />
+                    <button id="visitor-upload-submit" type="submit">提交 / Submit</button>
+                </div>
+                <div id="visitor-upload-progress" class="is-hidden" aria-hidden="true">
+                    <span class="visitor-upload-progress-bar"></span>
+                </div>
+                <p id="visitor-upload-status" aria-live="polite"></p>
+                <p class="visitor-upload-note">功能测试中，上传词条可能只会暂时出现，内测期间随时可能调整。<br>Testing only: uploaded words may appear temporarily and may still change during internal beta.</p>
+            </form>
         </div>
 
         <div id="lower-menu" class="menu-part">
