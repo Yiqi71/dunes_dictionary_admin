@@ -2,7 +2,7 @@ const express = require("express");
 
 const {
   buildVisitorWord,
-  hasGeminiApiKey,
+  hasTencentCloudCredentials,
   logBlockedVisitorWord,
   moderateVisitorWord,
   moderateVisitorWordWithAI,
@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
   const rawWord = String(req.body && req.body.word ? req.body.word : "").trim();
   console.log("[visitor-words] Incoming submit", {
     rawWord,
-    geminiConfigured: hasGeminiApiKey()
+    tencentConfigured: hasTencentCloudCredentials()
   });
 
   if (!rawWord) {
@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
 
     const aiModeration = await moderateVisitorWordWithAI(rawWord);
     if (!aiModeration.allowed) {
-      console.log("[visitor-words] Blocked by Gemini moderation", {
+      console.log("[visitor-words] Blocked by Tencent moderation", {
         rawWord,
         reason: aiModeration.reason,
         categories: aiModeration.categories || null

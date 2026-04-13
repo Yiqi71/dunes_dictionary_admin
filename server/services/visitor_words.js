@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const fs = require("fs/promises");
 const https = require("https");
 const path = require("path");
@@ -5,8 +6,12 @@ const path = require("path");
 const DATA_FILE = path.join(__dirname, "..", "..", "content", "visitor-upload-words.json");
 const LOG_FILE = path.join(__dirname, "..", "..", "content", "visitor-upload-blocked.json");
 const DENYLIST_FILE = path.join(__dirname, "..", "data", "visitor_word_denylist.json");
-const GEMINI_MODEL = "gemini-2.5-flash";
-const GEMINI_ENDPOINT_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
+
+const TMS_ACTION = "TextModeration";
+const TMS_VERSION = "2020-12-29";
+const TMS_SERVICE = "tms";
+const TMS_HOST = "tms.tencentcloudapi.com";
+const TMS_ENDPOINT = `https://${TMS_HOST}`;
 
 let denylistCache = null;
 
@@ -59,12 +64,51 @@ function moderateVisitorWord(rawWord) {
   return { allowed: true, reason: "ok" };
 }
 
-function getGeminiApiKey() {
-  return String(process.env.GEMINI_API_KEY || "").trim();
+function getTencentCloudCredentials() {
+  return {
+    secretId: String(process.env.TENCENTCLOUD_SECRET_ID || "").trim(),
+    secretKey: String(process.env.TENCENTCLOUD_SECRET_KEY || "").trim(),
+    region: String(process.env.TENCENTCLOUD_REGION || "ap-beijing").trim(),
+    bizType: String(process.env.TENCENTCLOUD_TMS_BIZ_TYPE || "TencentCloudDefault").trim()
+  };
 }
 
-function hasGeminiApiKey() {
-  return Boolean(getGeminiApiKey());
+function hasTencentCloudCredentials() {
+  const { secretId, secretKey } = getTencentCloudCredentials();
+  return Boolean(secretId && secretKey);
+}
+
+function sha256Hex(value) {
+  return crypto.createHash("sha256").update(value, "utf8").digest("hex");
+}
+
+function buildTencentCloudAuthorization({ secretId, secretKey, timestamp, date, payload }) {
+  const algorithm = "TC3-HMAC-SHA256";
+  const canonicalHeaders = `content-type:application/json; charset=utf-8\nhost:${TMS_HOST}\nx-tc-action:${TMS_ACTION.toLowerCase()}\n`;
+  const signedHeaders = "content-type;host;x-tc-action";
+  const canonicalRequest = [
+    "POST",
+    "/",
+    "",
+    canonicalHeaders,
+    signedHeaders,
+    sha256Hex(payload)
+  ].join("\n");
+
+  const credentialScope = `${date}/${TMS_SERVICE}/tc3_request`;
+  const stringToSign = [
+    algorithm,
+    String(timestamp),
+    credentialScope,
+    sha256Hex(canonicalRequest)
+  ].join("\n");
+
+  const secretDate = crypto.createHmac("sha256", `TC3${secretKey}`).update(date, "utf8").digest();
+  const secretService = crypto.createHmac("sha256", secretDate).update(TMS_SERVICE, "utf8").digest();
+  const secretSigning = crypto.createHmac("sha256", secretService).update("tc3_request", "utf8").digest();
+  const signature = crypto.createHmac("sha256", secretSigning).update(stringToSign, "utf8").digest("hex");
+
+  return `${algorithm} Credential=${secretId}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
 }
 
 function postJson(url, body, headers = {}) {
@@ -75,7 +119,7 @@ function postJson(url, body, headers = {}) {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json; charset=utf-8",
           "Content-Length": Buffer.byteLength(payload),
           ...headers
         }
@@ -106,82 +150,66 @@ function postJson(url, body, headers = {}) {
   });
 }
 
-function toGeminiCategories(safetyRatings = []) {
-  const ratings = Array.isArray(safetyRatings) ? safetyRatings : [];
-  const categories = {};
-
-  for (const rating of ratings) {
-    const category = String(rating && rating.category ? rating.category : "").toUpperCase();
-    const probability = String(rating && rating.probability ? rating.probability : "").toUpperCase();
-    if (!category) continue;
-    categories[category] = probability || "UNSPECIFIED";
-  }
-
-  return categories;
-}
-
 async function moderateVisitorWordWithAI(rawWord) {
-  const apiKey = getGeminiApiKey();
-  if (!apiKey) {
-    console.log("[visitor-words] Gemini moderation skipped: no GEMINI_API_KEY");
+  const { secretId, secretKey, region, bizType } = getTencentCloudCredentials();
+  if (!secretId || !secretKey) {
+    console.log("[visitor-words] Tencent moderation skipped: missing credentials");
     return { allowed: true, reason: "ai_not_configured", skipped: true };
   }
 
-  console.log("[visitor-words] Gemini moderation request started");
-  try {
-    const url = `${GEMINI_ENDPOINT_BASE}/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
-    const payload = {
-      contents: [
-        {
-          role: "user",
-          parts: [{ text: rawWord }]
-        }
-      ],
-      safetySettings: [
-        {
-          category: "HARM_CATEGORY_HARASSMENT",
-          threshold: "BLOCK_LOW_AND_ABOVE"
-        },
-        {
-          category: "HARM_CATEGORY_HATE_SPEECH",
-          threshold: "BLOCK_LOW_AND_ABOVE"
-        },
-        {
-          category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-          threshold: "BLOCK_LOW_AND_ABOVE"
-        },
-        {
-          category: "HARM_CATEGORY_DANGEROUS_CONTENT",
-          threshold: "BLOCK_ONLY_HIGH"
-        }
-      ],
-      generationConfig: {
-        temperature: 0,
-        maxOutputTokens: 1
-      }
-    };
+  console.log("[visitor-words] Tencent moderation request started");
 
-    const response = await postJson(url, payload);
-    if (response.statusCode >= 400) {
-      console.log("[visitor-words] Gemini moderation request failed", {
+  try {
+    const timestamp = Math.floor(Date.now() / 1000);
+    const date = new Date(timestamp * 1000).toISOString().slice(0, 10);
+    const requestBody = {
+      Content: Buffer.from(String(rawWord || ""), "utf8").toString("base64"),
+      BizType: bizType || "TencentCloudDefault",
+      DataId: `visitor-${timestamp}`,
+      SourceLanguage: "zh",
+      Type: "TEXT"
+    };
+    const payload = JSON.stringify(requestBody);
+    const authorization = buildTencentCloudAuthorization({
+      secretId,
+      secretKey,
+      timestamp,
+      date,
+      payload
+    });
+
+    const response = await postJson(TMS_ENDPOINT, requestBody, {
+      Authorization: authorization,
+      Host: TMS_HOST,
+      "X-TC-Action": TMS_ACTION,
+      "X-TC-Version": TMS_VERSION,
+      "X-TC-Region": region,
+      "X-TC-Timestamp": String(timestamp)
+    });
+
+    const responseData = response.body && response.body.Response ? response.body.Response : null;
+    if (response.statusCode >= 400 || (responseData && responseData.Error)) {
+      console.log("[visitor-words] Tencent moderation request failed", {
         statusCode: response.statusCode,
-        body: response.body || response.raw || null
+        error: responseData && responseData.Error ? responseData.Error : response.body || response.raw || null
       });
       return { allowed: true, reason: "ai_request_failed", skipped: true };
     }
 
-    const promptFeedback = response.body && response.body.promptFeedback ? response.body.promptFeedback : null;
-    const blockReason = String(promptFeedback && promptFeedback.blockReason ? promptFeedback.blockReason : "").trim();
-    const categories = toGeminiCategories(promptFeedback && promptFeedback.safetyRatings);
-    const blocked = Boolean(blockReason);
+    const suggestion = String(responseData && responseData.Suggestion ? responseData.Suggestion : "Pass");
+    const blocked = suggestion === "Block" || suggestion === "Review";
+    const categories = {
+      label: responseData && responseData.Label ? responseData.Label : "Normal",
+      subLabel: responseData && responseData.SubLabel ? responseData.SubLabel : "",
+      suggestion,
+      score: typeof (responseData && responseData.Score) === "number" ? responseData.Score : null,
+      keywords: Array.isArray(responseData && responseData.Keywords) ? responseData.Keywords : []
+    };
 
     if (blocked) {
-      console.log("[visitor-words] Gemini moderation blocked prompt", {
-        blockReason,
-        categories
-      });
+      console.log("[visitor-words] Tencent moderation blocked prompt", categories);
     } else {
-      console.log("[visitor-words] Gemini moderation allowed prompt");
+      console.log("[visitor-words] Tencent moderation allowed prompt", categories);
     }
 
     return {
@@ -192,7 +220,7 @@ async function moderateVisitorWordWithAI(rawWord) {
       categories
     };
   } catch (error) {
-    console.log("[visitor-words] Gemini moderation request error", {
+    console.log("[visitor-words] Tencent moderation request error", {
       message: error && error.message ? error.message : String(error || "unknown_error")
     });
     return { allowed: true, reason: "ai_request_failed", skipped: true };
@@ -303,7 +331,7 @@ async function logBlockedVisitorWord(rawWord, details = {}) {
 
 module.exports = {
   buildVisitorWord,
-  hasGeminiApiKey,
+  hasTencentCloudCredentials,
   logBlockedVisitorWord,
   moderateVisitorWord,
   moderateVisitorWordWithAI,
