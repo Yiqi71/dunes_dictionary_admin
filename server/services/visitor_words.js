@@ -1,13 +1,14 @@
 const fs = require("fs/promises");
+const https = require("https");
 const path = require("path");
-const OpenAI = require("openai");
 
 const DATA_FILE = path.join(__dirname, "..", "..", "content", "visitor-upload-words.json");
 const LOG_FILE = path.join(__dirname, "..", "..", "content", "visitor-upload-blocked.json");
 const DENYLIST_FILE = path.join(__dirname, "..", "data", "visitor_word_denylist.json");
+const GEMINI_MODEL = "gemini-2.5-flash";
+const GEMINI_ENDPOINT_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
 
 let denylistCache = null;
-let openaiClient = null;
 
 function normalizeLooseText(value) {
   return String(value || "")
@@ -58,45 +59,116 @@ function moderateVisitorWord(rawWord) {
   return { allowed: true, reason: "ok" };
 }
 
-function getOpenAIClient() {
-  const apiKey = String(process.env.OPENAI_API_KEY || "").trim();
-  if (!apiKey) return null;
-  if (!openaiClient) {
-    openaiClient = new OpenAI({ apiKey });
+function getGeminiApiKey() {
+  return String(process.env.GEMINI_API_KEY || "").trim();
+}
+
+function postJson(url, body, headers = {}) {
+  return new Promise((resolve, reject) => {
+    const payload = JSON.stringify(body);
+    const req = https.request(
+      url,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(payload),
+          ...headers
+        }
+      },
+      (res) => {
+        const chunks = [];
+        res.on("data", (chunk) => chunks.push(chunk));
+        res.on("end", () => {
+          const raw = Buffer.concat(chunks).toString("utf8");
+          let parsed = null;
+          try {
+            parsed = raw ? JSON.parse(raw) : null;
+          } catch (_) {
+            parsed = null;
+          }
+          resolve({
+            statusCode: res.statusCode || 0,
+            body: parsed,
+            raw
+          });
+        });
+      }
+    );
+
+    req.on("error", reject);
+    req.write(payload);
+    req.end();
+  });
+}
+
+function toGeminiCategories(safetyRatings = []) {
+  const ratings = Array.isArray(safetyRatings) ? safetyRatings : [];
+  const categories = {};
+
+  for (const rating of ratings) {
+    const category = String(rating && rating.category ? rating.category : "").toUpperCase();
+    const probability = String(rating && rating.probability ? rating.probability : "").toUpperCase();
+    if (!category) continue;
+    categories[category] = probability || "UNSPECIFIED";
   }
-  return openaiClient;
+
+  return categories;
 }
 
 async function moderateVisitorWordWithAI(rawWord) {
-  const client = getOpenAIClient();
-  if (!client) {
+  const apiKey = getGeminiApiKey();
+  if (!apiKey) {
     return { allowed: true, reason: "ai_not_configured", skipped: true };
   }
 
-  const moderation = await client.moderations.create({
-    model: "omni-moderation-latest",
-    input: rawWord
-  });
+  const url = `${GEMINI_ENDPOINT_BASE}/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const payload = {
+    contents: [
+      {
+        role: "user",
+        parts: [{ text: rawWord }]
+      }
+    ],
+    safetySettings: [
+      {
+        category: "HARM_CATEGORY_HARASSMENT",
+        threshold: "BLOCK_LOW_AND_ABOVE"
+      },
+      {
+        category: "HARM_CATEGORY_HATE_SPEECH",
+        threshold: "BLOCK_LOW_AND_ABOVE"
+      },
+      {
+        category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        threshold: "BLOCK_LOW_AND_ABOVE"
+      },
+      {
+        category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+        threshold: "BLOCK_ONLY_HIGH"
+      }
+    ],
+    generationConfig: {
+      temperature: 0,
+      maxOutputTokens: 1
+    }
+  };
 
-  const result = moderation && Array.isArray(moderation.results) ? moderation.results[0] : null;
-  const categories = result && result.categories ? result.categories : {};
-  const flagged = Boolean(result && result.flagged);
-  const blocked =
-    flagged &&
-    Boolean(
-      categories.harassment ||
-      categories["harassment/threatening"] ||
-      categories.hate ||
-      categories["hate/threatening"] ||
-      categories["sexual/minors"] ||
-      categories.sexual
-    );
+  const response = await postJson(url, payload);
+  if (response.statusCode >= 400) {
+    throw new Error(`gemini_request_failed_${response.statusCode}`);
+  }
+
+  const promptFeedback = response.body && response.body.promptFeedback ? response.body.promptFeedback : null;
+  const blockReason = String(promptFeedback && promptFeedback.blockReason ? promptFeedback.blockReason : "").trim();
+  const categories = toGeminiCategories(promptFeedback && promptFeedback.safetyRatings);
+  const blocked = Boolean(blockReason);
 
   return {
     allowed: !blocked,
     reason: blocked ? "ai_flagged" : "ok",
     skipped: false,
-    flagged,
+    flagged: blocked,
     categories
   };
 }
