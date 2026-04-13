@@ -19,7 +19,9 @@ function normalizeLooseText(value) {
 }
 
 function normalizeCompactText(value) {
-  return normalizeLooseText(value).replace(/[\s\W]+/g, "");
+  return normalizeLooseText(value)
+    .replace(/[\s\p{P}\p{S}]+/gu, "")
+    .trim();
 }
 
 function getDenylist() {
